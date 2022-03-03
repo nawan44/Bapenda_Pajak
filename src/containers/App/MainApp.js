@@ -61,8 +61,8 @@ const getNavStyles = (navStyle) => {
       return <BelowHeader/>;
     case NAV_STYLE_FIXED :
       return <Topbar/>;
-    case NAV_STYLE_DRAWER :
-      return <Topbar/>;
+    // case NAV_STYLE_DRAWER :
+    //   return <Topbar/>;
     case NAV_STYLE_MINI_SIDEBAR :
       return <Topbar/>;
     case NAV_STYLE_NO_HEADER_MINI_SIDEBAR :

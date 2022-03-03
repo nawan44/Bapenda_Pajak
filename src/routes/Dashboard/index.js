@@ -188,7 +188,7 @@ console.log("latestTransaction ^^^^^",latestTransaction)
   }
   return (
     <div>
-      <h2 className="title gx-mb-4"><IntlMessages id="sidebar.samplePage" /></h2>
+      {/* <h2 className="title gx-mb-4"><IntlMessages id="sidebar.samplePage" /></h2> */}
       {/* <div className="gx-d-flex justify-content-center"> */}
       {/* <div className="container-dashboard1"  > */}
       <Row  className="container-dashboard1">
@@ -197,9 +197,9 @@ console.log("latestTransaction ^^^^^",latestTransaction)
         <PendapatanTahunIni latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
         </Row>
       {/* </div> */}
-      <div className="container-dashboard2"  >
+      <Row className="container-dashboard2" type="flex" >
         <GrafikPendapatanBulan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
-      </div>
+      </Row>
       <Row className="container-dashboard3">
 
         <TransaksiHariIni latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
