@@ -1,0 +1,73 @@
+.merchant_id {
+    width: 500px; 
+    margin: 0 0 0 10px;
+}
+.owner {
+    width: 500px;
+     margin: 0 0 0 97px;
+}
+.nik{
+     width: 500px; 
+     margin: 0 0 0 117px;
+}
+.email{
+    width: 500px; 
+    margin: 0 0 0 105px;
+}
+.badan_usaha {
+   width: 500px;
+    margin: 0 0 0 56px;
+}
+@media  (max-width: 599px) {
+    .merchant_id {
+        width: 100%; 
+        margin: 0 0 0 0;
+    }
+    .owner {
+        width: 100%;
+         margin: 0 0 0 0;
+    }
+    .nik{
+         width: 100%; 
+         margin: 0 0 0 0;
+    }
+    .email{
+        width: 100%; 
+        margin: 0 0 0 0;
+    }
+    .badan_usaha {
+       width: 100%;
+        margin: 0 0 0 0;
+    }
+
+}
+
+@media (max-width: 300px) {
+
+ 
+    }
+    @media(min-width: 600px) and (max-width: 767px) {
+        .merchant_id {
+            width: 300px; 
+            margin: 0 0 0 10px;
+        }
+        .owner {
+            width:300px;
+             margin: 0 0 0 97px;
+        }
+        .nik{
+             width: 300px; 
+             margin: 0 0 0 117px;
+        }
+        .email{
+            width: 300px; 
+            margin: 0 0 0 105px;
+        }
+        .badan_usaha {
+           width: 300px;
+            margin: 0 0 0 56px;
+        }
+    }
+    @media  (min-width: 768px) and (max-width: 991px) {
+      
+    }
