@@ -140,11 +140,7 @@ console.log("user", users)
   return (
     <Widget 
     styleName="gx-order-history"
-      // title={
-      //   <h2 style={{textAlign:"left"}} >
-      //     10 Latest Transaction
-      //   </h2>
-      // }
+      
     >
   
 <EventsSection latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction}/>

@@ -203,9 +203,7 @@ const [dataBulan, setDataBulan] = useState([
       }),
       {}
     );
-    
-    console.log("shooters bulan",bulan);
-    console.log("shooters shooters",shooters);
+   
 
   
   const formatter = new Intl.NumberFormat('id-ID', {

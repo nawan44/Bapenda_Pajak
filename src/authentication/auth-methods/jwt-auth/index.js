@@ -10,6 +10,7 @@ import {
   LOGOUT,
   CLEAR_ERROR,
 } from "../../types";
+import ErrorPage from '../../../routes/NotFound';
 
 export const useProvideAuth = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -167,25 +168,41 @@ export const useProvideAuth = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log("token ddddddddddddddd", token)
         if (token) {
         httpClient.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-      }
-      httpClient
-        // .get('login?username=' + nRef.username + '&password=' + nRef.password, nRef)
-        .get('/user')
+        httpClient.get('/user')
         .then(({ data }) => {
-          if (data) {
+          if ( data) {
             setAuthUser(data);
           }
           setLoadingUser(false);
-          console.log("data user USEEFFECT", data)
+        })
+        // setAuthUser(data);
+      } else if (token === null) {
+        setLoadingUser(false);
+        // localStorage.setItem('auth-token', '');
+        // token = '';
+        // setAuthUser(false);
+      // 
+      //  return  <ErrorPage/>
+      }
+      // httpClient
+      //   // .get('login?username=' + nRef.username + '&password=' + nRef.password, nRef)
+      //   .get('/user')
+        // .then(({ data }) => {
+        //   if ( data) {
+        //     setAuthUser(data);
+        //   }
+        //   setLoadingUser(false);
+      //     // console.log("data user USEEFFECT", data)
 
-        })
-        .catch(function () {
-          localStorage.removeItem('token');
-          httpClient.defaults.headers.common['Authorization'] = '';
-          setLoadingUser(false);
-        })
+      //   })
+      //   .catch(function () {
+      //     localStorage.removeItem('token');
+      //     httpClient.defaults.headers.common['Authorization'] = '';
+      //     setLoadingUser(false);
+      //   })
       
   }, []);
 

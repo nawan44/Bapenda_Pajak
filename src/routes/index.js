@@ -9,6 +9,7 @@ const App = ({match}) => (
       <Route path={`${match.url}dashboard`} component={asyncComponent(() => import('./Dashboard'))}/>
       <Route path={`${match.url}register-device-agent`} component={asyncComponent(() => import('./RegisterDeviceAgent'))}/>
       <Route path={`${match.url}list-device-agent`} component={asyncComponent(() => import('./ListDeviceAgent'))}/>
+      <Route path={`${match.url}not-found`} component={asyncComponent(() => import('./NotFound'))}/>
 
     </Switch>
   </div>

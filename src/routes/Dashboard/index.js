@@ -17,7 +17,7 @@ import LatestTransaction from "./Latest Transaction";
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState()
   const [dummy, setDummy] = useState()
-console.log("latestTransaction ^^^^^",latestTransaction)
+// console.log("latestTransaction ^^^^^",latestTransaction)
 
   // const latestTransaction = [
   //   [
