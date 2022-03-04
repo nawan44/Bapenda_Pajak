@@ -117,7 +117,7 @@ const PendapatanHariIni = ( props) => {
   moneyToday={moneyToday} setMoneyToday ={setMoneyToday} moneyYesterday={moneyYesterday}  setMoneyYesterday={setMoneyYesterday} objToday={objToday}
   subTitle={<div><span>Total Pendapatan</span><br /><span>(Hari Ini)</span></div>} colorSubTitle="indigo"  />
           </div>
-          <div class="flip-card-back">
+          <div className="flip-card-back">
             <EcommerceStatus  icon="revenue-new" color="grey"  title={<div style={{marginBottom:"115px"}}>{formatter.format(currentYesterday)}</div>} colorTitle="dark" 
               // moneyToday={moneyToday} setMoneyToday ={setMoneyToday} moneyYesterday={moneyYesterday} setMoneyYesterday={setMoneyYesterday}
               subTitle={<div><span>Total Pendapatan</span><br /><span>(Kemarin)</span></div>} colorSubTitle="dark"/>

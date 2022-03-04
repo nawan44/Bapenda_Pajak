@@ -1,41 +1,131 @@
 import React, { useState, useEffect } from "react";
-import { Table } from "antd";
+import { Table, Input } from "antd";
 import Widget from "components/Widget/index";
 import reqOptions from "../../util/reqOptions";
+import styled from 'styled-components';
+
 // import { TokenStorageService } from './token-storage.service';
 import * as moment from 'moment';
 
 import jwtDecode from 'jwt-decode';
 
-const columns = [
+const FlexBox = styled.div`
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid palevioletred;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  > div {
+    margin: 20px;
+  }
+`;
+const users = [
   {
-    title: 'Transaction ID',
-    dataIndex: 'invoice_id',
-    // render: (text) => {
-    //   return <span className="gx-text-red">{text}</span>
-    // },
+    nickname: "crazyfrog",
+    email: "frog@foobar.com",
+    alamat: "Jakarta",
+    jumlah: 3,
   },
   {
-    title: 'Device Id / Agent ID	',
-    dataIndex: 'merchant_id',
+    nickname: "tatanka",
+    email: "ttt@hotmail.com",
+    alamat: "Tangerang",
+    jumlah: 7,
   },
   {
-    title: 'Nama Usaha	',
-    dataIndex: 'nama_usaha',
+    nickname: "wild",
+    email: "www@mail.ru",
+    alamat: "Bogor",
+    jumlah: 8,
   },
   {
-    title: 'Transaction Value	',
-    dataIndex: 'total_value',
+    nickname: "race car",
+    email: "racing@gmail.com",
+    alamat: "Depok",
+    jumlah: 9,
   },
   {
-    title: 'Tanggal Transaksi	',
-    dataIndex: 'created_at',
+    nickname: "cook",
+    email: "cooking@yahoo.com",
+    alamat: undefined,
+    jumlah: 4,
   },
 ];
-
 const LatestTransaction = (props) => {
   const {latestTransaction, setLatestTransaction} = props
+  const data = latestTransaction && latestTransaction.map(row => ({ 
+    invoice_id: row[0].stringValue, 
+    merchant_id: row[1].stringValue,
+    nama_usaha : row[2].stringValue,
+    total_value: row[3].stringValue, 
+    created_at: row[4].stringValue }));
+    const [dataSource, setDataSource] = useState(data);
+console.log("data", data)
+console.log("user", users)
+
+  const [value, setValue] = useState('');
+
+  const InvoiceID = (
+    <Input
+      placeholder="Search Name"
+      value={value}
+      onChange={e => {
+        const currValue = e.target.value;
+        setValue(currValue);
+        const filteredDatas = data.filter(entry =>
+          entry.merchant_id.includes(currValue)
+        );
+        setDataSource(filteredDatas);
+      }}
+    />
+  );
+  const columns = [
+    {
+      title: InvoiceID,
+      dataIndex: 'invoice_id',
+      key: '1',
+
+      // render: (text) => {
+      //   return <span className="gx-text-red">{text}</span>
+      // },
+    },
+    {key: '2',
+      title: 'Device Id / Agent ID	',
+      dataIndex: 'merchant_id',
+    },
+    {
+      title: 'Nama Usaha	',
+      dataIndex: 'nama_usaha',
+    },
+    {
+      title: 'Transaction Value	',
+      dataIndex: 'total_value',
+    },
+    {
+      title: 'Tanggal Transaksi	',
+      dataIndex: 'created_at',
+    },
+  ];
   const [loading, setloading] = useState(true);
+  const [filter, setFilter] = useState("");
+  const lowercasedFilter = filter.toString().toLowerCase();
+  const filteredData = data?.filter((item) => {
+    try {
+      return Object.keys(item).some((key) => {
+        if (item[key]) {
+          return item[key].toLowerCase().includes(lowercasedFilter);
+        }
+      });
+    } catch (e) {
+      console.log("data tidak ada");
+    }
+  });
+  const handleChangeData = (event) => {
+    setFilter(event.target.value);
+  };
 
   // const data = latestTransaction && latestTransaction.map(row => ({ 
   //   transaction_id: row[0].stringValue, 
@@ -43,12 +133,8 @@ const LatestTransaction = (props) => {
   //  transaction_value: row[3].stringValue, 
   // tanggal_transaksi: row[1].stringValue }));
 
-  const data = latestTransaction && latestTransaction.map(row => ({ 
-    invoice_id: row[0].stringValue, 
-    merchant_id: row[1].stringValue,
-    nama_usaha : row[2].stringValue,
-    total_value: row[3].stringValue, 
-    created_at: row[4].stringValue }));
+
+  
 
   return (
     <Widget 
@@ -61,16 +147,51 @@ const LatestTransaction = (props) => {
       }
 
     >
+          <div>
+      <input value={filter} onChange={handleChangeData} />{" "}
+      {filteredData?.map((item) => (
+        <div key={item.invoice_id}>
+          <div>
+            {item.invoice_id} {item.merchant_id} - {item.nama_usaha} - {item.total_value}
+          </div>
+        </div>
+      ))}
+      </div>
       <div 
       className="gx-table-responsive" 
       >
-        <Table 
-        className="gx-table-no-bordered"   columns={columns} dataSource={data} pagination={false} bordered={false}
+         <FlexBox>
+    <Table columns={columns} dataSource={dataSource} />
+  </FlexBox>
+  <table>
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+  
+</table>
+
+
+
+        {/* <Table 
+        className="gx-table-no-bordered"   columns={columns} dataSource={dataSource} pagination={false} bordered={false}
           size="large"
-           />
+           /> */}
       </div>
 
     </Widget>
+   
   );
 };
 

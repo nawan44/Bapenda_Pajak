@@ -67,6 +67,7 @@
     "rupiah-cli": "^0.0.3",
     "rxjs": "^7.5.4",
     "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.3",
     "url-search-params": "^1.1.0",
     "victory": "^35.4.6"
   },
