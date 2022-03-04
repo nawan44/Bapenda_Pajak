@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Table, Input } from "antd";
 import Widget from "components/Widget/index";
-import reqOptions from "../../util/reqOptions";
+import reqOptions from "../../../util/reqOptions";
 import styled from 'styled-components';
 
 // import { TokenStorageService } from './token-storage.service';
 import * as moment from 'moment';
 
 import jwtDecode from 'jwt-decode';
+import  EventsSection  from "./EventSection";
 
 const FlexBox = styled.div`
   margin: 20px;
@@ -139,57 +140,14 @@ console.log("user", users)
   return (
     <Widget 
     styleName="gx-order-history"
-    style={{backgroundColor:"red"}}
-      title={
-        <h2 style={{textAlign:"left"}} >
-          10 Latest Transaction
-        </h2>
-      }
-
+      // title={
+      //   <h2 style={{textAlign:"left"}} >
+      //     10 Latest Transaction
+      //   </h2>
+      // }
     >
-          <div>
-      <input value={filter} onChange={handleChangeData} />{" "}
-      {filteredData?.map((item) => (
-        <div key={item.invoice_id}>
-          <div>
-            {item.invoice_id} {item.merchant_id} - {item.nama_usaha} - {item.total_value}
-          </div>
-        </div>
-      ))}
-      </div>
-      <div 
-      className="gx-table-responsive" 
-      >
-         <FlexBox>
-    <Table columns={columns} dataSource={dataSource} />
-  </FlexBox>
-  <table>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
   
-</table>
-
-
-
-        {/* <Table 
-        className="gx-table-no-bordered"   columns={columns} dataSource={dataSource} pagination={false} bordered={false}
-          size="large"
-           /> */}
-      </div>
-
+<EventsSection latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction}/>
     </Widget>
    
   );

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Row } from "antd";
 import IntlMessages from "util/IntlMessages";
-import LatestTransaction from "./LatestTransaction"
 import TransaksiHariIni from "./Transaksi/TransaksiHariIni";
 import TransaksiBulanIni from "./Transaksi/TransaksiBulanIni";
 import TransaksiTahunIni from "./Transaksi/TransaksiTahunIni";
@@ -13,6 +12,7 @@ import PendapatanBulanIni from "./Pendapatan/PendapatanBulanIni";
 import PendapatanHariIni from "./Pendapatan/PendapatanHariIni";
 
 import GrafikPendapatanBulan from "./Grafik Pendapatan/grafikPendapatanBulan";
+import LatestTransaction from "./Latest Transaction";
 
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState()
@@ -185,8 +185,11 @@ console.log("latestTransaction ^^^^^",latestTransaction)
       const ajson = await response.json();
       // setLatestTransaction(ajson)
       // setLatestTransaction(ajson.Records)
-      setLatestTransaction(ajson.Records)
+      setLatestTransaction(ajson.Records, )
   }
+  window.setTimeout( function() {
+    window.location.reload();
+  }, 60000);
   return (
     <div>
       {/* <h2 className="title gx-mb-4"><IntlMessages id="sidebar.samplePage" /></h2> */}
