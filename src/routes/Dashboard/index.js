@@ -168,6 +168,15 @@ const SamplePage = () => {
   useEffect(() => {
     getLatestTransaction();
   }, []);
+   useEffect(() => {
+    getLatestTransaction();
+    const interval=setInterval(()=>{
+      getPosts()
+     },10000)
+       
+       
+     return()=>clearInterval(interval)
+  }, []);
   const getLatestTransaction = async (dataLatest) => {
 
       const token = localStorage.getItem('token')
@@ -187,9 +196,9 @@ const SamplePage = () => {
       // setLatestTransaction(ajson.Records)
       setLatestTransaction(ajson.Records, )
   }
-  window.setTimeout( function() {
-    window.location.reload();
-  }, 60000);
+  // window.setTimeout( function() {
+  //   window.location.reload();
+  // }, 60000);
   return (
     <div>
       {/* <h2 className="title gx-mb-4"><IntlMessages id="sidebar.samplePage" /></h2> */}

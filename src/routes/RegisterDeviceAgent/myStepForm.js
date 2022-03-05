@@ -7,6 +7,7 @@ import DataProvinsi from "./dataProvinsi";
 import DataKabupaten from "./dataKabupaten";
 import DataKecamatan from "./dataKecamatan";
 import "../../assets/styles/forRegistrasi.css"
+import { Switch } from 'antd';
 
 const { Option } = Select;
 
@@ -29,7 +30,7 @@ function MyStepForm() {
     const [errorKel, setErrorKel] = useState(false);
     const [errorAlamat, setErrorAlamat] = useState(false);
     const [errorSumberData, setErrorSumberData] = useState(false);
-    const [errorKategori, setErrorKategori] = useState(false);
+    const [errorTypePajak, setErrorTypePajak] = useState(false);
 
     const [current, setCurrent] = useState(0);
 
@@ -53,8 +54,9 @@ function MyStepForm() {
             email: "",
             nama_usaha: "",
             alamat: "",
-            kategori: "",
-            data_source: dataSumber
+            type_pajak: "",
+            data_source: "",
+            isactive : false
         }
 
     );
@@ -71,7 +73,7 @@ function MyStepForm() {
         () => {
             setRegisDeviceAgent({
                 ...regisDeviceAgent,
-                kategori: category
+                type_pajak: category
             });
         },
         [category]
@@ -116,7 +118,7 @@ function MyStepForm() {
                 setErrorSumberData("");
             }
             if (category) {
-                setErrorKategori("");
+                setErrorTypePajak("");
             }
 
         },
@@ -124,6 +126,9 @@ function MyStepForm() {
         const success = () => {
             message.success('Pendaftaran Berhasil');
           };
+          const handleIsActive = (checked, e) => {
+            setRegisDeviceAgent({ ...regisDeviceAgent, [e.target.name]: e.target.checked})
+          }
     const handleClickNext = () => {
         if (current === 0) {
             form.validateFields()
@@ -179,8 +184,8 @@ function MyStepForm() {
             );
         }
         if (current === 2 && category === undefined) {
-            setErrorKategori(
-                "   ❌ Pilih Kategori terlebih dulu"
+            setErrorTypePajak(
+                "   ❌ Pilih Type Pajak terlebih dulu"
             );
         } else {
             console.log("");
@@ -208,7 +213,7 @@ function MyStepForm() {
     const handleChangeSelect = (value) => {
         setDataSumber(value);
     };
-    const handleChangeKategori = (value) => {
+    const handleChangeTypePajak = (value) => {
         setCategory(value);
     };
     const handleFinish = async (values) => {
@@ -240,7 +245,7 @@ function MyStepForm() {
             <Steps current={current}>
                 <Step key={0} title="Data Usaha" />
                 <Step key={1} title="Alamat Usaha" />
-                <Step key={2} title="Kategori Usaha" />
+                <Step key={2} title="Type Pajak" />
                 <Step key={3} title="Selesai" />
 
             </Steps>
@@ -250,7 +255,7 @@ function MyStepForm() {
                     onFinish={handleFinish}
                     initialValues={{
                         merchant_id: "", owner: "", nik: "", email: "", nama_usaha: "",
-                        kelurahan: "", alamat: "", kategori: "", data_source: ""
+                        kelurahan: "", alamat: "", type_pajak: "", data_source: ""
 
                     }}
                 >
@@ -379,15 +384,15 @@ function MyStepForm() {
                     {current === 2 && (
                         <div style={{ width: "90%" }} >
                             <div style={{ margin: "40px 0" }} >
-                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" }}>Kategori Usaha</h4>
+                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" }}>Type Pajak</h4>
                                 <Select
                                     // defaultValue="lucy" 
                                     style={{ margin: "40px 0 0 0" }}
                                     name="category"
                                     value={category}
-                                    onChange={handleChangeKategori}
+                                    onChange={handleChangeTypePajak}
                                     rules={[
-                                        { type: 'array', required: true, message: 'Pilih Kategori Usaha' },
+                                        { type: 'array', required: true, message: 'Pilih Type Pajak' },
                                     ]}
                                     style={{ width: "100%" }} >
                                     <Option value="Hotel">Hotel</Option>
@@ -396,8 +401,8 @@ function MyStepForm() {
                                     <Option value="Minimarket">Minimarket</Option>
 
                                 </Select>
-                                {errorKategori && (
-                                    <div style={{ color: "red" }}>{errorKategori}</div>
+                                {errorTypePajak && (
+                                    <div style={{ color: "red" }}>{errorTypePajak}</div>
                                 )}
                             </div>
                             <div style={{ margin: "40px 0" }} >
@@ -419,6 +424,11 @@ function MyStepForm() {
                                 {errorSumberData && (
                                     <div style={{ color: "red" }}>{errorSumberData}</div>
                                 )}
+                            </div>
+                            <div style={{ margin: "40px 0" }} >
+                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" }}>Active</h4>
+                                <Switch defaultChecked onChange={handleIsActive} />
+                              
                             </div>
                         </div>
                     )}

@@ -21,8 +21,8 @@ const columns = [
     dataIndex: 'nama_usaha',
   },
   {
-    title: 'Kategori	',
-    dataIndex: 'kategori',
+    title: 'Type Pajak	',
+    dataIndex: 'type_pajak',
   },
 ];
 const ListDeviceAgent = () => {
@@ -39,7 +39,7 @@ const ListDeviceAgent = () => {
     owner: row[1].stringValue, 
     email: row[3].stringValue,
     nama_usaha: row[4].stringValue, 
-    kategori: row[6].stringValue }));
+    type_pajak: row[6].stringValue }));
   const getListDevice = async (dataLatest) => {
 
     const token = localStorage.getItem('token')
