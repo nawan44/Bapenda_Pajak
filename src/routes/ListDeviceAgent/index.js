@@ -34,6 +34,15 @@ const ListDeviceAgent = () => {
   useEffect(() => {
     getListDevice();
   }, []);
+  useEffect(() => {
+    getListDevice();
+    const interval=setInterval(()=>{
+      getListDevice()
+     },10000)
+       
+       
+     return()=>clearInterval(interval)
+  }, []);
   const data = listDevice && listDevice.map(row => ({ 
     device_id : row[0].stringValue,
     owner: row[1].stringValue, 
