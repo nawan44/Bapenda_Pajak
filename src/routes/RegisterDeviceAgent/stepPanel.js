@@ -34,29 +34,7 @@ const StepPanel = (props) => {
     const formData = form.getFieldsValue();
     // const formData = form.formData();
 
-    // POST the data to backend and show Notification
-    //     try {
-    //         let form = { formData };
-    //         const token = localStorage.getItem('token')
-    //         const headers = {
-    //           'x-api-key':'45N0Ujae7p9AWDs3ihDiU4ZDnvAMb9ZK4TXH0kCk',
-    //           'content-type': 'application/json',
 
-    //           'Authorization': `Bearer ${token}`
-    //         }
-    //         const response = fetch(
-    //           "https://api.raspi-geek.com/v1/merchants",
-
-    //           { method: "POST",headers },
-    //         //   body: JSON.stringify(form),
-
-    //        );
-    //         const res =  response.json();
-    //             history.push("/dashboard");
-    //     alert("success", res.status);
-    // } catch (err) {
-    //   alert("error", err.message);
-    // }
   };
   return (
     <>

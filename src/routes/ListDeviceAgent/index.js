@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Table } from "antd";
 import Widget from "components/Widget/index";
 import IntlMessages from "util/IntlMessages";
+import jwtDecode from "jwt-decode";
+
 const columns = [
   {
     title: 'Device ID',
@@ -41,10 +43,11 @@ const ListDeviceAgent = () => {
     nama_usaha: row[4].stringValue, 
     type_pajak: row[6].stringValue }));
   const getListDevice = async (dataLatest) => {
-
+    const decoded = jwtDecode(localStorage.token)
+    const apiKey =decoded["api-key"]
     const token = localStorage.getItem('token')
     const headers = {
-      'x-api-key':'45N0Ujae7p9AWDs3ihDiU4ZDnvAMb9ZK4TXH0kCk',
+        'x-api-key': `${apiKey}`,
       'content-type': 'application/json',
   
       'Authorization': `Bearer ${token}`

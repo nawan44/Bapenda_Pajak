@@ -8,6 +8,7 @@ import DataKabupaten from "./dataKabupaten";
 import DataKecamatan from "./dataKecamatan";
 import "../../assets/styles/forRegistrasi.css"
 import { Switch } from 'antd';
+import jwtDecode from "jwt-decode";
 
 const { Option } = Select;
 
@@ -218,13 +219,15 @@ function MyStepForm() {
     };
     const handleFinish = async (values) => {
         try {
+            const decoded = jwtDecode(localStorage.token)
+            const apiKey =decoded["api-key"]        
             const token = localStorage.getItem('token')
             const response = await fetch(
                 "https://api.raspi-geek.com/v1/merchants",
                 {
                     method: "POST",
                     headers: {
-                        'x-api-key': '45N0Ujae7p9AWDs3ihDiU4ZDnvAMb9ZK4TXH0kCk',
+                        'x-api-key': `${apiKey}`,
                         'content-type': 'application/json',
                         'Authorization': `Bearer ${token}`
                     },

@@ -13,6 +13,7 @@ import PendapatanHariIni from "./Pendapatan/PendapatanHariIni";
 
 import GrafikPendapatanBulan from "./Grafik Pendapatan/grafikPendapatanBulan";
 import LatestTransaction from "./Latest Transaction";
+import jwtDecode from "jwt-decode";
 
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState()
@@ -165,23 +166,27 @@ const SamplePage = () => {
   // ]
   // const setLatestTransaction = "AAA"
 
+
+
   useEffect(() => {
     getLatestTransaction();
   }, []);
    useEffect(() => {
     getLatestTransaction();
     const interval=setInterval(()=>{
-      getPosts()
+      getLatestTransaction()
      },10000)
        
        
      return()=>clearInterval(interval)
   }, []);
-  const getLatestTransaction = async (dataLatest) => {
 
+  const getLatestTransaction = async (dataLatest) => {
+    const decoded = jwtDecode(localStorage.token)
+      const apiKey =decoded["api-key"]
       const token = localStorage.getItem('token')
       const headers = {
-        'x-api-key': '45N0Ujae7p9AWDs3ihDiU4ZDnvAMb9ZK4TXH0kCk',
+        'x-api-key': `${apiKey}`,
         'content-type': 'application/json',
         'Authorization': `Bearer ${token}`
       }

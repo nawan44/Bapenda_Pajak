@@ -87,23 +87,7 @@ const PendapatanHariIni = ( props) => {
     }, [currentYesterday]);
 
 
-  // const getLatestTransaction = async (dataLatest) => {
 
-  //   const headers = {
-  //     'x-api-key': '45N0Ujae7p9AWDs3ihDiU4ZDnvAMb9ZK4TXH0kCk',
-  //     'content-type': 'application/json',
-  //     'Authorization': `Bearer ${token}`
-  //   }
-
-  //   const response = await fetch(
-  //     "https://api.raspi-geek.com/v1/latestorder",
-
-  //     { method: "GET", headers }
-  //   );
-  //   const ajson = await response.json();
-  //   setLatestTransaction(ajson.Records)
-
-  // };
 
 
 
