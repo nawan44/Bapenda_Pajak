@@ -20,7 +20,6 @@ export const useProvideAuth = () => {
   // const [dataAuth, setDataAuth] = useState()
   // const nRef = useRef(dataAuth);
   const history = useHistory();
-  // console.log("authUser",authUser )
 
 
   // useEffect(() => { 
@@ -28,7 +27,6 @@ export const useProvideAuth = () => {
   // }, 
   //  [dataAuth]
   //  ) 
-// console.log("nRef",nRef)
 
   const fetchStart = () => {
     setLoading(true);
@@ -46,8 +44,6 @@ export const useProvideAuth = () => {
   };
 
   const userLogin = (user, callbackFun) => {
-    // console.log("user", user)
-
     // setDataAuth(user)
     fetchStart();
     httpClient
@@ -62,8 +58,6 @@ export const useProvideAuth = () => {
         } else {
           fetchError(data.error);
         }     
-        //  console.log("data.result",data)
-
       })
       .catch(function (error) {
         // fetchError(error.message);
@@ -117,7 +111,6 @@ export const useProvideAuth = () => {
     // const decoded = jwtDecode(localStorage.token);
     // if (decoded.exp < Date.now() / 1000) {
     //   // return dispatch({ type: AUTH_ERROR });
-    //   // console.log("dispatch", AUTH_ERROR)
     // }
     fetchStart();
     httpClient
@@ -132,7 +125,6 @@ export const useProvideAuth = () => {
         } else {
           fetchError(data.error);
         }
-        // console.log("data logout 0000000000000000000", data)
       })
       .catch(function (error) {
         fetchError(error.message);
@@ -152,8 +144,6 @@ export const useProvideAuth = () => {
         } else {
           fetchError(data.error);
         }      
-        // console.log("data user", data)
-
       })
       .catch(function (error) {
         httpClient.defaults.headers.common['Authorization'] = '';
@@ -168,7 +158,6 @@ export const useProvideAuth = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log("token ddddddddddddddd", token)
         if (token) {
         httpClient.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         httpClient.get('/user')
@@ -195,7 +184,6 @@ export const useProvideAuth = () => {
         //     setAuthUser(data);
         //   }
         //   setLoadingUser(false);
-      //     // console.log("data user USEEFFECT", data)
 
       //   })
       //   .catch(function () {

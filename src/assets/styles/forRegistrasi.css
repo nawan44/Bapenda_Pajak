@@ -18,7 +18,8 @@
    width: 500px;
     margin: 0 0 0 56px;
 }
-@media  (max-width: 599px) {
+
+@media  (max-width: 600px) {
     .merchant_id {
         width: 100%; 
         margin: 0 0 0 0;
@@ -49,26 +50,51 @@
     }
     @media(min-width: 600px) and (max-width: 767px) {
         .merchant_id {
-            width: 300px; 
+            width: 270px; 
             margin: 0 0 0 10px;
         }
         .owner {
-            width:300px;
+            width:270px;
              margin: 0 0 0 97px;
         }
         .nik{
-             width: 300px; 
+             width: 270px; 
              margin: 0 0 0 117px;
         }
         .email{
-            width: 300px; 
+            width: 270px; 
             margin: 0 0 0 105px;
         }
         .badan_usaha {
-           width: 300px;
+           width: 270px;
             margin: 0 0 0 56px;
         }
+        .stepper-title{
+            font-size: 12px;
+                }
     }
     @media  (min-width: 768px) and (max-width: 991px) {
-      
+        /* .stepper-title{
+    color: red;
+        } */
+              .merchant_id {
+            width: 350px; 
+            margin: 0 0 0 10px;
+        }
+        .owner {
+            width:350px;
+             margin: 0 0 0 97px;
+        }
+        .nik{
+             width: 350px; 
+             margin: 0 0 0 117px;
+        }
+        .email{
+            width: 350px; 
+            margin: 0 0 0 105px;
+        }
+        .badan_usaha {
+           width: 350px;
+            margin: 0 0 0 56px;
+        }
     }

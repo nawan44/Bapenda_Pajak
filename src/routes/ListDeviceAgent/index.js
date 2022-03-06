@@ -31,8 +31,6 @@ const ListDeviceAgent = () => {
   const [listDevice, setListDevice] = useState()
   const [loading, setloading] = useState(true);
 
-  console.log("listDevice",listDevice)
-
   useEffect(() => {
     getListDevice();
   }, []);

@@ -27,7 +27,6 @@ function DataKecamatan(props) {
                     setKecamatan({ data: res.kecamatan })
 
                 })
-        // console.log("responseresponseresponseresponseresponseresponse", response)
 
     };
     const handleChangeKecamatan = (value,key) => {

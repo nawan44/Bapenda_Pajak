@@ -23,12 +23,9 @@ import {
 } from "../../constants/ThemeSetting";
 import CircularProgress from "../../components/CircularProgress";
 import {useAuth} from "../../authentication";
-// console.log("location",component)
 
 const RestrictedRoute = ({component: Component, location, authUser, ...rest}) =>
-  // // console.log("authUser",component.authUser )
-  // // console.log("component",component.component )
-  // // // console.log("rest", rest)
+
 
   <Route
     {...rest}
@@ -60,10 +57,7 @@ const setLayoutType = (layoutType) => {
     document.body.classList.add('framed-layout');
   }
 };
-  // console.log("location",component)
-  // // console.log("authUser",component.authUser )
-  // // console.log("component",component.component )
-  // // // console.log("rest", rest)
+ 
 const setNavStyle = (navStyle) => {
   if (navStyle === NAV_STYLE_DEFAULT_HORIZONTAL ||
     navStyle === NAV_STYLE_DARK_HORIZONTAL ||
@@ -93,12 +87,6 @@ const App = () => {
   const history = useHistory();
   const match = useRouteMatch();
   
-  
-  // console.log("authUser",authUser )
-
-  // console.log("token token",token )
-
-
   useEffect(() => {
     if (isDirectionRTL) {
       document.documentElement.classList.add('rtl');

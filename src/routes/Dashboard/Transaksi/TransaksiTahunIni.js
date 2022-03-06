@@ -29,7 +29,6 @@ const TransaksiTahunIni = (props) => {
 // const transaksiTahunLalu=5
   const transaksiTahunIni = objTransactionThisYear?.length
   
-  // console.log("objTransactionThisYear", objTransactionThisYear.length)
   const objTransactionLastYear = tahun && tahun.filter(o => o.created_at === tahunLalu);
   
    const transaksiTahunLalu = objTransactionLastYear?.length

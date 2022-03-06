@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Card,  Steps, Button, Select, message} from "antd";
+import { Form, Input, Card, Steps, Button, Select, message } from "antd";
 import { useHistory } from "react-router-dom";
 import { StepPanel } from "./stepPanel";
 import { options } from "less";
@@ -16,7 +16,6 @@ const { Step } = Steps;
 
 
 function MyStepForm() {
-
     const history = useHistory();
     const [dataSumber, setDataSumber] = useState()
     const [category, setCategory] = useState()
@@ -32,6 +31,7 @@ function MyStepForm() {
     const [errorAlamat, setErrorAlamat] = useState(false);
     const [errorSumberData, setErrorSumberData] = useState(false);
     const [errorTypePajak, setErrorTypePajak] = useState(false);
+    // const [active, setActive] = useState(false);
 
     const [current, setCurrent] = useState(0);
 
@@ -55,12 +55,13 @@ function MyStepForm() {
             email: "",
             nama_usaha: "",
             alamat: "",
-            type_pajak: "",
+            kategori: "",
             data_source: "",
-            isactive : false
+            isactive: true
         }
-
     );
+    
+    console.log("regisDeviceAgent", regisDeviceAgent)
     useEffect(
         () => {
             setRegisDeviceAgent({
@@ -74,7 +75,7 @@ function MyStepForm() {
         () => {
             setRegisDeviceAgent({
                 ...regisDeviceAgent,
-                type_pajak: category
+                kategori: category
             });
         },
         [category]
@@ -124,19 +125,22 @@ function MyStepForm() {
 
         },
         [dataSumber, category]);
-        const success = () => {
-            message.success('Pendaftaran Berhasil');
-          };
-          const handleIsActive = (checked, e) => {
-            setRegisDeviceAgent({ ...regisDeviceAgent, [e.target.name]: e.target.checked})
-          }
+    const success = () => {
+        message.success('Pendaftaran Berhasil');
+    };
+
+    const handleIsActive = (checked, e) => {
+        setRegisDeviceAgent({ ...regisDeviceAgent, isactive: checked })
+        // setRegisDeviceAgent({ ...regisDeviceAgent, isactive : e.target.checked})
+        // console.log(`switch to ${checked}`);
+    }
     const handleClickNext = () => {
         if (current === 0) {
             form.validateFields()
                 .then(() => {
                     setCurrent(current + 1);
                 })
-                
+
                 .catch((err) => console.log(err));
         }
         else if (current === 1 && prov && kab && kec && kel && alamatDetil) {
@@ -192,7 +196,6 @@ function MyStepForm() {
             console.log("");
         }
     };
-  
     const handleClickPrev = () => {
         form
             .validateFields()
@@ -204,13 +207,10 @@ function MyStepForm() {
     };
     const handleChange = (e) => {
         setRegisDeviceAgent({ ...regisDeviceAgent, [e.target.name]: e.target.value });
-
     };
-
     const handleAlamat = (event) => {
         setAlamatDetil(event.target.value)
     }
-
     const handleChangeSelect = (value) => {
         setDataSumber(value);
     };
@@ -220,7 +220,7 @@ function MyStepForm() {
     const handleFinish = async (values) => {
         try {
             const decoded = jwtDecode(localStorage.token)
-            const apiKey =decoded["api-key"]        
+            const apiKey = decoded["api-key"]
             const token = localStorage.getItem('token')
             const response = await fetch(
                 "https://api.raspi-geek.com/v1/merchants",
@@ -246,10 +246,10 @@ function MyStepForm() {
     return (
         <div style={{ width: "100%", margin: "40px auto" }}>
             <Steps current={current}>
-                <Step key={0} title="Data Usaha" />
-                <Step key={1} title="Alamat Usaha" />
-                <Step key={2} title="Type Pajak" />
-                <Step key={3} title="Selesai" />
+                <Step key={0} title={<span className="stepper-title">Data Usaha</span>} />
+                <Step key={1} title={<span className="stepper-title">Alamat Usaha</span>} />
+                <Step key={2} title={<span className="stepper-title">Kategori Usaha</span>} />
+                <Step key={3} title={<span className="stepper-title">Selesai</span>} />
 
             </Steps>
             <div style={{ margin: "100px 10px" }}>
@@ -258,10 +258,11 @@ function MyStepForm() {
                     onFinish={handleFinish}
                     initialValues={{
                         merchant_id: "", owner: "", nik: "", email: "", nama_usaha: "",
-                        kelurahan: "", alamat: "", type_pajak: "", data_source: ""
+                        kelurahan: "", alamat: "", kategori: "", data_source: ""
 
                     }}
                 >
+                   
                     {current === 0 && (
                         <div style={{ width: "90%" }} >
                             <Form.Item
@@ -376,15 +377,14 @@ function MyStepForm() {
                                         placeholder="Jalan, RT RW"
                                         style={{ width: "100%" }} />
                                     {errorAlamat && (
-                                        <div style={{ color: "red", fontFamily:"NoirPro, sans-serif" }}>{errorAlamat}</div>
+                                        <div style={{ color: "red", fontFamily: "NoirPro, sans-serif" }}>{errorAlamat}</div>
                                     )}
                                 </div>
 
                             )}
                         </div>
                     )}
-
-                    {current === 2 && (
+ {current === 2 && (
                         <div style={{ width: "90%" }} >
                             <div style={{ margin: "40px 0" }} >
                                 <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" }}>Type Pajak</h4>
@@ -417,7 +417,7 @@ function MyStepForm() {
                                     value={dataSumber}
                                     onChange={handleChangeSelect}
                                     style={{ width: "100%" }} >
-                                    <Option value="POS App">Agent</Option>
+                                    <Option value="Agent">Agent</Option>
                                     <Option value="POS App">POS App</Option>
                                     <Option value="PDC">PDC</Option>
                                     <Option value="BDC">BDC</Option>
@@ -430,15 +430,22 @@ function MyStepForm() {
                             </div>
                             <div style={{ margin: "40px 0" }} >
                                 <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" }}>Active</h4>
-                                <Switch defaultChecked onChange={handleIsActive} />
-                              
+                                <Switch
+                                    name="isactive"
+                                    defaultChecked = {true}
+                                    // checked ={regisDeviceAgent.isactive}
+                                    onChange={(e) => handleIsActive(e)}
+                                // defaultChecked={e}
+                                // onChange={handleIsActive} 
+
+                                />
                             </div>
                         </div>
                     )}
-                      {current === 3 && (
+                    {current === 3 && (
                         <div style={{ width: "90%" }} >
                             <div style={{ margin: "40px 0" }} >
-                                <h3 style={{ margin: " 0 auto",padding:"0",textAlign:"center", color: "#53586D" }}>Apakah Anda Yakin Data Sudah Benar?</h3>
+                                <h3 style={{ margin: " 0 auto", padding: "0", textAlign: "center", color: "#53586D" }}>Apakah Anda Yakin Data Sudah Benar?</h3>
                             </div>
                         </div>
                     )}
@@ -461,9 +468,7 @@ function MyStepForm() {
                         </div>
                     )}
                 </Form>
-
             </div>
-
         </div>
     );
 }

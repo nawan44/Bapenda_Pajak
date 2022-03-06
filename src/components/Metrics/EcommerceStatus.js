@@ -13,8 +13,6 @@ const EcommerceStatus = ({ icon, title, subTitle, color, colorTitle, colorSubTit
 
 }) => {
   // const {  moneyToday, setMoneyToday,moneyYesterday, setMoneyYesterday  } =props
-  // console.log("transactionToday +++++++++",transactionToday)
-  // console.log("transactionYesterda ++++y",transactionYesterday)
 
   const selisihTransaksiHariIni = () => {
     if (transactionToday > transactionYesterday) {
@@ -31,11 +29,9 @@ const EcommerceStatus = ({ icon, title, subTitle, color, colorTitle, colorSubTit
   const selisihTransaksiBulanIni = () => {
     if (transactionThisMonth > transactionLastMonth) {
       return <UpCircleFilled style={{ fontSize: '24px', color: 'blue', margin: "10px 0 0 0" }} />
-      // console.log("up!!!!!!!!!!!!!!!!!!!!!")
 
     } else if (transactionThisMonth < transactionLastMonth) {
       return <DownCircleFilled style={{ fontSize: '24px', color: 'red', margin: "10px 0 0 0" }} />
-      // console.log("down!!!!!!!!!!!!!!!")
 
     } else if (transactionThisMonth === transactionLastMonth) {
       return <PauseCircleFilled rotate={90} style={{ fontSize: '24px', color: 'black', margin: "10px 0 0 0" }}
@@ -47,12 +43,8 @@ const EcommerceStatus = ({ icon, title, subTitle, color, colorTitle, colorSubTit
   const selisihTransaksiTahunIni = () => {
     if (transactionThisYear > transactionLastYear) {
       return <UpCircleFilled style={{ fontSize: '24px', color: 'blue', margin: "10px 0 0 0" }} />
-      // console.log("up!!!!!!!!!!!!!!!!!!!!!")
-
     } else if (transactionThisYear < transactionLastYear) {
       return <DownCircleFilled style={{ fontSize: '24px', color: 'red', margin: "10px 0 0 0" }} />
-      // console.log("down!!!!!!!!!!!!!!!")
-
     } else if (transactionThisYear === transactionLastYear) {
       return <PauseCircleFilled rotate={90} style={{ fontSize: '24px', color: 'black', margin: "10px 0 0 0" }}
       />

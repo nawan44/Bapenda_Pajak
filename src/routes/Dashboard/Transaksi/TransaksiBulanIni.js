@@ -24,16 +24,10 @@ const TransaksiBulanIni = (props) => {
     created_at: row[4].stringValue
   }));
   const objTransactionThisMonth = bulan && bulan.filter(o => o.created_at === bulanIni);
-  // console.log("obj", objTransactionThisMonth);
-
 
   const transaksiBulanIni = objTransactionThisMonth?.length
-  // console.log("currentVal", currentVal)
   const objTransactionLastMonth = bulan && bulan.filter(o => o.created_at === bulanLalu);
   const transaksiBulanLalu = objTransactionLastMonth?.length
-
-  // console.log("transactionThisMonth *******",transactionThisMonth )
-  // console.log("transactionLastMonth *******",transactionLastMonth )
 
   useEffect(() => {
     setTransactionThisMonth(transaksiBulanIni);

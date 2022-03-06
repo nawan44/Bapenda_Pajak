@@ -28,7 +28,6 @@ const TransaksiHariIni = (props) => {
 
 
   const transaksiHariIni = objTransactionToday?.length
-  // console.log("currentVal", currentVal)
   const objTransactionYesterday = tanggal && tanggal.filter(o => o.created_at === kemarin);
   const transaksiKemarin = objTransactionYesterday?.length
 

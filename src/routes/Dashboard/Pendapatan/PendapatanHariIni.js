@@ -52,22 +52,12 @@ const PendapatanHariIni = ( props) => {
 
   // const length = latestTransaction && latestTransaction .map( v => v[3].stringValue).length()                                
 
-  // console.log("length", latestTransaction && latestTransaction.length);
-
-  // console.log("now", now);
-  // console.log("ytanggal", tanggal);
-  // console.log("kemarin", kemarin)
-
   const objToday = tanggal && tanggal.filter(o => o.created_at === now);
-  // console.log("tanggal", tanggal);
   const currentToday = objToday && objToday.map(v => Number(v.total_value))
     .reduce((sum, current) => sum + current, 0)
-  // console.log("currentVal", currentVal);
   const objYesterday = tanggal && tanggal.filter(o => o.created_at === kemarin);
-  // console.log("obj", objToday);
   const currentYesterday = objYesterday && objYesterday.map(v => Number(v.total_value))
     .reduce((sum, current) => sum + current, 0)
-  // console.log("currentToday", currentToday);
   // const formatRupiah =(aa)=>{
     const formatter = new Intl.NumberFormat('id-ID', {
       style: 'currency',

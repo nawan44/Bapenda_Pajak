@@ -57,17 +57,21 @@ const users = [
 ];
 const LatestTransaction = (props) => {
   const {latestTransaction, setLatestTransaction} = props
-  const data = latestTransaction && latestTransaction.map(row => ({ 
-    invoice_id: row[0].stringValue, 
-    merchant_id: row[1].stringValue,
-    nama_usaha : row[2].stringValue,
-    total_value: row[3].stringValue, 
-    created_at: row[4].stringValue }));
-    const [dataSource, setDataSource] = useState(data);
-console.log("data", data)
-console.log("user", users)
-
+ 
+    const formatter = new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    
+    });
+// 
+const data = latestTransaction && latestTransaction.map(row => ({ 
+  invoice_id: row[0].stringValue, 
+  merchant_id: row[1].stringValue,
+  nama_usaha : row[2].stringValue,
+  total_value: formatter.format(row[3].stringValue) , 
+  created_at: row[4].stringValue }));
   const [value, setValue] = useState('');
+  const [dataSource, setDataSource] = useState(data);
 
   const InvoiceID = (
     <Input

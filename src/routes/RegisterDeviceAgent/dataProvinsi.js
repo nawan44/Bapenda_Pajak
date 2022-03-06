@@ -34,9 +34,6 @@ function DataProvinsi(props) {
         setIdProv(key)
         // let text = value.target.value;
         // let regAngka = /^[0-9\b]+$/i;
-
-
-        // console.log(text);
     };
     return (
         <div>
