@@ -31,7 +31,11 @@
 
     text-align: center;
 }
-
+.editable-row .ant-form-item-explain {
+    position: absolute;
+    top: 100%;
+    font-size: 12px;
+  }
 @media  (max-width: 599px) {
     .container-dashboard1{
         width: 100%;
