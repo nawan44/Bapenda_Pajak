@@ -1,64 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { Table, Input, InputNumber, Popconfirm, Form, Typography } from "antd";
+import { Table, Input, InputNumber, Popconfirm, Form, Typography, Button, Modal } from "antd";
 import Widget from "components/Widget/index";
 import IntlMessages from "util/IntlMessages";
 import jwtDecode from "jwt-decode";
 import "../../assets/styles/forRegistrasi.css"
+import {
+  AppstoreOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  PieChartOutlined,
+  DesktopOutlined,
+  ContainerOutlined,
+  MailOutlined,OrderedListOutlined,UserOutlined,FormOutlined,
+} from '@ant-design/icons';
+import EditDeviceAgent from "../EditDeviceAgent"
+import {useHistory} from "react-router-dom";
 
 
-
-const EditableCell = ({
-  editing,
-  dataIndex,
-  title,
-  inputType,
-  record,
-  index,
-  children,
-  ...restProps
-}) => {
-  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
-  return (
-    <td {...restProps}>
-      {editing ? (
-        <Form.Item
-          name={dataIndex}
-          style={{
-            margin: 0,
-          }}
-          rules={[
-            {
-              required: true,
-              message: `Please Input ${title}!`,
-            },
-          ]}
-        >
-          {inputNode}
-        </Form.Item>
-      ) : (
-        children
-      )}
-    </td>
-  );
-};
 
 const ListDeviceAgent = () => {
   const [form] = Form.useForm();
-
+  const history = useHistory();
+  const [listData, setListData] = useState({
+    aksiList: "",
+    itemList: null,
+  });
+const [selectedRecord, setSelectedRecord] = useState()
   const [listDevice, setListDevice] = useState()
-  // const dataMasuk = [];
-  // for (let i = 0; i < 100; i++) {
-  //   dataMasuk.push({
-  //     key: i,
-  //     device_id: "",
-  //     owner: "",
-  //     email: "",
-  //     nama_usaha: "",
-  //     type_pajak:""
-  //   });
-  // }
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState('Content of the modal');
+
   const dataMasuk = listDevice && listDevice.map(row => ({
-    key : row.toString(),
+    // key : row.toString(),
     device_id: row[0].stringValue,
     owner: row[1].stringValue,
     email: row[3].stringValue,
@@ -66,71 +40,19 @@ const ListDeviceAgent = () => {
     type_pajak: row[6].stringValue
   }));
 
-  const [dataTable, setDataTable] = useState(dataMasuk)
 
-  useEffect(
-    () => {
-      setDataTable(dataMasuk);
-    },
-    [listDevice]
-);
-  console.log("dataMasuk", dataMasuk)
+  console.log("selectedRecord list", selectedRecord)
 
-console.log("dataTable", dataTable)
-  const [editingKey, setEditingKey] = useState('');
+// const editStepper = (e, record) => {
+//   console.log("record >>>>", record)
+//   if (record){
+//     // console.log("okokok")
+//   return( <EditDeviceAgent selectedRecord ={selectedRecord} setSelectedRecord ={setSelectedRecord}/>)
+// }
+// }
 
-  const isEditing = (record) => record.key === editingKey;
-
-  const edit = (record) => {
-    form.setFieldsValue({
-      device_id: '',
-      owner: '',
-      email: '',
-      nama_usaha: '',
-      type_pajak:'',
-      ...record,
-    });
-    setEditingKey(record.key);
-  };
  
-  const cancel = () => {
-    setEditingKey('');
-  };
 
-  const save = async (key) => {
-    try {
-      const row = await form.validateFields();
-    //   const response = await fetch(
-    //     "https://api.raspi-geek.com/v1/merchants",
-    //     {
-    //         method: "PATCH",
-    //         headers: {
-    //             'x-api-key': `${apiKey}`,
-    //             'content-type': 'application/json',
-    //             'Authorization': `Bearer ${token}`
-    //         },
-    //         body: JSON.stringify(row),
-    //     }
-    // );
-
-
-      const newData = [...dataTable];
-      const index = newData.findIndex((item) => key === item.key);
-
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        setDataTable(newData);
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        setDataTable(newData);
-        setEditingKey('');
-      }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
-  };
   const columns = [
     {
       title: 'Device Id',
@@ -161,28 +83,59 @@ console.log("dataTable", dataTable)
     {
       title: 'Aksi',
       dataIndex: 'aksi',
-      render: (_, record) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <Typography.Link
-              onClick={() => save(record.key)}
-              style={{
-                marginRight: 8,
-              }}
-            >
-              Save
-            </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
-            </Popconfirm>
-          </span>
-        ) : (
-          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-            Edit
-          </Typography.Link>
-        );
-      },
+      render : (text, record) => {
+        return(
+        // <Typography.Link onClick={(e) => editStepper(record)} size="middle">
+        //   {/* <a>Invite {record.lastName}</a> */}
+        //  Edit
+        // </Typography.Link>
+        
+        
+        <Button
+        icon={<FormOutlined />}
+        id={record.id}
+        onClick={(e )=> {
+          showModal()
+          setSelectedRecord(record)
+          console.log("console",  record) 
+          // editStepper( record) 
+          // history.push("/edit-device-agent");
+          // <EditDeviceAgent record={record}/>
+          // setSelectedRecord(record);
+        }
+
+        }
+//record is the row data
+        size="large"
+        
+      />
+        )
+      }
+      // render: (_, e) => {
+      //   // const editable = isEditing(record);
+      //   return  (
+      //     <Typography.Link onClick={(e) => editStepper(e)}>
+      //         Edit
+      //      </Typography.Link>
+      //   //   <span>
+      //   //     <Typography.Link
+      //   //       onClick={() => save(record.key)}
+      //   //       style={{
+      //   //         marginRight: 8,
+      //   //       }}
+      //   //     >
+      //   //       Save
+      //   //     </Typography.Link>
+      //   //     <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+      //   //       <a>Cancel</a>
+      //   //     </Popconfirm>
+      //   //   </span>
+      //   // ) : (
+      //   //   <Typography.Link disabled={editingKey !== ''} onClick={(e) => editStepper(e)}>
+      //   //     Edit
+      //   //   </Typography.Link>
+      //   );
+      // },
     }
   ];
   useEffect(() => {
@@ -216,23 +169,24 @@ console.log("dataTable", dataTable)
     const ajson = await response.json();
     setListDevice(ajson.Records)
   }
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
+  const handleOk = () => {
+    setModalText('The modal will be closed after two seconds');
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
 
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        inputType: col.dataIndex === 'device_id' ? 'number' : 'text',
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
+  const handleCancel = () => {
+    console.log('Clicked cancel button');
+    setVisible(false);
+  };
+  const showModal = () => {
+    setVisible(true);
+  };
   return (
+    <>
     <Widget styleName="gx-order-history"
       title={
         <h2 className="h2 gx-text-capitalize gx-mb-0">
@@ -240,9 +194,9 @@ console.log("dataTable", dataTable)
       }
     >
       <div className="gx-table-responsive">
-        {/* <Table className="gx-table-no-bordered" columns={columns} dataSource={data} pagination={false} bordered={false}
-        size="small" /> */}
-        <Form form={form} component={false}>
+        <Table className="gx-table-no-bordered" columns={columns} dataSource={dataMasuk} pagination={false} bordered={false}
+        size="small" />
+        {/* <Form form={form} component={false}>
           <Table
             components={{
               body: {
@@ -257,9 +211,20 @@ console.log("dataTable", dataTable)
               onChange: cancel,
             }}
           />
-        </Form>
+        </Form> */}
       </div>
     </Widget>
+         <Modal
+         title="Title"
+         visible={visible}
+         onOk={handleOk}
+         confirmLoading={confirmLoading}
+         onCancel={handleCancel}
+       >
+         {/* <p>{modalText}</p> */}
+         <EditDeviceAgent selectedRecord ={selectedRecord} setSelectedRecord ={setSelectedRecord} />
+       </Modal>
+       </>
   );
 };
 
