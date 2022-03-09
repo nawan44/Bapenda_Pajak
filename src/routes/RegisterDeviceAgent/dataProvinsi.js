@@ -5,11 +5,23 @@ import {
 const { Option } = Select;
 
 function DataProvinsi(props) {
-    const { provinceId, setProvinceId, prov, setProv, errorProv, setErrorProv } = props
+    const {listData, searchProvinceId,setSearchtProvinceId,itemList,  provTrim, provinceId, setProvinceId, prov, setProv, errorProv, setErrorProv } = props
 
+    // const [searchProvinsi, setSearchProvinsi] = useState()
     const [provinsi, setProvinsi] = useState([{}])
     const [idProv, setIdProv] = useState({})
+    const searcIdProv =  provinsi.data?.find( o => o.nama === prov.replace(/^\s+/g, '') )
 
+    useEffect(
+        () => {
+            if (itemList){
+            setSearchtProvinceId(
+                searcIdProv?.id           
+                
+                );}
+        },
+        [searcIdProv?.id]
+    );
     useEffect(
         () => {
             setProvinceId(
@@ -21,6 +33,8 @@ function DataProvinsi(props) {
     useEffect(() => {
         getProvinsi();
     }, []);
+   
+ 
     const getProvinsi = async () => {
         const response = await fetch(`https://dev.farizdotid.com/api/daerahindonesia/provinsi`)
             .then(response => response.json())
@@ -32,18 +46,16 @@ function DataProvinsi(props) {
     const handleChangeProvinsi = (value, key) => {
         setProv(value);
         setIdProv(key)
-        // let text = value.target.value;
-        // let regAngka = /^[0-9\b]+$/i;
     };
     return (
         <div>
-            <h4 style={{ margin: "20px 0 20px 0", color: "#53586D" }}>Provinsi</h4>
+            <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Provinsi</h4>
             <Select
                 // defaultValue="lucy" 
                 style={{ margin: "40px 0 0 0" }}
                 name="provinsi"
                 onChange={handleChangeProvinsi}
-                value={prov}
+                value={ prov}
                 rules={[
                     { required: true, message: 'Pilih Provinsi Yang Ada' },
                 ]}

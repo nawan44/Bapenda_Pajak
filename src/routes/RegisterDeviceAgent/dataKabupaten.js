@@ -3,10 +3,23 @@ import { Select} from "antd";
 const { Option } = Select;
 
 function DataKabupaten(props) {
-    const { kabKotaId, setKabKotaId,provinceId ,kab, setKab, errorKab, setErrorKab} = props
+    const {listData,itemList,searchKabKotaId, setSearchKabKotaId, searchProvinceId, kabKotaId, setKabKotaId,provinceId ,kab, setKab, errorKab, setErrorKab} = props
     const [idKab, setIdKab] = useState({})
     const [kabupaten, setKabupaten] = useState([{}])
- 
+    const searchIdKab =  kabupaten.data?.find( o => o.nama === kab.replace(/^\s+/g, '') )
+   
+   
+    useEffect(
+        () => {
+            if (itemList){
+                setSearchKabKotaId(
+                    searchIdKab?.id           
+                
+                );}
+        },
+        [searchIdKab?.id]
+    );
+
     useEffect(
         () => {
             setKabKotaId(
@@ -15,14 +28,27 @@ function DataKabupaten(props) {
         },
         [idKab.key]
     );
+
     
+   
+    // useEffect(() => {
+    //     getKabupaten();
+    // }, [itemList]);
+    const funcIdProv = ()=>{
+        if(itemList){
+            return searchProvinceId
+        } else {
+            return provinceId
+        }
+    }
     useEffect(() => {
         getKabupaten();
-    }, [provinceId]);
-    
+    }, [funcIdProv()]);
+
+
     const getKabupaten = async () => {
         const response = await
-            fetch(`https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${provinceId}`)
+            fetch(`https://dev.farizdotid.com/api/daerahindonesia/kota?id_provinsi=${funcIdProv()}`)
                 .then(response => response.json())
                 .then(regencies => {
                     setKabupaten({ data: regencies.kota_kabupaten })
@@ -44,7 +70,7 @@ function DataKabupaten(props) {
 
     return (
         <div>
-            <h4 style={{ margin: "20px 0 20px 0", color: "#53586D" }}>Kabupaten</h4>
+            <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Kabupaten</h4>
 
             <Select
                 style={{ margin: "40px 0 0 0" }}

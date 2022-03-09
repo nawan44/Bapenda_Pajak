@@ -132,14 +132,7 @@ const data = latestTransaction && latestTransaction.map(row => ({
     setFilter(event.target.value);
   };
 
-  // const data = latestTransaction && latestTransaction.map(row => ({ 
-  //   transaction_id: row[0].stringValue, 
-  //   merchant_id: row[2].stringValue,
-  //  transaction_value: row[3].stringValue, 
-  // tanggal_transaksi: row[1].stringValue }));
 
-
-  
 
   return (
     <Widget 

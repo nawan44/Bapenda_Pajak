@@ -25,13 +25,12 @@ const ListDeviceAgent = () => {
     aksiList: "",
     itemList: null,
   });
-  console.log("listData itemList",listData.itemList)
 
   if (listData.aksiList === "editData") {
     return (<EditDeviceAgent selectedRecord={selectedRecord} setSelectedRecord={setSelectedRecord} listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList} />
     )
   } else {
-     console.log("oko")
+     console.log("")
   }
   return (
     <>

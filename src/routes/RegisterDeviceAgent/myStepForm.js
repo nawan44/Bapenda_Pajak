@@ -24,6 +24,8 @@ function MyStepForm() {
     const [form] = Form.useForm();
 
     const [provinceId, setProvinceId] = useState(null)
+
+
     const [prov, setProv] = useState("")
 
     const [errorProv, setErrorProv] = useState(false);
@@ -449,8 +451,7 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                     defaultChecked = {true}
                                     checked ={selectActive}
                                     onChange={handleIsActive}
-                                // defaultChecked={e}
-                                // onChange={handleIsActive} 
+                         
 
                                 />
                             </div>

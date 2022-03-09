@@ -19,16 +19,24 @@ const { Step } = Steps;
 function EditDeviceAgent(props) {
     const history = useHistory();
     const { selectedRecord, setSelectedRecord, listData, setListData, aksiList, itemList } = props
+    const alamatTrim = itemList.alamat
+    const pieces = alamatTrim.split(",")
+
+    const provTrim = pieces[pieces.length - 1]
+    const kabTrim = pieces[pieces.length - 2]
+    const kecTrim = pieces[pieces.length - 3]
+    const kelTrim = pieces[pieces.length - 4]
+    const alamatDetTrim = pieces[pieces.length - 5]
+
     const [selectActive, setSelectActive] = useState(itemList.isactive === "true")
     const [dataSumber, setDataSumber] = useState(itemList.data_source)
     const [category, setCategory] = useState(itemList.type_pajak)
     const [form] = Form.useForm();
+
     const [provinceId, setProvinceId] = useState(null)
-    const [prov, setProv] = useState("")
-    const [statis, setStatis] = useState({
-        provinsi: "provinsi",
-        kabKota: "Kabupaten"
-    })
+    const [searchProvinceId, setSearchtProvinceId] = useState(null)
+
+    const [prov, setProv] = useState(provTrim)
     const [errorProv, setErrorProv] = useState(false);
     const [errorKab, setErrorKab] = useState(false);
     const [errorKec, setErrorKec] = useState(false);
@@ -36,24 +44,32 @@ function EditDeviceAgent(props) {
     const [errorAlamat, setErrorAlamat] = useState(false);
     const [errorSumberData, setErrorSumberData] = useState(false);
     const [errorTypePajak, setErrorTypePajak] = useState(false);
-    // const [active, setActive] = useState(false);
 
     const [current, setCurrent] = useState(0);
 
     const [kabKotaId, setKabKotaId] = useState(null)
-    const [kab, setKab] = useState("")
+    const [kab, setKab] = useState(kabTrim)
+    const [searchKabKotaId, setSearchKabKotaId] = useState(null)
 
-    const [kec, setKec] = useState("")
+    const [kec, setKec] = useState(kecTrim)
     const [kecId, setKecId] = useState(null)
+    const [searchKecId, setSearchKecId] = useState(null)
 
-    const [kel, setKel] = useState("")
+    const [kel, setKel] = useState(kelTrim)
     const [kelId, setKelId] = useState(null)
+    const [searchKelId, setSearchKelId] = useState(null)
 
-    // console.log("selectedRecord EDIT >>>>", itemList)
-    console.log("selectActive >>>>", selectActive)
+    const [alamatDetil, setAlamatDetil] = useState(alamatDetTrim)
+  const [gantiProv, setGantiProv] = useState ()
+  const [gantiKab, setGantiKab] = useState ()
+  const [gantiKec, setGantiKec] = useState ()
+  const [gantiKel, setGantiKel] = useState ()
+const [gantiAlamat, setGantiAlamat]= useState()
 
-    const [alamatDetil, setAlamatDetil] = useState("")
-    const [alamatLengkap, setAlamatLengkap] = useState("")
+    const funcMergeAlamat = ()=>{
+       setAlamatLengkap(prov)
+    }
+        const [alamatLengkap, setAlamatLengkap] = useState()
 
     const [regisDeviceAgent, setRegisDeviceAgent] = useState(
         {
@@ -62,24 +78,71 @@ function EditDeviceAgent(props) {
             nik: itemList ? itemList.nik : "",
             email: itemList ? itemList.email : "",
             nama_usaha: itemList ? itemList.nama_usaha : "",
-            alamat: itemList ? itemList.alamat : "",
+            alamat:"",
             kategori: category,
             data_source: dataSumber,
             tax_type: "PPH",
             isactive: selectActive,
         }
     );
-    //"jalan 001 Huta Pungkut Julu Kotanopan Kabupaten Mandailing Natal Sumatera Utara"
-    console.log("regisDeviceAgent", regisDeviceAgent)
+    // "Jalan 01,  Ragunan,  Pasar Minggu,  Kota Jakarta Selatan,  Dki Jakarta"
+    
+console.log("itemList",itemList )
+   useEffect(
+        () => {
+            setGantiProv(
+                prov);
+        },
+       [prov]
+    );
+    useEffect(
+        () => {
+            setGantiKab(
+                kab);
+        },
+       [kab]
+    );
+
+    useEffect(
+        () => {
+            setGantiKec(
+                kec);
+        },
+       [kec]
+    );
+    useEffect(
+        () => {
+            setGantiKel(
+                kel);
+        },
+       [kel]
+    );
+    useEffect(
+        () => {
+            setGantiAlamat(
+                alamatDetil);
+        },
+       [alamatDetil]
+    );
     useEffect(
         () => {
             setRegisDeviceAgent({
                 ...regisDeviceAgent,
-                alamat: alamatDetil + "Kelurahan" + kel + " Kecamatan " + kec + " Kabupaten " + kab + " Provinsi " + prov
+                alamat:gantiAlamat+ ", " +  gantiKel+ ", " +gantiKec+ ", " +gantiKab + ", " + gantiProv
             });
         },
-        [alamatDetil], [prov]
+ [gantiAlamat], [gantiKel], [gantiKec],  [gantiKab],  [gantiProv]
     );
+
+    // useEffect(
+    //     () => {
+    //         setRegisDeviceAgent({
+    //             ...regisDeviceAgent,
+    //             alamat: alamatDetil + ", " + kel + ", " + kec + ", " + kab + ", " + prov
+    //         });
+    //     },
+    //     [alamatDetTrim],[kel],[kec],[kab], [prov], [itemList]
+    // );
     useEffect(
         () => {
             setRegisDeviceAgent({
@@ -125,13 +188,13 @@ function EditDeviceAgent(props) {
         },
         [provinceId, kabKotaId, kecId, kelId]
     );
-    useEffect(
-        () => {
-            if (alamatDetil) {
-                setErrorAlamat("");
-            }
-        },
-        [alamatDetil]);
+    // useEffect(
+    //     () => {
+    //         if (alamatDetil) {
+    //             setErrorAlamat("");
+    //         }
+    //     },
+    //     [alamatDetil]);
     useEffect(
         () => {
             if (dataSumber) {
@@ -147,11 +210,14 @@ function EditDeviceAgent(props) {
         message.success('Pendaftaran Berhasil');
     };
 
+    console.log("regisDeviceAgent",regisDeviceAgent)
+    console.log("prov",prov)
+    console.log("kab",kab)
+
+
     const handleIsActive = (checked, e) => {
-        // setRegisDeviceAgent({ ...regisDeviceAgent, isactive: checked })
         setSelectActive(checked);
-        // setRegisDeviceAgent({ ...regisDeviceAgent, isactive : e.target.checked})
-        // console.log(`switch to ${checked}`);
+
     }
     const handleClickNext = () => {
         if (current === 0) {
@@ -234,6 +300,8 @@ function EditDeviceAgent(props) {
         try {
             const decoded = jwtDecode(localStorage.token)
             const apiKey = decoded["api-key"]
+            const token = localStorage.getItem('token')
+
             const response = await fetch(
                 `https://api.raspi-geek.com/v1/merchants/${itemList.device_id}`,
                 {
@@ -246,7 +314,7 @@ function EditDeviceAgent(props) {
                     body: JSON.stringify(regisDeviceAgent),
                 }
             );
-            // const res = await response.json();
+            console.log("JSON.stringify regisDeviceAgent", regisDeviceAgent);
             success();
             history.push("/dashboard")
         } catch (err) {
@@ -306,12 +374,23 @@ function EditDeviceAgent(props) {
                         placeholder="Brand dari usaha" />
                     {/* </div> */}
                     <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Alamat</h4>
+
+
+                    <DataProvinsi  listData={listData} itemList={itemList} searchProvinceId={searchProvinceId} setSearchtProvinceId={setSearchtProvinceId} provTrim={provTrim} prov={prov} setProv={setProv} errorProv={errorProv} setErrorProv={setErrorProv} provinceId={provinceId} setProvinceId={setProvinceId} />
+                    <DataKabupaten itemList={itemList} listData={listData} searchProvinceId={searchProvinceId} kab={kab} setKab={setKab} errorKab={errorKab} setErrorKab={setErrorKab} provinceId={provinceId} kabKotaId={kabKotaId} setKabKotaId={setKabKotaId} searchKabKotaId={searchKabKotaId} setSearchKabKotaId={setSearchKabKotaId} />
+                    <DataKecamatan itemList={itemList} listData={listData} kel={kel} setKel={setKel} errorKec={errorKec} setErrorKec={setErrorKec} errorKel={errorKel} setErrorKel={setErrorKel} kecId={kecId} setKecId={setKecId} kelId={kelId} setKelId={setKelId} kec={kec} setKec={setKec} kabKotaId={kabKotaId} searchKabKotaId={searchKabKotaId} setSearchKabKotaId={setSearchKabKotaId} searchKecId={searchKecId} setSearchKecId={setSearchKecId} searchKelId={searchKelId} setSearchKelId={setSearchKelId} />
+
+                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Alamat Detil</h4>
+
                     <Input
                         name="alamat"
                         style={{ width: "100%" }}
-                        value={regisDeviceAgent.alamat}
-                        onChange={handleChange}
-                        placeholder="Brand dari usaha" />
+                        value={ alamatDetil}
+                        onChange={handleAlamat}
+                        placeholder="Jalan, RT RW" />
+                    {errorAlamat && (
+                        <div style={{ color: "red", fontFamily: "NoirPro, sans-serif" }}>{errorAlamat}</div>
+                    )}
                     {/* <div style={{ width: "90%" }} > */}
                     <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Type Pajak</h4>
                     <Select

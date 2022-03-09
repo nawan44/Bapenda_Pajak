@@ -3,10 +3,9 @@ import { Select } from "antd";
 const { Option } = Select;
 
 function DataKelurahan(props) {
-    const {kelId, setKelId, kecId,kel, setKel , errorKel, setErrorKel} = props
+    const {searchKecId, setSearchKecId, kelId,itemList, setKelId, kecId,kel, setKel , errorKel, setErrorKel} = props
     const [idKel, setIdKel] = useState({})
     const [kelurahan, setKelurahan] = useState([{}])
-
 
     useEffect(
         () => {
@@ -16,12 +15,22 @@ function DataKelurahan(props) {
         },
         [idKel.key]
     );
+
+    const funcIdKec = ()=>{
+        if(itemList){
+            return searchKecId
+        } else {
+            return kecId
+        }
+    }
+
     useEffect(() => {
         getKelurahan();
-    }, [kecId]);
+    }, [funcIdKec()]);
+
     const getKelurahan = async () => {
         const response = await
-            fetch(`https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=${kecId}`)
+            fetch(`https://dev.farizdotid.com/api/daerahindonesia/kelurahan?id_kecamatan=${funcIdKec()}`)
                 .then(response => response.json())
                 .then(res => {
                     setKelurahan({ data: res.kelurahan })
@@ -37,7 +46,7 @@ function DataKelurahan(props) {
     };
     return (
         <div>
-            <h4 style={{ margin: "20px 0 20px 0", color: "#53586D" }}>Kelurahan</h4>
+            <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Kelurahan</h4>
 
             <Select
                 style={{ margin: "40px 0 0 0" }}

@@ -45,16 +45,7 @@ const ListDataDevice = (props) => {
     isactive: row[8].stringValue,
 
   }));
-  console.log("dataMasuk", dataMasuk)
-
-  console.log("listDevice", listDevice)
-// const editStepper = (e, record) => {
-//   console.log("record >>>>", record)
-//   if (record){
-//     // console.log("okokok")
-//   return( <EditDeviceAgent selectedRecord ={selectedRecord} setSelectedRecord ={setSelectedRecord}/>)
-// }
-// }
+ 
 
   const columns = [
     {
@@ -100,7 +91,6 @@ const ListDataDevice = (props) => {
         onClick={(e )=> {
           // showModal()
         //   setSelectedRecord(record)
-          console.log("console",  record); 
           setListData({
             aksiList: "editData",
             itemList : record
@@ -112,7 +102,6 @@ const ListDataDevice = (props) => {
         }
 
         }
-//record is the row data
         size="large"
         
       />
@@ -146,16 +135,6 @@ const ListDataDevice = (props) => {
     }
   ];
  
-  // useEffect(() => {
-  //   getListDevice();
-  //   const interval = setInterval(() => {
-  //     getListDevice()
-  //   }, 10000)
-
-
-  //   return () => clearInterval(interval)
-  // }, []);
-
   const getListDevice = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token)
     const apiKey = decoded["api-key"]
@@ -201,22 +180,7 @@ const ListDataDevice = (props) => {
       <div className="gx-table-responsive">
         <Table className="gx-table-no-bordered" columns={columns} dataSource={dataMasuk} pagination={false} bordered={false}
         size="small" />
-        {/* <Form form={form} component={false}>
-          <Table
-            components={{
-              body: {
-                cell: EditableCell,
-              },
-            }}
-            bordered
-            dataSource={dataTable}
-            columns={mergedColumns}
-            rowClassName="editable-row"
-            pagination={{
-              onChange: cancel,
-            }}
-          />
-        </Form> */}
+      
       </div>
     </Widget>
          <Modal
