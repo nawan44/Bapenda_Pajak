@@ -45,8 +45,9 @@ const ListDataDevice = (props) => {
     isactive: row[8].stringValue,
 
   }));
+  console.log("dataMasuk", dataMasuk)
 
-  console.log("selectedRecord list", selectedRecord)
+  console.log("listDevice", listDevice)
 // const editStepper = (e, record) => {
 //   console.log("record >>>>", record)
 //   if (record){
@@ -95,7 +96,7 @@ const ListDataDevice = (props) => {
         
         <Button
         icon={<FormOutlined />}
-        id={record.id}
+        id={record.device_id}
         onClick={(e )=> {
           // showModal()
         //   setSelectedRecord(record)

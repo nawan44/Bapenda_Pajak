@@ -18,16 +18,17 @@ const { Step } = Steps;
 
 function EditDeviceAgent(props) {
     const history = useHistory();
-    const [dataSumber, setDataSumber] = useState()
-    const [category, setCategory] = useState()
-    const [form] = Form.useForm();
     const { selectedRecord, setSelectedRecord, listData, setListData, aksiList, itemList } = props
+    const [selectActive, setSelectActive] = useState(itemList.isactive === "true")
+    const [dataSumber, setDataSumber] = useState(itemList.data_source)
+    const [category, setCategory] = useState(itemList.type_pajak)
+    const [form] = Form.useForm();
     const [provinceId, setProvinceId] = useState(null)
     const [prov, setProv] = useState("")
-const [statis, setStatis] =useState({
-    provinsi : "provinsi",
-    kabKota : "Kabupaten"
-})
+    const [statis, setStatis] = useState({
+        provinsi: "provinsi",
+        kabKota: "Kabupaten"
+    })
     const [errorProv, setErrorProv] = useState(false);
     const [errorKab, setErrorKab] = useState(false);
     const [errorKec, setErrorKec] = useState(false);
@@ -49,7 +50,7 @@ const [statis, setStatis] =useState({
     const [kelId, setKelId] = useState(null)
 
     // console.log("selectedRecord EDIT >>>>", itemList)
-    console.log("itemList  itemList.data_source >>>>",  itemList.data_source)
+    console.log("selectActive >>>>", selectActive)
 
     const [alamatDetil, setAlamatDetil] = useState("")
     const [alamatLengkap, setAlamatLengkap] = useState("")
@@ -62,10 +63,10 @@ const [statis, setStatis] =useState({
             email: itemList ? itemList.email : "",
             nama_usaha: itemList ? itemList.nama_usaha : "",
             alamat: itemList ? itemList.alamat : "",
-            kategori: itemList ? itemList.type_pajak : "",
-            data_source: itemList ? itemList.data_source : "",
-            tax_type:"PPH",
-            isactive: itemList ? itemList.isactive : null,
+            kategori: category,
+            data_source: dataSumber,
+            tax_type: "PPH",
+            isactive: selectActive,
         }
     );
     //"jalan 001 Huta Pungkut Julu Kotanopan Kabupaten Mandailing Natal Sumatera Utara"
@@ -79,20 +80,20 @@ const [statis, setStatis] =useState({
         },
         [alamatDetil], [prov]
     );
-    // useEffect(
-    //     () => {
-    //         setProv({
-    //             ...regisDeviceAgent,
-    //             kategori: category
-    //         });
-    //     },
-    //     [alamat]
-    // );
     useEffect(
         () => {
             setRegisDeviceAgent({
                 ...regisDeviceAgent,
-                kategori: itemList ? itemList.kategori: category
+                isactive: selectActive
+            });
+        },
+        [selectActive]
+    );
+    useEffect(
+        () => {
+            setRegisDeviceAgent({
+                ...regisDeviceAgent,
+                kategori: category
             });
         },
         [category]
@@ -101,7 +102,7 @@ const [statis, setStatis] =useState({
         () => {
             setRegisDeviceAgent({
                 ...regisDeviceAgent,
-               data_source:  dataSumber
+                data_source: dataSumber
             });
         },
         [dataSumber]
@@ -147,7 +148,8 @@ const [statis, setStatis] =useState({
     };
 
     const handleIsActive = (checked, e) => {
-        setRegisDeviceAgent({ ...regisDeviceAgent, isactive: checked })
+        // setRegisDeviceAgent({ ...regisDeviceAgent, isactive: checked })
+        setSelectActive(checked);
         // setRegisDeviceAgent({ ...regisDeviceAgent, isactive : e.target.checked})
         // console.log(`switch to ${checked}`);
     }
@@ -232,15 +234,14 @@ const [statis, setStatis] =useState({
         try {
             const decoded = jwtDecode(localStorage.token)
             const apiKey = decoded["api-key"]
-            const token = localStorage.getItem('token')
             const response = await fetch(
-                `https://api.raspi-geek.com/v1/merchants/<${itemList.device_id}>` ,
+                `https://api.raspi-geek.com/v1/merchants/${itemList.device_id}`,
                 {
                     method: "PATCH",
                     headers: {
                         'x-api-key': `${apiKey}`,
                         'content-type': 'application/json',
-                        'Authorization': `Bearer ${token}`
+                        // 'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(regisDeviceAgent),
                 }
@@ -268,100 +269,100 @@ const [statis, setStatis] =useState({
                 >
                     {/* <div style={{ width: "90%" }} > */}
                     <h4 style={{ margin: "20px 0 10px 0", color: "#53586D" }}>IMEI atau id dari POS APP</h4>
-                        <Input
-                            name="merchant_id"
-                            style={{ width: "100%" }} 
-                            disabled
-                            value={itemList?.merchant_id || regisDeviceAgent.merchant_id}
-                            onChange={handleChange}
-                            placeholder="IMEI atau id dari POS APP" />
+                    <Input
+                        name="merchant_id"
+                        style={{ width: "100%" }}
+                        disabled
+                        value={itemList?.merchant_id || regisDeviceAgent.merchant_id}
+                        onChange={handleChange}
+                        placeholder="IMEI atau id dari POS APP" />
                     <h4 style={{ margin: "20px 0 10px 0", color: "#53586D" }}>Nama Owner dari usaha</h4>
-                        <Input
-                            name="owner"
-                            style={{ width: "100%" }} 
-                            value={regisDeviceAgent.owner}
-                            onChange={handleChange}
-                            placeholder="Nama Owner dari usaha"  />
+                    <Input
+                        name="owner"
+                        style={{ width: "100%" }}
+                        value={regisDeviceAgent.owner}
+                        onChange={handleChange}
+                        placeholder="Nama Owner dari usaha" />
                     <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Nomor Induk Kepegawaian</h4>
-                        <Input
-                            name="nik"
-                            style={{ width: "100%" }} 
-                            value={regisDeviceAgent.nik}
-                            onChange={handleChange}
-                            placeholder="Nomor Induk Kepegawaian" />
+                    <Input
+                        name="nik"
+                        style={{ width: "100%" }}
+                        value={regisDeviceAgent.nik}
+                        onChange={handleChange}
+                        placeholder="Nomor Induk Kepegawaian" />
                     <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Email</h4>
-                        <Input
-                            name="email"
-                            style={{ width: "100%" }} 
-                            value={regisDeviceAgent.email}
-                            onChange={handleChange}
-                            placeholder="someone@someplace.com"  />
+                    <Input
+                        name="email"
+                        style={{ width: "100%" }}
+                        value={regisDeviceAgent.email}
+                        onChange={handleChange}
+                        placeholder="someone@someplace.com" />
                     <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Brand dari usaha</h4>
-                        <Input
-                            name="nama_usaha"
-                            style={{ width: "100%" }} 
-                            value={regisDeviceAgent.nama_usaha}
-                            onChange={handleChange}
-                            placeholder="Brand dari usaha"  />
+                    <Input
+                        name="nama_usaha"
+                        style={{ width: "100%" }}
+                        value={regisDeviceAgent.nama_usaha}
+                        onChange={handleChange}
+                        placeholder="Brand dari usaha" />
                     {/* </div> */}
                     <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Alamat</h4>
-                        <Input
-                            name="alamat"
-                            style={{ width: "100%" }} 
-                            value={regisDeviceAgent.alamat}
-                            onChange={handleChange}
-                            placeholder="Brand dari usaha"  />
+                    <Input
+                        name="alamat"
+                        style={{ width: "100%" }}
+                        value={regisDeviceAgent.alamat}
+                        onChange={handleChange}
+                        placeholder="Brand dari usaha" />
                     {/* <div style={{ width: "90%" }} > */}
-                            <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Type Pajak</h4>
-                            <Select
-                                // defaultValue="lucy" 
-                                style={{ margin: "40px 0 0 0" }}
-                                name="category"
-                                value={itemList?.type_pajak || category}
-                                onChange={handleChangeTypePajak}
-                                rules={[
-                                    { type: 'array', required: true, message: 'Pilih Type Pajak' },
-                                ]}
-                                style={{ width: "100%" }} >
-                                <Option value="Hotel">Hotel</Option>
-                                <Option value="Restoran">Restoran</Option>
-                                <Option value="Parkir">Parkir</Option>
-                                <Option value="Minimarket">Minimarket</Option>
+                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Type Pajak</h4>
+                    <Select
+                        // defaultValue="lucy" 
+                        style={{ margin: "40px 0 0 0" }}
+                        name="category"
+                        value={category}
+                        onChange={handleChangeTypePajak}
+                        rules={[
+                            { type: 'array', required: true, message: 'Pilih Type Pajak' },
+                        ]}
+                        style={{ width: "100%" }} >
+                        <Option value="Hotel">Hotel</Option>
+                        <Option value="Restoran">Restoran</Option>
+                        <Option value="Parkir">Parkir</Option>
 
-                            </Select>
-                            {errorTypePajak && (
-                                <div style={{ color: "red" }}>{errorTypePajak}</div>
-                            )}
-                        {/* </div> */}
-                        <div style={{ margin: "40px 0" }} >
-                            <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Sumber Data</h4>
-                            <Select
-                                // defaultValue="lucy" 
-                                style={{ margin: "40px 0 0 0" }}
-                                name="dataSumber"
-                                value={itemList? itemList.data_source : dataSumber}
-                                onChange={handleChangeSelect}
-                                style={{ width: "100%" }} >
-                                <Option value="Agent">Agent</Option>
-                                <Option value="POS App">POS App</Option>
-                                <Option value="PDC">PDC</Option>
-                                <Option value="BDC">BDC</Option>
-                                <Option value="SDC">SDC</Option>
+                    </Select>
+                    {errorTypePajak && (
+                        <div style={{ color: "red" }}>{errorTypePajak}</div>
+                    )}
+                    {/* </div> */}
+                    <div style={{ margin: "40px 0" }} >
+                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Sumber Data</h4>
+                        <Select
+                            // defaultValue="lucy" 
+                            style={{ margin: "40px 0 0 0" }}
+                            name="dataSumber"
+                            value={dataSumber}
+                            onChange={handleChangeSelect}
+                            style={{ width: "100%" }} >
+                            <Option value="Agent">Agent</Option>
+                            <Option value="POS App">POS App</Option>
+                            <Option value="PDC">PDC</Option>
+                            <Option value="BDC">BDC</Option>
+                            <Option value="SDC">SDC</Option>
 
-                            </Select>
-                            {errorSumberData && (
-                                <div style={{ color: "red" }}>{errorSumberData}</div>
-                            )}
-                            <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Active</h4>
-                            <Switch
-                                name="isactive"
-                                // defaultChecked={true}
-                                checked ={itemList?.isactive || true}
-                                onChange={(e) => handleIsActive(e)}
-                            // defaultChecked={e}
-                            // onChange={handleIsActive} 
+                        </Select>
+                        {errorSumberData && (
+                            <div style={{ color: "red" }}>{errorSumberData}</div>
+                        )}
+                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Active</h4>
+                        <Switch
+                            name="isactive"
+                            // defaultChecked={true}
 
-                            />
+                            checked={selectActive}
+                            onChange={handleIsActive}
+                        // defaultChecked={e}
+                        // onChange={handleIsActive} 
+
+                        />
                     </div>
 
 

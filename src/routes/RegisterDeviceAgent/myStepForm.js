@@ -19,6 +19,8 @@ function MyStepForm() {
     const history = useHistory();
     const [dataSumber, setDataSumber] = useState()
     const [category, setCategory] = useState()
+    const [selectActive, setSelectActive] = useState(true)
+
     const [form] = Form.useForm();
 
     const [provinceId, setProvinceId] = useState(null)
@@ -60,16 +62,30 @@ function MyStepForm() {
             isactive: true
         }
     );
+
+  
     
-    console.log("regisDeviceAgent", regisDeviceAgent)
+
+
+
+console.log("regisDeviceAgent", regisDeviceAgent)
     useEffect(
         () => {
             setRegisDeviceAgent({
                 ...regisDeviceAgent,
-                alamat: alamatDetil + " " + kel + " " + kec + " " + kab + " " + prov
+                alamat: alamatDetil + ", " + kel + ", " + kec + ", " + kab + ", " + prov
             });
         },
         [alamatDetil], [prov]
+    );
+       useEffect(
+        () => {
+            setRegisDeviceAgent({
+                ...regisDeviceAgent,
+                isactive: selectActive
+            });
+        },
+        [selectActive]
     );
     useEffect(
         () => {
@@ -129,11 +145,7 @@ function MyStepForm() {
         message.success('Pendaftaran Berhasil');
     };
 
-    const handleIsActive = (checked, e) => {
-        setRegisDeviceAgent({ ...regisDeviceAgent, isactive: checked })
-        // setRegisDeviceAgent({ ...regisDeviceAgent, isactive : e.target.checked})
-        // console.log(`switch to ${checked}`);
-    }
+ 
     const handleClickNext = () => {
         if (current === 0) {
             form.validateFields()
@@ -217,6 +229,11 @@ function MyStepForm() {
     const handleChangeTypePajak = (value) => {
         setCategory(value);
     };
+    const handleIsActive = (checked, e) => {
+        setSelectActive( checked )
+        // setRegisDeviceAgent({ ...regisDeviceAgent, isactive : e.target.checked})
+        // console.log(`switch to ${checked}`);
+    }
     const handleFinish = async (values) => {
         try {
             const decoded = jwtDecode(localStorage.token)
@@ -259,7 +276,6 @@ function MyStepForm() {
                     initialValues={{
                         merchant_id: "", owner: "", nik: "", email: "", nama_usaha: "",
                         kelurahan: "", alamat: "", kategori: "", data_source: ""
-
                     }}
                 >
                    
@@ -270,7 +286,6 @@ function MyStepForm() {
                                 name="merchant_id"
                                 label="Device ID / Agent ID"
                                 rules={[
-
                                     {
                                         required: true,
                                         message: 'IMEI atau id dari POS APP',
@@ -401,7 +416,6 @@ function MyStepForm() {
                                     <Option value="Hotel">Hotel</Option>
                                     <Option value="Restoran">Restoran</Option>
                                     <Option value="Parkir">Parkir</Option>
-                                    <Option value="Minimarket">Minimarket</Option>
 
                                 </Select>
                                 {errorTypePajak && (
@@ -433,8 +447,8 @@ function MyStepForm() {
                                 <Switch
                                     name="isactive"
                                     defaultChecked = {true}
-                                    // checked ={regisDeviceAgent.isactive}
-                                    onChange={(e) => handleIsActive(e)}
+                                    checked ={selectActive}
+                                    onChange={handleIsActive}
                                 // defaultChecked={e}
                                 // onChange={handleIsActive} 
 
