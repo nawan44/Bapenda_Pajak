@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Card, Steps, Button, Select, message } from "antd";
+import { Form, Input, Card, Steps, Button, Select, message,Typography } from "antd";
 import { useHistory } from "react-router-dom";
 // import { StepPanel } from "./stepPanel";
 // import { options } from "less";
@@ -131,7 +131,7 @@ console.log("itemList",itemList )
                 alamat:gantiAlamat+ ", " +  gantiKel+ ", " +gantiKec+ ", " +gantiKab + ", " + gantiProv
             });
         },
- [gantiAlamat], [gantiKel], [gantiKec],  [gantiKab],  [gantiProv]
+  [gantiKel], [gantiKec],  [gantiKab],  [gantiProv]
     );
 
     // useEffect(
@@ -324,9 +324,11 @@ console.log("itemList",itemList )
 
 
     return (
-        <div style={{ width: "100%", margin: "40px auto" }}>
+        <Card className="gx-card" >
 
-            <div style={{ margin: "100px 10px" }}>
+<div style={{ width: "100%", margin: "0 auto", textAlign:"center" }}>
+<Typography style={{fontSize:"20px", fontWeight:"400", lineHeight:"24px", color:"#000"}}>Edit Data Device</Typography>
+<div style={{width:"700px", padding: "40px 10px", margin: "0 auto", textAlign:"center" }}>
                 <Form
                     form={form}
                     onFinish={handleFinish}
@@ -336,36 +338,36 @@ console.log("itemList",itemList )
                     }}
                 >
                     {/* <div style={{ width: "90%" }} > */}
-                    <h4 style={{ margin: "20px 0 10px 0", color: "#53586D" }}>IMEI atau id dari POS APP</h4>
+                    <h4 style={{ margin: "20px 0 10px 0", color: "#53586D", textAlign:"left" }}>IMEI atau id dari POS APP</h4>
                     <Input
                         name="merchant_id"
                         style={{ width: "100%" }}
                         disabled
-                        value={itemList?.merchant_id || regisDeviceAgent.merchant_id}
+                        value={regisDeviceAgent.merchant_id}
                         onChange={handleChange}
                         placeholder="IMEI atau id dari POS APP" />
-                    <h4 style={{ margin: "20px 0 10px 0", color: "#53586D" }}>Nama Owner dari usaha</h4>
+                    <h4 style={{ margin: "20px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Nama Owner dari usaha</h4>
                     <Input
                         name="owner"
                         style={{ width: "100%" }}
                         value={regisDeviceAgent.owner}
                         onChange={handleChange}
                         placeholder="Nama Owner dari usaha" />
-                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Nomor Induk Kepegawaian</h4>
+                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Nomor Induk Kepegawaian</h4>
                     <Input
                         name="nik"
                         style={{ width: "100%" }}
                         value={regisDeviceAgent.nik}
                         onChange={handleChange}
                         placeholder="Nomor Induk Kepegawaian" />
-                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Email</h4>
+                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Email</h4>
                     <Input
                         name="email"
                         style={{ width: "100%" }}
                         value={regisDeviceAgent.email}
                         onChange={handleChange}
                         placeholder="someone@someplace.com" />
-                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Brand dari usaha</h4>
+                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Brand dari usaha</h4>
                     <Input
                         name="nama_usaha"
                         style={{ width: "100%" }}
@@ -373,14 +375,14 @@ console.log("itemList",itemList )
                         onChange={handleChange}
                         placeholder="Brand dari usaha" />
                     {/* </div> */}
-                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Alamat</h4>
+                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Alamat</h4>
 
 
                     <DataProvinsi  listData={listData} itemList={itemList} searchProvinceId={searchProvinceId} setSearchtProvinceId={setSearchtProvinceId} provTrim={provTrim} prov={prov} setProv={setProv} errorProv={errorProv} setErrorProv={setErrorProv} provinceId={provinceId} setProvinceId={setProvinceId} />
                     <DataKabupaten itemList={itemList} listData={listData} searchProvinceId={searchProvinceId} kab={kab} setKab={setKab} errorKab={errorKab} setErrorKab={setErrorKab} provinceId={provinceId} kabKotaId={kabKotaId} setKabKotaId={setKabKotaId} searchKabKotaId={searchKabKotaId} setSearchKabKotaId={setSearchKabKotaId} />
                     <DataKecamatan itemList={itemList} listData={listData} kel={kel} setKel={setKel} errorKec={errorKec} setErrorKec={setErrorKec} errorKel={errorKel} setErrorKel={setErrorKel} kecId={kecId} setKecId={setKecId} kelId={kelId} setKelId={setKelId} kec={kec} setKec={setKec} kabKotaId={kabKotaId} searchKabKotaId={searchKabKotaId} setSearchKabKotaId={setSearchKabKotaId} searchKecId={searchKecId} setSearchKecId={setSearchKecId} searchKelId={searchKelId} setSearchKelId={setSearchKelId} />
 
-                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Alamat Detil</h4>
+                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Alamat Detil</h4>
 
                     <Input
                         name="alamat"
@@ -392,7 +394,7 @@ console.log("itemList",itemList )
                         <div style={{ color: "red", fontFamily: "NoirPro, sans-serif" }}>{errorAlamat}</div>
                     )}
                     {/* <div style={{ width: "90%" }} > */}
-                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Type Pajak</h4>
+                    <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" , textAlign:"left" }}>Type Pajak</h4>
                     <Select
                         // defaultValue="lucy" 
                         style={{ margin: "40px 0 0 0" }}
@@ -413,7 +415,7 @@ console.log("itemList",itemList )
                     )}
                     {/* </div> */}
                     <div style={{ margin: "40px 0" }} >
-                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Sumber Data</h4>
+                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Sumber Data</h4>
                         <Select
                             // defaultValue="lucy" 
                             style={{ margin: "40px 0 0 0" }}
@@ -431,17 +433,18 @@ console.log("itemList",itemList )
                         {errorSumberData && (
                             <div style={{ color: "red" }}>{errorSumberData}</div>
                         )}
-                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Active</h4>
+                        <div style={{ textAlign:"left" }}>
+                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Active</h4>
                         <Switch
                             name="isactive"
                             // defaultChecked={true}
-
+style={{ textAlign:"left" }}
                             checked={selectActive}
                             onChange={handleIsActive}
                         // defaultChecked={e}
                         // onChange={handleIsActive} 
 
-                        />
+                        /></div>
                     </div>
 
 
@@ -459,6 +462,7 @@ console.log("itemList",itemList )
                 </Form>
             </div>
         </div>
+        </Card>
     );
 }
 export default EditDeviceAgent;

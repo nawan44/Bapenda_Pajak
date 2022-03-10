@@ -55,7 +55,7 @@ function DataKecamatan(props) {
     };
     return (
         <div>
-          <h4 style={{ margin: "30px 0 10px 0", color: "#53586D" }}>Kecamatan</h4>
+          <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Kecamatan</h4>
 
 <Select
     // defaultValue="lucy" 

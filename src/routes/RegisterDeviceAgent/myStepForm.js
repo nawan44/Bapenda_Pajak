@@ -263,15 +263,15 @@ console.log("regisDeviceAgent", regisDeviceAgent)
 
 
     return (
-        <div style={{ width: "100%", margin: "40px auto" }}>
-            <Steps current={current}>
+        <div style={{ width: "100%", margin: "0 auto", textAlign:"center" }}>
+            <Steps current={current} className="steps" >
                 <Step key={0} title={<span className="stepper-title">Data Usaha</span>} />
                 <Step key={1} title={<span className="stepper-title">Alamat Usaha</span>} />
                 <Step key={2} title={<span className="stepper-title">Kategori Usaha</span>} />
                 <Step key={3} title={<span className="stepper-title">Selesai</span>} />
 
             </Steps>
-            <div style={{ margin: "100px 10px" }}>
+            <div style={{width:"700px", padding: "100px 10px", margin: "0 auto", textAlign:"center" }}>
                 <Form
                     form={form}
                     onFinish={handleFinish}
@@ -290,7 +290,8 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                 rules={[
                                     {
                                         required: true,
-                                        message: 'IMEI atau id dari POS APP',
+                                        pattern: new RegExp(/^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/),
+                                        message: 'Hanya A - Z, 0 - 9, dan spesial karakter',
                                     },
                                 ]}
                             >
@@ -298,7 +299,8 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                     name="merchant_id"
                                     value={regisDeviceAgent.merchant_id}
                                     onChange={handleChange}
-                                    placeholder="IMEI atau id dari POS APP" className="merchant_id" />
+                                    placeholder="IMEI atau id dari POS APP" 
+                                    className="merchant_id" />
                             </Form.Item>
                             <Form.Item
                                 style={{ margin: "40px" }}
@@ -385,7 +387,7 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                             )}
                             {kel && (
                                 <div style={{ margin: "40px 0 40px 0" }} >
-                                    <h4 style={{ margin: "40px 0 20px 0", color: "#53586D" }}>Alamat Detail</h4>
+                                    <h4 style={{ margin: "40px 0 20px 0", color: "#53586D", textAlign:"left"  }}>Alamat Detail</h4>
                                     <Input
                                         name="alamat"
                                         value={alamatDetil}
@@ -404,7 +406,7 @@ console.log("regisDeviceAgent", regisDeviceAgent)
  {current === 2 && (
                         <div style={{ width: "90%" }} >
                             <div style={{ margin: "40px 0" }} >
-                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" }}>Type Pajak</h4>
+                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" , textAlign:"left" }}>Type Pajak</h4>
                                 <Select
                                     // defaultValue="lucy" 
                                     style={{ margin: "40px 0 0 0" }}
@@ -425,7 +427,7 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                 )}
                             </div>
                             <div style={{ margin: "40px 0" }} >
-                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" }}>Sumber Data</h4>
+                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D", textAlign:"left"  }}>Sumber Data</h4>
                                 <Select
                                     // defaultValue="lucy" 
                                     style={{ margin: "40px 0 0 0" }}
@@ -444,8 +446,8 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                     <div style={{ color: "red" }}>{errorSumberData}</div>
                                 )}
                             </div>
-                            <div style={{ margin: "40px 0" }} >
-                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" }}>Active</h4>
+                            <div style={{ margin: "40px 0", textAlign:"left"  }} >
+                                <h4 style={{ margin: "0px 0 20px 0", color: "#53586D", textAlign:"left"  }}>Active</h4>
                                 <Switch
                                     name="isactive"
                                     defaultChecked = {true}
