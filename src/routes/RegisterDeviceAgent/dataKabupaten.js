@@ -6,7 +6,7 @@ function DataKabupaten(props) {
     const {listData,itemList,searchKabKotaId, setSearchKabKotaId, searchProvinceId, kabKotaId, setKabKotaId,provinceId ,kab, setKab, errorKab, setErrorKab} = props
     const [idKab, setIdKab] = useState({})
     const [kabupaten, setKabupaten] = useState([{}])
-    const searchIdKab =  kabupaten.data?.find( o => o.nama === kab.replace(/^\s+/g, '') )
+    const searchIdKab =  kabupaten.data?.find( o => o.nama === kab?.replace(/^\s+/g, '') )
    
    
     useEffect(

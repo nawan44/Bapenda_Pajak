@@ -3,10 +3,21 @@ import { Select } from "antd";
 const { Option } = Select;
 
 function DataKelurahan(props) {
-    const {searchKecId, setSearchKecId, kelId,itemList, setKelId, kecId,kel, setKel , errorKel, setErrorKel} = props
+    const {searchKelId, setSearchKelId,searchKecId, setSearchKecId, kelId,itemList, setKelId, kecId,kel, setKel , errorKel, setErrorKel} = props
     const [idKel, setIdKel] = useState({})
     const [kelurahan, setKelurahan] = useState([{}])
+    const searchIdKel =  kelurahan.data?.find( o => o.nama === kel?.replace(/^\s+/g, '') )
 
+    useEffect(
+        () => {
+            if (itemList){
+                setSearchKelId(
+                    searchIdKel?.id           
+                
+                );}
+        },
+        [searchIdKel?.id]
+    );
     useEffect(
         () => {
             setKelId(

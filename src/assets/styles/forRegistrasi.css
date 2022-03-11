@@ -23,6 +23,21 @@
     margin: 0 auto;
     text-align: center;
 }
+.edit_input{
+    width:500px;
+    text-align: left;
+}
+.container-edit{
+    width: 700px; 
+    padding: 40px 10px; 
+    margin: 0 auto; 
+    text-align: center;
+}
+.form-input{
+    width: 500px; 
+    text-align:center; 
+    margin: 0 auto;
+}
 @media  (max-width: 600px) {
     .merchant_id {
         width: 100%; 
@@ -44,8 +59,25 @@
        width: 100%;
         margin: 0 0 0 0;
     }
-    
-
+    .edit_input{
+        width:100%;
+        text-align: left;
+    }
+    .container-edit{
+        width: 100%; 
+         padding: 20px 0px; 
+         margin: 0 auto; 
+         text-align: center;
+     }
+     .form-input{
+        width: 90%; 
+        text-align:center; 
+        margin: 0 auto;
+    }
+    .steps{
+        width:100%;
+        text-align: left;
+    }
 }
 
 @media (max-width: 300px) {
@@ -75,6 +107,25 @@
         }
         .stepper-title{
             font-size: 12px;
+                }
+                .edit_input{
+                    width:100%;
+                    text-align: left;
+                }
+                .container-edit{
+                   width: 100% ; 
+                    padding: 20px 0px; 
+                    margin: 0 auto; 
+                    text-align: center;
+                }
+                .form-input{
+                    width: 90%; 
+                    text-align:center; 
+                    margin: 0 auto;
+                }
+                .steps{
+                    width:100%;
+                    text-align: left;
                 }
     }
     @media  (min-width: 768px) and (max-width: 991px) {

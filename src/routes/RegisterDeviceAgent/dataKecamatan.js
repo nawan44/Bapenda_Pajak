@@ -7,7 +7,7 @@ function DataKecamatan(props) {
     const {searchKecId, setSearchKecId, searchKelId, setSearchKelId, listData,itemList,searchKabKotaId, setSearchKabKotaId, kelId, setKelId, kecId, setKecId, kabKotaId, kec, setKec,kel, setKel, errorKec, setErrorKec, errorKel, setErrorKel } = props
     const [idKec, setIdKec] = useState({})
     const [kecamatan, setKecamatan] = useState([{}])
-    const searchIdKec =  kecamatan.data?.find( o => o.nama === kec.replace(/^\s+/g, '') )
+    const searchIdKec =  kecamatan.data?.find( o => o.nama === kec?.replace(/^\s+/g, '') )
 
     useEffect(
         () => {

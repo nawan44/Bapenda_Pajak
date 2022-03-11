@@ -271,7 +271,7 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                 <Step key={3} title={<span className="stepper-title">Selesai</span>} />
 
             </Steps>
-            <div style={{width:"700px", padding: "100px 10px", margin: "0 auto", textAlign:"center" }}>
+            <div className="container-edit">
                 <Form
                     form={form}
                     onFinish={handleFinish}
@@ -317,7 +317,8 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                     name="owner"
                                     value={regisDeviceAgent.owner}
                                     onChange={handleChange}
-                                    placeholder="Nama Owner dari usaha" className="owner" />
+                                    placeholder="Nama Owner dari usaha" 
+                                    className="owner" />
                             </Form.Item>
                             <Form.Item
                                 style={{ margin: "40px" }}
@@ -334,7 +335,8 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                     name="nik"
                                     value={regisDeviceAgent.nik}
                                     onChange={handleChange}
-                                    placeholder="Nomor Induk Kepegawaian" className="nik" />
+                                    placeholder="Nomor Induk Kepegawaian" 
+                                    className="nik" />
                             </Form.Item>
                             <Form.Item
                                 style={{ margin: "40px" }}
@@ -355,7 +357,8 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                     name="email"
                                     value={regisDeviceAgent.email}
                                     onChange={handleChange}
-                                    placeholder="someone@someplace.com" className="email" />
+                                    placeholder="someone@someplace.com" 
+                                    className="email" />
                             </Form.Item>
                             <Form.Item
                                 style={{ margin: "40px" }}
@@ -372,7 +375,8 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                     name="nama_usaha"
                                     value={regisDeviceAgent.nama_usaha}
                                     onChange={handleChange}
-                                    placeholder="Brand dari usaha" className="badan_usaha" />
+                                    placeholder="Brand dari usaha" 
+                                    className="badan_usaha" />
                             </Form.Item>
                         </div>
                     )}
