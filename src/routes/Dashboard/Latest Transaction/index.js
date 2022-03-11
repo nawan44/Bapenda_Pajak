@@ -58,6 +58,8 @@ const users = [
 const LatestTransaction = (props) => {
   const {latestTransaction, setLatestTransaction} = props
  
+console.log("latestTransaction", latestTransaction)
+
     const formatter = new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',

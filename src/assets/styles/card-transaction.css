@@ -1,0 +1,87 @@
+
+  
+  .row-transaction {
+      width:100%;
+      /* padding:20px; */
+      text-align: center;
+      margin: 0 auto;
+  }
+  .card-transaction {
+    width: 100%  ;
+    float: left;
+    height: 80%;
+    /* perspective: 1000px; */
+    border-radius: 20px;
+    /* margin : 10px !important; */
+    text-align: left;
+  }
+  /* .flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 80%;
+    perspective: 1000px;
+    border-radius: 20px;
+    padding : 10px 20px;
+  }
+  
+   .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 20px;
+
+  } */
+
+  @media (max-width: 300px) {
+
+  }
+
+  @media  (max-width: 599px) {
+ 
+.card-transaction {
+  /* width: 100%; */
+ 
+  height: 200px;
+  /* perspective: 1000px; */
+  border-radius: 20px;
+  margin : 10px 20px;
+}
+  }
+
+  @media (min-width: 600px) and (max-width: 767px) {
+    .card-transaction {
+      /* width: 100%; */
+     
+     /* background-color: bluevisssolet; */
+     height: 200px;
+     /* perspective: 1000px; */
+      border-radius: 20px;
+      margin : 10px 20px;
+    }
+    
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .card-transaction {
+      /* width: 100%; */
+     
+     /* background-color: blueviolet; */
+      height: 200px;
+      /* perspective: 1000px; */
+      border-radius: 20px;
+      margin : 10px 20px;
+    }
+  }
+  @media (min-width: 992px) and (max-width: 1299px) {
+   
+  }
+  
+  @media (min-width: 1300px) {
+  
+  }
+  

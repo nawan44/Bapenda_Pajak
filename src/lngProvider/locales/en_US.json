@@ -4,6 +4,7 @@
   "sidebar.samplePage": "Dashboard",
   "sidebar.registerDeviceAgent": "Register Device / Agent ",
   "sidebar.listDeviceAgent": "List Device / Agent",
+  "sidebar.transaction": "All Transaction",
 
   "sidebar.dashboard": "Dashboard",
   "sidebar.dashboard.crm": "Crm",
