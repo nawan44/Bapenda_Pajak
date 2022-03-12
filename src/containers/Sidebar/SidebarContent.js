@@ -20,7 +20,7 @@ import {
   PieChartOutlined,
   DesktopOutlined,
   ContainerOutlined,
-  MailOutlined,OrderedListOutlined,UserOutlined,FormOutlined
+  MailOutlined,OrderedListOutlined,UserOutlined,FormOutlined,DeploymentUnitOutlined
 } from '@ant-design/icons';
 
 const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
@@ -91,14 +91,8 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 </Link>
               </Menu.Item>
             </SubMenu>
-
-            {/* <Menu.Item key="transaction">
-              <Link to="/transaction"><i className="icon icon-widgets" />
-                <span><IntlMessages id="sidebar.transaction" /></span>
-              </Link> */}
-
               <SubMenu key="transaction" 
-            icon={<UserOutlined />}
+            icon={<DeploymentUnitOutlined />}
              title="Transaction">
                
               <Menu.Item key="all-transaction">
@@ -107,14 +101,14 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                   <span><IntlMessages id="sidebar.transaction" /></span>
                 </Link>
               </Menu.Item>           
-
-
-              <Menu.Item key="list-device-agent" style={{float: 'right'}} > 
-                <Link to="/list-device-agent">
-                  <i  className="icon icon-listing-dbrd icon-fw icon-sm"/>
-                  <span><IntlMessages id="sidebar.listDeviceAgent" /></span>
+              <Menu.Item key="all-transaction">
+                <Link to="/all-transaction">
+                <i className="icon icon-crypto icon-fw icon-sm" />
+                  <span><IntlMessages id="sidebar.transaction" /></span>
                 </Link>
-              </Menu.Item>
+              </Menu.Item> 
+
+             
             </SubMenu>
           </Menu>
         </CustomScrollbars>

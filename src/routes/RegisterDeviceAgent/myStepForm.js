@@ -290,7 +290,7 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                 rules={[
                                     {
                                         required: true,
-                                        pattern: new RegExp(/^[a-zA-Z@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/),
+                                        pattern: new RegExp(/^[a-zA-Z0-9@~`!@#$%^&*()_=+\\\\';:\"\\/?>.<,-]+$/),
                                         message: 'Hanya A - Z, 0 - 9, dan spesial karakter',
                                     },
                                 ]}

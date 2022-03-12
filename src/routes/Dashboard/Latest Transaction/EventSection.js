@@ -70,7 +70,9 @@ const EventsSection = (props) => {
                 <Title style={{float:"left"}} level={4}> Latest Transaction</Title>
                 </Col>
                 <Col span={12}>
-                    <TitleSearch style={{float:"right"}}  filter={filter} handleChangeData={handleChangeData} setFilter={setFilter} onSearch={handleChangeData}
+                    <TitleSearch style={{float:"right"}}  filter={filter} 
+                    handleChangeData={handleChangeData} setFilter={setFilter} 
+                    onSearch={handleChangeData}
                 /></Col>
             </Row>
             <header  >

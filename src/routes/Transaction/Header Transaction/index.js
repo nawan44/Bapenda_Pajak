@@ -14,10 +14,7 @@ import SiteAudience from "../../../components/dashboard/CRM/SiteAudience";
 
 
 
-const HeaderTransaction = ({ color, latestTransaction, setLatestTransaction }) => {
-
-
-
+const HeaderTransaction = ({ color, latestTransaction, setLatestTransaction,result_all_transaction }) => {
 
   const formatter = new Intl.NumberFormat('id-ID', {
     style: 'currency',
@@ -27,10 +24,10 @@ const HeaderTransaction = ({ color, latestTransaction, setLatestTransaction }) =
   return (
     <Row>
         <Col span={12}  >
-          <WelComeCard  />
+          <WelComeCard result_all_transaction={result_all_transaction} />
         </Col>
         <Col span={12}>
-          <SiteAudience />
+          <SiteAudience result_all_transaction={result_all_transaction} />
         </Col>
       {/* <Row>
       <Col span={24}>
