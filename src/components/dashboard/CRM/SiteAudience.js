@@ -2,14 +2,14 @@ import React from "react";
 import * as moment from 'moment';
 import LineIndicator from "./LineIndicator";
 
-const SiteAudience = ({ result_all_transaction }) => {
+const SiteAudience = ({ result_all_status_device }) => {
   const now = moment().format('YYYY-MM-DD')
-  const allStatus = result_all_transaction.map(row => moment(now).diff(moment(row.created_at), 'days'))
+  const allStatus = result_all_status_device.map(row => moment(now).diff(moment(row.created_at), 'days'))
   const greyStatus = allStatus && allStatus.filter(o => o < 0);
   const greenStatus = allStatus && allStatus.filter(o => o === 0);
   const orangeStatus = allStatus && allStatus.filter(o => o === 1);
   const redStatus = allStatus && allStatus.filter(o => o === 2);
-  const darkStatus = allStatus && allStatus.filter(o => o >= 10);
+  const darkStatus = allStatus && allStatus.filter(o => o >= 3);
 
 
   return (

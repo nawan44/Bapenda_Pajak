@@ -9,12 +9,13 @@ const App = ({match}) => (
       <Route path={`${match.url}dashboard`} component={asyncComponent(() => import('./Dashboard'))}/>
       <Route path={`${match.url}register-device-agent`} component={asyncComponent(() => import('./RegisterDeviceAgent'))}/>
       <Route path={`${match.url}edit-device-agent`} component={asyncComponent(() => import('./EditDeviceAgent'))}/>
-      <Route path={`${match.url}all-transaction`} component={asyncComponent(() => import('./Transaction'))}/>
+      <Route path={`${match.url}status-device-all`} component={asyncComponent(() => import('./StatusDeviceAll'))}/>
+      <Route path={`${match.url}status-device-hotel`} component={asyncComponent(() => import('./StatusDeviceHotel'))}/>
+      <Route path={`${match.url}status-device-restoran`} component={asyncComponent(() => import('./StatusDeviceRestoran'))}/>
+      <Route path={`${match.url}status-device-parkir`} component={asyncComponent(() => import('./StatusDeviceParkir'))}/>
 
       <Route path={`${match.url}list-device-agent`} component={asyncComponent(() => import('./ListDeviceAgent'))}/>
-      
       <Route path={`${match.url}not-found`} component={asyncComponent(() => import('./NotFound'))}/>
-
     </Switch>
   </div>
 );

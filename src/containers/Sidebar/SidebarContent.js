@@ -20,8 +20,9 @@ import {
   PieChartOutlined,
   DesktopOutlined,
   ContainerOutlined,
-  MailOutlined,OrderedListOutlined,UserOutlined,FormOutlined,DeploymentUnitOutlined
+  MailOutlined, OrderedListOutlined, UserOutlined, FormOutlined, DeploymentUnitOutlined, ApiOutlined
 } from '@ant-design/icons';
+import "../../assets/styles/sidebar.css"
 
 const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
   const { navStyle, themeType } = useSelector(({ settings }) => settings);
@@ -50,7 +51,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
       <SidebarLogo sidebarCollapsed={sidebarCollapsed} setSidebarCollapsed={setSidebarCollapsed} />
       <div className="gx-sidebar-content">
         <div className={`gx-sidebar-notifications ${getNoHeaderClass(navStyle)}`}>
-          <UserProfile />
+          <UserProfile style={{ fontSize: '125%', marginRight: "0px" }} />
           {/* <AppsNavigation /> */}
         </div>
         <CustomScrollbars className="gx-layout-sider-scrollbar">
@@ -61,54 +62,64 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
             theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
             mode="inline"
           // defaultOpenKeys={['sub1']}
-
           >
 
             <Menu.Item key="dashboard">
-              <Link to="/dashboard"><i className="icon icon-widgets" />
+              <Link to="/dashboard">
+                <i className="icon icon-widgets" />
                 <span><IntlMessages id="sidebar.dashboard" /></span>
               </Link>
             </Menu.Item>
-            <SubMenu key="device-agent" 
-            icon={<UserOutlined />}
-             title="Device Agent">
-               
-              <Menu.Item key="register-device-agent"  
-              // icon={<FormOutlined  />}
+            <SubMenu key="device-agent" style={{  fontSize: '150%',marginTop: "5px" }}
+              icon={<UserOutlined style={{ fontSize: '125%', marginRight: "0px" }}/>}
+              title="Device Agent">
+
+              <Menu.Item key="register-device-agent"
+               style={{ fontSize: "15px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}
+              icon={<FormOutlined  style={{ fontSize: '125%', marginRight: "0px" }}/>}
               >
                 <Link to="/register-device-agent">
-                <i className="icon icon-crypto icon-fw icon-sm" />
-                  <span><IntlMessages id="sidebar.registerDeviceAgent" /></span>
+                  {/* <FormOutlined  style={{ fontSize: '125%', marginRight: "0px" }}/> */}
+                  <span>Register Device</span>
                 </Link>
-              </Menu.Item>               
-              <Menu.Item key="list-device-agent" style={{float: 'right'}}
+              </Menu.Item>
+              <Menu.Item key="list-device-agent"  style={{ fontSize: "15px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}
               //  icon={<OrderedListOutlined />}
-               > 
+              >
                 <Link to="/list-device-agent">
-                  {/* <OrderedListOutlined /> */}
-                  <i  className="icon icon-listing-dbrd icon-fw icon-sm"/>
-                  <span><IntlMessages id="sidebar.listDeviceAgent" /></span>
+                  <OrderedListOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span>List Device</span>
                 </Link>
               </Menu.Item>
             </SubMenu>
-              <SubMenu key="transaction" 
-            icon={<DeploymentUnitOutlined />}
-             title="Transaction">
-               
-              <Menu.Item key="all-transaction">
-                <Link to="/all-transaction">
-                <i className="icon icon-crypto icon-fw icon-sm" />
-                  <span><IntlMessages id="sidebar.transaction" /></span>
-                </Link>
-              </Menu.Item>           
-              <Menu.Item key="all-transaction">
-                <Link to="/all-transaction">
-                <i className="icon icon-crypto icon-fw icon-sm" />
-                  <span><IntlMessages id="sidebar.transaction" /></span>
-                </Link>
-              </Menu.Item> 
+            <SubMenu key="status-device" style={{  fontSize: '150%',marginTop: "5px" }}
+              icon={<DeploymentUnitOutlined style={{ fontSize: '125%', marginRight: "0px" }} />}
+              title="Status Device">
 
-             
+              <Menu.Item key="status-device-all" style={{ fontSize: "15px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}>
+                <Link to="/status-device-all">
+                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span><IntlMessages id="sidebar.statusDeviceAll" /></span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="status-device-hotel" style={{ fontSize: "15px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}>
+                <Link to="/status-device-hotel"  >
+                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span >Device Hotel</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="status-device-restoran" style={{ fontSize: "15px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}>
+                <Link to="/status-device-restoran">
+                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span >Device Restoran</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="status-device-parkir" style={{ fontSize: "15px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}>
+                <Link to="/status-device-parkir">
+                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span >Device Parkir</span>
+                </Link>
+              </Menu.Item>
             </SubMenu>
           </Menu>
         </CustomScrollbars>

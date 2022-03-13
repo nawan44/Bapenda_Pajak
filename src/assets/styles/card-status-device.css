@@ -1,12 +1,12 @@
 
   
-  .row-transaction {
+  .row-status-device {
       width:100%;
       /* padding:20px; */
       text-align: center;
       margin: 0 auto;
   }
-  .card-transaction {
+  .card-status-device {
     width: 100%  ;
     float: left;
     height: 80%;
@@ -15,6 +15,26 @@
     /* margin : 10px !important; */
     text-align: left;
   }
+  .currency{
+    font-size: 24px; 
+    font-weight: bold; 
+      transform: scale(.9, 2); 
+  }
+  /* .button-status{
+    margin-left: 121px;
+    width: 84px;
+    background-color: black;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .button-status:active{
+    color: green !important;
+    background-color: white !important;
+  } */
+
+
   /* .flip-card {
     background-color: transparent;
     width: 100%;
@@ -43,7 +63,7 @@
 
   @media  (max-width: 599px) {
  
-.card-transaction {
+.card-status-device {
   /* width: 100%; */
  
   height: 200px;
@@ -54,7 +74,7 @@
   }
 
   @media (min-width: 600px) and (max-width: 767px) {
-    .card-transaction {
+    .card-status-device {
       /* width: 100%; */
      
      /* background-color: bluevisssolet; */
@@ -63,22 +83,57 @@
       border-radius: 20px;
       margin : 10px 20px;
     }
+    .ant-col-xs-24 {
+      display: block;
+      flex: 0 0 100%;
+      max-width: 50%;
+  }
     
   }
   
   @media (min-width: 768px) and (max-width: 991px) {
-    .card-transaction {
-      /* width: 100%; */
-     
+    .card-status-device {
+      width: 33%;
+   
      /* background-color: blueviolet; */
       height: 200px;
+      perspective: 1000px;
+      border-radius: 20px;
+      margin : 10px 20px;
+      background-color: red !important;
+    }
+    .ant-col-xs-24 {
+      display: block;
+      flex: 0 0 100%;
+      max-width: 50%;
+  }
+    .row-status-device {
+      width:33%;
+      padding:5px 0;
+      text-align: center;
+      margin: 0 auto;
+      background-color: blue !important;
+  }
+  }
+  @media (min-width: 992px) and (max-width: 1299px) {
+    .card-status-device {
+      width: 100%;
+      height: 200px;
+      float:left;
       /* perspective: 1000px; */
       border-radius: 20px;
       margin : 10px 20px;
     }
+    .ant-col-xs-24 {
+      display: block;
+      flex: 0 0 100%;
+      max-width: 33%;
   }
-  @media (min-width: 992px) and (max-width: 1299px) {
-   
+  .currency{
+    font-size: 18px; 
+    font-weight: bold; 
+      transform: scale(.9, 2); 
+  }
   }
   
   @media (min-width: 1300px) {
