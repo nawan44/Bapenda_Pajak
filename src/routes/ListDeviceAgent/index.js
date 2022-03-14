@@ -15,9 +15,9 @@ import {
 } from '@ant-design/icons';
 // import EditDeviceAgent from "../EditDeviceAgent"
 import { useHistory } from "react-router-dom";
-import ListDataDevice from "./listDataDevice";
 
 import EditDeviceAgent from "../EditDeviceAgent";
+import SectionDevice from "./SectionDevice";
 
 const ListDeviceAgent = () => {
   const [selectedRecord, setSelectedRecord] = useState()
@@ -34,7 +34,7 @@ const ListDeviceAgent = () => {
   }
   return (
     <>
-      <ListDataDevice listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList} />
+  <SectionDevice  listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList}/>
     </>
   );
 };
