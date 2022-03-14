@@ -64,7 +64,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
           // defaultOpenKeys={['sub1']}
           >
 
-            <Menu.Item key="dashboard">
+            <Menu.Item key="dashboard" >
               <Link to="/dashboard">
                 <i className="icon icon-widgets" />
                 <span><IntlMessages id="sidebar.dashboard" /></span>

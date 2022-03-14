@@ -64,7 +64,7 @@ const EventsSection = (props) => {
         setFilter(event.target.value);
     };
     return (
-        <section   >
+        <   >
             <Row>
                 <Col span={12}>    
                 <Title style={{float:"left"}} level={4}> Latest Transaction</Title>
@@ -75,13 +75,15 @@ const EventsSection = (props) => {
                     onSearch={handleChangeData}
                 /></Col>
             </Row>
-            <header  >
+            {/* <header  >
 
 
-            </header>
+            </header> */}
+      <div className="gx-table-responsive">
 
             <EventsTable data={filteredData} />
-        </section>
+            </div>
+        </>
     );
 
 };
