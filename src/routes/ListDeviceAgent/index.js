@@ -18,6 +18,7 @@ import { useHistory } from "react-router-dom";
 
 import EditDeviceAgent from "../EditDeviceAgent";
 import SectionDevice from "./SectionDevice";
+import DeviceSummary from "./DeviceSummary";
 
 const ListDeviceAgent = () => {
   const [selectedRecord, setSelectedRecord] = useState()
@@ -29,7 +30,12 @@ const ListDeviceAgent = () => {
   if (listData.aksiList === "editData") {
     return (<EditDeviceAgent selectedRecord={selectedRecord} setSelectedRecord={setSelectedRecord} listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList} />
     )
-  } else {
+  } else  if (listData.aksiList === "lihatData") {
+    return (<DeviceSummary selectedRecord={selectedRecord} setSelectedRecord={setSelectedRecord} listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList} />
+    )
+  }
+  
+  else {
      console.log("")
   }
   return (

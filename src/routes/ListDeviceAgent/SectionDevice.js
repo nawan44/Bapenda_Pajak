@@ -33,7 +33,6 @@ const eventsData = [
 
 const SectionDevice = (props) => {
     const { listData, setListData } = props
-    console.log("listData", listData)
     const formatter = new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR',
@@ -43,6 +42,8 @@ const SectionDevice = (props) => {
     const [filter, setFilter] = useState("");
    
     const [listDevice, setListDevice] = useState()
+    console.log("listDevice", listDevice)
+
     useEffect(() => {
         getListDevice();
     }, []);
@@ -71,12 +72,20 @@ const SectionDevice = (props) => {
         email: row[3].stringValue,
         nama_usaha: row[4].stringValue,
         type_pajak: row[6].stringValue,
-
         nik: row[2].stringValue,
         alamat: row[5].stringValue,
         data_source: row[7].stringValue,
         isactive: row[8].stringValue,
-
+        status : row [9].stringValue,
+        // device_id: row[0].stringValue,
+        // owner: row[1].stringValue,
+        // email: row[3].stringValue,
+        // nama_usaha: row[4].stringValue,
+        // type_pajak: row[6].stringValue,
+        // nik: row[2].stringValue,
+        // alamat: row[5].stringValue,
+        // data_source: row[6].stringValue,
+        // isactive: row[7].stringValue,
     }));
     useEffect(() => {
         setState({ eventsData });
@@ -116,7 +125,7 @@ const SectionDevice = (props) => {
             </header> */}
                 <div className="gx-table-responsive">
 
-                    <TableDevice listData={listData} setListData={setListData}  data={filteredData} />
+                    <TableDevice FormOutlined={FormOutlined} listData={listData} setListData={setListData}  data={filteredData} />
                 </div>
             </Widget>
         </>

@@ -3,17 +3,32 @@ import Table from "antd/lib/table";
 import "antd/lib/table/style/css";
 import Button from "antd/lib/button";
 import "antd/lib/button/style/css";
-import FormOutlined from '@ant-design/icons';
-
+// import FormOutlined from '@ant-design/icons';
+import "../../assets/styles/table.css"
 // import { StatusTag } from "../StatusTag";
 
 const TableDevice =  (props) => {
-  const { listData, setListData,data } = props     
+  const { listData, setListData , data, FormOutlined } = props     
    const columns = [
         {
           title: 'Device Id',
           dataIndex: 'device_id',
-          editable: true,
+          // editable: true,
+          render: (text, record) => (
+            <button   onClick={(e) => {
+              setListData({
+                aksiList: "lihatData",
+                itemList: record
+              })
+            }
+            } className="button-table">
+              {/* <a href="https://google.com" >
+              {record.device_id}
+              </a> */}
+               {record.device_id}
+            </button>
+            
+           ),
         },
         {
           title: 'Owner',
