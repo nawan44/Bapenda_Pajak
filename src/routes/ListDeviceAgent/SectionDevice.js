@@ -119,12 +119,7 @@ const SectionDevice = (props) => {
                             onSearch={handleChangeData}
                         /></Col>
                 </Row>
-                {/* <header  >
-
-
-            </header> */}
                 <div className="gx-table-responsive">
-
                     <TableDevice FormOutlined={FormOutlined} listData={listData} setListData={setListData}  data={filteredData} />
                 </div>
             </Widget>

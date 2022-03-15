@@ -50,6 +50,7 @@ const TableDevice =  (props) => {
           title: 'Type Pajak',
           dataIndex: 'type_pajak',
           editable: true,
+     
         },
         {
           title: 'Aksi',
@@ -74,7 +75,13 @@ const TableDevice =  (props) => {
       ];
 
 
-  return <Table dataSource={data} columns={columns} />;
+  return <Table dataSource={data} columns={columns} 
+  rowClassName={record => `gx-bg-${record.status}`}
+
+  />
 };
 
-export default TableDevice ;
+export default TableDevice 
+// props: {
+//   style: { background: record.status , color:"black"}
+// },
