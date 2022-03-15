@@ -1,7 +1,6 @@
 import React from "react";
 import Table from "antd/lib/table";
 import "antd/lib/table/style/css";
-import Button from "antd/lib/button";
 import "antd/lib/button/style/css";
 
 // import { StatusTag } from "../StatusTag";

@@ -1,9 +1,7 @@
 import React from "react";
-import Icon from '@ant-design/icons';
-import { Badge, Button, Switch, Divider, Avatar } from 'antd';
+import { Avatar } from 'antd';
 import * as moment from 'moment';
 import 'moment/locale/id'
-import { MailOutlined,MessageOutlined,BellOutlined,UnorderedListOutlined   } from '@ant-design/icons';
 
 
 

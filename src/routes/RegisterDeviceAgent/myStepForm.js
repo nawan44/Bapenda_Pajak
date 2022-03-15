@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Card, Steps, Button, Select, message } from "antd";
+import { Form, Input,  Steps, Button, Select, message } from "antd";
 import { useHistory } from "react-router-dom";
-import { StepPanel } from "./stepPanel";
-import { options } from "less";
 import DataProvinsi from "./dataProvinsi";
 import DataKabupaten from "./dataKabupaten";
 import DataKecamatan from "./dataKecamatan";

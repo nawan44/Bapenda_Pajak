@@ -1,7 +1,7 @@
 import React from "react";
 
 import Widget from "components/Widget/index";
-import { ArrowUpOutlined, ArrowDownOutlined, UpCircleFilled, DownCircleFilled, PauseCircleFilled } from '@ant-design/icons';
+import { UpCircleFilled, DownCircleFilled, PauseCircleFilled } from '@ant-design/icons';
 
 const EcommerceStatus = ({ icon, title, subTitle, color, colorTitle, colorSubTitle, objToday
   , moneyToday, setMoneyToday,moneyYesterday, setMoneyYesterday,

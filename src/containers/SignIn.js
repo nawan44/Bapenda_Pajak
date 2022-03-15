@@ -1,6 +1,6 @@
 import React from "react";
-import {Button, Checkbox, Form, Input} from "antd";
-import {Link} from "react-router-dom";
+import {Button, Form, Input} from "antd";
+// import {Link} from "react-router-dom";
 import IntlMessages from "util/IntlMessages";
 import {useAuth} from "../authentication";
 import AppNotificationContainer from "../components/AppNotificationContainer";

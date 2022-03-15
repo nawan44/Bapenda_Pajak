@@ -1,10 +1,6 @@
 import React from "react";
-import { Area, AreaChart, ResponsiveContainer, Tooltip } from "recharts";
-import { Col, Row } from "antd";
-
 import Widget from "components/Widget/index";
-// import {trafficData} from "../../routes/main/Metrics/data"
-import { trafficData } from "./metricsData"
+// import { trafficData } from "./metricsData"
 import "../../assets/styles/card-status-device.css"
 
 

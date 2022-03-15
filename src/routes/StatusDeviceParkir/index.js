@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import GrowthCard from "../components/Metrics/GrowthCard";
-// import TotalEncomeCard from "../components/Metrics/TotalEncomeCard";
-import { Col, Row, Select, Radio, Card, Input, Button } from "antd";
+import { Row, Select, Input, Button } from "antd";
 import CardStatusDevice from "./Card Status Device";
 import HeaderStatusDevice from "./Header Status Device"
-import jwtDecode from "jwt-decode";
 import Widget from "../../components/Widget/index";
 import { latestTransaction1 } from '../../components/DataDummy';
 import * as moment from 'moment';

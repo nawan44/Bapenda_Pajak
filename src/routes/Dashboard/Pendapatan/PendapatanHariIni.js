@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "antd";
-import { Bar, BarChart, ResponsiveContainer, Tooltip } from "recharts";
+import { Col } from "antd";
 import EcommerceStatus from "../../../components/Metrics/EcommerceStatus";
 import * as moment from 'moment';
 import "../../../assets/styles/flip-card.css"
-import { geekblue,blue } from '@ant-design/colors';
-import {ArrowUpOutlined,ArrowDownOutlined } from '@ant-design/icons';
 
 // import toRupiah from '@develoka/angka-rupiah-js';
 

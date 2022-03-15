@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Table, Input } from "antd";
+import React, { useState,  } from "react";
+import {  Input } from "antd";
 import Widget from "components/Widget/index";
-import reqOptions from "../../../util/reqOptions";
+// import reqOptions from "../../../util/reqOptions";
 import styled from 'styled-components';
-
-// import { TokenStorageService } from './token-storage.service';
-import * as moment from 'moment';
-
-import jwtDecode from 'jwt-decode';
 import  EventsSection  from "./EventSection";
 
 const FlexBox = styled.div`

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Col, Row } from "antd";
-import IntlMessages from "util/IntlMessages";
+import {  Row } from "antd";
 import TransaksiHariIni from "./Transaksi/TransaksiHariIni";
 import TransaksiBulanIni from "./Transaksi/TransaksiBulanIni";
 import TransaksiTahunIni from "./Transaksi/TransaksiTahunIni";
-
-// import { Area, AreaChart, ResponsiveContainer, Tooltip } from "rechart";
 import "../../assets/styles/dashboard.css"
 import PendapatanTahunIni from "./Pendapatan/PendapatanTahunIni";
 import PendapatanBulanIni from "./Pendapatan/PendapatanBulanIni";

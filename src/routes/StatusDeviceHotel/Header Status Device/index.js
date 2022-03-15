@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Col, Row } from "antd";
-import { Bar, BarChart, ResponsiveContainer, Tooltip } from "recharts";
-import EcommerceStatus from "../../../components/Metrics/EcommerceStatus";
-import * as moment from 'moment';
-import { forkJoin, mergeMap } from 'rxjs';
+// import * as moment from 'moment';
+// import { forkJoin, mergeMap } from 'rxjs';
 // import "../../../assets/styles/flip-card.css"
-import TotalEncomeCard from "../../../components/Metrics/TotalEncomeCard";
-import Widget from "../../../components/Widget/index";
 import "../../../assets/styles/card-status-device.css"
 import WelComeCard from "../../../components/dashboard/CRM/WelComeCard";
 import SiteAudience from "../../../components/dashboard/CRM/SiteAudience";

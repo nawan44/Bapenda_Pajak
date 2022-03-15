@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Layout, Popover } from "antd";
 import { Link } from "react-router-dom";
 
-import CustomScrollbars from "util/CustomScrollbars";
-import languageData from "./languageData";
-import { switchLanguage, toggleCollapsedSideNav } from "../../appRedux/actions";
-import SearchBox from "../../components/SearchBox";
+// import CustomScrollbars from "util/CustomScrollbars";
+// import languageData from "./languageData";
+import { 
+  // switchLanguage, 
+  toggleCollapsedSideNav } from "../../appRedux/actions";
+// import SearchBox from "../../components/SearchBox";
 import UserInfo from "../../components/UserInfo";
 import AppNotification from "../../components/AppNotification";
 import MailNotification from "../../components/MailNotification";

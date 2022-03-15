@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-    PageHeader, Form, Input, Card, Cascader, Steps, Button, Select
-} from "antd";
+import { Select} from "antd";
 const { Option } = Select;
 
 function DataProvinsi(props) {

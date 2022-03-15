@@ -1,21 +1,9 @@
-import React, { PureComponent, useState, useEffect } from 'react';
-import {
-  ComposedChart,
-  Line,
-  Area,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+import React, {  useState,  } from 'react';
+import { ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,} from 'recharts';
 import * as moment from 'moment';
 import Widget from "components/Widget/index";
 import 'moment/locale/id'
 import "../../../assets/styles/flip-card.css"
-import { Col, Row } from "antd";
 
 const data = [
   { name: 'Page A', uv: 4000, price: 2400, amt: 2400 },
