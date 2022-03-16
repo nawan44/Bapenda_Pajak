@@ -5,16 +5,17 @@ import 'moment/locale/id'
 
 
 
-const WelComeCard = ({result_all_status_device}) => {
+const WelComeCard = ({data}) => {
   const now = moment().format('YYYY-MM-DD')
-const allStatus =result_all_status_device.map(row => moment(now).diff(moment(row.created_at), 'days'))
-const greyStatus = allStatus && allStatus.filter(o => o <  0);
-const greenStatus = allStatus && allStatus.filter(o => o === 0);
-const orangeStatus = allStatus && allStatus.filter(o => o === 1);
-const redStatus = allStatus && allStatus.filter(o => o  === 2);
-const darkStatus = allStatus && allStatus.filter(o => o >= 3);
+// const allStatus =result_all_status_device.map(row => moment(now).diff(moment(row.created_at), 'days'))
+// const greyStatus = allStatus && allStatus.filter(o => o <  0);
+const greenStatus = data?.filter(o => o.status === "green");
+const orangeStatus = data?.filter(o => o.status === "orange");
+const redStatus = data?.filter(o => o.status === "red");
+// const darkStatus = allStatus && allStatus.filter(o => o >= 3);
 // const greenStatus = allStatus && allStatus.filter(o => o === 0);
-
+console.log("daya", data)
+console.log("greenStatus", greenStatus)
 
   return (
     <div className="gx-wel-ema gx-pt-xl-2">
@@ -23,27 +24,15 @@ const darkStatus = allStatus && allStatus.filter(o => o >= 3);
       <ul className="gx-list-group">
         <li>
           <Avatar size="small" shape="square" style={{backgroundColor:"green", marginRight:"10px"}} />
-          <span>{greenStatus.length} Devices Online</span>
+          <span>{greenStatus?.length} Devices Online</span>
         </li>
-        {/* <li>
-        <Avatar size="small" shape="square" style={{backgroundColor:"blue", marginRight:"10px"}} />
-          <span>{orangeStatus.length} 15 Devices &gt; 6 Jam Off</span>
-        </li> */}
         <li>
         <Avatar size="small" shape="square" style={{backgroundColor:"orange", marginRight:"10px"}} />
-          <span>{orangeStatus.length}  Devices 	2 Hari Off</span>
+          <span>{orangeStatus?.length}  Devices 	2 Hari Off</span>
         </li>
         <li>
         <Avatar size="small" shape="square" style={{backgroundColor:"red", marginRight:"10px"}} />
-          <span>{redStatus.length} Devices 	Dalam Pemantauan</span>
-        </li>
-        <li>
-        <Avatar size="small" shape="square" style={{backgroundColor:"black", marginRight:"10px"}} />
-          <span>{darkStatus.length} Devices 	 Pelaporan Bapenda</span>
-        </li>
-        <li>
-        <Avatar size="small" shape="square" style={{backgroundColor:"grey", marginRight:"10px"}} />
-          <span>{greyStatus.length} Devices 	 Libur / Off</span>
+          <span>{redStatus?.length} Devices 	Dalam Pemantauan</span>
         </li>
       </ul>
     </div>

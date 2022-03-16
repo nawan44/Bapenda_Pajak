@@ -5,6 +5,7 @@ import { Modal, Button } from 'antd';
 import "antd/lib/button/style/css";
 // import FormOutlined from '@ant-design/icons';
 import "../../assets/styles/table.css"
+import HeaderStatusDevice from "./Header Status Device";
 // import { StatusTag } from "../StatusTag";
 
 const TableDevice = (props) => {
@@ -64,28 +65,28 @@ const TableDevice = (props) => {
       editable: true,
 
     },
-    {
-      title: 'Aksi',
-      dataIndex: 'aksi',
-      render: (text, record) => {
-        return (
-          <Button
-            icon={<FormOutlined />}
-            id={record.device_id}
-            onClick={(e) => {
-              setListData({
-                aksiList: "editData",
-                itemList: record
-              })
-            }
-            }
-            size="large"
-          />
-        )
-      }
-    }
+    // {
+    //   title: 'Aksi',
+    //   dataIndex: 'aksi',
+    //   render: (text, record) => {
+    //     return (
+    //       <Button
+    //         icon={<FormOutlined />}
+    //         id={record.device_id}
+    //         onClick={(e) => {
+    //           setListData({
+    //             aksiList: "editData",
+    //             itemList: record
+    //           })
+    //         }
+    //         }
+    //         size="large"
+    //       />
+    //     )
+    //   }
+    // }
   ];
-
+console.log("data", data)
 
   return (
     <>
@@ -102,26 +103,37 @@ const TableDevice = (props) => {
         })}
       />
       {/* <Modal title={`${record.device_id}`} visible={isModalVisible} */}
-<Modal dataRecord={dataRecord}  title={dataRecord?.device_id} visible={isModalVisible}
-
-        onOk={handleOk} onCancel={handleCancel}>
-        <Button onClick={(e, record) => {
-          setListData({
-            aksiList: "lihatData",
-            itemList: dataRecord
-          })
-        }} > Lihat Data
-      </Button>
-      <Button onClick={(e, record) => {
-          setListData({
-            aksiList: "editData",
-            itemList: dataRecord
-          })
-        } } > Edit Data      
-        </Button>
-
-
-    </Modal>
+      <Modal dataRecord={dataRecord}
+        title={dataRecord?.nama_usaha}
+        visible={isModalVisible}
+        className="modal-container"
+        footer={null}
+        // onOk={handleOk} 
+        onCancel={handleCancel}
+      >
+        <div className="container-button">
+          <button
+            className="glow-on-hover"
+            onClick={(e, record) => {
+              setListData({
+                aksiList: "lihatData",
+                itemList: dataRecord
+              })
+            }} > Lihat Data
+          </button>
+        </div>
+        <div className="container-button">
+          <button
+            className="glow-on-hover"
+            onClick={(e, record) => {
+              setListData({
+                aksiList: "editData",
+                itemList: dataRecord
+              })
+            }} > Edit Data
+          </button>
+        </div>
+      </Modal>
 
     </>
   )

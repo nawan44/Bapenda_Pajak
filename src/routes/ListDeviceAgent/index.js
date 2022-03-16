@@ -40,6 +40,7 @@ const ListDeviceAgent = () => {
   }
   return (
     <>
+
   <SectionDevice  listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList}/>
     </>
   );

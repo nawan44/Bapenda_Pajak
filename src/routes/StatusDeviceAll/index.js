@@ -9,28 +9,7 @@ import "../../assets/styles/card-status-device.css"
 
 const Option = Select.Option;
 const Search = Input.Search;
-const eventsData = [
-    {
-        key: 1,
-        title: "Bulletproof EP1",
-        fileType: "Atmos",
-        process: "match media",
-        performedBy: "Denise Etridge",
-        operationNote: "-",
-        updatedAt: "26/09/2018 17:21",
-        status: "complete"
-    },
-    {
-        key: 2,
-        title: "Dexter EP2",
-        fileType: "Video",
-        process: "Compliance",
-        performedBy: "Dane Gill",
-        operationNote: "passed",
-        updatedAt: "21/09/2018 12:21",
-        status: "inProgress"
-    }
-];
+
 const StatusDevice = () => {
     // const [latestTransaction, setLatestTransaction] = useState()
     // const [size,  ] = useState()
@@ -83,13 +62,10 @@ const StatusDevice = () => {
         })
 
 
-    const [state, setState] = useState();
     const [filter, setFilter] = useState("");
     const [filteredPolls, setfilteredPolls] = useState(result_all_status_device)
 
-    useEffect(() => {
-        setState({ eventsData });
-    }, [eventsData]);
+
 
     const lowercasedFilter = filter.toString().toLowerCase();
     const filteredData = filteredPolls?.filter((item) => {
@@ -253,7 +229,7 @@ const StatusDevice = () => {
     //     setLatestTransaction(ajson.Records,)
     // }
 
-    console.log("buttonBackgroundGreen", buttonBackgroundGreen)
+    console.log("result_all_status_device vvvvvvv", result_all_status_device)
 
 
     return (
