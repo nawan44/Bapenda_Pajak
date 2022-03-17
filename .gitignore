@@ -8,6 +8,13 @@
 # testing
 /coverage
 
+#page
+/StatusDeviceAll
+/StatusDeviceHotel
+/StatusDeviceParkir
+/StatusDeviceRestoran
+
+
 # production
 /build
 
