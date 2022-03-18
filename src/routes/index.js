@@ -14,7 +14,7 @@ const App = ({match}) => (
       <Route path={`${match.url}status-device-restoran`} component={asyncComponent(() => import('./StatusDeviceRestoran'))}/>
       <Route path={`${match.url}status-device-parkir`} component={asyncComponent(() => import('./StatusDeviceParkir'))}/>
 
-      <Route path={`${match.url}list-device-agent`} component={asyncComponent(() => import('./ListDeviceAgent'))}/>
+      <Route path={`${match.url}device-all`} component={asyncComponent(() => import('./ListDeviceAgent'))}/>
       <Route path={`${match.url}not-found`} component={asyncComponent(() => import('./NotFound'))}/>
     </Switch>
   </div>

@@ -45,72 +45,74 @@ const Productivity = ({ selectedRecord, setSelectedRecord, listData, setListData
  
   const dataPendapatan = [
     {
-      tanggal: moment().format('DD-MM-YYYY'),
-      pendapatan: Number(nominalPendapatan1),
-
-    },
-    {
-      tanggal: moment().subtract(1, 'd').format('DD-MM-YYYY'),
-      pendapatan:  Number(nominalPendapatan2),
-    },
-    {
-      tanggal: moment().subtract(2, 'd').format('DD-MM-YYYY'),
-      pendapatan: Number( nominalPendapatan3),
-    },
-    {
-      tanggal: moment().subtract(3, 'd').format('DD-MM-YYYY'),
-      pendapatan:  Number(nominalPendapatan4),
-    },
-    {
-      tanggal: moment().subtract(4, 'd').format('DD-MM-YYYY'),
-      pendapatan:  Number(nominalPendapatan5),
+      tanggal:moment().subtract(6, 'd').format('DD-MM-YYYY'),
+      pendapatan:  Number(nominalPendapatan7),
     },
     {
       tanggal: moment().subtract(5, 'd').format('DD-MM-YYYY'),
       pendapatan:  Number(nominalPendapatan6),
     },
     {
-      tanggal:moment().subtract(6, 'd').format('DD-MM-YYYY'),
-      pendapatan:  Number(nominalPendapatan7),
+      tanggal: moment().subtract(4, 'd').format('DD-MM-YYYY'),
+      pendapatan:  Number(nominalPendapatan5),
+    },
+    {
+      tanggal: moment().subtract(3, 'd').format('DD-MM-YYYY'),
+      pendapatan:  Number(nominalPendapatan4),
+    },
+    {
+      tanggal: moment().subtract(2, 'd').format('DD-MM-YYYY'),
+      pendapatan: Number( nominalPendapatan3),
+    },
+    {
+      tanggal: moment().subtract(1, 'd').format('DD-MM-YYYY'),
+      pendapatan:  Number(nominalPendapatan2),
+    },
+
+    {
+      tanggal: moment().format('DD-MM-YYYY'),
+      pendapatan: Number(nominalPendapatan1),
+
     },
   ];
 
   const dataTransaksi = [
     {
-      tanggal: moment().format('DD-MM-YYYY'),
-      transaksi: Number(transaksiPendapatan1),
-
-    },
-    {
-      tanggal: moment().subtract(1, 'd').format('DD-MM-YYYY'),
-      transaksi:  Number(transaksiPendapatan2),
-    },
-    {
-      tanggal: moment().subtract(2, 'd').format('DD-MM-YYYY'),
-      transaksi: Number(transaksiPendapatan3),
-    },
-    {
-      tanggal: moment().subtract(3, 'd').format('DD-MM-YYYY'),
-      transaksi:  Number(transaksiPendapatan4),
-    },
-    {
-      tanggal: moment().subtract(4, 'd').format('DD-MM-YYYY'),
-      transaksi:  Number(transaksiPendapatan5),
+      tanggal:moment().subtract(6, 'd').format('DD-MM-YYYY'),
+      transaksi:  Number(transaksiPendapatan7),
     },
     {
       tanggal: moment().subtract(5, 'd').format('DD-MM-YYYY'),
       transaksi:  Number(transaksiPendapatan6),
     },
     {
-      tanggal:moment().subtract(6, 'd').format('DD-MM-YYYY'),
-      transaksi:  Number(transaksiPendapatan7),
+      tanggal: moment().subtract(4, 'd').format('DD-MM-YYYY'),
+      transaksi:  Number(transaksiPendapatan5),
+    },
+    {
+      tanggal: moment().subtract(3, 'd').format('DD-MM-YYYY'),
+      transaksi:  Number(transaksiPendapatan4),
+    },
+    {
+      tanggal: moment().subtract(2, 'd').format('DD-MM-YYYY'),
+      transaksi: Number(transaksiPendapatan3),
+    },
+    {
+      tanggal: moment().subtract(1, 'd').format('DD-MM-YYYY'),
+      transaksi:  Number(transaksiPendapatan2),
+    },
+  
+    {
+      tanggal: moment().format('DD-MM-YYYY'),
+      transaksi: Number(transaksiPendapatan1),
+
     },
   ];
 
   console.log("data", transaksiPendapatan1)
 
   const cancel = () => {
-    history.push("/list-device-agent")
+    history.push("/device-all")
   };
   useEffect(() => {
     getDetailMerchant();

@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "antd";
+import { Menu, Divider } from "antd";
 import { Link } from "react-router-dom";
 
 import CustomScrollbars from "util/CustomScrollbars";
@@ -69,20 +69,22 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
               icon={<UserOutlined style={{ fontSize: '125%', marginRight: "0px" }} />}
               title="Device Agent"
             >
+
+              <Menu.Item key="device-all"
+                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              >
+                <Link to="/device-all">
+                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span>Device All</span>
+                </Link>
+              </Menu.Item>
+              <Divider />
               <Menu.Item key="register-device-agent"
-                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}
+                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
               >
                 <Link to="/register-device-agent">
                   <FormOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
                   <span>Register Device</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="list-device-agent"
-                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}
-              >
-                <Link to="/list-device-agent">
-                  <OrderedListOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
-                  <span>List Device</span>
                 </Link>
               </Menu.Item>
             </SubMenu>
