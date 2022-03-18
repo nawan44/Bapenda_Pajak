@@ -59,7 +59,7 @@ function DataKecamatan(props) {
 
 <Select
     // defaultValue="lucy" 
-    style={{ margin: "40px 0 0 0" }}
+    style={{ margin: "40px 0 0 0" ,width: "100%" }}
     name="kecamatan"
     onChange={handleChangeKecamatan}
     value={kec}
@@ -67,7 +67,7 @@ function DataKecamatan(props) {
         { type: 'array', required: true, message: 'Pilih Kecamatan Yang Ada' },
     ]}
     placeholder="Pilih Kecamatan"
-    style={{ width: "100%" }} >
+    >
     {kecamatan.data?.map((item) => (
         <Option key={item.id} value={item.nama}  ></Option>
     ))}

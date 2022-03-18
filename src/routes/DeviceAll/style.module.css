@@ -1,0 +1,18 @@
+
+  .header {
+    width: 100%;
+    background-color: aqua;
+    display: flex;
+    /* justify-content: flex-end; */
+    /* align-items: center; */
+    margin-bottom: 10px;
+  }
+  
+  .title {
+    margin-right: auto;
+  }
+  
+  .action {
+    padding-left: 20px;
+  }
+  

@@ -3,13 +3,11 @@ import Table from "antd/lib/table";
 import "antd/lib/table/style/css";
 import { Modal, Button } from 'antd';
 import "antd/lib/button/style/css";
-// import FormOutlined from '@ant-design/icons';
 import "../../assets/styles/table.css"
-import HeaderStatusDevice from "./Header Status Device";
-// import { StatusTag } from "../StatusTag";
+
 
 const TableDevice = (props) => {
-  const { listData, setListData, data, FormOutlined } = props
+  const { listData, setListData, data, FormOutlined, state, setState } = props
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [dataRecord, setDataRecord] = useState()
   const showModal = (record) => {

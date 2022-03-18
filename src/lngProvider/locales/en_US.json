@@ -3,11 +3,7 @@
   "sidebar.main": "Main",
   "sidebar.samplePage": "Dashboard",
   "sidebar.registerDeviceAgent": "Register Device / Agent ",
-  "sidebar.listDeviceAgent": "List Device / Agent",
-  "sidebar.statusDeviceAll" :"All Status Device",
-    "sidebar.statusDeviceHotel" :"Status Device Hotel",
-    "sidebar.statusDeviceRestoran" :"Status Device Restoran",
-    "sidebar.statusDeviceParkir" :"Status Device Parkir",
+  "sidebar.DeviceAll": "All Device",
 
   "sidebar.transaction": "All Transaction",
 

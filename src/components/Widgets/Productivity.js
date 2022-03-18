@@ -26,7 +26,7 @@ const Productivity = ({ selectedRecord, setSelectedRecord, listData, setListData
   const [detailMerchant, setDetailMerchant] = useState()
   const [dataMerchant, setDataMerchant] = useState()
 
-  console.log("detailMerchant", detailMerchant)
+  console.log("itemListstatus <<<<<", itemList.status)
   const nominalPendapatan1 = detailMerchant && detailMerchant.map(row => Number(row[8].stringValue));
   const nominalPendapatan2 = detailMerchant && detailMerchant.map(row => Number(row[10].stringValue));
   const nominalPendapatan3 = detailMerchant && detailMerchant.map(row => Number(row[12].stringValue));

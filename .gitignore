@@ -9,10 +9,7 @@
 /coverage
 
 #page
-/StatusDeviceAll
-/StatusDeviceHotel
-/StatusDeviceParkir
-/StatusDeviceRestoran
+/scrap
 
 
 # production

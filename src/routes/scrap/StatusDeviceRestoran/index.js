@@ -9,30 +9,8 @@ import { latestTransaction1 } from '../../components/DataDummy';
 import * as moment from 'moment';
 import "../../assets/styles/card-status-device.css"
 
-const Option = Select.Option;
 const Search = Input.Search;
-const eventsData = [
-    {
-        key: 1,
-        title: "Bulletproof EP1",
-        fileType: "Atmos",
-        process: "match media",
-        performedBy: "Denise Etridge",
-        operationNote: "-",
-        updatedAt: "26/09/2018 17:21",
-        status: "complete"
-    },
-    {
-        key: 2,
-        title: "Dexter EP2",
-        fileType: "Video",
-        process: "Compliance",
-        performedBy: "Dane Gill",
-        operationNote: "passed",
-        updatedAt: "21/09/2018 12:21",
-        status: "inProgress"
-    }
-];
+
 const StatusDeviceRestoran = () => {
     // const [latestTransaction, setLatestTransaction] = useState()
                         const filterStatusHotel = latestTransaction1.data
@@ -92,13 +70,9 @@ const StatusDeviceRestoran = () => {
         })
 
 
-    const [state, setState] = useState();
     const [filter, setFilter] = useState("");
     const [filteredPolls, setfilteredPolls] = useState(result_all_status_device)
 
-    useEffect(() => {
-        setState({ eventsData });
-    }, [eventsData]);
 
     const lowercasedFilter = filter.toString().toLowerCase();
     const filteredData = filteredPolls?.filter((item) => {

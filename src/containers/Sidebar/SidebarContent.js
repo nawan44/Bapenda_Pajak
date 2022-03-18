@@ -65,7 +65,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 <span style={{ fontSize: "14px" }}><IntlMessages id="sidebar.dashboard" /></span>
               </Link>
             </Menu.Item>
-            <SubMenu key="device-agent" style={{ fontSize: "150%", marginTop: "5px" }}
+            <SubMenu key="device-all" style={{ fontSize: "150%", marginTop: "5px" }}
               icon={<UserOutlined style={{ fontSize: '125%', marginRight: "0px" }} />}
               title="Device Agent"
             >
@@ -88,7 +88,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 </Link>
               </Menu.Item>
             </SubMenu>
-            <SubMenu key="status-device" style={{ fontSize: '150%', marginTop: "5px" }}
+            {/* <SubMenu key="status-device" style={{ fontSize: '150%', marginTop: "5px" }}
               icon={<DeploymentUnitOutlined style={{ fontSize: '125%', marginRight: "0px" }} />}
               title="Status Device">
               <Menu.Item key="status-device-all" 
@@ -116,7 +116,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                   <span >Device Parkir</span>
                 </Link>
               </Menu.Item>
-            </SubMenu>
+            </SubMenu> */}
           </Menu>
         </CustomScrollbars>
       </div>
