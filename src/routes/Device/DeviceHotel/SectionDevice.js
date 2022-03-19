@@ -6,7 +6,7 @@ import Widget from "components/Widget/index";
 import { FormOutlined } from '@ant-design/icons';
 import HeaderStatusDevice from "./Header Status Device";
 import { StatusFilter } from "./statusFilter";
-import styles from "./style.module.css";
+import styles from "../../../assets/styles/select-option.css";
 
 const Search = Input.Search;
 
@@ -52,7 +52,11 @@ const SectionDevice = (props) => {
         const ajson = await response.json();
         setListDevice(ajson.Records)
     }
-    const data = listDevice?.map((row, index) => ({
+    const dataHotel = listDevice?.filter(o => 
+        o[7].stringValue === "Hotel")
+        console.log("dataHotel??", dataHotel)
+
+    const data = dataHotel?.map((row, index) => ({
         key: index,
         device_id: row[0].stringValue,
         owner: row[1].stringValue,
@@ -237,7 +241,7 @@ const SectionDevice = (props) => {
                         </Row>
                 <Row>
                             <Col span={12}>
-                                <Title style={{ float: "left" }} level={4}> Daftar Device / Agent</Title>
+                                <Title style={{ float: "left" }} level={4}> Daftar Device Hotel</Title>
                             </Col>
 
                         </Row>

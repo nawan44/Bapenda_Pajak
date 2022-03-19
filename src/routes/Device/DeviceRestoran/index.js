@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import EditDeviceAgent from "../EditDeviceAgent";
+import EditDeviceAgent from "../../EditDeviceAgent";
 import SectionDevice from "./SectionDevice";
-import DeviceSummary from "./DeviceSummary";
+import DeviceSummaryRestoran from "./DeviceSummaryRestoran";
 
 const DeviceAll = () => {
   const [selectedRecord, setSelectedRecord] = useState()
@@ -9,12 +9,13 @@ const DeviceAll = () => {
     aksiList: "",
     itemList: null,
   });
+  console.log("BBBBBBBBBBBB ListData",listData)
 
   if (listData.aksiList === "editData") {
     return (<EditDeviceAgent selectedRecord={selectedRecord} setSelectedRecord={setSelectedRecord} listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList} />
     )
   } else  if (listData.aksiList === "lihatData") {
-    return (<DeviceSummary selectedRecord={selectedRecord} setSelectedRecord={setSelectedRecord} listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList} />
+    return (<DeviceSummaryRestoran selectedRecord={selectedRecord} setSelectedRecord={setSelectedRecord} listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList} />
     )
   }
   
@@ -23,7 +24,6 @@ const DeviceAll = () => {
   }
   return (
     <>
-
   <SectionDevice  listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList}/>
     </>
   );

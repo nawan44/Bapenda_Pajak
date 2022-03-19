@@ -14,7 +14,11 @@ const App = ({match}) => (
       <Route path={`${match.url}status-device-restoran`} component={asyncComponent(() => import('./StatusDeviceRestoran'))}/>
       <Route path={`${match.url}status-device-parkir`} component={asyncComponent(() => import('./StatusDeviceParkir'))}/> */}
 
-      <Route path={`${match.url}device-all`} component={asyncComponent(() => import('./DeviceAll'))}/>
+      <Route path={`${match.url}device-all`} component={asyncComponent(() => import('./Device/DeviceAll'))}/>
+      <Route path={`${match.url}device-hotel`} component={asyncComponent(() => import('./Device/DeviceHotel'))}/>
+      <Route path={`${match.url}device-parkir`} component={asyncComponent(() => import('./Device/DeviceParkir'))}/>
+      <Route path={`${match.url}device-restoran`} component={asyncComponent(() => import('./Device/DeviceRestoran'))}/>
+
       <Route path={`${match.url}not-found`} component={asyncComponent(() => import('./NotFound'))}/>
     </Switch>
   </div>

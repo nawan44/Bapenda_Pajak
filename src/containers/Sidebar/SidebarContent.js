@@ -78,6 +78,30 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                   <span>Device All</span>
                 </Link>
               </Menu.Item>
+              <Menu.Item key="device-hotel"
+                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              >
+                <Link to="/device-hotel">
+                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span>Device Hotel</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="device-parkir"
+                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              >
+                <Link to="/device-parkir">
+                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span>Device Parkir</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="device-restoran"
+                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              >
+                <Link to="/device-restoran">
+                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <span>Device Restoran</span>
+                </Link>
+              </Menu.Item>
               <Divider />
               <Menu.Item key="register-device-agent"
                 style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}

@@ -72,7 +72,7 @@
     "victory": "^35.4.6"
   },
   "scripts": {
-    "start": "react-app-rewired start --openssl-legacy-provider",
+    "start": "react-app-rewired --openssl-legacy-provider start",
     "build": "react-app-rewired build ",
     "test": "react-app-rewired --env=jsdom",
     "less": "lessc --js src/styles/wieldy.less public/css/style.css && lessc --js src/styles/wieldy.less public/css/style.min.css --compress -x"

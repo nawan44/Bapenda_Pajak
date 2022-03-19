@@ -3,7 +3,7 @@ import Table from "antd/lib/table";
 import "antd/lib/table/style/css";
 import { Modal, Button } from 'antd';
 import "antd/lib/button/style/css";
-import "../../assets/styles/table.css"
+import "../../../assets/styles/table.css"
 
 
 const TableDevice = (props) => {

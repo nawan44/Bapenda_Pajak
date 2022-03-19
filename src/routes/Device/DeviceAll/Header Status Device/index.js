@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Row } from "antd";
-import "../../../assets/styles/card-status-device.css"
-import WelComeCard from "../../../components/dashboard/CRM/WelComeCard";
-import SiteAudience from "../../../components/dashboard/CRM/SiteAudience";
+import "../../../../assets/styles/card-status-device.css"
+import WelComeCard from "../../../../components/dashboard/CRM/WelComeCard";
+import SiteAudience from "../../../../components/dashboard/CRM/SiteAudience";
 // import SiteVisit from "../../../components/dashboard/CRM/SiteVisit";
 
 
