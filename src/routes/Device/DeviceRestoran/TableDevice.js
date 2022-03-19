@@ -5,7 +5,6 @@ import { Modal, Button } from 'antd';
 import "antd/lib/button/style/css";
 import "../../../assets/styles/table.css"
 
-
 const TableDevice = (props) => {
   const { listData, setListData, data, FormOutlined, state, setState } = props
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -13,7 +12,7 @@ const TableDevice = (props) => {
   const showModal = (record) => {
     setIsModalVisible(true);
   };
-console.log("setListData",setListData)
+console.log("listData /.......",listData)
   const handleOk = () => {
     setIsModalVisible(false);
   };
@@ -25,22 +24,6 @@ console.log("setListData",setListData)
     {
       title: 'Device Id',
       dataIndex: 'device_id',
-      // editable: true,
-      // render: (text, record) => (
-      //   <button onClick={(e) => {
-      //     setListData({
-      //       aksiList: "lihatData",
-      //       itemList: record
-      //     })
-      //   }
-      //   } className="button-table">
-      //     {/* <a href="https://google.com" >
-      //         {record.device_id}
-      //         </a> */}
-      //     {record.device_id}
-      //   </button>
-
-      // ),
     },
     {
       title: 'Owner',
@@ -63,26 +46,6 @@ console.log("setListData",setListData)
       editable: true,
 
     },
-    // {
-    //   title: 'Aksi',
-    //   dataIndex: 'aksi',
-    //   render: (text, record) => {
-    //     return (
-    //       <Button
-    //         icon={<FormOutlined />}
-    //         id={record.device_id}
-    //         onClick={(e) => {
-    //           setListData({
-    //             aksiList: "editData",
-    //             itemList: record
-    //           })
-    //         }
-    //         }
-    //         size="large"
-    //       />
-    //     )
-    //   }
-    // }
   ];
 console.log("data", data)
 
@@ -90,7 +53,6 @@ console.log("data", data)
     <>
       <Table dataSource={data} columns={columns}
         rowClassName={record => `gx-bg-${record.status}`}
-        // onClick={showModal}
         onRow={(record, recordIndex) => ({
           onClick: event => {
             console.log("onRow onClick",
@@ -100,13 +62,11 @@ console.log("data", data)
           }
         })}
       />
-      {/* <Modal title={`${record.device_id}`} visible={isModalVisible} */}
       <Modal dataRecord={dataRecord}
         title={dataRecord?.nama_usaha}
         visible={isModalVisible}
         className="modal-container"
         footer={null}
-        // onOk={handleOk} 
         onCancel={handleCancel}
       >
         <div className="container-button">
@@ -138,6 +98,3 @@ console.log("data", data)
 };
 
 export default TableDevice
-// props: {
-//   style: { background: record.status , color:"black"}
-// },

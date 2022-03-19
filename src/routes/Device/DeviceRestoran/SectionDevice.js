@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import TableDevice from "./TableDevice";
-import { Row, Col, Typography, Button, Input } from 'antd';
+import { Row, Col, Typography, Input } from 'antd';
 import jwtDecode from "jwt-decode";
 import Widget from "components/Widget/index";
-import { FormOutlined } from '@ant-design/icons';
 import HeaderStatusDevice from "./Header Status Device";
 import { StatusFilter } from "./statusFilter";
 import styles from "../../../assets/styles/select-option.css";
@@ -13,7 +12,7 @@ const Search = Input.Search;
 const { Title } = Typography;
 
 const SectionDevice = (props) => {
-    const { listData, setListData } = props
+    const { listData, setListData, aksiList } = props
     const formatter = new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR',
@@ -68,23 +67,9 @@ const SectionDevice = (props) => {
         data_source: row[6].stringValue,
         isactive: row[8].stringValue,
         status: row[9].stringValue,
-        // device_id: row[0].stringValue,
-        // owner: row[1].stringValue,
-        // email: row[3].stringValue,
-        // nama_usaha: row[4].stringValue,
-        // type_pajak: row[6].stringValue,
-        // nik: row[2].stringValue,
-        // alamat: row[5].stringValue,
-        // data_source: row[6].stringValue,
-        // isactive: row[7].stringValue,
     }));
 
     const [state, setState] = useState(data)
-
-    // const [filteredPolls, setfilteredPolls] = useState(data)
-
-
-    // const lowercasedFilter = filter.toString().toLowerCase();
     const handleFilter = (key) => {
         const selected = parseInt(key);
         if (selected === 4) {
@@ -92,20 +77,13 @@ const SectionDevice = (props) => {
                 data
             );
         }
-
         const statusMap = {
-
             1: "green",
             2: "orange",
             3: "red"
         }
-
-
         const selectedStatus = statusMap[selected];
-
         const filteredEvents = data?.filter(
-            //   o => o.status === selectedStatus
-
             ({ status }) => status === selectedStatus
         );
         console.log("filteredEvents", filteredEvents)
@@ -117,19 +95,10 @@ const SectionDevice = (props) => {
 
     };
     console.log("data", data)
-
-
-    // const [filteredButton, setfilteredButton] = useState(filtered)
     const handleSearch = (searchText) => {
-        // const filteredEvents = data?.filter(( title ) => {
-        //   title = title?.toLowerCase();
-        //   return title.includes(searchText);
-        // });
         const lowercasedFilter = filter.toString().toLowerCase();
 
         const filteredEvents = data?.filter((item) => {
-            console.log("lowercasedFilter filteredEvents", lowercasedFilter)
-
             try {
                 return Object.keys(item).some((key) => {
                     if (item[key]) {
@@ -140,7 +109,6 @@ const SectionDevice = (props) => {
                 console.log("data tidak ada");
             }
         });
-        console.log("filteredEvents filteredEvents", filteredEvents)
         setState(
             filteredEvents
         );
@@ -160,65 +128,6 @@ const SectionDevice = (props) => {
     const handleChangeData = (event) => {
         setFilter(event.target.value);
     };
-    // console.log("filteredPolls", filteredPolls)
-
-    // // console.log("filteredData", filteredData)
-    // const greenStatus = data?.filter(o => o.status === "green");
-    // const orangeStatus = data?.filter(o => o.status === "orange");
-    // const redStatus = data?.filter(o => o.status === "red");
-
-    // function showGreen() {
-    //     setfilteredPolls(greenStatus)
-    //     setButtonBackgroundGreen("white")
-    //     setButtonGreen("green")
-    //     // =================================
-    //     setButtonBackgroundOrange("orange")
-    //     setButtonOrange("white")
-
-    //     setButtonBackgroundRed("red")
-    //     setButtonRed("white")
-
-
-    // }
-    // function showOrange() {
-    //     setfilteredPolls(orangeStatus)
-    //     setButtonBackgroundOrange("white")
-    //     setButtonOrange("orange")
-    //     // =================================
-    //     setButtonBackgroundGreen("green")
-    //     setButtonGreen("white")
-
-    //     setButtonBackgroundRed("red")
-    //     setButtonRed("white")
-
-    // }
-    // function showRed() {
-    //     setfilteredPolls(redStatus)
-    //     setButtonBackgroundRed("white")
-    //     setButtonRed("red")
-    //     // =================================
-    //     setButtonBackgroundGreen("green")
-    //     setButtonGreen("white")
-
-    //     setButtonBackgroundOrange("orange")
-    //     setButtonOrange("white")
-    // }
-    // function showRemove  ()  {
-    //     setfilteredPolls(data)
-    //     // =================================
-    //     setButtonBackgroundGreen("green")
-    //     setButtonGreen("white")
-
-    //     setButtonBackgroundOrange("orange")
-    //     setButtonOrange("white")
-
-    //     setButtonBackgroundRed("red")
-    //     setButtonRed("white")
-
-
-    // }
-
-    console.log("filyter", filter)
     return (
         <>
             <Widget styleName="gx-order-history  gx-p-4 ">
@@ -246,7 +155,7 @@ const SectionDevice = (props) => {
 
                         </Row>
                         <div className="gx-table-responsive">
-                            <TableDevice data={filter === "" ? data : state} />
+                            <TableDevice data={filter === "" ? data : state} listData={listData} setListData={setListData}/>
                         </div>
             </Widget>
         </>

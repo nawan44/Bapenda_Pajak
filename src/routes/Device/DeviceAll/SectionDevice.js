@@ -242,7 +242,7 @@ const SectionDevice = (props) => {
 
                         </Row>
                         <div className="gx-table-responsive">
-                            <TableDevice data={filter === "" ? data : state} />
+                            <TableDevice data={filter === "" ? data : state} listData={listData} setListData={setListData}/>
                         </div>
             </Widget>
         </>
