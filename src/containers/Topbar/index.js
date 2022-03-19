@@ -54,7 +54,7 @@ const Topbar = () => {
             }}
           />
         </div> : null}
-      <Link to="/" className="gx-d-block gx-d-lg-none gx-pointer">
+      <Link to="/dashboard" className="gx-d-block gx-d-lg-none gx-pointer">
         <img alt="logo" style={{ width: "50px" }} src={("/assets/images/emtres.png")} /></Link>
 
       {/* <SearchBox styleName="gx-d-none gx-d-lg-block gx-lt-icon-search-bar-lg"
