@@ -2,13 +2,17 @@ import React from "react";
 import { Avatar } from 'antd';
 import * as moment from 'moment';
 import 'moment/locale/id'
+import {useHistory, useLocation} from "react-router-dom";
 
 
 
 const WelComeCard = ({data}) => {
-  const now = moment().format('YYYY-MM-DD')
+  const now = moment().format('YYYY-MM-DD');
+  const history = useHistory();
+let location = useLocation();
 // const allStatus =result_all_status_device.map(row => moment(now).diff(moment(row.created_at), 'days'))
 // const greyStatus = allStatus && allStatus.filter(o => o <  0);
+const allStatus = data?.map(row => row.status)
 const greenStatus = data?.filter(o => o.status === "green");
 const orangeStatus = data?.filter(o => o.status === "orange");
 const redStatus = data?.filter(o => o.status === "red");
@@ -16,12 +20,25 @@ const redStatus = data?.filter(o => o.status === "red");
 // const greenStatus = allStatus && allStatus.filter(o => o === 0);
 console.log("daya", data)
 console.log("greenStatus", greenStatus)
-
+const titleStatus = () => {
+  if(location.pathname ==="/device-all" ) {
+    return "All"
+  } else if(location.pathname ==="/device-restoran" ) {
+    return "Restoran"
+  }else if(location.pathname ==="/device-parkir" ) {
+    return "Parkir"
+  }else if(location.pathname ==="/device-hotel" ) {
+    return "Hotel"
+  }
+}
   return (
     <div className="gx-wel-ema gx-pt-xl-2">
-      <h1 className="gx-mb-3">Rekap Status Device</h1>
+      <h1 className="gx-mb-3">Rekap Status Device {titleStatus()}</h1>
       {/* <p className="gx-fs-sm gx-text-uppercase">You Have</p> */}
       <ul className="gx-list-group">
+      <li>
+          <span style={{fontWeight:"bold"}}>Total {allStatus?.length}  Devices </span>
+        </li>
         <li>
           <Avatar size="small" shape="square" style={{backgroundColor:"green", marginRight:"10px"}} />
           <span>{greenStatus?.length} Devices Online</span>
@@ -32,7 +49,7 @@ console.log("greenStatus", greenStatus)
         </li>
         <li>
         <Avatar size="small" shape="square" style={{backgroundColor:"red", marginRight:"10px"}} />
-          <span>{redStatus?.length} Devices 	Dalam Pemantauan</span>
+          <span>{redStatus?.length} Devices &gt; 3 Hari Off</span>
         </li>
       </ul>
     </div>

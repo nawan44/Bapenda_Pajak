@@ -12,7 +12,7 @@ const Search = Input.Search;
 
 const { Title } = Typography;
 
-const SectionDevice = (props) => {
+const SectionDeviceRestoran = (props) => {
     const history = useHistory();
     let location = useLocation();
     const { listData, setListData, aksiList } = props
@@ -50,9 +50,11 @@ const SectionDevice = (props) => {
         const ajson = await response.json();
         setListDevice(ajson.Records)
     }
-  
+    const dataRestoran = listDevice?.filter(o =>
+        o[7].stringValue === "Restoran")
+    console.log("Restoran??", dataRestoran)
 
-    const data = listDevice?.map((row, index) => ({
+    const data = dataRestoran?.map((row, index) => ({
         device_id: row[0].stringValue,
         owner: row[1].stringValue,
         email: row[3].stringValue,
@@ -203,4 +205,4 @@ const SectionDevice = (props) => {
 
 };
 
-export default SectionDevice;
+export default SectionDeviceRestoran;

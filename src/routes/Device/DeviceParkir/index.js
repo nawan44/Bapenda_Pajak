@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import EditDeviceAgent from "../../EditDeviceAgent";
-import SectionDevice from "./SectionDevice";
-import DeviceSummary from "./DeviceSummary";
+import SectionDeviceParkir from "./SectionDeviceParkir";
+import DeviceSummary from "../DeviceAll/DeviceSummary";
 
-const DeviceAll = () => {
+const DeviceParkir = () => {
   const [selectedRecord, setSelectedRecord] = useState()
   const [listData, setListData] = useState({
     aksiList: "",
@@ -23,9 +23,9 @@ const DeviceAll = () => {
   }
   return (
     <>
-  <SectionDevice  listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList}/>
+  <SectionDeviceParkir  listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList}/>
     </>
   );
 };
 
-export default DeviceAll;
+export default DeviceParkir;

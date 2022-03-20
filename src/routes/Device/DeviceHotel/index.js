@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import EditDeviceAgent from "../../EditDeviceAgent";
-import SectionDevice from "./SectionDevice";
-import DeviceSummary from "./DeviceSummary";
+import SectionDeviceHotel from "./SectionDeviceHotel";
+import DeviceSummary from "../DeviceAll/DeviceSummary";
 
 const DeviceAll = () => {
   const [selectedRecord, setSelectedRecord] = useState()
@@ -23,7 +23,7 @@ const DeviceAll = () => {
   }
   return (
     <>
-  <SectionDevice  listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList}/>
+  <SectionDeviceHotel  listData={listData} setListData={setListData} aksiList={listData.aksiList} itemList={listData.itemList}/>
     </>
   );
 };
