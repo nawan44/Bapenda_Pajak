@@ -50,7 +50,7 @@ function DataProvinsi(props) {
             <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Provinsi</h4>
             <Select
                 // defaultValue="lucy" 
-                style={{ margin: "40px 0 0 0", textAlign:"left" }}
+                style={{ width: "100%" ,margin: "40px 0 0 0", textAlign:"left" }}
                 name="provinsi"
                 onChange={handleChangeProvinsi}
                 value={ prov}
@@ -58,7 +58,7 @@ function DataProvinsi(props) {
                     { required: true, message: 'Pilih Provinsi Yang Ada' },
                 ]}
                 placeholder="Pilih Provinsi" required
-                style={{ width: "100%" }} >
+                >
                 {provinsi.data?.map((item) => (
                     <Option key={item.id} value={item.nama}
                     style={{textAlign:"left" }}

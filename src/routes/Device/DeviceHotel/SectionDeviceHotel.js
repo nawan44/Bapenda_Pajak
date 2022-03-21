@@ -197,7 +197,7 @@ const SectionDeviceHotel = (props) => {
 
                 </Row>
                 <div className="gx-table-responsive">
-                    <TableDevice data={filter === "" ? filteredPolls || data : filteredData} listData={listData} setListData={setListData} />
+                    <TableDevice className="gx-table-no-bordered" data={filter === "" ? filteredPolls || data : filteredData} listData={listData} setListData={setListData} />
                 </div>
             </Widget>
         </>

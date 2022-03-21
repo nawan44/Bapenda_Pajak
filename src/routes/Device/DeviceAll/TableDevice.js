@@ -88,7 +88,7 @@ console.log("data", data)
 
   return (
     <>
-      <Table dataSource={data} columns={columns}
+      <Table  className="gx-table-no-bordered" dataSource={data} columns={columns}
         rowClassName={record => `gx-bg-${record.status}`}
         // onClick={showModal}
         onRow={(record, recordIndex) => ({

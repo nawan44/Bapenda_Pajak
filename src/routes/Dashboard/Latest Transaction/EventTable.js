@@ -75,7 +75,7 @@ const EventsTable = ({ data }) => {
 
 
 
-  return <Table dataSource={data} columns={columns} />;
+  return <Table className="gx-table-no-bordered" dataSource={data} columns={columns} />;
 };
 
 export default EventsTable ;

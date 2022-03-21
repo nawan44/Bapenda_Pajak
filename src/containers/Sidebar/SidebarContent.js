@@ -112,6 +112,13 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 </Link>
               </Menu.Item>
             </SubMenu>
+
+            <Menu.Item key="transaction" >
+              <Link to="/transaction">
+                <i className="icon icon-widgets" />
+                <span style={{ fontSize: "14px" }}>Transaction</span>
+              </Link>
+            </Menu.Item>
             {/* <SubMenu key="status-device" style={{ fontSize: '150%', marginTop: "5px" }}
               icon={<DeploymentUnitOutlined style={{ fontSize: '125%', marginRight: "0px" }} />}
               title="Status Device">

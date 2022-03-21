@@ -62,13 +62,6 @@ function MyStepForm() {
             isactive: true
         }
     );
-
-  
-    
-
-
-
-console.log("regisDeviceAgent", regisDeviceAgent)
     useEffect(
         () => {
             setRegisDeviceAgent({
@@ -411,14 +404,14 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                 <h4 style={{ margin: "0px 0 20px 0", color: "#53586D" , textAlign:"left" }}>Type Pajak</h4>
                                 <Select
                                     // defaultValue="lucy" 
-                                    style={{ margin: "40px 0 0 0" }}
+                                    style={{ margin: "40px 0 0 0" ,width: "100%" }}
                                     name="category"
                                     value={category}
                                     onChange={handleChangeTypePajak}
                                     rules={[
                                         { type: 'array', required: true, message: 'Pilih Type Pajak' },
                                     ]}
-                                    style={{ width: "100%" }} >
+                                    >
                                     <Option value="Hotel">Hotel</Option>
                                     <Option value="Restoran">Restoran</Option>
                                     <Option value="Parkir">Parkir</Option>
@@ -432,11 +425,11 @@ console.log("regisDeviceAgent", regisDeviceAgent)
                                 <h4 style={{ margin: "0px 0 20px 0", color: "#53586D", textAlign:"left"  }}>Sumber Data</h4>
                                 <Select
                                     // defaultValue="lucy" 
-                                    style={{ margin: "40px 0 0 0" }}
+                                    style={{ margin: "40px 0 0 0" ,width: "100%" }}
                                     name="dataSumber"
                                     value={dataSumber}
                                     onChange={handleChangeSelect}
-                                    style={{ width: "100%" }} >
+                                     >
                                     <Option value="Agent">Agent</Option>
                                     <Option value="POS App">POS App</Option>
                                     <Option value="PDC">PDC</Option>
