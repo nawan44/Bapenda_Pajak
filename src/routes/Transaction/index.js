@@ -101,23 +101,29 @@ const dateFormat = "YYYY-MM-DD";
 
 const Transaction = () => {
   const [listDevice, setListDevice] = useState();
-  const [responFilter, setResponFilter] = useState()
+  const [responFilter, setResponFilter] = useState();
   const [form] = Form.useForm();
-  const [fromDate, setFromDate] = useState(moment().subtract(1,'months').format('YYYY-MM-DD'));
-  const [toDate, setToDate] = useState( moment().format('YYYY-MM-DD'));
-  const [merchantId, setMerchantId] = useState()
-  const [typePajak, setTypePajak] = useState()
+  const [formOk, setFormOk] = useState(false)
+  const [fromDate, setFromDate] = useState(
+    moment().subtract(1, "months").format("YYYY-MM-DD")
+  );
+  const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
+  const [merchantId, setMerchantId] = useState();
+  const [typePajak, setTypePajak] = useState();
   const onChangeDateRange = (date, datesString) => {
     setFromDate(datesString[0]);
     // setFromDate(datesString[1]);
-   //More code
-   }
-   const onResetClick = () => {
-    setFromDate('2000-01-01');
-   setToDate('2000-01-02');
-   }
+    //More code
+  };
+  const onResetClick = () => {
+    setFromDate("2000-01-01");
+    setToDate("2000-01-02");
+  };
   console.log("fromDate", fromDate);
-  console.log(" 3,'months').format('YYYY-MM-DD')",  moment().subtract(3,'months').format('YYYY-MM-DD'));
+  console.log(
+    " 3,'months').format('YYYY-MM-DD')",
+    moment().subtract(3, "months").format("YYYY-MM-DD")
+  );
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -158,12 +164,12 @@ const Transaction = () => {
     nominal_nett: formatter.format(row[7].stringValue),
   }));
   function changeTypePajak(value) {
-    setTypePajak(value)
+    setTypePajak(value);
   }
 
   function onChangeMerchant(value, id) {
     // console.log(`selected ${value}`);
-    setMerchantId(id.id)
+    setMerchantId(id.id);
   }
 
   function onSearch(val) {
@@ -176,49 +182,45 @@ const Transaction = () => {
   function onFocus() {
     console.log("focus");
   }
-  const url = () =>{
+  const url = () => {
     if (merchantId && !typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=1&merchant_id=${merchantId}`
-    } else   if (!merchantId && typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=1&type_pajak=${typePajak}`
-    }else   if (merchantId && typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=1&merchant_id=${merchantId}&type_pajak=${typePajak}`
+      return `https://api.raspi-geek.com/v1/transactions?page=1&merchant_id=${merchantId}`;
+    } else if (!merchantId && typePajak) {
+      return `https://api.raspi-geek.com/v1/transactions?page=1&type_pajak=${typePajak}`;
+    } else if (merchantId && typePajak) {
+      return `https://api.raspi-geek.com/v1/transactions?page=1&merchant_id=${merchantId}&type_pajak=${typePajak}`;
+    } else if (!merchantId && !typePajak) {
+      return `https://api.raspi-geek.com/v1/transactions?page=1`;
     }
-    else if (!merchantId && !typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=1`
-
-    }
-  }
+  };
   const handleFinish = async (values) => {
     try {
       const decoded = jwtDecode(localStorage.token);
       const apiKey = decoded["api-key"];
-      const response = await fetch(
-        url(),
-        {
-          method: "POST",
-          headers: {
-            "x-api-key": `${apiKey}`,
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            startdate : fromDate,
-            enddate : toDate
-          }),
-        }
-      );
+      const response = await fetch(url(), {
+        method: "POST",
+        headers: {
+          "x-api-key": `${apiKey}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          startdate: fromDate,
+          enddate: toDate,
+        }),
+      });
       const res = await response.json();
-      console.log("res", res.Records)
-      setResponFilter(res.Records)
+      console.log("res", res.Records);
+      setResponFilter(res.Records);
+      setFormOk(true)
       // success();
       // history.push("/dashboard")
     } catch (err) {
       // console.log("error", err.message);
     }
   };
-  function disabledDate(current) {  
-    return current > moment() || current < moment().subtract(3, 'months');
-}
+  function disabledDate(current) {
+    return current > moment() || current < moment().subtract(3, "months");
+  }
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -239,9 +241,7 @@ const Transaction = () => {
           //     kelurahan: "", alamat: "", kategori: "", data_source: ""
           // }}
         >
-          <FormItem label="Tanggal" className="gx-form-item-one-third"
-            
-          >
+          <FormItem label="Tanggal" className="gx-form-item-one-third">
             <Space direction="vertical" style={{ width: 250 }} size={12}>
               {/* <Button
                 onClick={() =>
@@ -251,10 +251,13 @@ const Transaction = () => {
                 Add 7 days
               </Button> */}
               <RangePicker
-               onChange={onChangeDateRange}
-               disabledDate={disabledDate}
-              //  onChange={(date, dateString) => onChangeDateRange(date, dateString)} 
-               value={[moment(fromDate, dateFormat), moment(toDate, dateFormat)]}
+                onChange={onChangeDateRange}
+                disabledDate={disabledDate}
+                //  onChange={(date, dateString) => onChangeDateRange(date, dateString)}
+                value={[
+                  moment(fromDate, dateFormat),
+                  moment(toDate, dateFormat),
+                ]}
               />
             </Space>
           </FormItem>
@@ -293,22 +296,28 @@ const Transaction = () => {
             </Select>
           </FormItem>
           <FormItem className="gx-d-block gx-mb-1">
-            <Button style={{marginTop:"15px"}} className="gx-mb-0" type="primary"  onClick={() => form.submit()}>
+            <Button
+              style={{ marginTop: "15px" }}
+              className="gx-mb-0"
+              type="primary"
+              onClick={() => form.submit()}
+            >
               Cari Data
             </Button>
           </FormItem>
         </Form>
-
-        <div className="gx-table-responsive">
-          <Table
-            className="gx-table-no-bordered"
-            columns={columns}
-            dataSource={dataFilter}
-            pagination={true}
-            bordered={false}
-            size="small"
-          />
-        </div>
+        {formOk === true && 
+          <div className="gx-table-responsive">
+            <Table
+              className="gx-table-no-bordered"
+              columns={columns}
+              dataSource={dataFilter}
+              pagination={true}
+              bordered={false}
+              size="small"
+            />
+          </div>
+        }
       </Widget>
     </>
   );
