@@ -4,7 +4,7 @@ import { Row, Col, Typography, Button, Form, Input, Select, Table } from "antd";
 import { DatePicker, Space } from "antd";
 import jwtDecode from "jwt-decode";
 import * as moment from "moment";
-
+import ConvertPdf from "./convertPdf";
 const Search = Input.Search;
 
 const { RangePicker } = DatePicker;
@@ -119,11 +119,10 @@ const Transaction = () => {
     setFromDate("2000-01-01");
     setToDate("2000-01-02");
   };
-  console.log("fromDate", fromDate);
-  console.log(
-    " 3,'months').format('YYYY-MM-DD')",
-    moment().subtract(3, "months").format("YYYY-MM-DD")
-  );
+  // console.log(
+  //   " 3,'months').format('YYYY-MM-DD')",
+  //   moment().subtract(3, "months").format("YYYY-MM-DD")
+  // );
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -308,6 +307,7 @@ const Transaction = () => {
         </Form>
         {formOk === true && 
           <div className="gx-table-responsive">
+            <ConvertPdf dataFilter={dataFilter}/>
             <Table
               className="gx-table-no-bordered"
               columns={columns}
