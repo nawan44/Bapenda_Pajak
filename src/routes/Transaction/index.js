@@ -109,15 +109,15 @@ const Transaction = () => {
   const [typePajak, setTypePajak] = useState()
   const onChangeDateRange = (date, datesString) => {
     setFromDate(datesString[0]);
-    setFromDate(datesString[1]);
+    // setFromDate(datesString[1]);
    //More code
    }
    const onResetClick = () => {
     setFromDate('2000-01-01');
    setToDate('2000-01-02');
    }
-  console.log("typePajak", typePajak);
-  console.log("toDate", toDate);
+  console.log("fromDate", fromDate);
+  console.log(" 3,'months').format('YYYY-MM-DD')",  moment().subtract(3,'months').format('YYYY-MM-DD'));
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -216,6 +216,9 @@ const Transaction = () => {
       // console.log("error", err.message);
     }
   };
+  function disabledDate(current) {  
+    return current > moment() || current < moment().subtract(3, 'months');
+}
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -236,7 +239,9 @@ const Transaction = () => {
           //     kelurahan: "", alamat: "", kategori: "", data_source: ""
           // }}
         >
-          <FormItem label="Tanggal" className="gx-form-item-one-third">
+          <FormItem label="Tanggal" className="gx-form-item-one-third"
+            
+          >
             <Space direction="vertical" style={{ width: 250 }} size={12}>
               {/* <Button
                 onClick={() =>
@@ -247,6 +252,7 @@ const Transaction = () => {
               </Button> */}
               <RangePicker
                onChange={onChangeDateRange}
+               disabledDate={disabledDate}
               //  onChange={(date, dateString) => onChangeDateRange(date, dateString)} 
                value={[moment(fromDate, dateFormat), moment(toDate, dateFormat)]}
               />
