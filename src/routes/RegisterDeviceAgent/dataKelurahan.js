@@ -60,7 +60,7 @@ function DataKelurahan(props) {
             <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Kelurahan</h4>
 
             <Select
-                style={{ margin: "40px 0 0 0" }}
+                style={{ margin: "40px 0 0 0",width: "100%" }}
                 name="kelurahan"
                 onChange={handleChangeKelurahan}
                 value={kel}
@@ -68,7 +68,7 @@ function DataKelurahan(props) {
                     { type: 'array', required: true, message: 'Pilih Kelurahan Yang Ada' },
                 ]}
                 placeholder="Pilih Kelurahan"
-                style={{ width: "100%" }} >
+                >
                 {kelurahan.data?.map((item) => (
                     <Option key={item.id} value={item.nama} ></Option>
                 ))}

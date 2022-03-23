@@ -12,11 +12,14 @@ const UserProfile = () => {
       history.push('/');
     });
   }
+  const onMyAccount = () => {
+    history.push('/my-account');
 
+}
   const userMenuOptions = (
     <ul className="gx-user-popover">
-      <li>My Account</li>
-      <li>Connections</li>
+      <li  onClick={onMyAccount}>My Account</li>
+      {/* <li>Connections</li> */}
       <li onClick={onLogoutClick}>Logout
       </li>
     </ul>

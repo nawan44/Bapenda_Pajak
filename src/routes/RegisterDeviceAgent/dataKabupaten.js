@@ -73,7 +73,7 @@ function DataKabupaten(props) {
             <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Kabupaten</h4>
 
             <Select
-                style={{ margin: "40px 0 0 0", textAlign:"left"  }}
+                style={{ margin: "40px 0 0 0", textAlign:"left" , width: "100%"  }}
                 name="kabupaten"
                 onChange={handleChangeKabupaten}
                 value={kab}
@@ -81,7 +81,7 @@ function DataKabupaten(props) {
                     { type: 'array', required: true, message: 'Pilih Kabupaten Yang Ada' },
                 ]}
                 placeholder="Pilih Kabupaten"
-                style={{ width: "100%" }} >
+              >
                 {kabupaten.data?.map((item) => (
                     <Option key={item.id} value={item.nama} ></Option>
                 ))}
