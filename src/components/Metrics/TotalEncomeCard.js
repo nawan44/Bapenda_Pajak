@@ -12,7 +12,6 @@ const TotalEncomeCard = ({ color,latestTransaction, setLatestTransaction }) => {
     currency: 'IDR',
   
   });
-console.log("latestTransaction", latestTransaction)
   return (
     <>
    { latestTransaction && latestTransaction.map(row => (

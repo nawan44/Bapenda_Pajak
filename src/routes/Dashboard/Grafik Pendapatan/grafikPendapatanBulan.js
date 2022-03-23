@@ -192,7 +192,6 @@ const [dataBulan, setDataBulan] = useState([
       {}
     );
    
-console.log("Object.values(shooters)",Object.values(shooters))
   
   const formatter = new Intl.NumberFormat('id-ID', {
     style: 'currency',

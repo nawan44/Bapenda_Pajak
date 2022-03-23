@@ -15,7 +15,6 @@ const PendapatanHariIni = ( props) => {
   const [moneyYesterday, setMoneyYesterday] = useState()
 // tanggal_transaksi
 // nilai
-
   const token = localStorage.getItem('token')
   const now = moment().format('YYYY-MM-DD')
   const kemarin = moment().subtract(1, 'd').format('YYYY-MM-DD')

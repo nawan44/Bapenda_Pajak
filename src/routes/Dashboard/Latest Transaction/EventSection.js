@@ -57,7 +57,7 @@ const EventsSection = (props) => {
                 }
             });
         } catch (e) {
-            console.log("data tidak ada");
+            // console.log("data tidak ada");
         }
     });
     const handleChangeData = (event) => {

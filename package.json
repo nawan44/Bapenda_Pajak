@@ -71,7 +71,8 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.3",
     "url-search-params": "^1.1.0",
-    "victory": "^35.4.6"
+    "victory": "^35.4.6",
+    "xlsx": "^0.18.4"
   },
   "scripts": {
     "start": "react-app-rewired --openssl-legacy-provider start",

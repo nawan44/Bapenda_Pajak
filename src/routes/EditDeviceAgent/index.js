@@ -98,9 +98,6 @@ function EditDeviceAgent(props) {
     );
     // "Jalan 01,  Ragunan,  Pasar Minggu,  Kota Jakarta Selatan,  Dki Jakarta"
 
-    console.log("itemList", itemList)
-
-
 
     useEffect(
         () => {
@@ -219,16 +216,7 @@ function EditDeviceAgent(props) {
     }
     const sliceProvId = searchProvinceId?.toString()
     const sliceKabId = searchKabKotaId?.toString().slice(0, -2)
-    // console.log("sliceProvId", sliceProvId)
-    // console.log("sliceKabId", sliceKabId)
-    console.log("searchKecId", searchProvinceId?.toString())
-
-    // console.log("searchKecId", searchKecId?.toString().slice(0, -3))
-    // console.log("=====", sliceProvId === sliceKabId )
-    console.log("searchKelId", searchKelId?.toString().slice(0, -8))
-
-    console.log("=====", sliceProvId === sliceKabId)
-
+ 
 
     const validate = () => {
         if (regisDeviceAgent.owner === "") {
@@ -281,7 +269,6 @@ function EditDeviceAgent(props) {
             return false
         }
     }
-    console.log("regisDeviceAgent()", regisDeviceAgent)
     useEffect(
         () => {
 
@@ -361,7 +348,7 @@ function EditDeviceAgent(props) {
                 "   ❌ Pilih Type Pajak terlebih dulu"
             );
         } else {
-            console.log("");
+            // console.log("");
         }
     };
     const cancel = () => {
@@ -381,7 +368,6 @@ function EditDeviceAgent(props) {
     };
     const handleFinish = async (values) => {
         const aa = validate()
-        console.log("validate", aa)
         if (aa == false) {
             try {
                 const decoded = jwtDecode(localStorage.token)
@@ -400,7 +386,6 @@ function EditDeviceAgent(props) {
                         body: JSON.stringify(regisDeviceAgent),
                     }
                 );
-                console.log("JSON.stringify regisDeviceAgent", regisDeviceAgent);
                 success();
                 history.push("/dashboard")
             } catch (err) {

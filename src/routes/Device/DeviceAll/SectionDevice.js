@@ -71,7 +71,6 @@ const SectionDevice = (props) => {
   const orangeStatus = data?.filter((item) => item.status === "orange");
   const redStatus = data?.filter((item) => item.status === "red");
 
-  console.log("filteredPolls", filteredPolls);
   function showGreen() {
     setfilteredPolls(greenStatus);
     setButtonBackgroundGreen("white");
@@ -117,7 +116,6 @@ const SectionDevice = (props) => {
     setFilter(event.target.value);
   };
   const lowercasedFilter = filter.toString().toLowerCase();
-  console.log("lowercasedFilter", lowercasedFilter);
 
   const filteredData = data?.filter((item) => {
     try {
@@ -127,7 +125,7 @@ const SectionDevice = (props) => {
         }
       });
     } catch (e) {
-      console.log("data tidak ada");
+      // console.log("data tidak ada");
     }
   });
   const titleStatus = () => {

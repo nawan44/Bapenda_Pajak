@@ -19,7 +19,7 @@ const DeviceAll = () => {
   }
   
   else {
-     console.log("")
+    //  console.log("")
   }
   return (
     <>

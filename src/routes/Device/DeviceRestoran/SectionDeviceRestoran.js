@@ -52,7 +52,6 @@ const SectionDeviceRestoran = (props) => {
     }
     const dataRestoran = listDevice?.filter(o =>
         o[7].stringValue === "Restoran")
-    console.log("Restoran??", dataRestoran)
 
     const data = dataRestoran?.map((row, index) => ({
         device_id: row[0].stringValue,
@@ -73,7 +72,6 @@ const SectionDeviceRestoran = (props) => {
     const orangeStatus = data?.filter(item => item.status === "orange")
     const redStatus = data?.filter(item => item.status === "red")
 
-    console.log("filteredPolls", filteredPolls)
     function showGreen() {
         setfilteredPolls(greenStatus)
         setButtonBackgroundGreen("white")
@@ -119,7 +117,6 @@ const SectionDeviceRestoran = (props) => {
         setFilter(event.target.value);
     };
     const lowercasedFilter = filter.toString().toLowerCase();
-    console.log("lowercasedFilter", lowercasedFilter)
 
     const filteredData = data?.filter((item) => {
         try {
@@ -129,7 +126,7 @@ const SectionDeviceRestoran = (props) => {
                 }
             });
         } catch (e) {
-            console.log("data tidak ada");
+            // console.log("data tidak ada");
         }
     });
     const titleStatus = () => {

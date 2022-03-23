@@ -17,7 +17,7 @@ const DeviceRestoran = () => {
     )
   }
   else {
-    console.log("")
+    // console.log("")
   }
   return (
     <>

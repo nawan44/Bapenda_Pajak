@@ -19,7 +19,6 @@ const StatusDeviceRestoran = () => {
 
     const latestTransaction = filterStatusHotel?.filter(o => 
         o[5].stringValue === "Restoran")
-        console.log("filterStatusHotel??", latestTransaction)
 
 
     const now = moment().format('YYYY-MM-DD')
@@ -83,7 +82,7 @@ const StatusDeviceRestoran = () => {
                 }
             });
         } catch (e) {
-            console.log("data tidak ada");
+            // console.log("data tidak ada");
         }
     });
     const handleChangeData = (event) => {
@@ -235,9 +234,6 @@ const StatusDeviceRestoran = () => {
     //     // setLatestTransaction(ajson.Records)
     //     setLatestTransaction(ajson.Records,)
     // }
-
-    console.log("buttonBackgroundGreen", buttonBackgroundGreen)
-
 
     return (
         <div>

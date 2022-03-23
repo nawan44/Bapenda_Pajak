@@ -76,7 +76,7 @@ const StatusDevice = () => {
                 }
             });
         } catch (e) {
-            console.log("data tidak ada");
+            // console.log("data tidak ada");
         }
     });
     const handleChangeData = (event) => {
@@ -228,9 +228,6 @@ const StatusDevice = () => {
     //     // setLatestTransaction(ajson.Records)
     //     setLatestTransaction(ajson.Records,)
     // }
-
-    console.log("result_all_status_device vvvvvvv", result_all_status_device)
-
 
     return (
         <div>

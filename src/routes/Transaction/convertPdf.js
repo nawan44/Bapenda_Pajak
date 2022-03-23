@@ -2,6 +2,11 @@ import React from "react";
 import jsPDF from 'jspdf'
 import 'jspdf-autotable'
 import { Button, } from "antd";
+import * as moment from "moment";
+import 'moment/locale/id'
+import "../../assets/styles/table.css"
+
+
 const dataDummy = [
   {
     key: "1",
@@ -75,7 +80,7 @@ const ConvertPdf = ( props) => {
         { title: "Merchant ID", dataKey: "merchant_id" },
         { title: "Nama Usaha", dataKey: "nama_usaha" },
 
-        { title: "Type Pajak", dataKey: "type_pajak" },
+        { title: "Tipe Pajak", dataKey: "type_pajak" },
         { title: "Nominal Transasksi", dataKey: "nominal_transaksi" },
         { title: "Nominal Pajak", dataKey: "nominal_pajak" },
 
@@ -136,7 +141,7 @@ const ConvertPdf = ( props) => {
         let pageHeight = pageSize.height
           ? pageSize.height
           : pageSize.getHeight();
-        doc.text("PT. Emtres Indonesia", elt.settings.margin.left, pageHeight - 10);
+        doc.text(`Tanggal Cetak : ${moment().format("DD MMMM YYYY HH:mm:ss")}`, elt.settings.margin.left, pageHeight - 10);
         doc.text(575, 830, str);
       }
     });
@@ -148,11 +153,11 @@ const ConvertPdf = ( props) => {
       {" "}
       <Button
         variant="contained"
-        className="laporan"
+        className="button-pdf"
         // startIcon={<Description />}
         onClick={exportPDF}
       >
-        PDF Transaksi
+        Export PDF
       </Button>
     </div>
   );

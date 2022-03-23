@@ -120,3 +120,24 @@ width: 300px;
     50% { background-position: 400% 0; }
     100% { background-position: 0 0; }
 }
+
+.button-excel{
+  background-color: green;
+  color: #fff;
+}
+.button-excel:hover{
+  background-color: #fff;
+  border: 1px solid green;
+  color: green;
+}
+
+.button-pdf{
+  background-color: blue;
+  margin: 0 20px 0 0;
+  color: #fff;
+}
+.button-pdf:hover{
+  background-color: #fff;
+  border: 1px solid blue;
+  color: blue;
+}

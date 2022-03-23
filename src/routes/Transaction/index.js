@@ -5,6 +5,7 @@ import { DatePicker, Space } from "antd";
 import jwtDecode from "jwt-decode";
 import * as moment from "moment";
 import ConvertPdf from "./convertPdf";
+import ConvertExcel from "./convertExcel";
 const Search = Input.Search;
 
 const { RangePicker } = DatePicker;
@@ -167,7 +168,6 @@ const Transaction = () => {
   }
 
   function onChangeMerchant(value, id) {
-    // console.log(`selected ${value}`);
     setMerchantId(id.id);
   }
 
@@ -208,7 +208,6 @@ const Transaction = () => {
         }),
       });
       const res = await response.json();
-      console.log("res", res.Records);
       setResponFilter(res.Records);
       setFormOk(true)
       // success();
@@ -307,7 +306,11 @@ const Transaction = () => {
         </Form>
         {formOk === true && 
           <div className="gx-table-responsive">
-            <ConvertPdf dataFilter={dataFilter}/>
+            <Row style={{float:"right"}}>
+            <ConvertPdf  dataFilter={dataFilter}/>
+            <ConvertExcel dataFilter={dataFilter}/>
+            </Row>
+
             <Table
               className="gx-table-no-bordered"
               columns={columns}

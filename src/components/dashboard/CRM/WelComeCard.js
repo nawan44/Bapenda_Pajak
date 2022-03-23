@@ -18,8 +18,7 @@ const orangeStatus = data?.filter(o => o.status === "orange");
 const redStatus = data?.filter(o => o.status === "red");
 // const darkStatus = allStatus && allStatus.filter(o => o >= 3);
 // const greenStatus = allStatus && allStatus.filter(o => o === 0);
-console.log("daya", data)
-console.log("greenStatus", greenStatus)
+
 const titleStatus = () => {
   if(location.pathname ==="/device-all" ) {
     return "All"

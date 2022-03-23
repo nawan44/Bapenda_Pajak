@@ -7,7 +7,6 @@ const TransaksiBulanIni = (props) => {
   const { latestTransaction, setLatestTransaction } = props
   const [transactionThisMonth, setTransactionThisMonth] = useState()
   const [transactionLastMonth, setTransactionLastMonth] = useState()
-
   const bulanIni = moment().format('YYYY-MM')
   const bulanLalu =moment().subtract(1,'months').format('YYYY-MM')
   const bulan = latestTransaction && latestTransaction.map(row => ({

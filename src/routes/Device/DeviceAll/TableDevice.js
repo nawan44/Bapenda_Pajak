@@ -84,7 +84,6 @@ const TableDevice = (props) => {
     //   }
     // }
   ];
-console.log("data", data)
 
   return (
     <>
@@ -93,8 +92,8 @@ console.log("data", data)
         // onClick={showModal}
         onRow={(record, recordIndex) => ({
           onClick: event => {
-            console.log("onRow onClick",
-              event.target, event.target.className, record, recordIndex)
+            // console.log("onRow onClick",
+            //   event.target, event.target.className, record, recordIndex)
             showModal(record)
             setDataRecord(record)
           }

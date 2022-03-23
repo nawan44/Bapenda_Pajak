@@ -53,7 +53,6 @@ const users = [
 const LatestTransaction = (props) => {
   const {latestTransaction, setLatestTransaction} = props
  
-console.log("latestTransaction", latestTransaction)
 
     const formatter = new Intl.NumberFormat('id-ID', {
       style: 'currency',
@@ -122,7 +121,7 @@ const data = latestTransaction && latestTransaction.map(row => ({
         }
       });
     } catch (e) {
-      console.log("data tidak ada");
+      // console.log("data tidak ada");
     }
   });
   const handleChangeData = (event) => {

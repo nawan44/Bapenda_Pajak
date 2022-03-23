@@ -41,9 +41,7 @@ const StatusDeviceHotel = () => {
 
     const latestTransaction = filterStatusHotel?.filter(o => 
         o[5].stringValue === "Hotel")
-        console.log("filterStatusHotel??", latestTransaction)
-
-
+      
     const now = moment().format('YYYY-MM-DD')
     const [buttonGreen, setButtonGreen] = useState("white")
     const [buttonBackgroundGreen, setButtonBackgroundGreen] = useState("green")
@@ -109,7 +107,7 @@ const StatusDeviceHotel = () => {
                 }
             });
         } catch (e) {
-            console.log("data tidak ada");
+            // console.log("data tidak ada");
         }
     });
     const handleChangeData = (event) => {
@@ -261,9 +259,6 @@ const StatusDeviceHotel = () => {
     //     // setLatestTransaction(ajson.Records)
     //     setLatestTransaction(ajson.Records,)
     // }
-
-    console.log("buttonBackgroundGreen", buttonBackgroundGreen)
-
 
     return (
         <div>
