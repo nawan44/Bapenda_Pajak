@@ -10,9 +10,9 @@ const EcommerceStatus = ({ icon, title, subTitle, color, colorTitle, colorSubTit
   transactionToday, setTransactionToday, transactionYesterday,  setTransactionYesterday, objTransactionToday,
   transactionThisMonth, setTransactionThisMonth, transactionLastMonth,  setTransactionLastMonth, objTransactionThisMonth,
   transactionThisYear, setTransactionThisYear, transactionLastYear,  setTransactionLastYear, objTransactionThisYear,
-
 }) => {
-  // const {  moneyToday, setMoneyToday,moneyYesterday, setMoneyYesterday  } =props
+
+
 
   const selisihTransaksiHariIni = () => {
     if (transactionToday > transactionYesterday) {
@@ -53,18 +53,18 @@ const EcommerceStatus = ({ icon, title, subTitle, color, colorTitle, colorSubTit
     }
   }
 
-  const selisihPendapatanHariIni = () => {
+  const selisihTransaksiHarian = () => {
     if (moneyToday > moneyYesterday) {
       return <UpCircleFilled style={{ fontSize: '24px', color: 'blue', margin: "10px 0 0 0" }} />
     } else if (moneyToday < moneyYesterday) {
       return <DownCircleFilled style={{ fontSize: '24px', color: 'red', margin: "10px 0 0 0" }} />
     } else if (moneyToday === moneyYesterday) {
-      return <PauseCircleFilled rotate={90} style={{ fontSize: '24px', color: 'black', margin: "10px 0 0 0" }}
-      />
+      return <PauseCircleFilled rotate={90} style={{ fontSize: '24px', color: 'black', margin: "10px 0 0 0" }}/>
     } else {
       return "Tidak Ada Transaksi"
     }
   }
+
   const selisihPendapatanBulanIni = () => {
     if (moneyThisMonth > moneyLastMonth) {
       return <UpCircleFilled style={{ fontSize: '24px', color: 'blue', margin: "10px 0 0 0" }} />
@@ -104,9 +104,9 @@ const EcommerceStatus = ({ icon, title, subTitle, color, colorTitle, colorSubTit
         <h2 className={`gx-fs-xxxl gx-font-weight-medium gx-text-${colorTitle}`}>{title}</h2>
         <p className={`gx-mb-0 gx-mb-sm-3 gx-text-${colorSubTitle}`}>{subTitle}</p>
         {
-          objToday  && (
+          moneyToday  && (
             <span>
-              <p>{selisihPendapatanHariIni()}</p>
+              <p>{selisihTransaksiHarian()}</p>
               {moneyToday < moneyYesterday ? 
            <p style={{color:"red"}} > {moneyYesterday === undefined ? "Tidak Ada Transaksi" : formatter.format(moneyToday - moneyYesterday)}</p> 
            : <p>{moneyYesterday === undefined ? "Tidak Ada Transaksi" : formatter.format(moneyToday - moneyYesterday)}</p>
@@ -137,7 +137,7 @@ const EcommerceStatus = ({ icon, title, subTitle, color, colorTitle, colorSubTit
           )
         }
          {
-          objTransactionToday  && ( 
+          transactionToday  && ( 
             <span>
               <p>{selisihTransaksiHariIni()}</p>
               { transactionToday < transactionYesterday ? 

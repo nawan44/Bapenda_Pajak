@@ -3,7 +3,7 @@ import { Col,  } from "antd";
 import EcommerceStatus from "../../../components/Metrics/EcommerceStatus";
 import * as moment from 'moment';
 
-const TransaksiTahunIni = (props) => {
+const JumlahTransaksiTahunan = (props) => {
   const { latestTransaction, setLatestTransaction } = props
   const [transactionThisYear, setTransactionThisYear] = useState()
   const [transactionLastYear, setTransactionLastYear] = useState()
@@ -64,5 +64,5 @@ const TransaksiTahunIni = (props) => {
   );
 };
 
-export default TransaksiTahunIni;
+export default JumlahTransaksiTahunan;
 

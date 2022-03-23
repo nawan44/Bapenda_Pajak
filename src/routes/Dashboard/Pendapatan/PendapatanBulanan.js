@@ -4,7 +4,7 @@ import EcommerceStatus from "../../../components/Metrics/EcommerceStatus";
 import * as moment from 'moment';
 import "../../../assets/styles/flip-card.css"
 
-const PendapatanBulanIni = (props) => {
+const PendapatanBulanan = (props) => {
   const {latestTransaction, setLatestTransactio} = props
   const bulanIni = moment().format('YYYY-MM')
   const bulanLalu =moment().subtract(1,'months').format('YYYY-MM')
@@ -60,5 +60,5 @@ const PendapatanBulanIni = (props) => {
   );
 };
 
-export default PendapatanBulanIni;
+export default PendapatanBulanan;
 

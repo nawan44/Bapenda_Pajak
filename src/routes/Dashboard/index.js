@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {  Row } from "antd";
-import TransaksiHariIni from "./Transaksi/TransaksiHariIni";
-import TransaksiBulanIni from "./Transaksi/TransaksiBulanIni";
-import TransaksiTahunIni from "./Transaksi/TransaksiTahunIni";
+import JumlahTransaksiHarian from "./Jumlah Transaksi/JumlahTransaksiHarian";
+import JumlahTransaksiBulanan from "./Jumlah Transaksi/JumlahTransaksiBulanan";
+import JumlahTransaksiTahunan from "./Jumlah Transaksi/JumlahTransaksiTahunan";
 import "../../assets/styles/dashboard.css"
-import PendapatanTahunIni from "./Pendapatan/PendapatanTahunIni";
-import PendapatanBulanIni from "./Pendapatan/PendapatanBulanIni";
-import PendapatanHariIni from "./Pendapatan/PendapatanHariIni";
+import PendapatanTahunan from "./Pendapatan/PendapatanTahunan";
+import PendapatanBulanan from "./Pendapatan/PendapatanBulanan";
+import PendapatanHarian from "./Pendapatan/PendapatanHarian";
 
 import GrafikPendapatanBulan from "./Grafik Pendapatan/grafikPendapatanBulan";
 import LatestTransaction from "./Latest Transaction";
@@ -28,12 +28,12 @@ const SamplePage = () => {
   }, []);
    useEffect(() => {
     getLatestTransaction();
-    const interval=setInterval(()=>{
-      getLatestTransaction()
-     },10000)
+    // const interval=setInterval(()=>{
+    //   getLatestTransaction()
+    //  },10000)
        
        
-     return()=>clearInterval(interval)
+    //  return()=>clearInterval(interval)
   }, []);
 
   const getLatestTransaction = async (dataLatest) => {
@@ -65,9 +65,9 @@ const SamplePage = () => {
       {/* <div className="gx-d-flex justify-content-center"> */}
       {/* <div className="container-dashboard1"  > */}
       <Row  className="container-dashboard1">
-        <PendapatanHariIni latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
-        <PendapatanBulanIni latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
-        <PendapatanTahunIni latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
+        <PendapatanHarian latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
+        <PendapatanBulanan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
+        <PendapatanTahunan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
         </Row>
       {/* </div> */}
       <Row className="container-dashboard2" type="flex" >
@@ -75,9 +75,9 @@ const SamplePage = () => {
       </Row>
       <Row className="container-dashboard3">
 
-        <TransaksiHariIni latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
-        <TransaksiBulanIni latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
-        <TransaksiTahunIni latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
+        <JumlahTransaksiHarian latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
+        <JumlahTransaksiBulanan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
+        <JumlahTransaksiTahunan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
         </Row>
       <Row className="container-dashboard5">
         <LatestTransaction style={{ margin: "0px", textAlign: "center" }} latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
