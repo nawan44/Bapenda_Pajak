@@ -73,7 +73,7 @@ function DataKabupaten(props) {
             <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign:"left"  }}>Kabupaten</h4>
 
             <Select
-                style={{ margin: "40px 0 0 0", textAlign:"left" , width: "100%"  }}
+                style={{ textAlign:"left" , width: "100%"  }}
                 name="kabupaten"
                 onChange={handleChangeKabupaten}
                 value={kab}

@@ -104,7 +104,7 @@ const Transaction = () => {
   const [listDevice, setListDevice] = useState();
   const [responFilter, setResponFilter] = useState();
   const [form] = Form.useForm();
-  const [formOk, setFormOk] = useState(false)
+  const [formOk, setFormOk] = useState(false);
   const [fromDate, setFromDate] = useState(
     moment().subtract(1, "months").format("YYYY-MM-DD")
   );
@@ -120,6 +120,9 @@ const Transaction = () => {
     setFromDate("2000-01-01");
     setToDate("2000-01-02");
   };
+  console.log("merchantId", merchantId);
+  console.log("typePajak", typePajak);
+
   // console.log(
   //   " 3,'months').format('YYYY-MM-DD')",
   //   moment().subtract(3, "months").format("YYYY-MM-DD")
@@ -209,7 +212,7 @@ const Transaction = () => {
       });
       const res = await response.json();
       setResponFilter(res.Records);
-      setFormOk(true)
+      setFormOk(true);
       // success();
       // history.push("/dashboard")
     } catch (err) {
@@ -219,6 +222,13 @@ const Transaction = () => {
   function disabledDate(current) {
     return current > moment() || current < moment().subtract(3, "months");
   }
+  const reset = () => {
+    setFromDate(moment().subtract(1, "months").format("YYYY-MM-DD"));
+    setToDate(moment().format("YYYY-MM-DD"));
+    setFormOk(false);
+    setMerchantId(null);
+    setTypePajak(null);
+  };
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -264,6 +274,8 @@ const Transaction = () => {
               onChange={changeTypePajak}
               placeholder="Select Type Pajak"
               style={{ width: 150 }}
+              allowClear
+              value={typePajak}
             >
               <Option value="Restoran">Restoran</Option>
               <Option value="Hotel">Hotel</Option>
@@ -273,6 +285,7 @@ const Transaction = () => {
 
           <FormItem label="Merchant" className="gx-form-item-one-third">
             <Select
+              value={merchantId}
               showSearch
               style={{ width: 350 }}
               placeholder="Select Merchant"
@@ -285,6 +298,7 @@ const Transaction = () => {
                 option.id.toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
                 option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
+              allowClear
             >
               {dataMerchant?.map((p) => (
                 <Option id={p.device_id} value={p.nama_usaha}>
@@ -293,22 +307,35 @@ const Transaction = () => {
               ))}
             </Select>
           </FormItem>
-          <FormItem className="gx-d-block gx-mb-1">
-            <Button
-              style={{ marginTop: "15px" }}
-              className="gx-mb-0"
-              type="primary"
-              onClick={() => form.submit()}
-            >
-              Cari Data
-            </Button>
-          </FormItem>
+          <Row>
+            {" "}
+            <FormItem className="gx-d-block gx-mb-1">
+              <Button
+                style={{ marginTop: "15px" }}
+                className="gx-mb-0"
+                type="primary"
+                onClick={() => form.submit()}
+              >
+                Cari Data
+              </Button>
+            </FormItem>
+            <FormItem className="gx-d-block gx-mb-1">
+              <Button
+                style={{ marginTop: "15px" }}
+                className="gx-mb-0"
+                type="danger"
+                onClick={reset}
+              >
+                Reset
+              </Button>
+            </FormItem>
+          </Row>
         </Form>
-        {formOk === true && 
+        {formOk === true && (
           <div className="gx-table-responsive">
-            <Row style={{float:"right"}}>
-            <ConvertPdf  dataFilter={dataFilter}/>
-            <ConvertExcel dataFilter={dataFilter}/>
+            <Row style={{ float: "right" }}>
+              <ConvertPdf dataFilter={dataFilter} />
+              <ConvertExcel dataFilter={dataFilter} />
             </Row>
 
             <Table
@@ -320,7 +347,7 @@ const Transaction = () => {
               size="small"
             />
           </div>
-        }
+        )}
       </Widget>
     </>
   );

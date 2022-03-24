@@ -76,7 +76,7 @@ function DataKecamatan(props) {
 
       <Select
         // defaultValue="lucy"
-        style={{ margin: "40px 0 0 0", width: "100%" }}
+        style={{ textAlign:"left" ,width: "100%" }}
         name="kecamatan"
         onChange={handleChangeKecamatan}
         value={kec}

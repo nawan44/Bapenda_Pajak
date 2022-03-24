@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Card, Steps, Button, Select, message, Typography } from "antd";
+import { Form, Input, Card, Steps, Button, Select, message, Typography, Divider } from "antd";
 import { useHistory } from "react-router-dom";
 // import { StepPanel } from "./stepPanel";
 // import { options } from "less";
@@ -465,6 +465,7 @@ function EditDeviceAgent(props) {
                         {errorUsaha && (
                             <div style={{ color: "red", fontFamily: "NoirPro, sans-serif" }}>{errorUsaha}</div>)}
                         <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign: "left" }}>Alamat</h4>
+                        <Divider/>
                         <DataProvinsi listData={listData} itemList={itemList} searchProvinceId={searchProvinceId} setSearchtProvinceId={setSearchtProvinceId} provTrim={provTrim} prov={prov} setProv={setProv} errorProv={errorProv} setErrorProv={setErrorProv} provinceId={provinceId} setProvinceId={setProvinceId} />
                         <DataKabupaten itemList={itemList} listData={listData} searchProvinceId={searchProvinceId} kab={kab} setKab={setKab} errorKab={errorKab} setErrorKab={setErrorKab} provinceId={provinceId} kabKotaId={kabKotaId} setKabKotaId={setKabKotaId} searchKabKotaId={searchKabKotaId} setSearchKabKotaId={setSearchKabKotaId} />
                         <DataKecamatan itemList={itemList} listData={listData} kel={kel} setKel={setKel} errorKec={errorKec} setErrorKec={setErrorKec} errorKel={errorKel} setErrorKel={setErrorKel} kecId={kecId} setKecId={setKecId} kelId={kelId} setKelId={setKelId} kec={kec} setKec={setKec} kabKotaId={kabKotaId} searchKabKotaId={searchKabKotaId} setSearchKabKotaId={setSearchKabKotaId} searchKecId={searchKecId} setSearchKecId={setSearchKecId} searchKelId={searchKelId} setSearchKelId={setSearchKelId} />
@@ -481,10 +482,10 @@ function EditDeviceAgent(props) {
                             <div style={{ color: "red", fontFamily: "NoirPro, sans-serif" }}>{errorAlamat}</div>
                         )}
                         {/* <div style={{ width: "90%" }} > */}
-                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign: "left" }}>Type Pajak</h4>
+                        <h4 style={{ margin: "30px 0 0 0", color: "#53586D", textAlign: "left" }}>Type Pajak</h4>
                         <Select
                             // defaultValue="lucy" 
-                            style={{ margin: "40px 0 0 0",width: "100%"  }}
+                            style={{ margin: "10px 0 0 0",width: "100%"  }}
                             name="category"
                             value={category}
                             onChange={handleChangeTypePajak}
@@ -502,10 +503,10 @@ function EditDeviceAgent(props) {
                         )}
                         {/* </div> */}
                         <div style={{ margin: "40px 0" }} >
-                            <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign: "left" }}>Sumber Data</h4>
+                            <h4 style={{ margin: "30px 0 0 0", color: "#53586D", textAlign: "left" }}>Sumber Data</h4>
                             <Select
                                 // defaultValue="lucy" 
-                                style={{ margin: "40px 0 0 0" ,width: "100%" }}
+                                style={{ margin: "10px 0 0 0" ,width: "100%" }}
                                 name="dataSumber"
                                 value={dataSumber}
                                 onChange={handleChangeSelect}
