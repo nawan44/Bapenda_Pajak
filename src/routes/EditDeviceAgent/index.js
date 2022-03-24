@@ -67,9 +67,6 @@ function EditDeviceAgent(props) {
     const [kelId, setKelId] = useState(null)
     const [searchKelId, setSearchKelId] = useState(null)
 
-
-
-
     const [alamatDetil, setAlamatDetil] = useState(alamatDetTrim)
     const [gantiProv, setGantiProv] = useState()
     const [gantiKab, setGantiKab] = useState()
@@ -97,7 +94,7 @@ function EditDeviceAgent(props) {
         }
     );
     // "Jalan 01,  Ragunan,  Pasar Minggu,  Kota Jakarta Selatan,  Dki Jakarta"
-
+console.log("searchProvinceId",searchProvinceId)
 
     useEffect(
         () => {
@@ -214,9 +211,6 @@ function EditDeviceAgent(props) {
         setSelectActive(checked);
 
     }
-    const sliceProvId = searchProvinceId?.toString()
-    const sliceKabId = searchKabKotaId?.toString().slice(0, -2)
- 
 
     const validate = () => {
         if (regisDeviceAgent.owner === "") {
@@ -289,68 +283,7 @@ function EditDeviceAgent(props) {
             }
         },
         [regisDeviceAgent.owner], [regisDeviceAgent.nik], [regisDeviceAgent.email], [regisDeviceAgent.nama_usaha]);
-    const handleClickNext = () => {
-        if (current === 0) {
-            form.validateFields()
-                .then(() => {
-                    setCurrent(current + 1);
-                })
 
-                .catch((err) => console.log(err));
-        }
-        else if (current === 1 && prov && kab && kec && kel && alamatDetil) {
-            form
-                .validateFields()
-                .then(() => {
-                    setCurrent(current + 1);
-                })
-                .catch((err) => console.log(err));
-        }
-        else if (current === 2 && category && dataSumber) {
-            form
-                .validateFields()
-                .then(() => {
-                    setCurrent(current + 1);
-                })
-                .catch((err) => console.log(err));
-        }
-
-        if (current === 1 && provinceId === undefined) {
-            setErrorProv(
-                "   ❌ Pilih Provinsi terlebih dulu"
-            );
-        } else if (current === 1 && kabKotaId === undefined) {
-            setErrorKab(
-                "   ❌ Pilih Kabupaten terlebih dulu"
-            );
-        }
-        else if (current === 1 && kecId === undefined) {
-            setErrorKec(
-                "   ❌ Pilih Kecamatan terlebih dulu"
-            );
-        } else if (current === 1 && kelId === undefined) {
-            setErrorKel(
-                "   ❌ Pilih Kelurahan terlebih dulu"
-            );
-        }
-        else if (current === 1 && !alamatDetil) {
-            setErrorAlamat(
-                "   ❌ Isi alamat detil terlebih dulu"
-            );
-        }
-        if (current === 2 && dataSumber === undefined) {
-            setErrorSumberData(
-                "   ❌ Pilih Sumber Data terlebih dulu"
-            );
-        }
-        if (current === 2 && category === undefined) {
-            setErrorTypePajak(
-                "   ❌ Pilih Type Pajak terlebih dulu"
-            );
-        } else {
-            // console.log("");
-        }
-    };
     const cancel = () => {
         history.push("/device-all")
     };

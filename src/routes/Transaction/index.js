@@ -152,9 +152,9 @@ const Transaction = () => {
     const ajson = await response.json();
     setListDevice(ajson.Records);
   };
-
+console.log("listDevice",listDevice)
   const dataMerchant = listDevice?.map((row, index) => ({
-    device_id: row[0].stringValue,
+    nik: row[2].stringValue,
     nama_usaha: row[4].stringValue,
   }));
   const dataFilter = responFilter?.map((row, index) => ({
@@ -301,8 +301,8 @@ const Transaction = () => {
               allowClear
             >
               {dataMerchant?.map((p) => (
-                <Option id={p.device_id} value={p.nama_usaha}>
-                  {p.device_id} - {p.nama_usaha}{" "}
+                <Option id={p.nik} value={p.nama_usaha}>
+                  {p.nik} - {p.nama_usaha}{" "}
                 </Option>
               ))}
             </Select>
