@@ -21,8 +21,8 @@ const columns = [
     dataIndex: "tgl_transaksi",
   },
   {
-    title: "Merchant ID",
-    dataIndex: "merchant_id",
+    title: "NIK",
+    dataIndex: "nik",
   },
   {
     title: "Nama Usaha",
@@ -50,7 +50,7 @@ const dataDummy = [
   {
     key: "1",
     tgl_transaksi: "1 Maret 2022",
-    merchant_id: "DEJARDIN0001",
+    nik: "32100000000000",
     nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
     type_pajak: "Restoran",
     nominal_transaksi: "175000.00",
@@ -60,7 +60,7 @@ const dataDummy = [
   {
     key: "2",
     tgl_transaksi: "1 Februari 2022",
-    merchant_id: "DEJARDIN0001",
+    nik: "32100000000000",
     nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
     type_pajak: "Restoran",
     nominal_transaksi: "175000.00",
@@ -70,7 +70,7 @@ const dataDummy = [
   {
     key: "3",
     tgl_transaksi: "15 Maret 2022",
-    merchant_id: "DEJARDIN0001",
+    nik: "32100000000000",
     nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
     type_pajak: "Restoran",
     nominal_transaksi: "175000.00",
@@ -80,7 +80,7 @@ const dataDummy = [
   {
     key: "4",
     tgl_transaksi: "20 Februari 2022",
-    merchant_id: "DEJARDIN0001",
+    nik: "32100000000000",
     nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
     type_pajak: "Restoran",
     nominal_transaksi: "175000.00",
@@ -90,7 +90,7 @@ const dataDummy = [
   {
     key: "5",
     tgl_transaksi: "30 Januari 2022",
-    merchant_id: "DEJARDIN0001",
+    nik: "32100000000000",
     nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
     type_pajak: "Restoran",
     nominal_transaksi: "175000.00",
@@ -105,24 +105,35 @@ const Transaction = () => {
   const [responFilter, setResponFilter] = useState();
   const [form] = Form.useForm();
   const [formOk, setFormOk] = useState(false);
+  const [totalRow, setTotalRow] = useState();
+  const [page, setPage] = useState(1);
+  const [click, setClick] = useState(false);
   const [fromDate, setFromDate] = useState(
     moment().subtract(1, "months").format("YYYY-MM-DD")
   );
+  const [onSelected, setOnSelected] = useState(false)
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
-  const [merchantId, setMerchantId] = useState();
+  const [nik, setNik] = useState();
   const [typePajak, setTypePajak] = useState();
   const onChangeDateRange = (date, datesString) => {
     setFromDate(datesString[0]);
     // setFromDate(datesString[1]);
     //More code
   };
+
   const onResetClick = () => {
     setFromDate("2000-01-01");
     setToDate("2000-01-02");
   };
-  console.log("merchantId", merchantId);
-  console.log("typePajak", typePajak);
+  console.log("page", page);
 
+  const onChange = (page) => {
+    console.log("onchange page", page);
+    setPage(page.current);
+    setOnSelected(true)
+    setClick(true);
+    handleFinish();
+  };
   // console.log(
   //   " 3,'months').format('YYYY-MM-DD')",
   //   moment().subtract(3, "months").format("YYYY-MM-DD")
@@ -132,9 +143,14 @@ const Transaction = () => {
     style: "currency",
     currency: "IDR",
   });
+  // useEffect(() => {
+  //   setButtonPage(page);
+  // }, [page]);
   useEffect(() => {
     getListDevice();
   }, []);
+
+  
   const getListDevice = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
@@ -152,81 +168,96 @@ const Transaction = () => {
     const ajson = await response.json();
     setListDevice(ajson.Records);
   };
-console.log("listDevice",listDevice)
+  // console.log("listDevice",listDevice)
   const dataMerchant = listDevice?.map((row, index) => ({
     nik: row[2].stringValue,
     nama_usaha: row[4].stringValue,
   }));
   const dataFilter = responFilter?.map((row, index) => ({
     tgl_transaksi: row[1].stringValue,
-    merchant_id: row[2].stringValue,
+    nik: row[2].stringValue,
     nama_usaha: row[3].stringValue,
     type_pajak: row[4].stringValue,
     nominal_transaksi: formatter.format(row[5].stringValue),
     nominal_pajak: formatter.format(row[6].stringValue),
     nominal_nett: formatter.format(row[7].stringValue),
   }));
+  // console.log("dataFilter",dataFilter)
   function changeTypePajak(value) {
     setTypePajak(value);
   }
 
-  function onChangeMerchant(value, id) {
-    setMerchantId(id.id);
+  function onChangeNik(value, id) {
+    setNik(id.id);
   }
 
   function onSearch(val) {
-    console.log("search:", val);
+    // console.log("search:", val);
   }
   function onBlur() {
-    console.log("blur");
+    // console.log("blur");
   }
 
   function onFocus() {
-    console.log("focus");
+    // console.log("focus");
   }
   const url = () => {
-    if (merchantId && !typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=1&merchant_id=${merchantId}`;
-    } else if (!merchantId && typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=1&type_pajak=${typePajak}`;
-    } else if (merchantId && typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=1&merchant_id=${merchantId}&type_pajak=${typePajak}`;
-    } else if (!merchantId && !typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=1`;
+    if (nik && !typePajak) {
+      return `https://api.raspi-geek.com/v1/transactions?page=${page}&npwp=${nik}`;
+    } else if (!nik && typePajak) {
+      return `https://api.raspi-geek.com/v1/transactions?page=${page}&type_pajak=${typePajak}`;
+    } else if (nik && typePajak) {
+      return `https://api.raspi-geek.com/v1/transactions?page=${page}&npwp=${nik}&type_pajak=${typePajak}`;
+    } else if (!nik && !typePajak) {
+      return `https://api.raspi-geek.com/v1/transactions?page=${page}`;
     }
   };
-  const handleFinish = async (values) => {
-    try {
-      const decoded = jwtDecode(localStorage.token);
-      const apiKey = decoded["api-key"];
-      const response = await fetch(url(), {
-        method: "POST",
-        headers: {
-          "x-api-key": `${apiKey}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          startdate: fromDate,
-          enddate: toDate,
-        }),
-      });
-      const res = await response.json();
-      setResponFilter(res.Records);
-      setFormOk(true);
-      // success();
-      // history.push("/dashboard")
-    } catch (err) {
-      // console.log("error", err.message);
-    }
+  useEffect(() => {
+    handleFinish();
+    // onChange()
+  },  []);
+  useEffect(() => {
+    if(onSelected == true){
+    handleFinish();}
+    // onChange()
+  },  [onSelected]);
+  const handleFinish = async (values, page) => {
+    // if (click == true) {
+      try {
+        const decoded = jwtDecode(localStorage.token);
+        const apiKey = decoded["api-key"];
+        const response = await fetch(url(), {
+          method: "POST",
+          headers: {
+            "x-api-key": `${apiKey}`,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            startdate: fromDate,
+            enddate: toDate,
+          }),
+        });
+        const res = await response.json();
+        setResponFilter(res.Records);
+        setFormOk(true);
+        setTotalRow(res.TotalNumRows);
+        // setPage(page.current);
+        // success();
+        // history.push("/dashboard")
+      } catch (err) {
+        // console.log("error", err.message);
+      }
+    // }
   };
   function disabledDate(current) {
     return current > moment() || current < moment().subtract(3, "months");
   }
+  console.log("respon FIlter", responFilter);
   const reset = () => {
     setFromDate(moment().subtract(1, "months").format("YYYY-MM-DD"));
     setToDate(moment().format("YYYY-MM-DD"));
     setFormOk(false);
-    setMerchantId(null);
+    setNik(null);
     setTypePajak(null);
   };
   return (
@@ -245,7 +276,7 @@ console.log("listDevice",listDevice)
           form={form}
           onFinish={handleFinish}
           // initialValues={{
-          //     merchant_id: "", owner: "", nik: "", email: "", nama_usaha: "",
+          //     nik: "", owner: "", nik: "", email: "", nama_usaha: "",
           //     kelurahan: "", alamat: "", kategori: "", data_source: ""
           // }}
         >
@@ -283,14 +314,14 @@ console.log("listDevice",listDevice)
             </Select>
           </FormItem>
 
-          <FormItem label="Merchant" className="gx-form-item-one-third">
+          <FormItem label="NIK" className="gx-form-item-one-third">
             <Select
-              value={merchantId}
+              value={nik}
               showSearch
               style={{ width: 350 }}
-              placeholder="Select Merchant"
+              placeholder="Select NIK"
               optionFilterProp="children"
-              onChange={onChangeMerchant}
+              onChange={onChangeNik}
               onFocus={onFocus}
               onBlur={onBlur}
               onSearch={onSearch}
@@ -314,7 +345,8 @@ console.log("listDevice",listDevice)
                 style={{ marginTop: "15px" }}
                 className="gx-mb-0"
                 type="primary"
-                onClick={() => form.submit()}
+                onClick={() => {form.submit() ; setClick(true)}   
+                }
               >
                 Cari Data
               </Button>
@@ -331,7 +363,7 @@ console.log("listDevice",listDevice)
             </FormItem>
           </Row>
         </Form>
-        {formOk === true && (
+        {click == true && (
           <div className="gx-table-responsive">
             <Row style={{ float: "right" }}>
               <ConvertPdf dataFilter={dataFilter} />
@@ -342,9 +374,27 @@ console.log("listDevice",listDevice)
               className="gx-table-no-bordered"
               columns={columns}
               dataSource={dataFilter}
-              pagination={true}
+              // pagination={true}
               bordered={false}
               size="small"
+              // current={page}
+              pagination={{
+                showTotal: (total, range, page) => {
+                  console.log({ total, range });
+                },
+
+                current: page,
+                total: 100,
+                pageSize: 10,
+
+                // defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ['10', '20', '30']
+              }}
+              onChange={(p) => onChange(p)}
+              // onSelected ={() => setOnSelected(!onSelected)}
+              // onChange={(...args) => {
+              //   console.log("args",...args);
+                
+              // } }
             />
           </div>
         )}

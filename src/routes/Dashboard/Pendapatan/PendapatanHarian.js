@@ -24,7 +24,7 @@ const PendapatanHarian = (props) => {
     .subtract(1, "d")
     .endOf("day")
     .format("YYYY-MM-DD HH:mm:ss");
-
+console.log("earningToday",earningToday)
     useEffect(() => {
       setMoneyToday(Number(earningToday));
     }, [earningToday]);
