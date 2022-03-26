@@ -154,11 +154,9 @@ const Transaction = () => {
   const getListDevice = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
-    const token = localStorage.getItem("token");
     const headers = {
       "x-api-key": `${apiKey}`,
       "content-type": "application/json",
-      Authorization: `Bearer ${token}`,
     };
     const response = await fetch(
       "https://api.raspi-geek.com/v1/merchants",
@@ -175,14 +173,14 @@ const Transaction = () => {
   }));
   const dataFilter = responFilter?.map((row, index) => ({
     tgl_transaksi: row[1].stringValue,
-    nik: row[2].stringValue,
+    nik: row[8].stringValue,
     nama_usaha: row[3].stringValue,
     type_pajak: row[4].stringValue,
     nominal_transaksi: formatter.format(row[5].stringValue),
     nominal_pajak: formatter.format(row[6].stringValue),
     nominal_nett: formatter.format(row[7].stringValue),
   }));
-  // console.log("dataFilter",dataFilter)
+  console.log("listDevice",listDevice)
   function changeTypePajak(value) {
     setTypePajak(value);
   }

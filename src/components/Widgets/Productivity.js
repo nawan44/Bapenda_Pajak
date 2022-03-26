@@ -117,12 +117,9 @@ const Productivity = ({ selectedRecord, setSelectedRecord, listData, setListData
   const getDetailMerchant = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token)
     const apiKey = decoded["api-key"]
-    const token = localStorage.getItem('token')
     const headers = {
       'x-api-key': `${apiKey}`,
       'content-type': 'application/json',
-
-      'Authorization': `Bearer ${token}`
     }
     const response = await fetch(
       `https://api.raspi-geek.com/v1/summary/${itemList.device_id}`,

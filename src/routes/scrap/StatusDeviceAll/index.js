@@ -211,11 +211,9 @@ const StatusDevice = () => {
     // const getLatestTransaction = async (dataLatest) => {
     //     const decoded = jwtDecode(localStorage.token)
     //     const apiKey = decoded["api-key"]
-    //     const token = localStorage.getItem('token')
     //     const headers = {
     //         'x-api-key': `${apiKey}`,
     //         'content-type': 'application/json',
-    //         'Authorization': `Bearer ${token}`
     //     }
 
     //     const response = await fetch(

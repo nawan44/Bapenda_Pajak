@@ -305,8 +305,6 @@ console.log("searchProvinceId",searchProvinceId)
             try {
                 const decoded = jwtDecode(localStorage.token)
                 const apiKey = decoded["api-key"]
-                const token = localStorage.getItem('token')
-
                 const response = await fetch(
                     `https://api.raspi-geek.com/v1/merchants/${itemList.device_id}`,
                     {
@@ -314,7 +312,6 @@ console.log("searchProvinceId",searchProvinceId)
                         headers: {
                             'x-api-key': `${apiKey}`,
                             'content-type': 'application/json',
-                            // 'Authorization': `Bearer ${token}`
                         },
                         body: JSON.stringify(regisDeviceAgent),
                     }
