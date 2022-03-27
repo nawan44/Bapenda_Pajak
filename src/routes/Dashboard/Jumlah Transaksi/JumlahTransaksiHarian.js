@@ -3,21 +3,21 @@ import { Col } from "antd";
 import EcommerceStatus from "../../../components/Metrics/EcommerceStatus";
 import * as moment from "moment";
 import jwtDecode from "jwt-decode";
+import { latestTransaction1 } from "../../../components/DataDummy";
 
 const JumlahTransaksiHarian = (props) => {
-  const { latestTransaction, setLatestTransaction } = props;
+  // const { latestTransaction, setLatestTransaction } = props;
+  const latestTransaction = latestTransaction1.data;
+
+  const now = moment().format('YYYY-MM-DD')
+  const kemarin = moment().subtract(1, 'd').format('YYYY-MM-DD')
 
   const [amountToday, setAmountToday] = useState();
   const [amountYesterday, setAmountYesterday] = useState();
 
   const [transactionToday, setTransactionToday] = useState();
   const [transactionYesterday, setTransactionYesterday] = useState();
- 
-  console.log("amountToday",amountToday)
-  console.log("amountYesterday",amountYesterday)
 
-  console.log("transactionToday",transactionToday)
-  console.log("transactionYesterday",transactionYesterday)
 
   const sToday = moment().startOf("day").format("YYYY-MM-DD HH:mm:ss");
   const eToday = moment().endOf("day").format("YYYY-MM-DD HH:mm:ss");
@@ -29,87 +29,99 @@ const JumlahTransaksiHarian = (props) => {
     .subtract(1, "d")
     .endOf("day")
     .format("YYYY-MM-DD HH:mm:ss");
-  useEffect(() => {
-    setTransactionToday(Number(amountToday));
-  }, [amountToday]);
+    const tanggal = latestTransaction && latestTransaction.map(row => ({
+      total_value: row[3].stringValue,
+      created_at:  moment(row[4].stringValue).format('YYYY-MM-DD')
+    }));
+  
+    const data = latestTransaction && latestTransaction.map(row => ({
+      invoice_id: row[0].stringValue, 
+      merchant_id: row[1].stringValue,
+      nama_usaha : row[2].stringValue,
+      total_value: row[3].stringValue, 
+      created_at: row[4].stringValue
+    }));
+    const objTransactionToday = tanggal && tanggal.filter(o => o.created_at === now);
+    const transaksiHariIni = objTransactionToday?.length
+    const objTransactionYesterday = tanggal && tanggal.filter(o => o.created_at === kemarin);
+    const transaksiKemarin = objTransactionYesterday?.length
+   
+    useEffect(() => {
+      setTransactionToday(transaksiHariIni);
+    }, [transaksiHariIni]);
+    
+    useEffect(() => {
+      setTransactionYesterday(transaksiKemarin);
+    }, [transaksiKemarin]);
+  
+  // NEWWWW  
+  // useEffect(() => {
+  //   setTransactionToday(amountToday === undefined ? 0 :Number(amountToday));
+  // }, [amountToday]);
 
-  useEffect(() => {
-    setTransactionYesterday(Number(amountYesterday));
-  }, [amountYesterday]);
-  useEffect(() => {
-    getAmountToday();
-  }, []);
+  // useEffect(() => {
+  //   setTransactionYesterday(amountYesterday === undefined ? 0 :Number(amountYesterday));
+  // }, [amountYesterday]);
   // useEffect(() => {
   //   getAmountToday();
-  //    const interval=setInterval(()=>{
-  //     getAmountToday()
-  //    },10000)
-  //    return()=>clearInterval(interval)
   // }, []);
-  const getAmountToday = async () => {
-    const decoded = jwtDecode(localStorage.token);
-    const apiKey = decoded["api-key"];
-    const headers = {
-      "x-api-key": `${apiKey}`,
-      "content-type": "application/json",
-    };
+  // const getAmountToday = async () => {
+  //   const decoded = jwtDecode(localStorage.token);
+  //   const apiKey = decoded["api-key"];
+  //   const headers = {
+  //     "x-api-key": `${apiKey}`,
+  //     "content-type": "application/json",
+  //   };
 
-    const response = await fetch(
-      "https://api.raspi-geek.com/v1/orders",
+  //   const response = await fetch(
+  //     "https://api.raspi-geek.com/v1/orders",
 
-      {
-        method: "POST",
-        headers: {
-          "x-api-key": `${apiKey}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          startdate: sToday,
-          enddate: eToday,
-        }),
-      }
-    );
-    const ajson = await response.json();
-    setAmountToday(ajson.Records[0][0].longValue);
-  };
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "x-api-key": `${apiKey}`,
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         startdate: sToday,
+  //         enddate: eToday,
+  //       }),
+  //     }
+  //   );
+  //   const ajson = await response.json();
+  //   setAmountToday(ajson.Records[0][0].longValue);
+  // };
 
-  useEffect(() => {
-    getAmountYesterday();
-  }, []);
   // useEffect(() => {
   //   getAmountYesterday();
-  //    const interval=setInterval(()=>{
-  //     getAmountYesterday()
-  //    },10000)
-  //    return()=>clearInterval(interval)
   // }, []);
-  const getAmountYesterday = async () => {
-    const decoded = jwtDecode(localStorage.token);
-    const apiKey = decoded["api-key"];
-    const headers = {
-      "x-api-key": `${apiKey}`,
-      "content-type": "application/json",
-    };
+  // const getAmountYesterday = async () => {
+  //   const decoded = jwtDecode(localStorage.token);
+  //   const apiKey = decoded["api-key"];
+  //   const headers = {
+  //     "x-api-key": `${apiKey}`,
+  //     "content-type": "application/json",
+  //   };
 
-    const response = await fetch(
-      "https://api.raspi-geek.com/v1/orders",
+  //   const response = await fetch(
+  //     "https://api.raspi-geek.com/v1/orders",
 
-      {
-        method: "POST",
-        headers: {
-          "x-api-key": `${apiKey}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          startdate: sYesterday,
-          enddate: eYesterday,
-        }),
-      }
-    );
-    const ajson = await response.json();
-    setAmountYesterday(ajson.Records[0][0].longValue);
-  };
-
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "x-api-key": `${apiKey}`,
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         startdate: sYesterday,
+  //         enddate: eYesterday,
+  //       }),
+  //     }
+  //   );
+  //   const ajson = await response.json();
+  //   setAmountYesterday(ajson.Records[0][0].longValue);
+  // };
+//NEWWW
   return (
     <Col className="flip-card" xs={24} xl={8}>
       <div className="flip-card-inner">
@@ -118,7 +130,7 @@ const JumlahTransaksiHarian = (props) => {
             color="orange"
             icon="orders"
             title={
-              <div style={{ marginBottom: "35px" }}>{amountToday}</div>
+              <div  className="title-card-dashboard">{amountToday}</div>
             }
             colorTitle="geekblue"
             transactionToday={transactionToday}
@@ -126,7 +138,7 @@ const JumlahTransaksiHarian = (props) => {
             transactionYesterday ={transactionYesterday}
             setTransactionYesterday ={setTransactionYesterday}
             subTitle={
-              <div>
+              <div  className="subtitle-card-dashboard">
                 <span>Total Transaksi</span>
                 <br />
                 <span>(Hari Ini)</span>
@@ -140,11 +152,11 @@ const JumlahTransaksiHarian = (props) => {
             icon="orders"
             color="grey"
             title={
-              <div style={{ marginBottom: "115px" }}>{transactionYesterday}</div>
+              <div  className="subtitle-card-dashboard-grey">{transactionYesterday}</div>
             }
             colorTitle="dark"
             subTitle={
-              <div>
+              <div  className="subtitle-card-dashboard">
                 <span>Total Transaksi</span>
                 <br />
                 <span>(Kemarin)</span>

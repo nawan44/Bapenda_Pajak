@@ -731,7 +731,7 @@ export const latestTransaction1 = {
                 "stringValue": "Restoran Kyriad Hotel"
             },
             {
-                "stringValue": "175000.00"
+                "stringValue": "17500000.00"
             },
             {
                 "stringValue": "2022-02-23 16:28:44"
@@ -751,7 +751,7 @@ export const latestTransaction1 = {
                 "stringValue": "Restoran Kyriad Hotel"
             },
             {
-                "stringValue": "175000.00"
+                "stringValue": "175000000.00"
             },
             {
                 "stringValue": "2022-02-23 16:28:44"
@@ -1675,6 +1675,46 @@ export const latestTransaction1 = {
             },
             {
                 "stringValue": "2022-03-15 01:00:00"
+            },
+            {
+                "stringValue": "Hotel"
+            }
+        ],
+        [
+            {
+                "stringValue": "45243902-00502"
+            },
+            {
+                "stringValue": "parkirLoremIpsum01"
+            },
+            {
+                "stringValue": "Parkir LoremIpsum"
+            },
+            {
+                "stringValue": "869200.00"
+            },
+            {
+                "stringValue": "2022-03-26 04:00:00"
+            },
+            {
+                "stringValue": "Parkir"
+            }
+        ],
+        [
+            {
+                "stringValue": "446754702-00002"
+            },
+            {
+                "stringValue": "hotelLoremIpsum01"
+            },
+            {
+                "stringValue": "Hotel LoremIpsum"
+            },
+            {
+                "stringValue": "556900.00"
+            },
+            {
+                "stringValue": "2022-03-27 01:00:00"
             },
             {
                 "stringValue": "Hotel"

@@ -17,181 +17,167 @@ const EcommerceStatus = ({
   colorSubTitle,
   objToday,
   moneyToday,
-  setMoneyToday,
   moneyYesterday,
-  setMoneyYesterday,
   moneyThisMonth,
-  setMoneyThisMonth,
   moneyLastMonth,
-  setMoneyLastMonth,
   objBulanIni,
   moneyThisYear,
-  setMoneyThisYear,
   moneyLastYear,
-  setMoneyLastYear,
   objTahunIni,
   transactionToday,
-  setTransactionToday,
   transactionYesterday,
-  setTransactionYesterday,
   objTransactionToday,
   transactionThisMonth,
-  setTransactionThisMonth,
   transactionLastMonth,
-  setTransactionLastMonth,
   objTransactionThisMonth,
   transactionThisYear,
-  setTransactionThisYear,
   transactionLastYear,
-  setTransactionLastYear,
   objTransactionThisYear,
 }) => {
   const selisihTransaksiHariIni = () => {
-    if (transactionToday > transactionYesterday) {
-      return (
-        <UpCircleFilled
-          style={{ fontSize: "20px", color: "blue", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (transactionToday < transactionYesterday) {
-      return (
-        <DownCircleFilled
-          style={{ fontSize: "20px", color: "red", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (transactionToday === transactionYesterday) {
-      return (
-        <PauseCircleFilled
-          rotate={90}
-          style={{ fontSize: "20px", color: "black", margin: "10px 10px 0 0" }}
-        />
-      );
+    if (transactionYesterday === undefined || transactionToday === undefined) {
+      return "0";
     } else {
-      return "Tidak Ada Transaksi";
+      if (transactionToday > transactionYesterday) {
+        return <UpCircleFilled className="icon-up" />;
+      } else if (transactionToday < transactionYesterday) {
+        return <DownCircleFilled className="icon-down" />;
+      } else if (transactionToday === transactionYesterday) {
+        return <PauseCircleFilled rotate={90} className="icon-same" />;
+      } else {
+        return "Tidak Ada Transaksi";
+      }
     }
   };
   const selisihTransaksiBulanIni = () => {
-    if (transactionThisMonth > transactionLastMonth) {
-      return (
-        <UpCircleFilled
-          style={{ fontSize: "20px", color: "blue", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (transactionThisMonth < transactionLastMonth) {
-      return (
-        <DownCircleFilled
-          style={{ fontSize: "20px", color: "red", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (transactionThisMonth === transactionLastMonth) {
-      return (
-        <PauseCircleFilled
-          rotate={90}
-          style={{ fontSize: "20px", color: "black", margin: "10px 10px 0 0" }}
-        />
-      );
+    if (
+      transactionThisMonth === undefined ||
+      transactionLastMonth === undefined
+    ) {
+      return "0";
     } else {
-      return "Tidak Ada Transaksi";
+      if (transactionThisMonth > transactionLastMonth) {
+        return <UpCircleFilled className="icon-up" />;
+      } else if (transactionThisMonth < transactionLastMonth) {
+        return <DownCircleFilled className="icon-down" />;
+      } else if (transactionThisMonth === transactionLastMonth) {
+        return <PauseCircleFilled rotate={90} className="icon-same" />;
+      } else {
+        return "Tidak Ada Transaksi";
+      }
     }
   };
   const selisihTransaksiTahunIni = () => {
-    if (transactionThisYear > transactionLastYear) {
-      return (
-        <UpCircleFilled
-          style={{ fontSize: "20px", color: "blue", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (transactionThisYear < transactionLastYear) {
-      return (
-        <DownCircleFilled
-          style={{ fontSize: "20px", color: "red", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (transactionThisYear === transactionLastYear) {
-      return (
-        <PauseCircleFilled
-          rotate={90}
-          style={{ fontSize: "20px", color: "black", margin: "10px 10px 0 0" }}
-        />
-      );
+    if (
+      transactionThisYear === undefined ||
+      transactionLastYear === undefined
+    ) {
+      return "0";
     } else {
-      return "Tidak Ada Transaksi";
+      if (transactionThisYear > transactionLastYear) {
+        return <UpCircleFilled className="icon-up" />;
+      } else if (transactionThisYear < transactionLastYear) {
+        return <DownCircleFilled className="icon-down" />;
+      } else if (transactionThisYear === transactionLastYear) {
+        return <PauseCircleFilled rotate={90} className="icon-same" />;
+      } else {
+        return "Tidak Ada Transaksi";
+      }
     }
   };
 
   const selisihTransaksiHarian = () => {
-    if (moneyToday > moneyYesterday) {
-      return (
-        <UpCircleFilled
-          style={{ fontSize: "20px", color: "blue", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (moneyToday < moneyYesterday) {
-      return (
-        <DownCircleFilled
-          style={{ fontSize: "20px", color: "red", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (moneyToday === moneyYesterday) {
-      return (
-        <PauseCircleFilled
-          rotate={90}
-          style={{ fontSize: "20px", color: "black", margin: "10px 10px 0 0" }}
-        />
-      );
+    if (moneyToday === undefined || moneyYesterday === undefined) {
+      return "0";
     } else {
-      return "Tidak Ada Transaksi";
+      if (moneyToday > moneyYesterday) {
+        return <UpCircleFilled className="icon-up" />;
+      } else if (moneyToday < moneyYesterday) {
+        return <DownCircleFilled className="icon-down" />;
+      } else if (moneyToday === moneyYesterday) {
+        return <PauseCircleFilled rotate={90} className="icon-same" />;
+      } else {
+        return "Tidak Ada Transaksi";
+      }
     }
   };
 
-  const selisihPendapatanBulanIni = () => {
-    if (moneyThisMonth > moneyLastMonth) {
-      return (
-        
-        <UpCircleFilled
-          style={{ fontSize: "20px", color: "blue", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (moneyThisMonth < moneyLastMonth) {
-      return (
-
-        <DownCircleFilled
-          style={{ fontSize: "20px", color: "red", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (moneyThisMonth === moneyLastMonth) {
-      return (
-        <PauseCircleFilled
-          rotate={90}
-          style={{ fontSize: "20px", color: "black", margin: "10px 10px 0 0" }}
-        />
-      );
+  const persentasePendapatanBulanIni = () => {
+    if (moneyLastMonth === undefined || moneyThisMonth === undefined) {
+      return "0";
     } else {
-      return "Tidak Ada Transaksi";
+      if (moneyThisMonth > moneyLastMonth) {
+        return (
+          <div>
+            <span className="persen-up">
+              {100 *
+                Math.abs(
+                  (moneyLastMonth - moneyThisMonth) / moneyThisMonth
+                ).toFixed(2) +
+                "%"}
+            </span>
+            <UpCircleFilled className="icon-up" />
+          </div>
+        );
+      } else if (moneyThisMonth < moneyLastMonth) {
+        return (
+          <div>
+            <span className="persen-down">
+              {100 *
+                Math.abs(
+                  (moneyLastMonth - moneyThisMonth) / moneyThisMonth
+                ).toFixed(2) +
+                "%"}
+            </span>{" "}
+            <DownCircleFilled className="icon-down" />
+          </div>
+        );
+      } else if (moneyThisMonth === moneyLastMonth) {
+        return (
+          <div>
+            <span className="persen-up">
+              {100 *
+                Math.abs(
+                  (moneyLastMonth - moneyThisMonth) / moneyThisMonth
+                ).toFixed(2) +
+                "%"}
+            </span>
+            <PauseCircleFilled rotate={90} className="icon-up" />
+          </div>
+        );
+      } else {
+        return "Tidak Ada Transaksi";
+      }
+    }
+  };
+  const selisihPendapatanBulanIni = () => {
+    if (moneyThisMonth === undefined || moneyLastMonth === undefined) {
+      return "0";
+    } else {
+      if (moneyThisMonth > moneyLastMonth) {
+        return <UpCircleFilled className="icon-up" />;
+      } else if (moneyThisMonth < moneyLastMonth) {
+        return <DownCircleFilled className="icon-down" />;
+      } else if (moneyThisMonth === moneyLastMonth) {
+        return <PauseCircleFilled rotate={90} className="icon-same" />;
+      } else {
+        return "Tidak Ada Transaksi";
+      }
     }
   };
   const selisihPendapatanTahunIni = () => {
-    if (moneyThisYear > moneyLastYear) {
-      return (
-        <UpCircleFilled
-          style={{ fontSize: "20px", color: "blue", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (moneyThisYear < moneyLastYear) {
-      return (
-        <DownCircleFilled
-          style={{ fontSize: "20px", color: "red", margin: "10px 10px 0 0" }}
-        />
-      );
-    } else if (moneyThisYear === moneyLastYear) {
-      return (
-        <PauseCircleFilled
-          rotate={90}
-          style={{ fontSize: "20px", color: "black", margin: "10px 10px 0 0" }}
-        />
-      );
+    if (moneyThisYear === undefined || moneyLastYear === undefined) {
+      return "0";
     } else {
-      return "Tidak Ada Transaksi";
+      if (moneyThisYear > moneyLastYear) {
+        return <UpCircleFilled className="icon-up" />;
+      } else if (moneyThisYear < moneyLastYear) {
+        return <DownCircleFilled className="icon-down" />;
+      } else if (moneyThisYear === moneyLastYear) {
+        return <PauseCircleFilled rotate={90} className="icon-same" />;
+      } else {
+        return "Tidak Ada Transaksi";
+      }
     }
   };
   const formatter = new Intl.NumberFormat("id-ID", {
@@ -200,11 +186,13 @@ const EcommerceStatus = ({
   });
   return (
     <Widget styleName={`gx-card-full gx-py-4 gx-px-2 gx-bg-${color}`}>
-        <div style={{float:"left", width:"50px", background:"red", }}>
-        50%
-        </div>
-      <div className="gx-flex-row gx-justify-content-center gx-mb-3 gx-mb-sm-4" style={{paddingRight:"50px"}}>
-      
+      <div style={{ float: "left", width: "55px" }}>
+        {persentasePendapatanBulanIni()}
+      </div>
+      <div
+        className="gx-flex-row gx-justify-content-center gx-mb-3 gx-mb-sm-4"
+        style={{ paddingRight: "55px" }}
+      >
         <span
           className={`gx-size-80 gx-border gx-border-${colorTitle} gx-text-${colorTitle} gx-flex-row gx-justify-content-center gx-align-items-center gx-rounded-circle`}
         >
@@ -221,68 +209,67 @@ const EcommerceStatus = ({
           {subTitle}
         </p>
         {objBulanIni && (
-          <div style={{ height:"30px", }}>
-          {/* //   <Col  span={8} style={{textAlign:"right"}}>
-          //     {selisihPendapatanBulanIni()}
-          //   </Col> */}
-          <span style={{margin:"10px 10px 0 0",   }}>  
-           {selisihPendapatanBulanIni()}
-           </span >
+          <div style={{ height: "30px" }}>
+            <span style={{ margin: "10px 0 0 0" }}>
+              {selisihPendapatanBulanIni()}
+            </span>
             {moneyThisMonth < moneyLastMonth ? (
-              <span   style={{ color: "red", fontSize:"20px", }}>
+              <span className="selisih-down">
                 {moneyLastMonth === undefined
                   ? "Tidak Ada Transaksi"
                   : formatter.format(moneyThisMonth - moneyLastMonth)}
               </span>
             ) : (
-              <span style={{ fontSize:"20px" }}>
+              <span className="selisih-up">
                 {moneyLastMonth === undefined
                   ? "Tidak Ada Transaksi"
                   : formatter.format(moneyThisMonth - moneyLastMonth)}
               </span>
             )}
-          {/* //     <Col span={8}>
-          //   </Col> */}
           </div>
         )}
         {moneyToday && (
-          <span>
-            <p>{selisihTransaksiHarian()}</p>
+          <div style={{ height: "30px" }}>
+            <span style={{ margin: "10px 0 0 0" }}>
+              {selisihTransaksiHarian()}
+            </span>
             {moneyToday < moneyYesterday ? (
-              <p style={{ color: "red" }}>
+              <span className="selisih-down">
                 {" "}
                 {moneyYesterday === undefined
                   ? "Tidak Ada Transaksi"
                   : formatter.format(moneyToday - moneyYesterday)}
-              </p>
+              </span>
             ) : (
-              <p>
+              <span className="selisih-up">
                 {moneyYesterday === undefined
                   ? "Tidak Ada Transaksi"
                   : formatter.format(moneyToday - moneyYesterday)}
-              </p>
+              </span>
             )}
-          </span>
+          </div>
         )}
 
         {objTahunIni && (
-          <span>
-            <p>{selisihPendapatanTahunIni()}</p>
+          <div style={{ height: "30px" }}>
+            <span style={{ margin: "10px 0 0 0" }}>
+              {selisihPendapatanTahunIni()}
+            </span>
             {moneyThisYear < moneyLastYear ? (
-              <p style={{ color: "red" }}>
+              <span className="selisih-down">
                 {" "}
                 {moneyLastYear === undefined
                   ? "Tidak Ada Transaksi"
                   : formatter.format(moneyThisYear - moneyLastYear)}{" "}
-              </p>
+              </span>
             ) : (
-              <p>
+              <span className="selisih-up">
                 {moneyLastYear === undefined
                   ? "Tidak Ada Transaksi"
                   : formatter.format(moneyThisYear - moneyLastYear)}
-              </p>
+              </span>
             )}
-          </span>
+          </div>
         )}
         {transactionToday && (
           <span>
@@ -304,42 +291,46 @@ const EcommerceStatus = ({
           </span>
         )}
         {objTransactionThisMonth && (
-          <span>
-            <p>{selisihTransaksiBulanIni()}</p>
+          <div style={{ height: "30px" }}>
+            <span style={{ margin: "10px 0 0 0" }}>
+              {selisihTransaksiBulanIni()}
+            </span>
             {transactionThisMonth < transactionLastMonth ? (
-              <p style={{ color: "red" }}>
+              <span className="selisih-down">
                 {" "}
                 {transactionLastMonth === undefined
                   ? "Tidak Ada Transaksi"
                   : transactionThisMonth - transactionLastMonth}{" "}
-              </p>
+              </span>
             ) : (
-              <p>
+              <span className="selisih-up">
                 {transactionLastMonth === undefined
                   ? "Tidak Ada Transaksi"
                   : transactionThisMonth - transactionLastMonth}
-              </p>
+              </span>
             )}
-          </span>
+          </div>
         )}
         {objTransactionThisYear && (
-          <span>
-            <p>{selisihTransaksiTahunIni()}</p>
+          <div style={{ height: "30px" }}>
+            <span style={{ margin: "10px 0 0 0" }}>
+              {selisihTransaksiTahunIni()}
+            </span>
             {transactionThisYear < transactionLastYear ? (
-              <p style={{ color: "red" }}>
+              <span className="selisih-down">
                 {" "}
                 {transactionLastYear === undefined
                   ? "Tidak Ada Transaksi"
                   : transactionThisYear - transactionLastYear}{" "}
-              </p>
+              </span>
             ) : (
-              <p>
+              <span className="selisih-up">
                 {transactionLastYear === undefined
                   ? "Tidak Ada Transaksi"
                   : transactionThisYear - transactionLastYear}
-              </p>
+              </span>
             )}
-          </span>
+          </div>
         )}
       </div>
     </Widget>
