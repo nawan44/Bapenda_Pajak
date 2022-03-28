@@ -55,21 +55,15 @@ const PendapatanBulanan = (props) => {
   // console.log("##currentBulanLalu", currentBulanLalu);
   // console.log("####currentBulanIni", currentBulanIni);
 
-  console.log("####moneyLastMonth", moneyLastMonth);
-  console.log("####moneyThisMonth", moneyThisMonth);
+  // console.log("####moneyLastMonth", moneyLastMonth);
+  // console.log("####moneyThisMonth", moneyThisMonth);
   // console.log(" #### %", ((moneyLastMonth - moneyThisMonth) /
   // moneyLastMonth) *
   // 100);
   const total = Number(moneyLastMonth) - Number(moneyThisMonth);
-  console.log("totaltotaltotaltotal", total);
-  console.log("Math", Math.round((total / moneyThisMonth) * 100));
-  const getProgress = (moneyLastMonth, moneyThisMonth) => {
-    const total = Number(moneyLastMonth) - Number(moneyThisMonth);
-    // const elaps = Date.now() - moneyLastMonth;
-    console.log("total", total);
-    return Math.round((total / moneyLastMonth) * 100) + "%";
-  };
-  console.log(getProgress("get progresss%", moneyLastMonth, moneyThisMonth));
+  // console.log("totaltotaltotaltotal", total);
+  // console.log("Math", Math.round((total / moneyThisMonth) * 100));
+  
   return (
     <Col className="flip-card" xs={24} xl={8}>
       <div className="flip-card-inner">

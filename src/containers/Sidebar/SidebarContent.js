@@ -9,14 +9,20 @@ import UserProfile from "./UserProfile";
 import {
   NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
   NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
-  THEME_TYPE_LITE
+  THEME_TYPE_LITE,
 } from "../../constants/ThemeSetting";
 import IntlMessages from "../../util/IntlMessages";
 import { useSelector } from "react-redux";
 import {
-  OrderedListOutlined, UserOutlined, FormOutlined, DeploymentUnitOutlined, ApiOutlined
-} from '@ant-design/icons';
-import "../../assets/styles/sidebar.css"
+  BarChartOutlined,
+  AppstoreOutlined,
+  OrderedListOutlined,
+  UserOutlined,
+  FormOutlined,
+  DeploymentUnitOutlined,
+  ApiOutlined,
+} from "@ant-design/icons";
+import "../../assets/styles/sidebar.css";
 
 const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
   const { navStyle, themeType } = useSelector(({ settings }) => settings);
@@ -31,21 +37,29 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
   //   });
   // };
   const getNoHeaderClass = (navStyle) => {
-    if (navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR || navStyle === NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR) {
+    if (
+      navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR ||
+      navStyle === NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR
+    ) {
       return "gx-no-header-notifications";
     }
     return "";
   };
 
   const selectedKeys = pathname.substr(1);
-  const defaultOpenKeys = selectedKeys.split('/')[1];
+  const defaultOpenKeys = selectedKeys.split("/")[1];
 
   return (
     <>
-      <SidebarLogo sidebarCollapsed={sidebarCollapsed} setSidebarCollapsed={setSidebarCollapsed} />
+      <SidebarLogo
+        sidebarCollapsed={sidebarCollapsed}
+        setSidebarCollapsed={setSidebarCollapsed}
+      />
       <div className="gx-sidebar-content">
-        <div className={`gx-sidebar-notifications ${getNoHeaderClass(navStyle)}`}>
-          <UserProfile style={{ fontSize: '125%', marginRight: "0px" }} />
+        <div
+          className={`gx-sidebar-notifications ${getNoHeaderClass(navStyle)}`}
+        >
+          <UserProfile style={{ fontSize: "125%", marginRight: "0px" }} />
           {/* <AppsNavigation /> */}
         </div>
         <CustomScrollbars className="gx-layout-sider-scrollbar">
@@ -53,69 +67,120 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
             // inlineCollapsed={collapsed}
             defaultOpenKeys={[defaultOpenKeys]}
             selectedKeys={[selectedKeys]}
-            theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
+            theme={themeType === THEME_TYPE_LITE ? "lite" : "dark"}
             mode="inline"
-          // defaultOpenKeys={['sub1']}
-          style={{ fontSize:"150%"}}
+            // defaultOpenKeys={['sub1']}
+            style={{ fontSize: "150%" }}
           >
-
-            <Menu.Item key="dashboard" >
+            <Menu.Item key="dashboard">
               <Link to="/dashboard">
-                <i className="icon icon-widgets" />
-                <span style={{ fontSize: "14px" }}><IntlMessages id="sidebar.dashboard" /></span>
+                <AppstoreOutlined
+                  style={{ fontSize: "125%", marginRight: "0px" }}
+                />
+                {/* <i className="icon icon-widgets" /> */}
+                <span style={{ fontSize: "14px" }}>
+                  <IntlMessages id="sidebar.dashboard" />
+                </span>
               </Link>
             </Menu.Item>
-            <SubMenu key="device-all" style={{ fontSize: "150%", marginTop: "5px" }}
-              icon={<UserOutlined style={{ fontSize: '125%', marginRight: "0px" }} />}
+            <SubMenu
+              key="device-all"
+              style={{ fontSize: "150%", marginTop: "5px" }}
+              icon={
+                <UserOutlined
+                  style={{ fontSize: "125%", marginRight: "0px" }}
+                />
+              }
               title="Device Agent"
             >
-
-              <Menu.Item key="device-all"
-                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              <Menu.Item
+                key="device-all"
+                style={{
+                  fontSize: "14px",
+                  width: "350px",
+                  marginLeft: "-20px",
+                  marginTop: "0px",
+                }}
               >
                 <Link to="/device-all">
-                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <ApiOutlined
+                    style={{ fontSize: "125%", marginRight: "0px" }}
+                  />
                   <span>Device All</span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key="device-hotel"
-                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              <Menu.Item
+                key="device-hotel"
+                style={{
+                  fontSize: "14px",
+                  width: "350px",
+                  marginLeft: "-20px",
+                  marginTop: "0px",
+                }}
               >
                 <Link to="/device-hotel">
-                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <ApiOutlined
+                    style={{ fontSize: "125%", marginRight: "0px" }}
+                  />
                   <span>Device Hotel</span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key="device-parkir"
-                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              <Menu.Item
+                key="device-parkir"
+                style={{
+                  fontSize: "14px",
+                  width: "350px",
+                  marginLeft: "-20px",
+                  marginTop: "0px",
+                }}
               >
                 <Link to="/device-parkir">
-                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <ApiOutlined
+                    style={{ fontSize: "125%", marginRight: "0px" }}
+                  />
                   <span>Device Parkir</span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key="device-restoran"
-                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              <Menu.Item
+                key="device-restoran"
+                style={{
+                  fontSize: "14px",
+                  width: "350px",
+                  marginLeft: "-20px",
+                  marginTop: "0px",
+                }}
               >
                 <Link to="/device-restoran">
-                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <ApiOutlined
+                    style={{ fontSize: "125%", marginRight: "0px" }}
+                  />
                   <span>Device Restoran</span>
                 </Link>
               </Menu.Item>
               <Divider />
-              <Menu.Item key="register-device-agent"
-                style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "0px" }}
+              <Menu.Item
+                key="register-device-agent"
+                style={{
+                  fontSize: "14px",
+                  width: "350px",
+                  marginLeft: "-20px",
+                  marginTop: "0px",
+                }}
               >
                 <Link to="/register-device-agent">
-                  <FormOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
+                  <FormOutlined
+                    style={{ fontSize: "125%", marginRight: "0px" }}
+                  />
                   <span>Register Device</span>
                 </Link>
               </Menu.Item>
             </SubMenu>
 
-            <Menu.Item key="transaction" >
+            <Menu.Item key="transaction">
               <Link to="/transaction">
-                <i className="icon icon-widgets" />
+                <BarChartOutlined
+                  style={{ fontSize: "125%", marginRight: "0px" }}
+                />
                 <span style={{ fontSize: "14px" }}>Transaction</span>
               </Link>
             </Menu.Item>
@@ -156,4 +221,3 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
 };
 
 export default React.memo(SidebarContent);
-

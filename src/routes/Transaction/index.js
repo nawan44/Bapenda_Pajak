@@ -106,12 +106,13 @@ const Transaction = () => {
   const [form] = Form.useForm();
   const [formOk, setFormOk] = useState(false);
   const [totalRow, setTotalRow] = useState();
-  const [page, setPage] = useState(1);
+  const [pageState, setPageState] = useState(1);
+const [changePage, setChangePage] = useState()
   const [click, setClick] = useState(false);
   const [fromDate, setFromDate] = useState(
     moment().subtract(1, "months").format("YYYY-MM-DD")
   );
-  const [onSelected, setOnSelected] = useState(false)
+  const[key, setKey] = useState(false)
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
   const [nik, setNik] = useState();
   const [typePajak, setTypePajak] = useState();
@@ -125,32 +126,39 @@ const Transaction = () => {
     setFromDate("2000-01-01");
     setToDate("2000-01-02");
   };
-  console.log("page", page);
+  console.log("changePage", changePage);
 
   const onChange = (page) => {
-    console.log("onchange page", page);
-    setPage(page.current);
-    setOnSelected(true)
+    // console.log("onchange page", page);
+    setPageState(page.current);
+    setKey(true)
     setClick(true);
     handleFinish();
   };
-  // console.log(
-  //   " 3,'months').format('YYYY-MM-DD')",
-  //   moment().subtract(3, "months").format("YYYY-MM-DD")
-  // );
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
   });
-  // useEffect(() => {
-  //   setButtonPage(page);
-  // }, [page]);
+  useEffect(() => {
+    // setPageState(page.current);
+    if(key == true){
+    setChangePage(pageState )}
+    else {
+      setChangePage(1)
+    }
+  }, [pageState]);
   useEffect(() => {
     getListDevice();
   }, []);
-
-  
+  useEffect(() => {
+    handleFinish();
+    // onChange()
+  }, []);
+  useEffect(() => {
+    handleFinish();
+  }, [changePage]);
+console.log("responFilter", responFilter)
   const getListDevice = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
@@ -166,7 +174,6 @@ const Transaction = () => {
     const ajson = await response.json();
     setListDevice(ajson.Records);
   };
-  // console.log("listDevice",listDevice)
   const dataMerchant = listDevice?.map((row, index) => ({
     nik: row[2].stringValue,
     nama_usaha: row[4].stringValue,
@@ -180,7 +187,6 @@ const Transaction = () => {
     nominal_pajak: formatter.format(row[6].stringValue),
     nominal_nett: formatter.format(row[7].stringValue),
   }));
-  console.log("listDevice",listDevice)
   function changeTypePajak(value) {
     setTypePajak(value);
   }
@@ -201,56 +207,55 @@ const Transaction = () => {
   }
   const url = () => {
     if (nik && !typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=${page}&npwp=${nik}`;
+      return `https://api.raspi-geek.com/v1/transactions?page=${pageState}&npwp=${nik}`;
     } else if (!nik && typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=${page}&type_pajak=${typePajak}`;
+      return `https://api.raspi-geek.com/v1/transactions?page=${pageState}&type_pajak=${typePajak}`;
     } else if (nik && typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=${page}&npwp=${nik}&type_pajak=${typePajak}`;
+      return `https://api.raspi-geek.com/v1/transactions?page=${pageState}&npwp=${nik}&type_pajak=${typePajak}`;
     } else if (!nik && !typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=${page}`;
+      return `https://api.raspi-geek.com/v1/transactions?page=${pageState}`;
     }
   };
-  useEffect(() => {
-    handleFinish();
-    // onChange()
-  },  []);
-  useEffect(() => {
-    if(onSelected == true){
-    handleFinish();}
-    // onChange()
-  },  [onSelected]);
+
+  // useEffect(() => {
+  //   handleFinish();
+  // }, [onSelected]);
+
   const handleFinish = async (values, page) => {
     // if (click == true) {
-      try {
-        const decoded = jwtDecode(localStorage.token);
-        const apiKey = decoded["api-key"];
-        const response = await fetch(url(), {
-          method: "POST",
-          headers: {
-            "x-api-key": `${apiKey}`,
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            startdate: fromDate,
-            enddate: toDate,
-          }),
-        });
-        const res = await response.json();
-        setResponFilter(res.Records);
-        setFormOk(true);
-        setTotalRow(res.TotalNumRows);
-        // setPage(page.current);
-        // success();
-        // history.push("/dashboard")
-      } catch (err) {
-        // console.log("error", err.message);
-      }
+    try {
+      const decoded = jwtDecode(localStorage.token);
+      const apiKey = decoded["api-key"];
+      const response = await fetch(
+        `https://api.raspi-geek.com/v1/transactions?page=${changePage}`
+        , {
+        method: "POST",
+        headers: {
+          "x-api-key": `${apiKey}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          startdate: fromDate,
+          enddate: toDate,
+        }),
+      });
+      const res = await response.json();
+      setResponFilter(res.Records);
+      setFormOk(true);
+      setTotalRow(res.totalNumRecords);
+      console.log("ees", response.body)
+      // setPage(page.current);
+      // success();
+      // history.push("/dashboard")
+    } catch (err) {
+      // console.log("error", err.message);
+    }
     // }
   };
   function disabledDate(current) {
     return current > moment() || current < moment().subtract(3, "months");
   }
-  console.log("respon FIlter", responFilter);
+  console.log("totalRow", totalRow);
   const reset = () => {
     setFromDate(moment().subtract(1, "months").format("YYYY-MM-DD"));
     setToDate(moment().format("YYYY-MM-DD"));
@@ -343,8 +348,10 @@ const Transaction = () => {
                 style={{ marginTop: "15px" }}
                 className="gx-mb-0"
                 type="primary"
-                onClick={() => {form.submit() ; setClick(true)}   
-                }
+                onClick={() => {
+                  form.submit();
+                  setClick(true);
+                }}
               >
                 Cari Data
               </Button>
@@ -377,21 +384,22 @@ const Transaction = () => {
               size="small"
               // current={page}
               pagination={{
-                showTotal: (total, range, page) => {
-                  console.log({ total, range });
-                },
+                showTotal: (total, range, page) => 
+                  // console.log({ total, range });
+                  `Total: ${total}`,
 
-                current: page,
-                total: 100,
-                pageSize: 10,
 
-                // defaultPageSize: 10, showSizeChanger: true, pageSizeOptions: ['10', '20', '30']
+                  current: pageState,
+                  total: totalRow,
+                // pageSize: 10,
+
+                showSizeChanger: false,
+                // pageSizeOptions: false
               }}
               onChange={(p) => onChange(p)}
-              // onSelected ={() => setOnSelected(!onSelected)}
               // onChange={(...args) => {
               //   console.log("args",...args);
-                
+
               // } }
             />
           </div>

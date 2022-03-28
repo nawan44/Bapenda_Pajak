@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  UpCircleFilled,
-  DownCircleFilled,
-  PauseCircleFilled,
+  CaretUpOutlined,
+  CaretDownOutlined,
+  PauseOutlined,
 } from "@ant-design/icons";
 
 function SelisihPresentase({
@@ -39,7 +39,7 @@ function SelisihPresentase({
                 ) +
                 "%"}
             </span>
-            <UpCircleFilled className="icon-up" />
+            <CaretUpOutlined className="icon-up" />
           </div>
         );
       } else if (moneyToday < moneyYesterday) {
@@ -52,7 +52,7 @@ function SelisihPresentase({
                 ) +
                 "%"}
             </span>{" "}
-            <DownCircleFilled className="icon-down" />
+            <CaretDownOutlined className="icon-down" />
           </div>
         );
       } else if (moneyToday === moneyYesterday) {
@@ -65,7 +65,7 @@ function SelisihPresentase({
                 ) +
                 "%"}
             </span>
-            <PauseCircleFilled rotate={90} className="icon-up" />
+            <PauseOutlined rotate={90} className="icon-up" />
           </div>
         );
       } else {
@@ -88,7 +88,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>
-            <UpCircleFilled className="icon-up" />
+            <CaretUpOutlined className="icon-up" />
           </div>
         );
       } else if (moneyThisMonth < moneyLastMonth) {
@@ -101,7 +101,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>{" "}
-            <DownCircleFilled className="icon-down" />
+            <CaretDownOutlined className="icon-down" />
           </div>
         );
       } else if (moneyThisMonth === moneyLastMonth) {
@@ -114,7 +114,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>
-            <PauseCircleFilled rotate={90} className="icon-up" />
+            <PauseOutlined rotate={90} className="icon-up" />
           </div>
         );
       } else {
@@ -136,7 +136,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>
-            <UpCircleFilled className="icon-up" />
+            <CaretUpOutlined className="icon-up" />
           </div>
         );
       } else if (moneyThisYear < moneyLastYear) {
@@ -149,7 +149,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>{" "}
-            <DownCircleFilled className="icon-down" />
+            <CaretDownOutlined className="icon-down" />
           </div>
         );
       } else if (moneyThisYear === moneyLastYear) {
@@ -162,7 +162,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>
-            <PauseCircleFilled rotate={90} className="icon-up" />
+            <PauseOutlined rotate={90} className="icon-up" />
           </div>
         );
       } else {
@@ -185,7 +185,7 @@ function SelisihPresentase({
                 ) +
                 "%"}
             </span>
-            <UpCircleFilled className="icon-up" />
+            <CaretUpOutlined className="icon-up" />
           </div>
         );
       } else if (transactionToday < transactionYesterday) {
@@ -198,7 +198,7 @@ function SelisihPresentase({
                 ) +
                 "%"}
             </span>{" "}
-            <DownCircleFilled className="icon-down" />
+            <CaretDownOutlined className="icon-down" />
           </div>
         );
       } else if (transactionToday === transactionYesterday) {
@@ -211,7 +211,7 @@ function SelisihPresentase({
                 ) +
                 "%"}
             </span>
-            <PauseCircleFilled rotate={90} className="icon-up" />
+            <PauseOutlined rotate={90} className="icon-up" />
           </div>
         );
       } else {
@@ -234,7 +234,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>
-            <UpCircleFilled className="icon-up" />
+            <CaretUpOutlined className="icon-up" />
           </div>
         );
       } else if (transactionThisMonth < transactionLastMonth) {
@@ -247,7 +247,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>{" "}
-            <DownCircleFilled className="icon-down" />
+            <CaretDownOutlined className="icon-down" />
           </div>
         );
       } else if (transactionThisMonth === transactionLastMonth) {
@@ -260,7 +260,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>
-            <PauseCircleFilled rotate={90} className="icon-up" />
+            <PauseOutlined rotate={90} className="icon-up" />
           </div>
         );
       } else {
@@ -282,7 +282,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>
-            <UpCircleFilled className="icon-up" />
+            <CaretUpOutlined className="icon-up" />
           </div>
         );
       } else if (transactionThisYear < transactionLastYear) {
@@ -295,7 +295,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>{" "}
-            <DownCircleFilled className="icon-down" />
+            <CaretDownOutlined className="icon-down" />
           </div>
         );
       } else if (transactionThisYear === transactionLastYear) {
@@ -308,7 +308,7 @@ function SelisihPresentase({
                 ).toFixed(2) +
                 "%"}
             </span>
-            <PauseCircleFilled rotate={90} className="icon-up" />
+            <PauseOutlined rotate={90} className="icon-up" />
           </div>
         );
       } else {

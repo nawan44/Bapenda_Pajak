@@ -29,7 +29,6 @@ const PendapatanHarian = (props) => {
     .subtract(1, "d")
     .endOf("day")
     .format("YYYY-MM-DD HH:mm:ss");
-  console.log("earningToday <<<<<", earningToday);
   useEffect(() => {
     setMoneyToday(earningToday === undefined ? 0 : Number(earningToday));
   }, [earningToday]);
@@ -68,8 +67,7 @@ const objToday = tanggal && tanggal.filter(o => o.created_at === now);
     useEffect(() => {
       setMoneyYesterday(currentYesterday);
     }, [currentYesterday]);
-    console.log("money", moneyToday)
-console.log("money", moneyToday)
+
 // OLD
   // NEWWWWWWWWWWWW
   // useEffect(() => {
