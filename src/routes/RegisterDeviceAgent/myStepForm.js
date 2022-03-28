@@ -316,11 +316,11 @@ function MyStepForm() {
               <Form.Item
                 style={{ margin: "40px" }}
                 name="nik"
-                label="NIK"
+                label="NIK / NPWP"
                 rules={[
                   {
                     required: true,
-                    message: "Nomor Induk Kepegawaian",
+                    message: "Nomor Induk Kependudukan",
                   },
                 ]}
               >
@@ -328,7 +328,7 @@ function MyStepForm() {
                   name="nik"
                   value={regisDeviceAgent.nik}
                   onChange={handleChange}
-                  placeholder="Nomor Induk Kepegawaian"
+                  placeholder="Nomor Induk Kependudukan"
                   className="nik"
                 />
               </Form.Item>

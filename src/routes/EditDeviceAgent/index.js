@@ -360,12 +360,12 @@ console.log("searchProvinceId",searchProvinceId)
                         {errorOwner && (
                             <div style={{ color: "red", fontFamily: "NoirPro, sans-serif" }}>{errorOwner}</div>
                         )}
-                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign: "left" }}>Nomor Induk Kepegawaian</h4>
+                        <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign: "left" }}>NIK / NPWP</h4>
                         <Input
                             name="nik"
                             value={regisDeviceAgent.nik}
                             onChange={handleChange}
-                            placeholder="Nomor Induk Kepegawaian"
+                            placeholder="Nomor Induk Kependudukan"
                             className="edit_input"
                         />
                         {errorNik && (

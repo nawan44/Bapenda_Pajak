@@ -312,12 +312,12 @@ const Transaction = () => {
             </Select>
           </FormItem>
 
-          <FormItem label="NIK" className="gx-form-item-one-third">
+          <FormItem label="NIK / NPWP" className="gx-form-item-one-third">
             <Select
               value={nik}
               showSearch
               style={{ width: 350 }}
-              placeholder="Select NIK"
+              placeholder="Select NIK / NPWP"
               optionFilterProp="children"
               onChange={onChangeNik}
               onFocus={onFocus}

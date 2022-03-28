@@ -69,7 +69,7 @@ const objToday = tanggal && tanggal.filter(o => o.created_at === now);
       setMoneyYesterday(currentYesterday);
     }, [currentYesterday]);
     console.log("money", moneyToday)
-
+console.log("money", moneyToday)
 // OLD
   // NEWWWWWWWWWWWW
   // useEffect(() => {

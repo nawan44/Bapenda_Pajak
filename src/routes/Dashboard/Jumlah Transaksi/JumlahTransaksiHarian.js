@@ -130,7 +130,9 @@ const JumlahTransaksiHarian = (props) => {
             color="orange"
             icon="orders"
             title={
-              <div  className="title-card-dashboard">{amountToday}</div>
+              // <div  className="title-card-dashboard">{amountToday}</div>
+              <div  className="title-card-dashboard">{transaksiHariIni}</div>
+           
             }
             colorTitle="geekblue"
             transactionToday={transactionToday}

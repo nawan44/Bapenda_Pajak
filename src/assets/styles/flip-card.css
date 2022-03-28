@@ -84,6 +84,8 @@
   font-size: 15px !important;
   font-weight: bold;
   color: blue !important;
+  margin: 0 5px 0 0;
+
 }
 .icon-up {
   font-size: 15px;
@@ -94,6 +96,8 @@
   font-size: 15px !important;
   font-weight: bold;
   color: red !important;
+  margin: 0 5px 0 0;
+
 }
 .icon-down {
   font-size: 15px;
@@ -131,7 +135,7 @@
   .flip-card-inner {
     float: left;
     width: 100%;
-    height: 240px;
+    height: 230px;
     background-color: none;
   }
 
@@ -173,6 +177,7 @@
   font-size: 12px !important;
   font-weight: bold;
   color: blue !important;
+  margin: 0 5px 0 0;
 }
 .icon-up {
   font-size: 12px;
@@ -183,6 +188,8 @@
   font-size: 12px !important;
   font-weight: bold;
   color: red !important;
+  margin: 0 5px 0 0;
+
 }
 .icon-down {
   font-size: 12px;

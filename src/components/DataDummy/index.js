@@ -1711,7 +1711,7 @@ export const latestTransaction1 = {
                 "stringValue": "Hotel LoremIpsum"
             },
             {
-                "stringValue": "556900.00"
+                "stringValue": "56900.00"
             },
             {
                 "stringValue": "2022-03-27 01:00:00"
@@ -1720,5 +1720,26 @@ export const latestTransaction1 = {
                 "stringValue": "Hotel"
             }
         ],
+        [
+            {
+                "stringValue": "446754702-00002"
+            },
+            {
+                "stringValue": "hotelLoremIpsum01"
+            },
+            {
+                "stringValue": "Hotel LoremIpsum"
+            },
+            {
+                "stringValue": "556900.00"
+            },
+            {
+                "stringValue": "2022-03-28 01:00:00"
+            },
+            {
+                "stringValue": "Hotel"
+            }
+        ],
+
     ]
 };
