@@ -22,6 +22,8 @@ function EditDeviceAgent(props) {
     const alamatTrim = itemList.alamat
     const pieces = alamatTrim.split(",")
 
+console.log("listData >>>",listData)
+
     const provTrim = pieces[pieces.length - 1]
     const kabTrim = pieces[pieces.length - 2]
     const kecTrim = pieces[pieces.length - 3]
@@ -68,16 +70,14 @@ function EditDeviceAgent(props) {
     const [searchKelId, setSearchKelId] = useState(null)
 
     const [alamatDetil, setAlamatDetil] = useState(alamatDetTrim)
-    const [gantiProv, setGantiProv] = useState()
-    const [gantiKab, setGantiKab] = useState()
-    const [gantiKec, setGantiKec] = useState()
-    const [gantiKel, setGantiKel] = useState()
-    const [gantiAlamat, setGantiAlamat] = useState()
+    // const [gantiProv, setGantiProv] = useState(prov)
+    // const [gantiKab, setGantiKab] = useState(kab)
+    // const [gantiKec, setGantiKec] = useState(kec)
+    // const [gantiKel, setGantiKel] = useState(kel)
+    const [gantiAlamat, setGantiAlamat] = useState(alamatDetil)
 
-    const funcMergeAlamat = () => {
-        setAlamatLengkap(prov)
-    }
-    const [alamatLengkap, setAlamatLengkap] = useState()
+
+    // const [alamatLengkap, setAlamatLengkap] = useState()
 
     const [regisDeviceAgent, setRegisDeviceAgent] = useState(
         {
@@ -93,37 +93,43 @@ function EditDeviceAgent(props) {
             isactive: selectActive,
         }
     );
-    // "Jalan 01,  Ragunan,  Pasar Minggu,  Kota Jakarta Selatan,  Dki Jakarta"
-console.log("searchProvinceId",searchProvinceId)
 
-    useEffect(
-        () => {
-            setGantiProv(
-                prov);
-        },
-        [prov]
-    );
-    useEffect(
-        () => {
-            setGantiKab(
-                kab);
-        },
-        [kab]
-    );
-    useEffect(
-        () => {
-            setGantiKec(
-                kec);
-        },
-        [kec]
-    );
-    useEffect(
-        () => {
-            setGantiKel(
-                kel);
-        },
-        [kel]
-    );
+//   "jalan,  Pelabuhan Dagang,  Tungkal Ulu,  Kabupaten Tanjung Jabung Barat, Sumatera Barat"
+console.log("regisDeviceAgent", regisDeviceAgent)
+console.log("prov", prov)
+console.log("kab", kab)
+console.log("kec", kec)
+console.log("kel", kel)
+console.log("alamatDetil", alamatDetil)
+
+    // useEffect(
+    //     () => {
+    //         setGantiProv(
+    //             prov);
+    //     },
+    //     [prov]
+    // );
+    // useEffect(
+    //     () => {
+    //         setGantiKab(
+    //             kab);
+    //     },
+    //     [kab]
+    // );
+    // useEffect(
+    //     () => {
+    //         setGantiKec(
+    //             kec);
+    //     },
+    //     [kec]
+    // );
+    // useEffect(
+    //     () => {
+    //         setGantiKel(
+    //             kel);
+    //     },
+    //     [kel]
+    // );
     useEffect(
         () => {
             setGantiAlamat(
@@ -131,14 +137,39 @@ console.log("searchProvinceId",searchProvinceId)
         },
         [alamatDetil]
     );
+    useEffect(() => {
+        if (provinceId?.toString() !== kabKotaId?.toString().slice(0, -2)) {
+          setKab("");
+          setKec("");
+          setKel("");
+          setAlamatDetil("");
+        }
+        else if (
+          kabKotaId?.toString() !== kecId?.toString().slice(0, -3) ||
+          provinceId?.toString() !== kecId?.toString().slice(0, -5)
+        ) {
+          setKec("");
+          setKel("");
+          setAlamatDetil("");
+        } else if (
+          kecId?.toString() !== kelId?.toString().slice(0, -3) ||
+          kabKotaId?.toString() !== kelId?.toString().slice(0, -6) ||
+          provinceId?.toString() !== kelId?.toString().slice(0, -8)
+        ) {
+          setKel("");
+          setAlamatDetil("");
+        }
+      }, [provinceId, kabKotaId, kecId, kelId]);
+    
+    //
     useEffect(
         () => {
             setRegisDeviceAgent({
                 ...regisDeviceAgent,
-                alamat: alamatDetil + ", " + kel + ", " + kec + ", " + kab + ", " + prov
+                alamat: gantiAlamat + ", " + kel + ", " + kec + ", " + kab + ", " + prov
             });
         },
-        [alamatDetil, kel, kec, kab, prov]
+        [gantiAlamat, kel, kec, kab, prov]
     );
     useEffect(
         () => {
@@ -239,20 +270,41 @@ console.log("searchProvinceId",searchProvinceId)
                 "   ❌ Brand Usaha Tidak Boleh Kosong"
             );
         }
-        else if (searchProvinceId?.toString() !== searchKabKotaId?.toString().slice(0, -2)) {
+        // else if (searchProvinceId?.toString() !== searchKabKotaId?.toString().slice(0, -2)) {
+        //     setErrorKab(
+        //         "   ❌ Harus Kabupaten / Kota Didalam Provinsi Yang Benar"
+        //     );
+        // }
+        // else if (searchKabKotaId?.toString() !== searchKecId?.toString().slice(0, -3) || searchProvinceId?.toString() !== searchKecId?.toString().slice(0, -5)) {
+        //     setErrorKec(
+        //         "   ❌ Harus Kecamatan Didalam Kabupaten Dan Provinsi Yang Benar"
+        //     );
+        // }
+        // else if (searchKecId?.toString() !== searchKelId?.toString().slice(0, -3) || searchKabKotaId?.toString() !== searchKelId?.toString().slice(0, -6) || searchProvinceId?.toString() !== searchKelId?.toString().slice(0, -8)) {
+        //     setErrorKel(
+        //         "   ❌ Harus Kelurahan Didalam Kecamatan, Kabupaten Dan Provinsi Yang Benar"
+        //     );
+        // }
+
+        else if (prov === ""){
+            setErrorProv(
+                "   ❌ Provinsi Tidak Boleh Kosong"
+            )
+        }
+        else if (kab === ""){
             setErrorKab(
-                "   ❌ Harus Kabupaten / Kota Didalam Provinsi Yang Benar"
-            );
+                "   ❌ Kabupaten Tidak Boleh Kosong"
+            )
         }
-        else if (searchKabKotaId?.toString() !== searchKecId?.toString().slice(0, -3) || searchProvinceId?.toString() !== searchKecId?.toString().slice(0, -5)) {
+        else if (kec === ""){
             setErrorKec(
-                "   ❌ Harus Kecamatan Didalam Kabupaten Dan Provinsi Yang Benar"
-            );
+                "   ❌ Kecamatan Tidak Boleh Kosong"
+            )
         }
-        else if (searchKecId?.toString() !== searchKelId?.toString().slice(0, -3) || searchKabKotaId?.toString() !== searchKelId?.toString().slice(0, -6) || searchProvinceId?.toString() !== searchKelId?.toString().slice(0, -8)) {
+        else if (kel === ""){
             setErrorKel(
-                "   ❌ Harus Kelurahan Didalam Kecamatan, Kabupaten Dan Provinsi Yang Benar"
-            );
+                "   ❌ Kelurahan Tidak Boleh Kosong"
+            )
         }
         else if (alamatDetil === "") {
             setErrorAlamat(
