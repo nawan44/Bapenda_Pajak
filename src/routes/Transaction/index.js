@@ -107,18 +107,18 @@ const Transaction = () => {
   const [formOk, setFormOk] = useState(false);
   const [totalRow, setTotalRow] = useState();
   const [pageState, setPageState] = useState(1);
-const [changePage, setChangePage] = useState()
+  const [changePage, setChangePage] = useState();
   const [click, setClick] = useState(false);
   const [fromDate, setFromDate] = useState(
     moment().subtract(1, "months").format("YYYY-MM-DD")
   );
-  const[key, setKey] = useState(false)
+  const [key, setKey] = useState(false);
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
   const [nik, setNik] = useState();
   const [typePajak, setTypePajak] = useState();
   const onChangeDateRange = (date, datesString) => {
     setFromDate(datesString[0]);
-    // setFromDate(datesString[1]);
+    setToDate(datesString[1]);
     //More code
   };
 
@@ -131,7 +131,7 @@ const [changePage, setChangePage] = useState()
   const onChange = (page) => {
     // console.log("onchange page", page);
     setPageState(page.current);
-    setKey(true)
+    setKey(true);
     setClick(true);
     handleFinish();
   };
@@ -142,10 +142,10 @@ const [changePage, setChangePage] = useState()
   });
   useEffect(() => {
     // setPageState(page.current);
-    if(key == true){
-    setChangePage(pageState )}
-    else {
-      setChangePage(1)
+    if (key == true) {
+      setChangePage(pageState);
+    } else {
+      setChangePage(1);
     }
   }, [pageState]);
   useEffect(() => {
@@ -158,7 +158,7 @@ const [changePage, setChangePage] = useState()
   useEffect(() => {
     handleFinish();
   }, [changePage]);
-console.log("responFilter", responFilter)
+  console.log("responFilter", responFilter);
   const getListDevice = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
@@ -207,13 +207,13 @@ console.log("responFilter", responFilter)
   }
   const url = () => {
     if (nik && !typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=${pageState}&npwp=${nik}`;
+      return `https://api.raspi-geek.com/v1/transactions?page=${changePage}&npwp=${nik}`;
     } else if (!nik && typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=${pageState}&type_pajak=${typePajak}`;
+      return `https://api.raspi-geek.com/v1/transactions?page=${changePage}&type_pajak=${typePajak}`;
     } else if (nik && typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=${pageState}&npwp=${nik}&type_pajak=${typePajak}`;
+      return `https://api.raspi-geek.com/v1/transactions?page=${changePage}&npwp=${nik}&type_pajak=${typePajak}`;
     } else if (!nik && !typePajak) {
-      return `https://api.raspi-geek.com/v1/transactions?page=${pageState}`;
+      return `https://api.raspi-geek.com/v1/transactions?page=${changePage}`;
     }
   };
 
@@ -227,23 +227,25 @@ console.log("responFilter", responFilter)
       const decoded = jwtDecode(localStorage.token);
       const apiKey = decoded["api-key"];
       const response = await fetch(
-        `https://api.raspi-geek.com/v1/transactions?page=${changePage}`
-        , {
-        method: "POST",
-        headers: {
-          "x-api-key": `${apiKey}`,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          startdate: fromDate,
-          enddate: toDate,
-        }),
-      });
+        // `https://api.raspi-geek.com/v1/transactions?page=${changePage}`
+        url(),
+        {
+          method: "POST",
+          headers: {
+            "x-api-key": `${apiKey}`,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            startdate: fromDate,
+            enddate: toDate,
+          }),
+        }
+      );
       const res = await response.json();
       setResponFilter(res.Records);
       setFormOk(true);
       setTotalRow(res.totalNumRecords);
-      console.log("ees", response.body)
+      console.log("ees", response.body);
       // setPage(page.current);
       // success();
       // history.push("/dashboard")
@@ -384,13 +386,12 @@ console.log("responFilter", responFilter)
               size="small"
               // current={page}
               pagination={{
-                showTotal: (total, range, page) => 
+                showTotal: (total, range, page) =>
                   // console.log({ total, range });
                   `Total: ${total}`,
 
-
-                  current: pageState,
-                  total: totalRow,
+                current: pageState,
+                total: totalRow,
                 // pageSize: 10,
 
                 showSizeChanger: false,
