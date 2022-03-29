@@ -73,7 +73,8 @@ function SelisihPresentase({
       }
     }
   };
-
+console.log("moneyLastMonth",moneyLastMonth)
+console.log("moneyThisMonth",moneyThisMonth)
   const persentasePendapatanBulanIni = () => {
     if (moneyLastMonth === undefined || moneyThisMonth === undefined) {
       return "0";

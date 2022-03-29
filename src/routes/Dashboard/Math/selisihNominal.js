@@ -9,9 +9,9 @@ function SelisihNominal({
   objToday,
   moneyToday,
   moneyYesterday,
-  moneyThisMonth,
-  moneyLastMonth,
   objBulanIni,
+  moneyLastMonth,
+  moneyThisMonth,
   moneyThisYear,
   moneyLastYear,
   objTahunIni,
@@ -141,7 +141,7 @@ function SelisihNominal({
             </span>
           ) : (
             <span className="selisih-up">
-              {moneyLastMonth === undefined
+              {moneyThisMonth === undefined
                 ? "Tidak Ada Transaksi"
                 : formatter.format(moneyThisMonth - moneyLastMonth)}
             </span>
