@@ -241,3 +241,6 @@ tr:nth-child(even) {
 	opacity: 0;	
 	transform: scale(0.1, 1);
 }
+.ant-select-clear {
+color: red;
+}

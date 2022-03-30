@@ -6,6 +6,7 @@ import jwtDecode from "jwt-decode";
 import * as moment from "moment";
 import ConvertPdf from "./convertPdf";
 import ConvertExcel from "./convertExcel";
+import "../../assets/styles/table.css"
 const Search = Input.Search;
 
 const { RangePicker } = DatePicker;
@@ -123,7 +124,7 @@ const Transaction = () => {
     setFromDate("2000-01-01");
     setToDate("2000-01-02");
   };
-  console.log("changePage", changePage);
+  console.log("nik", nik);
 
   const onChange = (page) => {
     // console.log("onchange page", page);
@@ -194,8 +195,9 @@ const Transaction = () => {
     setTypePajak(value);
   }
 
-  function onChangeNik(value, id) {
-    setNik(id.id);
+  function onChangeNik(value, id, p) {
+    // console.log("onChangeNiK", id.key)
+    setNik(value);
   }
 
   function onSearch(val) {
@@ -243,7 +245,6 @@ const Transaction = () => {
       setResponFilter(res.Records);
       setFormOk(true);
       setTotalRow(res.totalNumRecords);
-      console.log("ees", response.body);
       // setPage(page.current);
       // success();
       // history.push("/dashboard")
@@ -307,11 +308,14 @@ const Transaction = () => {
 
           <FormItem label="NIK / NPWP" className="gx-form-item-one-third">
             <Select
+            id={"select"} 
               value={nik}
               showSearch
               style={{ width: 350 }}
               placeholder="Select NIK / NPWP"
               optionFilterProp="children"
+              // onChange={(p) => onChangeNik(p)}
+
               onChange={onChangeNik}
               onFocus={onFocus}
               onBlur={onBlur}
@@ -323,7 +327,7 @@ const Transaction = () => {
               allowClear
             >
               {dataMerchant?.map((p) => (
-                <Option id={p.nik} value={p.nama_usaha}>
+                <Option key={p.nik} >
                   {p.nik}
                 </Option>
               ))}
