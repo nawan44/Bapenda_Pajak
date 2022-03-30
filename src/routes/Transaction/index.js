@@ -104,7 +104,7 @@ const Transaction = () => {
   const [formOk, setFormOk] = useState(false);
   const [totalRow, setTotalRow] = useState();
   const [pageState, setPageState] = useState(1);
-  const [changePage, setChangePage] = useState();
+  const [changePage, setChangePage] = useState(1);
   const [click, setClick] = useState(false);
   const [fromDate, setFromDate] = useState(
     moment().subtract(1, "months").format("YYYY-MM-DD")
@@ -359,8 +359,8 @@ const Transaction = () => {
         {click == true && (
           <div className="gx-table-responsive">
             <Row style={{ float: "right" }}>
-              <ConvertPdf dataFilter={dataFilter} />
-              <ConvertExcel dataFilter={dataFilter} />
+              {/* <ConvertPdf dataFilter={dataFilter} /> */}
+              <ConvertExcel dataFilter={dataFilter} fromDate={fromDate} toDate={toDate} />
             </Row>
 
             <Table
