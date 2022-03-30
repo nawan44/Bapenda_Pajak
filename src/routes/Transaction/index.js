@@ -11,9 +11,6 @@ const Search = Input.Search;
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
 const FormItem = Form.Item;
-// const CurrencyCalculator = () => {
-//   function handleChange(value) {
-//   }
 
 const columns = [
   {
@@ -159,6 +156,7 @@ const Transaction = () => {
     handleFinish();
   }, [changePage]);
   console.log("responFilter", responFilter);
+
   const getListDevice = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
@@ -167,17 +165,22 @@ const Transaction = () => {
       "content-type": "application/json",
     };
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/merchants",
+      "https://api.raspi-geek.com/v1/npwp",
 
       { method: "GET", headers }
     );
     const ajson = await response.json();
     setListDevice(ajson.Records);
   };
-  const dataMerchant = listDevice?.map((row, index) => ({
-    nik: row[2].stringValue,
-    nama_usaha: row[4].stringValue,
+  console.log("NPWP list device", listDevice);
+
+  const dataMerchant = listDevice?.map((item) => ({
+    nik: item[0].stringValue,
   }));
+
+  console.log("listDevice", listDevice);
+  console.log("dataMerchant", dataMerchant);
+
   const dataFilter = responFilter?.map((row, index) => ({
     tgl_transaksi: row[1].stringValue,
     nik: row[8].stringValue,
@@ -217,17 +220,12 @@ const Transaction = () => {
     }
   };
 
-  // useEffect(() => {
-  //   handleFinish();
-  // }, [onSelected]);
-
   const handleFinish = async (values, page) => {
     // if (click == true) {
     try {
       const decoded = jwtDecode(localStorage.token);
       const apiKey = decoded["api-key"];
       const response = await fetch(
-        // `https://api.raspi-geek.com/v1/transactions?page=${changePage}`
         url(),
         {
           method: "POST",
@@ -280,24 +278,12 @@ const Transaction = () => {
           style={{ marginBottom: "70px" }}
           form={form}
           onFinish={handleFinish}
-          // initialValues={{
-          //     nik: "", owner: "", nik: "", email: "", nama_usaha: "",
-          //     kelurahan: "", alamat: "", kategori: "", data_source: ""
-          // }}
         >
           <FormItem label="Tanggal" className="gx-form-item-one-third">
             <Space direction="vertical" style={{ width: 250 }} size={12}>
-              {/* <Button
-                onClick={() =>
-                  setDateRange(dateRange.map((d) => d.add(1, "w")))
-                }
-              >
-                Add 7 days
-              </Button> */}
               <RangePicker
                 onChange={onChangeDateRange}
                 disabledDate={disabledDate}
-                //  onChange={(date, dateString) => onChangeDateRange(date, dateString)}
                 value={[
                   moment(fromDate, dateFormat),
                   moment(toDate, dateFormat),
@@ -338,7 +324,7 @@ const Transaction = () => {
             >
               {dataMerchant?.map((p) => (
                 <Option id={p.nik} value={p.nama_usaha}>
-                  {p.nik} - {p.nama_usaha}{" "}
+                  {p.nik}
                 </Option>
               ))}
             </Select>
@@ -381,27 +367,17 @@ const Transaction = () => {
               className="gx-table-no-bordered"
               columns={columns}
               dataSource={dataFilter}
-              // pagination={true}
               bordered={false}
               size="small"
-              // current={page}
               pagination={{
                 showTotal: (total, range, page) =>
-                  // console.log({ total, range });
                   `Total: ${total}`,
 
                 current: pageState,
                 total: totalRow,
-                // pageSize: 10,
-
                 showSizeChanger: false,
-                // pageSizeOptions: false
               }}
               onChange={(p) => onChange(p)}
-              // onChange={(...args) => {
-              //   console.log("args",...args);
-
-              // } }
             />
           </div>
         )}
