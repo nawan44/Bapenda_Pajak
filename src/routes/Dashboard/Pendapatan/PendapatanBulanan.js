@@ -23,9 +23,6 @@ const PendapatanBulanan = (props) => {
   const [earningLastMonthHotel, setEarningLastMonthHotel] = useState(0);
   const [earningLastMonthParkir, setEarningLastMonthParkir] = useState(0);
 
-  console.log("earning This Restoran", earningThisMonthRestoran);
-  console.log("earning This Hotel", earningThisMonthHotel);
-  console.log("earning This Parkir", earningThisMonthParkir);
 
   const bulanIni = moment().format("YYYY-MM");
   const bulanLalu = moment().subtract(1, "months").format("YYYY-MM");
@@ -41,10 +38,7 @@ const PendapatanBulanan = (props) => {
     .endOf("month")
     .format("YYYY-MM-DD HH:mm:ss");
 
-  // console.log("sThisMonth", sThisMonth)
-  // console.log("eThisMonth", eThisMonth)
-  // console.log("sLastMonth",sLastMonth )
-  // console.log("eLastMonth", eLastMonth)
+
 
   // OLLLDDDDD
 

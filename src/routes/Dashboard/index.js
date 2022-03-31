@@ -11,6 +11,7 @@ import PendapatanHarian from "./Pendapatan/PendapatanHarian";
 import GrafikPendapatanBulan from "./Grafik Pendapatan/grafikPendapatanBulan";
 import LatestTransaction from "./Latest Transaction";
 import jwtDecode from "jwt-decode";
+import PieChart from "./Pie Chart";
 
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState()
@@ -62,6 +63,9 @@ const SamplePage = () => {
       {/* <h2 className="title gx-mb-4"><IntlMessages id="sidebar.samplePage" /></h2> */}
       {/* <div className="gx-d-flex justify-content-center"> */}
       {/* <div className="container-dashboard1"  > */}
+      <Row className="container-dashboard4">
+        <PieChart/>
+      </Row>
       <Row  className="container-dashboard1">
         <PendapatanHarian latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
         <PendapatanBulanan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />

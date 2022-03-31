@@ -156,7 +156,6 @@ const Transaction = () => {
   useEffect(() => {
     handleFinish();
   }, [changePage]);
-  console.log("responFilter", responFilter);
 
   const getListDevice = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token);
@@ -173,14 +172,11 @@ const Transaction = () => {
     const ajson = await response.json();
     setListDevice(ajson.Records);
   };
-  console.log("NPWP list device", listDevice);
 
   const dataMerchant = listDevice?.map((item) => ({
     nik: item[0].stringValue,
   }));
 
-  console.log("listDevice", listDevice);
-  console.log("dataMerchant", dataMerchant);
 
   const dataFilter = responFilter?.map((row, index) => ({
     tgl_transaksi: row[1].stringValue,
@@ -256,7 +252,6 @@ const Transaction = () => {
   function disabledDate(current) {
     return current > moment() || current < moment().subtract(3, "months");
   }
-  console.log("totalRow", totalRow);
   const reset = () => {
     setFromDate(moment().subtract(1, "months").format("YYYY-MM-DD"));
     setToDate(moment().format("YYYY-MM-DD"));

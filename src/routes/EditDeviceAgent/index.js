@@ -22,7 +22,6 @@ function EditDeviceAgent(props) {
     const alamatTrim = itemList.alamat
     const pieces = alamatTrim.split(",")
 
-console.log("listData >>>",listData)
 
     const provTrim = pieces[pieces.length - 1]
     const kabTrim = pieces[pieces.length - 2]
@@ -95,12 +94,7 @@ console.log("listData >>>",listData)
     );
 
 //   "jalan,  Pelabuhan Dagang,  Tungkal Ulu,  Kabupaten Tanjung Jabung Barat, Sumatera Barat"
-console.log("regisDeviceAgent", regisDeviceAgent)
-console.log("prov", prov)
-console.log("kab", kab)
-console.log("kec", kec)
-console.log("kel", kel)
-console.log("alamatDetil", alamatDetil)
+
 
     // useEffect(
     //     () => {
