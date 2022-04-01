@@ -217,6 +217,9 @@ const Transaction = () => {
       return `https://api.raspi-geek.com/v1/transactions?page=${changePage}`;
     }
   };
+  
+
+
 
   const handleFinish = async (values, page) => {
     // if (click == true) {
@@ -359,7 +362,11 @@ const Transaction = () => {
           <div className="gx-table-responsive">
             <Row style={{ float: "right" }}>
               {/* <ConvertPdf dataFilter={dataFilter} /> */}
-              <ConvertExcel dataFilter={dataFilter} fromDate={fromDate} toDate={toDate} />
+              <ConvertExcel dataFilter={dataFilter} 
+              typePajak ={typePajak}
+              nik = {nik}
+              changePage ={changePage}
+              fromDate={fromDate} toDate={toDate} />
             </Row>
 
             <Table

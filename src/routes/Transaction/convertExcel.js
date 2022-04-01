@@ -61,7 +61,7 @@ const dataDummy = [
 ];
 
 const ConvertExcel = (props) => {
-  const { dataFilter, fromDate, toDate } = props;
+  const { dataFilter, fromDate, toDate, typePajak, nik, changePage } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [newPageUrl, setNewPageUrl] = useState();
@@ -77,13 +77,24 @@ const ConvertExcel = (props) => {
     setIsModalVisible(false);
   };
 
-  const exportExcel = () => {
-    const worksheet = XLSX.utils.json_to_sheet(dataFilter);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-    //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
-    //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
-    XLSX.writeFile(workbook, "DataTransaksi.xlsx");
+  // const exportExcel = () => {
+  //   const worksheet = XLSX.utils.json_to_sheet(dataFilter);
+  //   const workbook = XLSX.utils.book_new();
+  //   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+  //   //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+  //   //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+  //   XLSX.writeFile(workbook, "DataTransaksi.xlsx");
+  // };
+  const urlExportExcel = () => {
+    if (nik && !typePajak) {
+      return `https://api.raspi-geek.com/v1/exporter?mode=0?page=${changePage}&npwp=${nik}`;
+    } else if (!nik && typePajak) {
+      return `https://api.raspi-geek.com/v1/exporter?mode=0?page=${changePage}&type_pajak=${typePajak}`;
+    } else if (nik && typePajak) {
+      return `https://api.raspi-geek.com/v1/exporter?mode=0?page=${changePage}&npwp=${nik}&type_pajak=${typePajak}`;
+    } else if (!nik && !typePajak) {
+      return `https://api.raspi-geek.com/v1/exporter?mode=0?page=${changePage}`;
+    }
   };
   const convertMode0 = async (values, page) => {
     // if (click == true) {
@@ -91,7 +102,7 @@ const ConvertExcel = (props) => {
       const decoded = jwtDecode(localStorage.token);
       const apiKey = decoded["api-key"];
       const response = await fetch(
-        `https://api.raspi-geek.com/v1/exporter?mode=0`,
+        urlExportExcel(),
         {
           method: "POST",
           headers: {
