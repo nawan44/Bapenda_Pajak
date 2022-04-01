@@ -4,6 +4,7 @@ import { Col, Row, Card } from "antd";
 import jwtDecode from "jwt-decode";
 import * as moment from "moment";
 import PiePendapatan from "./piePendapatan";
+import PieStatus from "./pieStatus";
 
 function PieChart() {
   const [getEarnByCat, setGetEarnByCat] = useState()    
@@ -55,6 +56,7 @@ function PieChart() {
       </Col>
       <Col  span={12}>
         {/* <Card className="gx-card" title="Status Device"> */}
+        <PieStatus getEarnByCat={getEarnByCat}/>
         {/* </Card> */}
       </Col>
     </>

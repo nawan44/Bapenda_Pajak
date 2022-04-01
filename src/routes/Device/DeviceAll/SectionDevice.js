@@ -49,7 +49,7 @@ const SectionDevice = (props) => {
     const ajson = await response.json();
     setListDevice(ajson.Records);
   };
-
+console.log("listDevice", listDevice)
   const data = listDevice?.map((row, index) => ({
     device_id: row[0].stringValue,
     owner: row[1].stringValue,
