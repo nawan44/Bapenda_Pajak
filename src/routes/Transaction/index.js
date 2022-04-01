@@ -127,7 +127,7 @@ const Transaction = () => {
   console.log("nik", nik);
 
   const onChange = (page) => {
-    // console.log("onchange page", page);
+    console.log("onchange page", page);
     setPageState(page.current);
     setKey(true);
     setClick(true);
@@ -315,10 +315,10 @@ const Transaction = () => {
               onFocus={onFocus}
               onBlur={onBlur}
               onSearch={onSearch}
-              filterOption={(input, option) =>
-                option.id.toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
-                option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
+              // filterOption={(input, option) =>
+              //   option.id.toLowerCase().indexOf(input.toLowerCase()) >= 0 ||
+              //   option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              // }
               allowClear
             >
               {dataMerchant?.map((p) => (
