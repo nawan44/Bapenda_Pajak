@@ -9,8 +9,9 @@ import PieStatus from "./pieStatus";
 function PieChart() {
   const [getEarnByCat, setGetEarnByCat] = useState()    
   // const [earnByCat, setEarnByCat] = useState(0);
-    const sThisMonth = moment().startOf("month").format("YYYY-MM-DD HH:mm:ss");
-    const eThisMonth = moment().endOf("month").format("YYYY-MM-DD HH:mm:ss");
+    const sThisMonth = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
+    const eThisMonth = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
+
 
     const earnByCat =
     getEarnByCat &&
@@ -18,7 +19,6 @@ function PieChart() {
       category: row[0].stringValue,
       total_value: row[1].stringValue,
     }));
-    console.log("earnByCat",earnByCat);
     useEffect(() => {
       getEarning();
       }, []);

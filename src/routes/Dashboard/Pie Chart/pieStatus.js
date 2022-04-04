@@ -67,15 +67,22 @@ let result = statusFilter && statusFilter.length && Object.values(statusFilter.r
   return a;
 }, {}));
 
+let resultStatus =[
+  {status :"green", total_value : 30 },
+  {status :"orange", total_value : 15 },
 
-  
+    {status :"red", total_value : 5 },
+
+]
+  console.log("result",result)
 const data = {
      labels: 
     //  ["Online", "2 Hari Off", "3 Hari Off"],
     [
-      result?.filter(o => o.status === "green") === "green" ? 'Online' : 'Online',
-      result?.filter(o => o.status === "orange") === "orange" ? '2 Hari Off' : '2 Hari Off',
-      result?.filter(o => o.status === "red") === "red" ? '3 Hari Off' : '3 Hari Off',
+      resultStatus?.filter(o => o.status === "green") === "green" ? 'Online' : 'Online',
+      resultStatus?.filter(o => o.status === "red") === "red" ? '3 Hari Off' : '3 Hari Off',
+      resultStatus?.filter(o => o.status === "orange") === "orange" ? '2 Hari Off' : '2 Hari Off',
+
     ],
     
      // labels: {
@@ -86,16 +93,16 @@ const data = {
     datasets: [
         {
             label:{render: ' value',},
-            data: result?.map(function(item) {
+            data: resultStatus?.map(function(item) {
                 return item['total_value'];
               }),
             borderColor: ['rgba(175,71,156,0.2)'], //merah
             borderWidth:5,
             backgroundColor: [
-              result?.filter(o => o.status === "green").length === 1 ? 'rgba(0,128,0)' : 'rgba(0,128,0)',
-              result?.filter(o => o.status === "orange").length === 1 ? 'rgba(255, 165, 0)' : 'rgba(255, 165, 0)',
-              result?.filter(o => o.status === "red").length === 1 ? 'rgba(0,255,0)' : 'rgba(0,255,0)',
-              
+              resultStatus?.filter(o => o.status === "green").length === 1 ? 'rgba(0,128,0)' : 'rgba(0,128,0)',
+              resultStatus?.filter(o => o.status === "red").length === 1 ? 'rgba(255,0,0)' : 'rgba(255,0,0)',
+              resultStatus?.filter(o => o.status === "orange").length === 1 ? 'rgba(255, 165, 0)' : 'rgba(255, 165, 0)',
+
             'rgba(232,99,132,1)', //merah
             'rgba(232,211,6,1)', // kuning
             'rgba(54,162,235,1)', //biru
@@ -163,7 +170,7 @@ const options = {
         },
         title: {
             display: true,
-            text: 'Status',
+            text: 'Status Device',
             color:'blue',
             font: {
                 size:34

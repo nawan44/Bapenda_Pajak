@@ -1,101 +1,36 @@
 import React, { useState, useEffect } from "react";
 import Widget from "components/Widget/index";
-import { Row, Col, Typography, Button, Form, Input, Select, Table } from "antd";
+import { Row, Col, Modal, Button, Form, Input, Select, Table } from "antd";
 import { DatePicker, Space } from "antd";
 import jwtDecode from "jwt-decode";
 import * as moment from "moment";
 import ConvertPdf from "./convertPdf";
 import ConvertExcel from "./convertExcel";
-import "../../assets/styles/table.css"
+import "../../assets/styles/table.css";
+import ReactJson from "react-json-view";
+// import JSONViewer from 'react-json-viewer';
+// import ReactJsonViewer from 'react-json-viewer-cool';
+// import readFileJson from "read-file-json"
+
+
+// Core viewer
+// import { Viewer } from "@react-pdf-viewer/core";
+
+// Plugins
+// import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
+
+// Import styles
+// import "@react-pdf-viewer/core/lib/styles/index.css";
+// import "@react-pdf-viewer/default-layout/lib/styles/index.css";
+
+// Create new plugin instance
+// const defaultLayoutPluginInstance = defaultLayoutPlugin();
 const Search = Input.Search;
 
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
 const FormItem = Form.Item;
 
-const columns = [
-  {
-    title: "Tanggal Transaksi",
-    dataIndex: "tgl_transaksi",
-  },
-  {
-    title: "NIK",
-    dataIndex: "nik",
-  },
-  {
-    title: "Nama Usaha",
-    dataIndex: "nama_usaha",
-  },
-  {
-    title: "Type Pajak",
-    dataIndex: "type_pajak",
-  },
-  {
-    title: "Nominal Transaksi",
-    dataIndex: "nominal_transaksi",
-  },
-  {
-    title: "Nominal Pajak",
-    dataIndex: "nominal_pajak",
-  },
-  {
-    title: "Nett",
-    dataIndex: "nominal_nett",
-  },
-];
-
-const dataDummy = [
-  {
-    key: "1",
-    tgl_transaksi: "1 Maret 2022",
-    nik: "32100000000000",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-  {
-    key: "2",
-    tgl_transaksi: "1 Februari 2022",
-    nik: "32100000000000",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-  {
-    key: "3",
-    tgl_transaksi: "15 Maret 2022",
-    nik: "32100000000000",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-  {
-    key: "4",
-    tgl_transaksi: "20 Februari 2022",
-    nik: "32100000000000",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-  {
-    key: "5",
-    tgl_transaksi: "30 Januari 2022",
-    nik: "32100000000000",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-];
 const dateFormat = "YYYY-MM-DD";
 
 const Transaction = () => {
@@ -107,6 +42,11 @@ const Transaction = () => {
   const [pageState, setPageState] = useState(1);
   const [changePage, setChangePage] = useState(1);
   const [click, setClick] = useState(false);
+
+  const [selectedRecord, setSelectedRecord] = useState();
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState("Content of the modal");
   const [fromDate, setFromDate] = useState(
     moment().subtract(1, "months").format("YYYY-MM-DD")
   );
@@ -124,8 +64,23 @@ const Transaction = () => {
     setFromDate("2000-01-01");
     setToDate("2000-01-02");
   };
-  console.log("nik", nik);
 
+  const renderRawdata = () => {
+    if (selectedRecord?.data_source === "PDC") {
+      return "PDF";
+    } else if (selectedRecord?.data_source === "Agent") {
+      return "PDF";
+    } else if (selectedRecord?.data_source === "POS APP") {
+      return "JSON";
+    } else if (selectedRecord?.data_source === "BDC") {
+      return "JSON";
+    } else if (selectedRecord?.data_source === "SDC") {
+      return "JSON";
+    } else {
+      return false;
+    }
+  };
+  console.log("Raw Data Render", renderRawdata());
   const onChange = (page) => {
     console.log("onchange page", page);
     setPageState(page.current);
@@ -177,7 +132,6 @@ const Transaction = () => {
     nik: item[0].stringValue,
   }));
 
-
   const dataFilter = responFilter?.map((row, index) => ({
     tgl_transaksi: row[1].stringValue,
     nik: row[8].stringValue,
@@ -186,7 +140,10 @@ const Transaction = () => {
     nominal_transaksi: formatter.format(row[5].stringValue),
     nominal_pajak: formatter.format(row[6].stringValue),
     nominal_nett: formatter.format(row[7].stringValue),
+    raw_data: row[9].stringValue,
+    data_source: row[10].stringValue,
   }));
+  console.log("responFilter", responFilter);
   function changeTypePajak(value) {
     setTypePajak(value);
   }
@@ -217,29 +174,23 @@ const Transaction = () => {
       return `https://api.raspi-geek.com/v1/transactions?page=${changePage}`;
     }
   };
-  
-
-
 
   const handleFinish = async (values, page) => {
     // if (click == true) {
     try {
       const decoded = jwtDecode(localStorage.token);
       const apiKey = decoded["api-key"];
-      const response = await fetch(
-        url(),
-        {
-          method: "POST",
-          headers: {
-            "x-api-key": `${apiKey}`,
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            startdate: fromDate,
-            enddate: toDate,
-          }),
-        }
-      );
+      const response = await fetch(url(), {
+        method: "POST",
+        headers: {
+          "x-api-key": `${apiKey}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          startdate: fromDate,
+          enddate: toDate,
+        }),
+      });
       const res = await response.json();
       setResponFilter(res.Records);
       setFormOk(true);
@@ -262,6 +213,97 @@ const Transaction = () => {
     setNik(null);
     setTypePajak(null);
   };
+  const handleOk = () => {
+    setModalText("The modal will be closed after two seconds");
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setVisible(false);
+  };
+  const showModal = () => {
+    setVisible(true);
+  };
+  const columns = [
+    {
+      title: "Tanggal Transaksi",
+      dataIndex: "tgl_transaksi",
+    },
+    {
+      title: "NIK",
+      dataIndex: "nik",
+    },
+    {
+      title: "Nama Usaha",
+      dataIndex: "nama_usaha",
+    },
+    {
+      title: "Type Pajak",
+      dataIndex: "type_pajak",
+    },
+    {
+      title: "Nominal Transaksi",
+      dataIndex: "nominal_transaksi",
+    },
+    {
+      title: "Nominal Pajak",
+      dataIndex: "nominal_pajak",
+    },
+    {
+      title: "Nett",
+      dataIndex: "nominal_nett",
+    },
+    {
+      title: "Raw Data",
+      dataIndex: "aksi",
+      render: (text, record) => {
+        return (
+          <Button
+            // icon={<FormOutlined />}
+            id={record.id}
+            onClick={(e) => {
+              showModal();
+              setSelectedRecord(record);
+              console.log("console", record);
+            }}
+            size="large"
+          >
+            Raw Data
+          </Button>
+        );
+      },
+    },
+    // {
+    //   title: 'PDF Data',
+    //   dataIndex: 'aksi',
+    //   render : (text, record) => {
+    //     return(
+    //     <Button
+    //     // icon={<FormOutlined />}
+    //     id={record.id}
+    //     onClick={(e )=> {
+    //       showModal()
+    //       setSelectedRecord(record)
+    //       console.log("console",  record)
+
+    //     }
+
+    //     }
+    //     size="large"
+
+    //   >PDF Data
+    //      </Button>
+    //     )
+    //   }
+    // }
+  ];
+ 
+  console.log("selectedRecord", selectedRecord);
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -306,7 +348,7 @@ const Transaction = () => {
 
           <FormItem label="NIK / NPWP" className="gx-form-item-one-third">
             <Select
-            id={"select"} 
+              id={"select"}
               value={nik}
               showSearch
               style={{ width: 350 }}
@@ -325,9 +367,7 @@ const Transaction = () => {
               allowClear
             >
               {dataMerchant?.map((p) => (
-                <Option key={p.nik} >
-                  {p.nik}
-                </Option>
+                <Option key={p.nik}>{p.nik}</Option>
               ))}
             </Select>
           </FormItem>
@@ -362,11 +402,14 @@ const Transaction = () => {
           <div className="gx-table-responsive">
             <Row style={{ float: "right" }}>
               {/* <ConvertPdf dataFilter={dataFilter} /> */}
-              <ConvertExcel dataFilter={dataFilter} 
-              typePajak ={typePajak}
-              nik = {nik}
-              changePage ={changePage}
-              fromDate={fromDate} toDate={toDate} />
+              <ConvertExcel
+                dataFilter={dataFilter}
+                typePajak={typePajak}
+                nik={nik}
+                changePage={changePage}
+                fromDate={fromDate}
+                toDate={toDate}
+              />
             </Row>
 
             <Table
@@ -376,8 +419,7 @@ const Transaction = () => {
               bordered={false}
               size="small"
               pagination={{
-                showTotal: (total, range, page) =>
-                  `Total: ${total}`,
+                showTotal: (total, range, page) => `Total: ${total}`,
 
                 current: pageState,
                 total: totalRow,
@@ -387,6 +429,40 @@ const Transaction = () => {
             />
           </div>
         )}
+        {renderRawdata() === "JSON" && (
+          <Modal
+            title="Raw Data"
+            visible={visible}
+            onOk={handleOk}
+            confirmLoading={confirmLoading}
+            onCancel={handleCancel}
+          >
+            {/* <ReactJson src={selectedRecord?.raw_data} /> */}
+            <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/>
+
+            {/* <ReactJsonViewer data={selectedRecord?.raw_data} /> */}
+
+            {/* <JSONViewer
+        json={selectedRecord?.raw_data}
+      /> */}
+          </Modal>
+        )}
+
+        {renderRawdata() === "PDF" && (
+          <Modal
+            title="Raw Data"
+            visible={visible}
+            onOk={handleOk}
+            confirmLoading={confirmLoading}
+            onCancel={handleCancel}
+          >
+      {/* <Document file={selectedRecord?.raw_data} /> */}
+      {/* <iframe src={selectedRecord?.raw_data} ></iframe> */}
+      <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/>
+     </Modal>
+        )}
+
+      
       </Widget>
     </>
   );

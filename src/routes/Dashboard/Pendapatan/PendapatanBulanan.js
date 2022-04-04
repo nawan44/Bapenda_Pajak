@@ -217,7 +217,6 @@ const PendapatanBulanan = (props) => {
       setEarningLastMonthParkir(0);
     }
   };
-  console.log("earningLastMonth", earningLastMonth);
 
   const total = Number(moneyLastMonth) - Number(moneyThisMonth);
 
