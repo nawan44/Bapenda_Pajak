@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Card, Steps, Button, Select, message, Typography, Divider } from "antd";
+import { Form, Input, Card,  Button, Select, message, Typography, Divider } from "antd";
 import { useHistory } from "react-router-dom";
-// import { StepPanel } from "./stepPanel";
-// import { options } from "less";
 import DataProvinsi from "../RegisterDeviceAgent/dataProvinsi"
 import DataKabupaten from "../RegisterDeviceAgent/dataKabupaten";
 import DataKecamatan from "../RegisterDeviceAgent/dataKecamatan";
@@ -13,16 +11,11 @@ import jwtDecode from "jwt-decode";
 
 const { Option } = Select;
 
-const { Step } = Steps;
-
-
 function EditDeviceAgent(props) {
     const history = useHistory();
     const { selectedRecord, setSelectedRecord, listData, setListData, aksiList, itemList } = props
     const alamatTrim = itemList.alamat
     const pieces = alamatTrim.split(",")
-
-
     const provTrim = pieces[pieces.length - 1]
     const kabTrim = pieces[pieces.length - 2]
     const kecTrim = pieces[pieces.length - 3]
@@ -53,9 +46,6 @@ function EditDeviceAgent(props) {
     const [errorAlamat, setErrorAlamat] = useState(false);
     const [errorSumberData, setErrorSumberData] = useState(false);
     const [errorTypePajak, setErrorTypePajak] = useState(false);
-
-    const [current, setCurrent] = useState(0);
-
     const [kabKotaId, setKabKotaId] = useState(null)
     const [kab, setKab] = useState(kabTrim)
     const [searchKabKotaId, setSearchKabKotaId] = useState(null)
@@ -69,15 +59,7 @@ function EditDeviceAgent(props) {
     const [searchKelId, setSearchKelId] = useState(null)
 
     const [alamatDetil, setAlamatDetil] = useState(alamatDetTrim)
-    // const [gantiProv, setGantiProv] = useState(prov)
-    // const [gantiKab, setGantiKab] = useState(kab)
-    // const [gantiKec, setGantiKec] = useState(kec)
-    // const [gantiKel, setGantiKel] = useState(kel)
     const [gantiAlamat, setGantiAlamat] = useState(alamatDetil)
-
-
-    // const [alamatLengkap, setAlamatLengkap] = useState()
-
     const [regisDeviceAgent, setRegisDeviceAgent] = useState(
         {
             // merchant_id: itemList ? itemList.device_id : null,
@@ -93,37 +75,6 @@ function EditDeviceAgent(props) {
         }
     );
 
-//   "jalan,  Pelabuhan Dagang,  Tungkal Ulu,  Kabupaten Tanjung Jabung Barat, Sumatera Barat"
-
-
-    // useEffect(
-    //     () => {
-    //         setGantiProv(
-    //             prov);
-    //     },
-    //     [prov]
-    // );
-    // useEffect(
-    //     () => {
-    //         setGantiKab(
-    //             kab);
-    //     },
-    //     [kab]
-    // );
-    // useEffect(
-    //     () => {
-    //         setGantiKec(
-    //             kec);
-    //     },
-    //     [kec]
-    // );
-    // useEffect(
-    //     () => {
-    //         setGantiKel(
-    //             kel);
-    //     },
-    //     [kel]
-    // );
     useEffect(
         () => {
             setGantiAlamat(
@@ -209,15 +160,6 @@ function EditDeviceAgent(props) {
         },
         [provinceId, kabKotaId, kecId, kelId]
     );
-    // useEffect(
-    //     () => {
-    //         if (searchProvinceId !== searchKabKotaId?.slice(0, -2)) {
-    //             setKab("");
-    //         }
-    //     },
-    //     [searchProvinceId], [searchKabKotaId]
-    //     );
-
     useEffect(
         () => {
             if (dataSumber) {
@@ -253,33 +195,11 @@ function EditDeviceAgent(props) {
                 "   ❌ Email Tidak Boleh Kosong"
             );
         }
-        // else if ( regisDeviceAgent.email !== /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/ ) {
-        //     setErrorValidEmail(
-        //         "   ❌ Tidak Sesuai Format Email"
-        //     );
-        // }
-
         else if (regisDeviceAgent.nama_usaha === "") {
             setErrorUsaha(
                 "   ❌ Brand Usaha Tidak Boleh Kosong"
             );
         }
-        // else if (searchProvinceId?.toString() !== searchKabKotaId?.toString().slice(0, -2)) {
-        //     setErrorKab(
-        //         "   ❌ Harus Kabupaten / Kota Didalam Provinsi Yang Benar"
-        //     );
-        // }
-        // else if (searchKabKotaId?.toString() !== searchKecId?.toString().slice(0, -3) || searchProvinceId?.toString() !== searchKecId?.toString().slice(0, -5)) {
-        //     setErrorKec(
-        //         "   ❌ Harus Kecamatan Didalam Kabupaten Dan Provinsi Yang Benar"
-        //     );
-        // }
-        // else if (searchKecId?.toString() !== searchKelId?.toString().slice(0, -3) || searchKabKotaId?.toString() !== searchKelId?.toString().slice(0, -6) || searchProvinceId?.toString() !== searchKelId?.toString().slice(0, -8)) {
-        //     setErrorKel(
-        //         "   ❌ Harus Kelurahan Didalam Kecamatan, Kabupaten Dan Provinsi Yang Benar"
-        //     );
-        // }
-
         else if (prov === ""){
             setErrorProv(
                 "   ❌ Provinsi Tidak Boleh Kosong"
@@ -501,19 +421,12 @@ function EditDeviceAgent(props) {
                                 <h4 style={{ margin: "30px 0 10px 0", color: "#53586D", textAlign: "left" }}>Active</h4>
                                 <Switch
                                     name="isactive"
-                                    // defaultChecked={true}
                                     style={{ textAlign: "left" }}
                                     checked={selectActive}
                                     onChange={handleIsActive}
-                                // defaultChecked={e}
-                                // onChange={handleIsActive} 
-
                                 /></div>
                         </div>
-
-
-
-                        <div style={{ textAlign: "center" }}>
+                       <div style={{ textAlign: "center" }}>
                             <Button type="primary"
                                 onClick={() => form.submit()}
                             >Submit</Button>
