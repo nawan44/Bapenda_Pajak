@@ -77,7 +77,6 @@ const SamplePage = () => {
         <GrafikPendapatanBulan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
       </Row>
       <Row className="container-dashboard3">
-
         <JumlahTransaksiHarian latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
         <JumlahTransaksiBulanan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
         <JumlahTransaksiTahunan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />

@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    margin-top: 20px;
+    margin-top: 25px;
 
 }
 .container-dashboard3{
@@ -28,8 +28,7 @@
 .container-dashboard5{
     width: 100%;
     display: flex;
-    margin-top: 40px;
-
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -43,7 +42,7 @@
         width: 100%;
         height: 100%;
         display: flex;
-        margin-top: 20px;
+        margin-top: 25px;
     
     }
     .container-dashboard3{
@@ -62,8 +61,7 @@
     .container-dashboard5{
         width: 100%;
         display: flex;
-        margin-top: 40px;
-    
+        margin-top: 15px;
         text-align: center;
     }
 
@@ -81,7 +79,7 @@
         width: 100%;
         height: 100%;
         display: flex;
-        margin-top: 20px;
+        margin-top: 25px;
     
     }
     .container-dashboard3{
@@ -100,8 +98,7 @@
     .container-dashboard5{
         width: 100%;
         display: flex;
-        margin-top: 40px;
-    
+        margin-top: 15px;
         text-align: center;
     }
     @media(min-width: 600px) and (max-width: 767px) {
@@ -144,8 +141,7 @@
         .container-dashboard5{
             width: 100%;
             display: flex;
-            margin-top: 40px;
-        
+            margin-top: 15px;
             text-align: center;
         }
     }
@@ -160,7 +156,7 @@
             width: 100%;
             height: 100%;
             display: flex;
-            margin-top: 20px;
+            margin-top: 25px;
         
         }
         .container-dashboard3{
@@ -179,8 +175,7 @@
         .container-dashboard5{
             width: 100%;
             display: flex;
-            margin-top: 40px;
-        
+            margin-top: 15px;
             text-align: center;
         }
     }

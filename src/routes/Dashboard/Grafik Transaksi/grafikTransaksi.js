@@ -17,6 +17,7 @@ import "moment/locale/id";
 import "../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
 import { Select, Typography, Col, Row } from "antd";
+import { DatePicker, Space } from 'antd';
 
 const { Option } = Select;
 
@@ -147,6 +148,8 @@ const GrafikTransaksi = (props) => {
   const [jenisChart, setJenisChart] = useState("Daily");
 
   const [monthly, setMonthly] = useState();
+  const [tahunMonthly, setTahunMonthly] = useState(moment().format("YYYY"));
+  
   const [yearly, setYearly] = useState();
 
   useEffect(() => {
@@ -180,7 +183,7 @@ const GrafikTransaksi = (props) => {
       "content-type": "application/json",
     };
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/monthly?year=2022",
+      `https://api.raspi-geek.com/v1/monthly?year=${tahunMonthly}`,
 
       { method: "GET", headers }
     );
@@ -208,16 +211,21 @@ const GrafikTransaksi = (props) => {
   //   }),
   //   {}
   // );
-  console.log("tahun", tahun);
+  console.log("tahunMonthly", tahunMonthly);
   const handleChangeSelect = (value) => {
     setJenisChart(value);
   };
-
+  const handleTahunMonthly = (date, dateString) => {
+    setTahunMonthly(dateString);
+  };
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
   });
-
+  const disabledDate =(current) => {
+    let customDate = "2022";
+    return current && current < moment(customDate, "YYYY");
+  }
   return (
     <Widget
       styleName="gx-order-history"
@@ -244,9 +252,13 @@ const GrafikTransaksi = (props) => {
               <Option value="Monthly">Monthly</Option>
             </Select>
           </div>
-          <div style={{ width: "35%", float: "left", paddingTop: "15px" }}>
+          <div style={{ width: "35%", float: "left", paddingTop: "7px" }}>
             {jenisChart === "Monthly" ? (
-              <div style={{ fontSize: "14px", fontWeight: "bold" }}>2022</div>
+                  <DatePicker
+                  disabledDate={disabledDate} 
+                  defaultValue={moment('2022', 'YYYY')} 
+                   disabled
+                   onChange={handleTahunMonthly} picker="year" />
             ) : (
               <div></div>
             )}
