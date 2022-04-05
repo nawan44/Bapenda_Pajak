@@ -4770,13 +4770,6 @@ create-react-class@^15.5.2, create-react-class@^15.5.3:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
-cross-fetch@^3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
-  integrity sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
-  dependencies:
-    node-fetch "2.6.7"
-
 cross-spawn@7.0.3, cross-spawn@^7.0.0, cross-spawn@^7.0.2:
   version "7.0.3"
   resolved "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz"
@@ -6480,38 +6473,20 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "2.1.1"
 
-fbemitter@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/fbemitter/-/fbemitter-3.0.0.tgz#00b2a1af5411254aab416cd75f9e6289bee4bff3"
-  integrity sha512-KWKaceCwKQU0+HPoop6gn4eOHk50bBv/VxjJtGMfwmJt3D29JpN4H4eisCtIPA+a8GVBam+ldMMpMjJUvpDyHw==
+fbemitter@^2.0.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/fbemitter/-/fbemitter-2.1.1.tgz#523e14fdaf5248805bb02f62efc33be703f51865"
+  integrity sha1-Uj4U/a9SSIBbsC9i78M75wP1GGU=
   dependencies:
-    fbjs "^3.0.0"
+    fbjs "^0.8.4"
 
-fbjs-css-vars@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
-  integrity sha512-b2XGFAFdWZWg0phtAWLHCk836A1Xann+I+Dgd3Gk64MHKZO44FfoD1KxyvbSh0qZsIoXQGGlVztIY+oitJPpRQ==
-
-fbjs@^0.8.1, fbjs@^0.8.15:
+fbjs@^0.8.0, fbjs@^0.8.1, fbjs@^0.8.15, fbjs@^0.8.4:
   version "0.8.18"
   resolved "https://registry.npmjs.org/fbjs/-/fbjs-0.8.18.tgz"
   integrity sha512-EQaWFK+fEPSoibjNy8IxUtaFOMXcWsY0JaVrQoZR9zC8N2Ygf9iDITPWjUTVIax95b6I742JFLqASHfsag/vKA==
   dependencies:
     core-js "^1.0.0"
     isomorphic-fetch "^2.1.1"
-    loose-envify "^1.0.0"
-    object-assign "^4.1.0"
-    promise "^7.1.1"
-    setimmediate "^1.0.5"
-    ua-parser-js "^0.7.30"
-
-fbjs@^3.0.0, fbjs@^3.0.1:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-3.0.4.tgz#e1871c6bd3083bac71ff2da868ad5067d37716c6"
-  integrity sha512-ucV0tDODnGV3JCnnkmoszb5lf4bNpzjv80K41wd4k798Etq+UYD0y0TIfalLjZoKgjive6/adkRnszwapiDgBQ==
-  dependencies:
-    cross-fetch "^3.1.5"
-    fbjs-css-vars "^1.0.0"
     loose-envify "^1.0.0"
     object-assign "^4.1.0"
     promise "^7.1.1"
@@ -6670,13 +6645,13 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-flux@^4.0.1:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/flux/-/flux-4.0.3.tgz#573b504a24982c4768fdfb59d8d2ea5637d72ee7"
-  integrity sha512-yKAbrp7JhZhj6uiT1FTuVMlIAT1J4jqEyBpFApi1kxpGZCvacMVc/t1pMQyotqHhAgvoE3bNvAykhCo2CLjnYw==
+flux@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/flux/-/flux-3.1.3.tgz#d23bed515a79a22d933ab53ab4ada19d05b2f08a"
+  integrity sha1-0jvtUVp5oi2TOrU6tK2hnQWy8Io=
   dependencies:
-    fbemitter "^3.0.0"
-    fbjs "^3.0.1"
+    fbemitter "^2.0.0"
+    fbjs "^0.8.0"
 
 follow-redirects@^1.0.0, follow-redirects@^1.14.0:
   version "1.14.9"
@@ -6739,15 +6714,6 @@ from2@^2.1.0:
   dependencies:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
-
-fs-extra@^10.0.0:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.1.tgz#27de43b4320e833f6867cc044bfce29fdf0ef3b8"
-  integrity sha512-NbdoVMZso2Lsrn/QwLXOy6rm0ufY2zEOKCDzJR/0kBsb0E6qed0P3iYK+Ath3BfvXEeu4JhEtXLgILx5psUfag==
-  dependencies:
-    graceful-fs "^4.2.0"
-    jsonfile "^6.0.1"
-    universalify "^2.0.0"
 
 fs-extra@^7.0.0:
   version "7.0.1"
@@ -8555,11 +8521,6 @@ json-stringify-safe@^5.0.1:
   resolved "https://registry.npmjs.org/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
-json-view@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/json-view/-/json-view-0.4.0.tgz#f6b1d507499b1873d1bc28963abf345b04459e63"
-  integrity sha1-9rHVB0mbGHPRvCiWOr80WwRFnmM=
-
 json2mq@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/json2mq/-/json2mq-0.2.0.tgz"
@@ -8585,11 +8546,6 @@ json5@^2.1.2:
   integrity sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==
   dependencies:
     minimist "^1.2.5"
-
-json5@^2.2.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
-  integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
 
 jsonfile@^4.0.0:
   version "4.0.0"
@@ -11699,16 +11655,6 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.10.tgz"
   integrity sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
 
-react-extreme-json-view@^1.24.0:
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/react-extreme-json-view/-/react-extreme-json-view-1.24.0.tgz#bb1829c998641a0bd01170b432da08a99ae1eb2b"
-  integrity sha512-YdQ803F3jkzta2rLXDh0gAaGh7IpfXJ9rA/LXy1jw6MtPdOT4Ae0jgZn5mx5G6VOuBIG/4Nfm+BqeAhkf5Wvmg==
-  dependencies:
-    flux "^4.0.1"
-    react-base16-styling "^0.6.0"
-    react-lifecycles-compat "^3.0.4"
-    react-textarea-autosize "^8.3.2"
-
 react-fast-compare@^2.0.0:
   version "2.0.4"
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-2.0.4.tgz"
@@ -11819,20 +11765,15 @@ react-is@^17.0.1, react-is@^17.0.2:
   resolved "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-json-view@^1.21.3:
-  version "1.21.3"
-  resolved "https://registry.yarnpkg.com/react-json-view/-/react-json-view-1.21.3.tgz#f184209ee8f1bf374fb0c41b0813cff54549c475"
-  integrity sha512-13p8IREj9/x/Ye4WI/JpjhoIwuzEgUAtgJZNBJckfzJt1qyh24BdTm6UQNGnyTq9dapQdrqvquZTo3dz1X6Cjw==
+react-json-view@1.19.1:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/react-json-view/-/react-json-view-1.19.1.tgz#95d8e59e024f08a25e5dc8f076ae304eed97cf5c"
+  integrity sha512-u5e0XDLIs9Rj43vWkKvwL8G3JzvXSl6etuS5G42a8klMohZuYFQzSN6ri+/GiBptDqlrXPTdExJVU7x9rrlXhg==
   dependencies:
-    flux "^4.0.1"
+    flux "^3.1.3"
     react-base16-styling "^0.6.0"
     react-lifecycles-compat "^3.0.4"
-    react-textarea-autosize "^8.3.2"
-
-react-json-viewer-cool@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/react-json-viewer-cool/-/react-json-viewer-cool-2.0.0.tgz#dbce44305899b083f76120eaa14e9f9c96a140b8"
-  integrity sha512-2bCC9szMbh9PEK5WmAv2253MwjWdK/58RCleqIqvtVjoFFCtWRPXKbe+uK6cxxGRrtCPFLJE+4H1+T+pUQltLQ==
+    react-textarea-autosize "^6.1.0"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -12058,14 +11999,12 @@ react-stickies@^0.0.16:
     moment "^2.17.1"
     react-grid-layout "^0.14.0"
 
-react-textarea-autosize@^8.3.2:
-  version "8.3.3"
-  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-8.3.3.tgz#f70913945369da453fd554c168f6baacd1fa04d8"
-  integrity sha512-2XlHXK2TDxS6vbQaoPbMOfQ8GK7+irc2fVK6QFIcC8GOnH3zI/v481n+j1L0WaPVvKxwesnY93fEfH++sus2rQ==
+react-textarea-autosize@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/react-textarea-autosize/-/react-textarea-autosize-6.1.0.tgz#df91387f8a8f22020b77e3833c09829d706a09a5"
+  integrity sha512-F6bI1dgib6fSvG8so1HuArPUv+iVEfPliuLWusLF+gAKz0FbB4jLrWUrTAeq1afnPT2c9toEZYUdz/y1uKMy4A==
   dependencies:
-    "@babel/runtime" "^7.10.2"
-    use-composed-ref "^1.0.0"
-    use-latest "^1.0.0"
+    prop-types "^15.6.0"
 
 react-transition-group@2.9.0:
   version "2.9.0"
@@ -12134,21 +12073,6 @@ reactcss@^1.2.0:
   integrity sha512-KiwVUcFu1RErkI97ywr8nvx8dNOpT03rbnma0SSalTYjkrPYaEajR4a/MRt6DZ46K6arDRbWMNHF+xH7G7n/8A==
   dependencies:
     lodash "^4.0.1"
-
-read-file-json@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/read-file-json/-/read-file-json-1.1.0.tgz#346c2cf913d05ba2e326b015506cb7393959452d"
-  integrity sha512-j9SWaQEuy06s6i045yseZCFFXZvEy7GhAOSr5Y8DC1WGl/FAIQML22p+/XVllH/qIQKp+62rjFx1NhvKysWdAQ==
-  dependencies:
-    json5 "^2.2.0"
-    read-file-string "^1.1.2"
-
-read-file-string@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/read-file-string/-/read-file-string-1.1.2.tgz#b4092bdbc0cf7bd954b8063a9caf5f4be80179ae"
-  integrity sha512-nwrwr7S39C3CRbEyEYRaUPNj2jzq3elpHyupo+9s/N5qkYYL4j2W7Sh4P7lZSFVsYdkK4ufMZ0Htq0o/UWI++g==
-  dependencies:
-    fs-extra "^10.0.0"
 
 read-pkg-up@^7.0.1:
   version "7.0.1"
@@ -14116,23 +14040,6 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
-
-use-composed-ref@^1.0.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/use-composed-ref/-/use-composed-ref-1.2.1.tgz#9bdcb5ccd894289105da2325e1210079f56bf849"
-  integrity sha512-6+X1FLlIcjvFMAeAD/hcxDT8tmyrWnbSPMU0EnxQuDLIxokuFzWliXBiYZuGIx+mrAMLBw0WFfCkaPw8ebzAhw==
-
-use-isomorphic-layout-effect@^1.0.0:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.2.tgz#497cefb13d863d687b08477d9e5a164ad8c1a6fb"
-  integrity sha512-49L8yCO3iGT/ZF9QttjwLF/ZD9Iwto5LnH5LmEdk/6cFmXddqi2ulF0edxTwjj+7mqvpVVGQWvbXZdn32wRSHA==
-
-use-latest@^1.0.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/use-latest/-/use-latest-1.2.0.tgz#a44f6572b8288e0972ec411bdd0840ada366f232"
-  integrity sha512-d2TEuG6nSLKQLAfW3By8mKr8HurOlTkul0sOpxbClIv4SQ4iOd7BYr7VIzdbktUCnv7dua/60xzd8igMU6jmyw==
-  dependencies:
-    use-isomorphic-layout-effect "^1.0.0"
 
 use@^3.1.0:
   version "3.1.1"

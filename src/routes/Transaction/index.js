@@ -7,25 +7,8 @@ import * as moment from "moment";
 import ConvertPdf from "./convertPdf";
 import ConvertExcel from "./convertExcel";
 import "../../assets/styles/table.css";
-// import ReactJson from "react-json-view";
-// import JSONViewer from 'react-json-viewer';
-// import ReactJsonViewer from 'react-json-viewer-cool';
-// import readFileJson from "read-file-json"
-import ReactJson from 'react-extreme-json-view'
+import ReactJs from "./reactjs";
 
-
-// Core viewer
-// import { Viewer } from "@react-pdf-viewer/core";
-
-// Plugins
-// import { defaultLayoutPlugin } from "@react-pdf-viewer/default-layout";
-
-// Import styles
-// import "@react-pdf-viewer/core/lib/styles/index.css";
-// import "@react-pdf-viewer/default-layout/lib/styles/index.css";
-
-// Create new plugin instance
-// const defaultLayoutPluginInstance = defaultLayoutPlugin();
 const Search = Input.Search;
 
 const { RangePicker } = DatePicker;
@@ -43,7 +26,6 @@ const Transaction = () => {
   const [pageState, setPageState] = useState(1);
   const [changePage, setChangePage] = useState(1);
   const [click, setClick] = useState(false);
-
   const [selectedRecord, setSelectedRecord] = useState();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -65,7 +47,6 @@ const Transaction = () => {
     setFromDate("2000-01-01");
     setToDate("2000-01-02");
   };
-
   const renderRawdata = () => {
     if (selectedRecord?.data_source === "PDC") {
       return "PDF";
@@ -304,7 +285,6 @@ const Transaction = () => {
     // }
   ];
  
-  console.log("selectedRecord", selectedRecord);
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -438,9 +418,10 @@ const Transaction = () => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-            <ReactJson src="./json2.json"/>
-            {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
-            {/* <iframe src={selectedRecord?.raw_data} frameborder="0" width="300px" height="400px"/> */}
+     {/* <ReactJs rawData ={selectedRecord?.raw_data} /> */}
+
+               {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
+            <iframe src={selectedRecord?.raw_data} frameborder="0" width="300px" height="400px"/>
 
             {/* <ReactJsonViewer data={selectedRecord?.raw_data} /> */}
             {/* {JSON.stringify(selectedRecord?.raw_data, null, 2) } */}
