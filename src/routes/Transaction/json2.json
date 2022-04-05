@@ -1,0 +1,110 @@
+
+
+// {
+// merchant_id: "4e3afaea-3e4c-41a0-8050-12570106d6e7",
+//   type: "receipts.update",
+//   created_at: "2022-04-01T08:40:15.289Z",
+//   receipts: [
+//     {
+//       receipt_number: "3-1159",
+//       note: null,
+//       receipt_type: "SALE",
+//       refund_for: null,
+//       order: null,
+//       created_at: "2022-04-01T08:40:09.000Z",
+//       updated_at: "2022-04-01T08:40:09.000Z",
+//       source: "point of sale",
+//       receipt_date: "2022-04-01T07:52:09.000Z",
+//       cancelled_at: null,
+//       total_money: 1.3e4,
+//       total_tax: 1182,
+//       points_earned: 0,
+//       points_deducted: 0,
+//       points_balance: 0,
+//       customer_id: null,
+//       total_discount: 0,
+//       employee_id: "1657df19-abbb-43eb-9c80-4f7b776db553",
+//       store_id: "edf18320-b414-4bbb-98dc-28053013813d",
+//       pos_device_id: "1a12154c-a5cd-4b95-a16a-54e19b2a9fe1",
+//       dining_option: null,
+//       total_discounts: [],
+//       total_taxes: [
+//         {
+//           id: "9e26ca91-6e92-4b9a-b50a-8b21bc2428c7",
+//           type: "INCLUDED",
+//           name: "PPN",
+//           rate: 1e1,
+//           money_amount: 1182
+//         }
+//       ],
+//       tip: 0,
+//       surcharge: 0,
+//       line_items: [
+//         {
+//           id: "9553152a-9d99-fbd1-f6a3-2ab8d9b1516c",
+//           item_id: "a1f52bfe-2c15-4ada-bc44-c4a11d5528d7",
+//           variant_id: "dda505bf-1a8c-475b-a3ab-7649756322fa",
+//           item_name: "Perkedel",
+//           variant_name: null,
+//           sku: "10004",
+//           quantity: 1,
+//           price: 4e3,
+//           gross_total_money: 4e3,
+//           total_money: 4e3,
+//           cost: 1.5e3,
+//           cost_total: 1.5e3,
+//           line_note: null,
+//           line_taxes: [
+//             {
+//               money_amount: 364,
+//               id: "9e26ca91-6e92-4b9a-b50a-8b21bc2428c7",
+//               type: "INCLUDED",
+//               name: "PPN",
+//               rate: 1e1
+//             }
+//           ],
+//           total_discount: 0,
+//           line_discounts: [],
+//           line_modifiers: []
+//         },
+//         {
+//           id: "9553152a-9d99-fbd1-f6a3-2ab8d9b1516d",
+//           item_id: "5ab3b8af-f89d-47d5-b888-3505f6fce986",
+//           variant_id: "634f0f34-e950-4c74-912b-6a3ce4ed245c",
+//           item_name: "Telor Dadar",
+//           variant_name: null,
+//           sku: "10005",
+//           quantity: 1,
+//           price: 9e3,
+//           gross_total_money: 9e3,
+//           total_money: 9e3,
+//           cost: 5e3,
+//           cost_total: 5e3,
+//           line_note: null,
+//           line_taxes: [
+//             {
+//               money_amount: 818,
+//               id: "9e26ca91-6e92-4b9a-b50a-8b21bc2428c7",
+//               type: "INCLUDED",
+//               name: "PPN",
+//               rate: 1e1
+//             }
+//           ],
+//           total_discount: 0,
+//           line_discounts: [],
+//           line_modifiers: []
+//         }
+//       ],
+//       payments: [
+//         {
+//           payment_type_id: "d0483737-585f-46b2-b27d-dcdfca5a15c8",
+//           name: "Cash",
+//           type: "CASH",
+//           money_amount: 1.3e4,
+//           paid_at: "2022-04-01T07:52:09.000Z",
+//           payment_details: null
+//         }
+//       ]
+//     }
+//   ]
+// }

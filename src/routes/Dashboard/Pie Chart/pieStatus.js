@@ -48,7 +48,7 @@ listDevice && listDevice.map((row) => ({
   status: row[9].stringValue,
 })); 
 
-const greenStatus = statusFilter?.find(o => o.status === "green").length;
+const greenStatus = statusFilter?.find(o => o.status === "green");
 const orangeStatus = statusFilter?.filter(o => o.status === "orange");
 const redStatus = statusFilter?.filter(o => o.status === "red");
 
@@ -99,9 +99,9 @@ const data = {
             borderColor: ['rgba(175,71,156,0.2)'], //merah
             borderWidth:5,
             backgroundColor: [
-              resultStatus?.filter(o => o.status === "green").length === 1 ? 'rgba(0,128,0)' : 'rgba(0,128,0)',
-              resultStatus?.filter(o => o.status === "red").length === 1 ? 'rgba(255,0,0)' : 'rgba(255,0,0)',
-              resultStatus?.filter(o => o.status === "orange").length === 1 ? 'rgba(255, 165, 0)' : 'rgba(255, 165, 0)',
+              resultStatus?.filter(o => o.status === "green")?.length === 1 ? 'rgba(0,128,0)' : 'rgba(0,128,0)',
+              resultStatus?.filter(o => o.status === "red")?.length === 1 ? 'rgba(255,0,0)' : 'rgba(255,0,0)',
+              resultStatus?.filter(o => o.status === "orange")?.length === 1 ? 'rgba(255, 165, 0)' : 'rgba(255, 165, 0)',
 
             'rgba(232,99,132,1)', //merah
             'rgba(232,211,6,1)', // kuning

@@ -11699,6 +11699,16 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.10.tgz"
   integrity sha512-mKR90fX7Pm5seCOfz8q9F+66VCc1PGsWSBxKbITjfKVQHMNF2zudxHnMdJiB1fRCb+XsbQV9sO9DCkgsMQgBIA==
 
+react-extreme-json-view@^1.24.0:
+  version "1.24.0"
+  resolved "https://registry.yarnpkg.com/react-extreme-json-view/-/react-extreme-json-view-1.24.0.tgz#bb1829c998641a0bd01170b432da08a99ae1eb2b"
+  integrity sha512-YdQ803F3jkzta2rLXDh0gAaGh7IpfXJ9rA/LXy1jw6MtPdOT4Ae0jgZn5mx5G6VOuBIG/4Nfm+BqeAhkf5Wvmg==
+  dependencies:
+    flux "^4.0.1"
+    react-base16-styling "^0.6.0"
+    react-lifecycles-compat "^3.0.4"
+    react-textarea-autosize "^8.3.2"
+
 react-fast-compare@^2.0.0:
   version "2.0.4"
   resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-2.0.4.tgz"
@@ -11823,11 +11833,6 @@ react-json-viewer-cool@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-json-viewer-cool/-/react-json-viewer-cool-2.0.0.tgz#dbce44305899b083f76120eaa14e9f9c96a140b8"
   integrity sha512-2bCC9szMbh9PEK5WmAv2253MwjWdK/58RCleqIqvtVjoFFCtWRPXKbe+uK6cxxGRrtCPFLJE+4H1+T+pUQltLQ==
-
-react-json-viewer@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/react-json-viewer/-/react-json-viewer-3.0.1.tgz#71f10c86b663446cef8effec4257276258b44b9a"
-  integrity sha512-3cOhAiQs29aEO2AvMAZZK0Gowf8zgsdOJP4by3ay70fAmKNvl7Eq4L6+ZQiTjtzePlZfg9X5MdBEgVLsWZuw1w==
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"

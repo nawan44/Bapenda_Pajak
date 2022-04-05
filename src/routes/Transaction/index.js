@@ -7,10 +7,11 @@ import * as moment from "moment";
 import ConvertPdf from "./convertPdf";
 import ConvertExcel from "./convertExcel";
 import "../../assets/styles/table.css";
-import ReactJson from "react-json-view";
+// import ReactJson from "react-json-view";
 // import JSONViewer from 'react-json-viewer';
 // import ReactJsonViewer from 'react-json-viewer-cool';
 // import readFileJson from "read-file-json"
+import ReactJson from 'react-extreme-json-view'
 
 
 // Core viewer
@@ -437,11 +438,12 @@ const Transaction = () => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-            {/* <ReactJson src={selectedRecord?.raw_data} /> */}
-            <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/>
+            <ReactJson src="./json2.json"/>
+            {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
+            {/* <iframe src={selectedRecord?.raw_data} frameborder="0" width="300px" height="400px"/> */}
 
             {/* <ReactJsonViewer data={selectedRecord?.raw_data} /> */}
-
+            {/* {JSON.stringify(selectedRecord?.raw_data, null, 2) } */}
             {/* <JSONViewer
         json={selectedRecord?.raw_data}
       /> */}
@@ -457,8 +459,8 @@ const Transaction = () => {
             onCancel={handleCancel}
           >
       {/* <Document file={selectedRecord?.raw_data} /> */}
-      {/* <iframe src={selectedRecord?.raw_data} ></iframe> */}
-      <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/>
+      <iframe src={selectedRecord?.raw_data}frameborder="0" width="100%" height="400px"/>
+      {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
      </Modal>
         )}
 
