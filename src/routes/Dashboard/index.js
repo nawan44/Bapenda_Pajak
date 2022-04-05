@@ -12,6 +12,7 @@ import GrafikPendapatanBulan from "./Grafik Pendapatan/grafikPendapatanBulan";
 import LatestTransaction from "./Latest Transaction";
 import jwtDecode from "jwt-decode";
 import PieChart from "./Pie Chart";
+import GrafikTransaksi from "./Grafik Transaksi/grafikTransaksi";
 
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState()
@@ -81,6 +82,9 @@ const SamplePage = () => {
         <JumlahTransaksiBulanan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
         <JumlahTransaksiTahunan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
         </Row>
+        <Row className="container-dashboard2" type="flex" >
+        <GrafikTransaksi latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
+      </Row>
       <Row className="container-dashboard5">
         <LatestTransaction style={{ margin: "0px", textAlign: "center" }} latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
       </Row> 

@@ -142,7 +142,7 @@ const latestTransaction = [
   ],
 ];
 
-const GrafikPendapatanBulan = (props) => {
+const GrafikTransaksi = (props) => {
   // const {latestTransaction, setLatestTransactio} = props
   const [jenisChart, setJenisChart] = useState("Daily");
 
@@ -189,8 +189,10 @@ const GrafikPendapatanBulan = (props) => {
   };
   const bulan = monthly?.map((row) => ({
     created_at: moment(row[0].stringValue).format("DD/MM/YY"),
-    total_value: Number(row[1].stringValue),
+    total_value: Number(row[2].longValue),
   }));
+  console.log("monthly",monthly)
+  console.log("yearly",yearly)
 
   const tahun = yearly?.map((row) => ({
     created_at: row[0].longValue,
@@ -275,4 +277,4 @@ const GrafikPendapatanBulan = (props) => {
   );
 };
 
-export default GrafikPendapatanBulan;
+export default GrafikTransaksi;
