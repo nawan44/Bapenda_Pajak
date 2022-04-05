@@ -320,12 +320,18 @@ function SelisihPresentase({
   return (
     <>
       {moneyToday && <span>{persentasePendapatanHariIni()}</span>}
-      {objBulanIni && <span>{persentasePendapatanBulanIni()}</span>}
-      {objTahunIni && <span>{persentasePendapatanTahunIni()}</span>}
+      {/* {objBulanIni && <span>{persentasePendapatanBulanIni()}</span>}
+      {objTahunIni && <span>{persentasePendapatanTahunIni()}</span>} */}
+  {moneyThisMonth && <span>{persentasePendapatanBulanIni()}</span>}
+      {moneyThisYear && <span>{persentasePendapatanTahunIni()}</span>}
+
 
       {transactionToday && <span>{persentaseTransaksiHariIni()}</span>}
-      {objTransactionThisMonth && <span>{persentaseTransaksiBulanIni()}</span>}
-      {objTransactionThisYear && <span>{persentaseTransaksiTahunIni()}</span>}
+      {transactionThisMonth && <span>{persentaseTransaksiBulanIni()}</span>}
+      {transactionThisYear && <span>{persentaseTransaksiTahunIni()}</span>}
+
+      {/* {objTransactionThisMonth && <span>{persentaseTransaksiBulanIni()}</span>}
+      {objTransactionThisYear && <span>{persentaseTransaksiTahunIni()}</span>} */}
     </>
   );
 }

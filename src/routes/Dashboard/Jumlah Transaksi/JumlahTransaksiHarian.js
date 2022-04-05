@@ -29,98 +29,100 @@ const JumlahTransaksiHarian = (props) => {
     .subtract(1, "d")
     .endOf("day")
     .format("YYYY-MM-DD HH:mm:ss");
-    const tanggal = latestTransaction && latestTransaction.map(row => ({
-      total_value: row[3].stringValue,
-      created_at:  moment(row[4].stringValue).format('YYYY-MM-DD')
-    }));
+
+    // OLDDDDD
+    // const tanggal = latestTransaction && latestTransaction.map(row => ({
+    //   total_value: row[3].stringValue,
+    //   created_at:  moment(row[4].stringValue).format('YYYY-MM-DD')
+    // }));
   
-    const data = latestTransaction && latestTransaction.map(row => ({
-      invoice_id: row[0].stringValue, 
-      merchant_id: row[1].stringValue,
-      nama_usaha : row[2].stringValue,
-      total_value: row[3].stringValue, 
-      created_at: row[4].stringValue
-    }));
-    const objTransactionToday = tanggal && tanggal.filter(o => o.created_at === now);
-    const transaksiHariIni = objTransactionToday?.length
-    const objTransactionYesterday = tanggal && tanggal.filter(o => o.created_at === kemarin);
-    const transaksiKemarin = objTransactionYesterday?.length
+    // const data = latestTransaction && latestTransaction.map(row => ({
+    //   invoice_id: row[0].stringValue, 
+    //   merchant_id: row[1].stringValue,
+    //   nama_usaha : row[2].stringValue,
+    //   total_value: row[3].stringValue, 
+    //   created_at: row[4].stringValue
+    // }));
+    // const objTransactionToday = tanggal && tanggal.filter(o => o.created_at === now);
+    // const transaksiHariIni = objTransactionToday?.length
+    // const objTransactionYesterday = tanggal && tanggal.filter(o => o.created_at === kemarin);
+    // const transaksiKemarin = objTransactionYesterday?.length
    
-    useEffect(() => {
-      setTransactionToday(transaksiHariIni);
-    }, [transaksiHariIni]);
+    // useEffect(() => {
+    //   setTransactionToday(transaksiHariIni);
+    // }, [transaksiHariIni]);
     
-    useEffect(() => {
-      setTransactionYesterday(transaksiKemarin);
-    }, [transaksiKemarin]);
+    // useEffect(() => {
+    //   setTransactionYesterday(transaksiKemarin);
+    // }, [transaksiKemarin]);
   
   // NEWWWW  
-  // useEffect(() => {
-  //   setTransactionToday(amountToday === undefined ? 0 :Number(amountToday));
-  // }, [amountToday]);
+  useEffect(() => {
+    setTransactionToday(amountToday === undefined ? 0 :Number(amountToday));
+  }, [amountToday]);
 
-  // useEffect(() => {
-  //   setTransactionYesterday(amountYesterday === undefined ? 0 :Number(amountYesterday));
-  // }, [amountYesterday]);
-  // useEffect(() => {
-  //   getAmountToday();
-  // }, []);
-  // const getAmountToday = async () => {
-  //   const decoded = jwtDecode(localStorage.token);
-  //   const apiKey = decoded["api-key"];
-  //   const headers = {
-  //     "x-api-key": `${apiKey}`,
-  //     "content-type": "application/json",
-  //   };
+  useEffect(() => {
+    setTransactionYesterday(amountYesterday === undefined ? 0 :Number(amountYesterday));
+  }, [amountYesterday]);
+  useEffect(() => {
+    getAmountToday();
+  }, []);
+  const getAmountToday = async () => {
+    const decoded = jwtDecode(localStorage.token);
+    const apiKey = decoded["api-key"];
+    const headers = {
+      "x-api-key": `${apiKey}`,
+      "content-type": "application/json",
+    };
 
-  //   const response = await fetch(
-  //     "https://api.raspi-geek.com/v1/orders",
+    const response = await fetch(
+      "https://api.raspi-geek.com/v1/orders",
 
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "x-api-key": `${apiKey}`,
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         startdate: sToday,
-  //         enddate: eToday,
-  //       }),
-  //     }
-  //   );
-  //   const ajson = await response.json();
-  //   setAmountToday(ajson.Records[0][0].longValue);
-  // };
+      {
+        method: "POST",
+        headers: {
+          "x-api-key": `${apiKey}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          startdate: sToday,
+          enddate: eToday,
+        }),
+      }
+    );
+    const ajson = await response.json();
+    setAmountToday(ajson.Records[0][0].longValue);
+  };
 
-  // useEffect(() => {
-  //   getAmountYesterday();
-  // }, []);
-  // const getAmountYesterday = async () => {
-  //   const decoded = jwtDecode(localStorage.token);
-  //   const apiKey = decoded["api-key"];
-  //   const headers = {
-  //     "x-api-key": `${apiKey}`,
-  //     "content-type": "application/json",
-  //   };
+  useEffect(() => {
+    getAmountYesterday();
+  }, []);
+  const getAmountYesterday = async () => {
+    const decoded = jwtDecode(localStorage.token);
+    const apiKey = decoded["api-key"];
+    const headers = {
+      "x-api-key": `${apiKey}`,
+      "content-type": "application/json",
+    };
 
-  //   const response = await fetch(
-  //     "https://api.raspi-geek.com/v1/orders",
+    const response = await fetch(
+      "https://api.raspi-geek.com/v1/orders",
 
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "x-api-key": `${apiKey}`,
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         startdate: sYesterday,
-  //         enddate: eYesterday,
-  //       }),
-  //     }
-  //   );
-  //   const ajson = await response.json();
-  //   setAmountYesterday(ajson.Records[0][0].longValue);
-  // };
+      {
+        method: "POST",
+        headers: {
+          "x-api-key": `${apiKey}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          startdate: sYesterday,
+          enddate: eYesterday,
+        }),
+      }
+    );
+    const ajson = await response.json();
+    setAmountYesterday(ajson.Records[0][0].longValue);
+  };
 //NEWWW
   return (
     <Col className="flip-card" xs={24} xl={8}>
@@ -130,8 +132,10 @@ const JumlahTransaksiHarian = (props) => {
             color="orange"
             icon="orders"
             title={
-              // <div  className="title-card-dashboard">{amountToday}</div>
-              <div  className="title-card-dashboard">{transaksiHariIni}</div>
+              <div  
+              className="title-card-dashboard">
+                {amountToday}</div>
+              // <div  className="title-card-dashboard">{transaksiHariIni}</div>
            
             }
             colorTitle="geekblue"

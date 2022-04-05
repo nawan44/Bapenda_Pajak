@@ -128,7 +128,7 @@ function SelisihNominal({
   });
   return (
     <>
-      {objBulanIni && (
+      {moneyThisMonth && (
         <div style={{ height: "30px" }}>
           <span style={{ margin: "10px 0 0 0" }}>
             {selisihPendapatanBulanIni()}
@@ -170,7 +170,7 @@ function SelisihNominal({
         </div>
       )}
 
-      {objTahunIni && (
+      {moneyThisYear && (
         <div style={{ height: "30px" }}>
           <span style={{ margin: "10px 0 0 0" }}>
             {selisihPendapatanTahunIni()}
@@ -212,7 +212,7 @@ function SelisihNominal({
           )}
         </div>
       )}
-      {objTransactionThisMonth && (
+      {transactionThisMonth && (
         <div style={{ height: "30px" }}>
           <span style={{ margin: "10px 0 0 0" }}>
             {selisihTransaksiBulanIni()}
@@ -233,7 +233,7 @@ function SelisihNominal({
           )}
         </div>
       )}
-      {objTransactionThisYear && (
+      {transactionThisYear && (
         <div style={{ height: "30px" }}>
           <span style={{ margin: "10px 0 0 0" }}>
             {selisihTransaksiTahunIni()}

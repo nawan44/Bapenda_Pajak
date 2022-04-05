@@ -208,7 +208,6 @@ const GrafikPendapatanBulan = (props) => {
   //   }),
   //   {}
   // );
-  console.log("tahun", tahun);
   const handleChangeSelect = (value) => {
     setJenisChart(value);
   };

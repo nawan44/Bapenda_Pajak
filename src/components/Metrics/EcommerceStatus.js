@@ -36,7 +36,7 @@ const EcommerceStatus = ({
       {color === "grey" ? (
         <div></div>
       ) : (
-        <div style={{ float: "left", width: "65px" }}>
+        <div style={{ float: "left", width: "70px" }}>
           <SelisihPresentase
             moneyToday={moneyToday}
             moneyYesterday={moneyYesterday}
@@ -59,7 +59,7 @@ const EcommerceStatus = ({
       )}
       <div
         className="gx-flex-row gx-justify-content-center gx-mb-3 gx-mb-sm-4"
-        style={{ paddingRight: color === "grey" ? "0px" : "65px" }}
+        style={{ paddingRight: color === "grey" ? "0px" : "70px" }}
       >
         <span
           className={`gx-size-80 gx-border gx-border-${colorTitle} gx-text-${colorTitle} gx-flex-row gx-justify-content-center gx-align-items-center gx-rounded-circle`}

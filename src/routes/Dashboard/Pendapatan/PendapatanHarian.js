@@ -41,95 +41,95 @@ const PendapatanHarian = (props) => {
 
 // OLD
 
-const tanggal = latestTransaction && latestTransaction.map(row => ({
-  total_value: row[3].stringValue,
-  created_at:  moment(row[4].stringValue).format('YYYY-MM-DD')
-}));
+// const tanggal = latestTransaction && latestTransaction.map(row => ({
+//   total_value: row[3].stringValue,
+//   created_at:  moment(row[4].stringValue).format('YYYY-MM-DD')
+// }));
 
-const data = latestTransaction && latestTransaction.map(row => ({
-  invoice_id: row[0].stringValue, 
-  merchant_id: row[1].stringValue,
-  nama_usaha : row[2].stringValue,
-  total_value: row[3].stringValue, 
-  created_at: row[4].stringValue
-}));
-const objToday = tanggal && tanggal.filter(o => o.created_at === now);
-  const currentToday = objToday && objToday.map(v => Number(v.total_value))
-    .reduce((sum, current) => sum + current, 0)
-  const objYesterday = tanggal && tanggal.filter(o => o.created_at === kemarin);
-  const currentYesterday = objYesterday && objYesterday.map(v => Number(v.total_value))
-    .reduce((sum, current) => sum + current, 0)
+// const data = latestTransaction && latestTransaction.map(row => ({
+//   invoice_id: row[0].stringValue, 
+//   merchant_id: row[1].stringValue,
+//   nama_usaha : row[2].stringValue,
+//   total_value: row[3].stringValue, 
+//   created_at: row[4].stringValue
+// }));
+// const objToday = tanggal && tanggal.filter(o => o.created_at === now);
+//   const currentToday = objToday && objToday.map(v => Number(v.total_value))
+//     .reduce((sum, current) => sum + current, 0)
+//   const objYesterday = tanggal && tanggal.filter(o => o.created_at === kemarin);
+//   const currentYesterday = objYesterday && objYesterday.map(v => Number(v.total_value))
+//     .reduce((sum, current) => sum + current, 0)
 
-    useEffect(() => {
-      setMoneyToday(currentToday);
-    }, [currentToday]);
+//     useEffect(() => {
+//       setMoneyToday(currentToday);
+//     }, [currentToday]);
     
-    useEffect(() => {
-      setMoneyYesterday(currentYesterday);
-    }, [currentYesterday]);
+//     useEffect(() => {
+//       setMoneyYesterday(currentYesterday);
+//     }, [currentYesterday]);
 
 // OLD
   // NEWWWWWWWWWWWW
-  // useEffect(() => {
-  //   getEarningToday();
-  // }, []);
+  useEffect(() => {
+    getEarningToday();
+  }, []);
  
-  // const getEarningToday = async () => {
-  //   const decoded = jwtDecode(localStorage.token);
-  //   const apiKey = decoded["api-key"];
-  //   const headers = {
-  //     "x-api-key": `${apiKey}`,
-  //     "content-type": "application/json",
-  //   };
-  //   const response = await fetch(
-  //     "https://api.raspi-geek.com/v1/values",
+  const getEarningToday = async () => {
+    const decoded = jwtDecode(localStorage.token);
+    const apiKey = decoded["api-key"];
+    const headers = {
+      "x-api-key": `${apiKey}`,
+      "content-type": "application/json",
+    };
+    const response = await fetch(
+      "https://api.raspi-geek.com/v1/values",
 
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "x-api-key": `${apiKey}`,
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         startdate: sToday,
-  //         enddate: eToday,
-  //       }),
-  //     }
-  //   );
-  //   const ajson = await response.json();
-  //   setEarningToday(ajson.Records[0][0].stringValue);
-  // };
+      {
+        method: "POST",
+        headers: {
+          "x-api-key": `${apiKey}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          startdate: sToday,
+          enddate: eToday,
+        }),
+      }
+    );
+    const ajson = await response.json();
+    setEarningToday(ajson.Records[0][0].stringValue);
+  };
 
-  // useEffect(() => {
-  //   getEarningYesterday();
-  // }, []);
+  useEffect(() => {
+    getEarningYesterday();
+  }, []);
 
-  // const getEarningYesterday = async () => {
-  //   const decoded = jwtDecode(localStorage.token);
-  //   const apiKey = decoded["api-key"];
-  //   const headers = {
-  //     "x-api-key": `${apiKey}`,
-  //     "content-type": "application/json",
-  //   };
+  const getEarningYesterday = async () => {
+    const decoded = jwtDecode(localStorage.token);
+    const apiKey = decoded["api-key"];
+    const headers = {
+      "x-api-key": `${apiKey}`,
+      "content-type": "application/json",
+    };
 
-  //   const response = await fetch(
-  //     "https://api.raspi-geek.com/v1/values",
+    const response = await fetch(
+      "https://api.raspi-geek.com/v1/values",
 
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "x-api-key": `${apiKey}`,
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         startdate: sYesterday,
-  //         enddate: eYesterday,
-  //       }),
-  //     }
-  //   );
-  //   const ajson = await response.json();
-  //   setEarningYesterday(ajson.Records[0][0].stringValue);
-  // };
+      {
+        method: "POST",
+        headers: {
+          "x-api-key": `${apiKey}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          startdate: sYesterday,
+          enddate: eYesterday,
+        }),
+      }
+    );
+    const ajson = await response.json();
+    setEarningYesterday(ajson.Records[0][0].stringValue);
+  };
   // NEWWWWWWWWWWWW
 
   const formatter = new Intl.NumberFormat("id-ID", {
@@ -145,16 +145,16 @@ const objToday = tanggal && tanggal.filter(o => o.created_at === now);
             color="green"
             icon="revenue-new"
             title={
-              // <div className="title-card-dashboard">
-              //   {earningToday === undefined
-              //     ? formatter.format(0)
-              //     : formatter.format(earningToday)}
-              // </div>
               <div className="title-card-dashboard">
-              {currentToday === undefined
-                ? formatter.format(0)
-                : formatter.format(currentToday)}
-            </div>
+                {earningToday === undefined
+                  ? formatter.format(0)
+                  : formatter.format(earningToday)}
+              </div>
+            //   <div className="title-card-dashboard">
+            //   {currentToday === undefined
+            //     ? formatter.format(0)
+            //     : formatter.format(currentToday)}
+            // </div>
             }
             colorTitle="indigo"
             moneyToday={moneyToday}

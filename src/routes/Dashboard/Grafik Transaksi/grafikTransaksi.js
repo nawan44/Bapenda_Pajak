@@ -17,7 +17,7 @@ import "moment/locale/id";
 import "../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
 import { Select, Typography, Col, Row } from "antd";
-import { DatePicker, Space } from 'antd';
+import { DatePicker } from 'antd';
 
 const { Option } = Select;
 
@@ -194,8 +194,7 @@ const GrafikTransaksi = (props) => {
     created_at: moment(row[0].stringValue).format("DD/MM/YY"),
     total_value: Number(row[2].longValue),
   }));
-  console.log("monthly",monthly)
-  console.log("yearly",yearly)
+
 
   const tahun = yearly?.map((row) => ({
     created_at: row[0].longValue,
@@ -211,7 +210,6 @@ const GrafikTransaksi = (props) => {
   //   }),
   //   {}
   // );
-  console.log("tahunMonthly", tahunMonthly);
   const handleChangeSelect = (value) => {
     setJenisChart(value);
   };
