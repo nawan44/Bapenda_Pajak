@@ -130,7 +130,7 @@ let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "A
           <div style={{ width: "100%", float: "left" }}>
             {" "}
             <Typography
-              style={{ margin: "0", fontSize: "14px", fontWeight: "bold" }}
+              style={{textAlign:"left", margin: "0", fontSize: "14px", fontWeight: "bold" }}
             >
               Grafik Pendapatan
             </Typography>
