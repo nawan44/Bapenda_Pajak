@@ -108,19 +108,8 @@ const eLastYear = moment()
 
   const earningLastYear =  Number(earningLastYear1) + Number(earningLastYear2) + Number(earningLastYear3)
 
-  console.log("earningLastYear", earningLastYear);
-
-  console.log("earning 1", earningLastYear1);
-  console.log("earning 2", earningLastYear2);
-  console.log("earning 3", earningLastYear3);
-
   const earningThisYear =  Number(earningThisYear1) + Number(earningThisYear2) + Number(earningThisYear3)
   
-  console.log("earningThisYear", earningThisYear);
-
-  console.log("earningThisYear 1", earningThisYear1);
-  console.log("earningThisYear 2", earningThisYear2);
-  console.log("earningThisYear 3", earningThisYear3);
   // OLD
   // const tahun =
   //   latestTransaction &&

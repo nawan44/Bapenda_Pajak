@@ -14,7 +14,7 @@ import {
 import * as moment from "moment";
 import Widget from "components/Widget/index";
 import "moment/locale/id";
-import "../../../assets/styles/flip-card.css";
+import "../../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
 import { Select, Typography, Col, Row } from "antd";
 import { DatePicker } from 'antd';
@@ -239,15 +239,14 @@ const GrafikTransaksi = (props) => {
   return (
     <Widget
       styleName="gx-order-history"
-      style={{ backgroundColor: "red" }}
       title={
         <div style={{ width: "500px" }}>
-          <div style={{ width: "25%", float: "left" }}>
+          <div style={{ width: "100%", float: "left" }}>
             {" "}
             <Typography
-              style={{ margin: "15px 0", fontSize: "14px", fontWeight: "bold" }}
+              style={{ margin: "0", fontSize: "14px", fontWeight: "bold" }}
             >
-              Jenis Grafik
+              Grafik Transaksi
             </Typography>
           </div>
           <div style={{ width: "25%", float: "left" }}>

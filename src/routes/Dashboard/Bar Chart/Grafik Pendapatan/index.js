@@ -14,7 +14,7 @@ import {
 import * as moment from "moment";
 import Widget from "components/Widget/index";
 import "moment/locale/id";
-import "../../../assets/styles/flip-card.css";
+import "../../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
 import { Select, Typography, Col, Row } from "antd";
 import { DatePicker } from "antd";
@@ -30,7 +30,6 @@ const GrafikPendapatan = (props) => {
   const [yearly, setYearly] = useState();
   const [tahunMonthly, setTahunMonthly] = useState(moment().format("YYYY"));
 
-  console.log("bulanSelect",bulanSelect)
   const handleChangeSelect = (value) => {
     setJenisChart(value);
     setBulanSelect("1")
@@ -88,17 +87,7 @@ const GrafikPendapatan = (props) => {
     const res = await response.json();
     setYearly(res.Records);
   };
-  // const mappingBulan  = yearly?.map((row) => ({
-  //   created_at: row[0].longValue,
-  // }));
 
-//   const choiceBulan = () => {
-//     if(mappingBulan.created_at === "1"){
-// return "Januari"
-//     } else if(mappingBulan.created_at === "2"){
-//       return "Februari"
-//           }
-//   }
   const bulan = monthly?.map((row) => ({
     created_at: moment(row[0].stringValue).format("DD/MM"),
     total_value: Number(row[1].stringValue),
@@ -133,16 +122,17 @@ let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "A
   };
   return (
     <Widget
-      styleName="gx-order-history"
-      style={{ backgroundColor: "red" }}
+    styleName="gx-order-history"
+
+      // styleName={`gx-order-history `}
       title={
         <div style={{ width: "500px" }}>
-          <div style={{ width: "25%", float: "left" }}>
+          <div style={{ width: "100%", float: "left" }}>
             {" "}
             <Typography
-              style={{ margin: "15px 0", fontSize: "14px", fontWeight: "bold" }}
+              style={{ margin: "0", fontSize: "14px", fontWeight: "bold" }}
             >
-              Jenis Grafik
+              Grafik Pendapatan
             </Typography>
           </div>
           <div style={{ width: "25%", float: "left" }}>
@@ -157,7 +147,7 @@ let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "A
               <Option value="Monthly">Monthly</Option>
             </Select>
           </div>
-          <div style={{ wiccdth: "30%", float: "left" }}>
+          <div style={{ width: "30%", float: "left" }}>
             {jenisChart === "Daily" ? (
                <Select
                style={{ margin: "10px 0 0 0", width: "90%" }}

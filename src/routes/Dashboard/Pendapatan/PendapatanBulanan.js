@@ -141,20 +141,7 @@ const PendapatanBulanan = (props) => {
   // );
   const earningLastMonth =  Number(earningLastMonth1) + Number(earningLastMonth2) + Number(earningLastMonth3)
 
-  console.log("earningLastMonth", earningLastMonth);
-
-  console.log("earning 1", earningLastMonth1);
-  console.log("earning 2", earningLastMonth2);
-  console.log("earning 3", earningLastMonth3);
-
   const earningThisMonth =  Number(earningThisMonth1) + Number(earningThisMonth2) + Number(earningThisMonth3)
-  
-  console.log("earningThisMonth", earningThisMonth);
-
-  console.log("earningThisMonth 1", earningThisMonth1);
-  console.log("earningThisMonth 2", earningThisMonth2);
-  console.log("earningThisMonth 3", earningThisMonth3);
-
 
   useEffect(() => {
     getEarningLastMonth();

@@ -110,22 +110,8 @@ useEffect(() => {
     setAmountThisYear3(ajson.Records[2][1].stringValue);
   };
   const amountLastYear =  Number(amountLastYear1) + Number(amountLastYear2) + Number(amountLastYear3)
-
-  console.log("amountLastYear", amountLastYear);
-
-  console.log("amount 1", amountLastYear1);
-  console.log("amount 2", amountLastYear2);
-  console.log("amount 3", amountLastYear3);
-
   const amountThisYear =  Number(amountThisYear1) + Number(amountThisYear2) + Number(amountThisYear3)
   
-  console.log("amountThisYear", amountThisYear);
-
-  console.log("amountThisYear 1", amountThisYear1);
-  console.log("amountThisYear 2", amountThisYear2);
-  console.log("amountThisYear 3", amountThisYear3);
-
-
   useEffect(() => {
     getAmountLastYear();
   }, []);

@@ -47,11 +47,11 @@ function PieChart() {
       };
 
       return (
-    <>
+    <Row className="container-dashboard4" >
 
       <Col  span={12}>
         {/* <Card className="gx-card" title="Pendapatan Per Kategori"> */}
-        <PiePendapatan getEarnByCat={getEarnByCat}/>
+        <PiePendapatan  getEarnByCat={getEarnByCat}/>
         {/* </Card> */}
       </Col>
       <Col  span={12}>
@@ -59,7 +59,7 @@ function PieChart() {
         <PieStatus getEarnByCat={getEarnByCat}/>
         {/* </Card> */}
       </Col>
-    </>
+    </Row>
   );
 }
 

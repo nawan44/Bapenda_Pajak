@@ -106,22 +106,8 @@ useEffect(() => {
     setAmountThisMonth3(ajson.Records[2][1].stringValue);
   };
   const amountLastMonth =  Number(amountLastMonth1) + Number(amountLastMonth2) + Number(amountLastMonth3)
-
-  console.log("amountLastMonth", amountLastMonth);
-
-  console.log("amount 1", amountLastMonth1);
-  console.log("amount 2", amountLastMonth2);
-  console.log("amount 3", amountLastMonth3);
-
   const amountThisMonth =  Number(amountThisMonth1) + Number(amountThisMonth2) + Number(amountThisMonth3)
   
-  console.log("amountThisMonth", amountThisMonth);
-
-  console.log("amountThisMonth 1", amountThisMonth1);
-  console.log("amountThisMonth 2", amountThisMonth2);
-  console.log("amountThisMonth 3", amountThisMonth3);
-
-
   useEffect(() => {
     getAmountLastMonth();
   }, []);
