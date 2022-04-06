@@ -17,144 +17,43 @@ import "moment/locale/id";
 import "../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
 import { Select, Typography, Col, Row } from "antd";
-import { DatePicker } from 'antd';
+import { DatePicker } from "antd";
 
 const { Option } = Select;
 
-const latestTransaction = [
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "534650.00",
-    },
-    {
-      stringValue: "2022-01-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "734650.00",
-    },
-    {
-      stringValue: "2022-02-11 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "834650.00",
-    },
-    {
-      stringValue: "2022-03-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "634650.00",
-    },
-    {
-      stringValue: "2022-04-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "764650.00",
-    },
-    {
-      stringValue: "2022-05-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "834650.00",
-    },
-    {
-      stringValue: "2022-06-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "934650.00",
-    },
-    {
-      stringValue: "2022-07-19 16:14:00",
-    },
-  ],
-];
-
-const GrafikPendapatanBulan = (props) => {
+const GrafikPendapatan = (props) => {
   // const {latestTransaction, setLatestTransactio} = props
   const [jenisChart, setJenisChart] = useState("Daily");
+  const [bulanSelect, setBulanSelect] = useState("1");
 
   const [monthly, setMonthly] = useState();
   const [yearly, setYearly] = useState();
   const [tahunMonthly, setTahunMonthly] = useState(moment().format("YYYY"));
 
+  console.log("bulanSelect",bulanSelect)
+  const handleChangeSelect = (value) => {
+    setJenisChart(value);
+    setBulanSelect("1")
+  };
+  const handleChangeBulan = (value) => {
+    setBulanSelect(value);
+    getMonthly()
+  };
+  const handleTahunMonthly = (date, dateString) => {
+    setTahunMonthly(dateString);
+  };
+  // useEffect(() => {
+  //   if(jenisChart === "Monthly"){
+  //   setBulanSelect("1");}
+  // }, []);
+
   useEffect(() => {
     getMonthly();
   }, []);
-
+  useEffect(() => {
+    getMonthly();
+  }, [bulanSelect]);
+  
   const getMonthly = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
@@ -163,7 +62,7 @@ const GrafikPendapatanBulan = (props) => {
       "content-type": "application/json",
     };
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/daily",
+      `https://api.raspi-geek.com/v1/daily?month=${bulanSelect}&year=${tahunMonthly}`,
 
       { method: "GET", headers }
     );
@@ -182,7 +81,7 @@ const GrafikPendapatanBulan = (props) => {
       "content-type": "application/json",
     };
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/monthly?year=2022",
+      `https://api.raspi-geek.com/v1/monthly?year=${tahunMonthly}`,
 
       { method: "GET", headers }
     );
@@ -208,20 +107,15 @@ const GrafikPendapatanBulan = (props) => {
   //   }),
   //   {}
   // );
-  const handleChangeSelect = (value) => {
-    setJenisChart(value);
-  };
-  const handleTahunMonthly = (date, dateString) => {
-    setTahunMonthly(dateString);
-  };
+
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
   });
-  const disabledDate =(current) => {
+  const disabledDate = (current) => {
     let customDate = "2022";
     return current && current < moment(customDate, "YYYY");
-  }
+  };
   return (
     <Widget
       styleName="gx-order-history"
@@ -236,7 +130,7 @@ const GrafikPendapatanBulan = (props) => {
               Jenis Grafik
             </Typography>
           </div>
-          <div style={{ width: "30%", float: "left" }}>
+          <div style={{ width: "25%", float: "left" }}>
             {" "}
             <Select
               style={{ margin: "10px 0 0 0", width: "90%" }}
@@ -248,15 +142,41 @@ const GrafikPendapatanBulan = (props) => {
               <Option value="Monthly">Monthly</Option>
             </Select>
           </div>
-          <div style={{ width: "35%", float: "left", paddingTop: "7px" }}>
-            {jenisChart === "Monthly" ? (
-  <DatePicker
-  disabledDate={disabledDate} 
-  defaultValue={moment('2022', 'YYYY')} 
-   disabled
-   onChange={handleTahunMonthly} picker="year" />            ) : (
+          <div style={{ width: "30%", float: "left" }}>
+            {jenisChart === "Daily" ? (
+               <Select
+               style={{ margin: "10px 0 0 0", width: "90%" }}
+               name="bulanSelect"
+               value={bulanSelect}
+               onChange={handleChangeBulan}
+             >
+               <Option value="1">Januari</Option>
+               <Option value="2">Februari</Option>
+               <Option value="3">Maret</Option>
+               <Option value="4">April</Option>
+               <Option value="5">Mei</Option>
+               <Option value="6">Juni</Option>
+               <Option value="7">Juli</Option>
+               <Option value="8">Agustus</Option>
+               <Option value="9">September</Option>
+               <Option value="10">Oktober</Option>
+               <Option value="11">November</Option>
+               <Option value="12">Desember</Option>
+
+             </Select>
+            ) : (
               <div></div>
             )}
+          </div>
+          <div style={{ width: "20%", float: "left", paddingTop: "7px" }}>
+              <DatePicker
+                disabledDate={disabledDate}
+                defaultValue={moment("2022", "YYYY")}
+                disabled
+                onChange={handleTahunMonthly}
+                picker="year"
+              />
+      
           </div>
         </div>
       }
@@ -284,4 +204,4 @@ const GrafikPendapatanBulan = (props) => {
   );
 };
 
-export default GrafikPendapatanBulan;
+export default GrafikPendapatan;

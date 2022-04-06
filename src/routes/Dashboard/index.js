@@ -8,7 +8,7 @@ import PendapatanTahunan from "./Pendapatan/PendapatanTahunan";
 import PendapatanBulanan from "./Pendapatan/PendapatanBulanan";
 import PendapatanHarian from "./Pendapatan/PendapatanHarian";
 
-import GrafikPendapatanBulan from "./Grafik Pendapatan/grafikPendapatanBulan";
+import GrafikPendapatan from "./Grafik Pendapatan/grafikPendapatan";
 import LatestTransaction from "./Latest Transaction";
 import jwtDecode from "jwt-decode";
 import PieChart from "./Pie Chart";
@@ -74,7 +74,7 @@ const SamplePage = () => {
         </Row>
       {/* </div> */}
       <Row className="container-dashboard2" type="flex" >
-        <GrafikPendapatanBulan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
+        <GrafikPendapatan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
       </Row>
       <Row className="container-dashboard3">
         <JumlahTransaksiHarian latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} />
