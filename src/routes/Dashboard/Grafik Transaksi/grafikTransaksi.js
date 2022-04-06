@@ -206,13 +206,15 @@ const GrafikTransaksi = (props) => {
     setYearly(res.Records);
   };
   const bulan = monthly?.map((row) => ({
-    created_at: moment(row[0].stringValue).format("DD/MM/YY"),
+    created_at: moment(row[0].stringValue).format("DD/MM"),
     total_value: Number(row[2].longValue),
   }));
 
+  let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
 
   const tahun = yearly?.map((row) => ({
-    created_at: row[0].longValue,
+    // created_at: row[0].longValue,
+    created_at : months[row[0].longValue],
     total_value: Number(row[1].stringValue),
   }));
   // const shooters = bulan?.reduce(
