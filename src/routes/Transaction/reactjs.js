@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactJson from "react-json-view";
+// import ReactJson from "react-json-view";
 
 
 const JsonConfig = {
@@ -10,7 +10,7 @@ function ReactJs(props) {
     const {rawData} = props
     console.log("JsonConfig", rawData)
     return (  <>
-            <ReactJson src={rawData} theme="monokai" />
+            {/* <ReactJson src={rawData} theme="monokai" /> */}
 
     </>);
 }

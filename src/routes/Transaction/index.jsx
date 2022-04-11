@@ -8,6 +8,11 @@ import ConvertPdf from "./convertPdf";
 import ConvertExcel from "./convertExcel";
 import "../../assets/styles/table.css";
 import ReactJs from "./reactjs";
+// import JSONPretty from "react-json-pretty";
+// import { JsonTable } from "react-json-to-html";
+// import FileViewer from 'react-file-viewer';
+// import ReactFileReader from "react-file-reader";
+import $ from 'jquery';
 
 const Search = Input.Search;
 
@@ -37,6 +42,9 @@ const Transaction = () => {
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
   const [nik, setNik] = useState();
   const [typePajak, setTypePajak] = useState();
+
+  const [files, setFiles] = useState("");
+
   const onChangeDateRange = (date, datesString) => {
     setFromDate(datesString[0]);
     setToDate(datesString[1]);
@@ -62,9 +70,8 @@ const Transaction = () => {
       return false;
     }
   };
-  console.log("Raw Data Render", renderRawdata());
+
   const onChange = (page) => {
-    console.log("onchange page", page);
     setPageState(page.current);
     setKey(true);
     setClick(true);
@@ -93,6 +100,10 @@ const Transaction = () => {
   useEffect(() => {
     handleFinish();
   }, [changePage]);
+
+  useEffect(() => {
+    setFiles(selectedRecord?.raw_data);
+  }, []);
 
   const getListDevice = async (dataLatest) => {
     const decoded = jwtDecode(localStorage.token);
@@ -125,7 +136,6 @@ const Transaction = () => {
     raw_data: row[9].stringValue,
     data_source: row[10].stringValue,
   }));
-  console.log("responFilter", responFilter);
   function changeTypePajak(value) {
     setTypePajak(value);
   }
@@ -205,12 +215,64 @@ const Transaction = () => {
   };
 
   const handleCancel = () => {
-    console.log("Clicked cancel button");
+    // console.log("Clicked cancel button");
     setVisible(false);
   };
   const showModal = () => {
     setVisible(true);
   };
+
+  const [data,setData]=useState([]);
+  const  getData = ()=> {
+    try {
+      let response = selectedRecord?.raw_data
+      let responseJson = response.json();
+      // return responseJson.movies;
+      console.log("responseJson",responseJson)
+      setData(responseJson)
+     } catch(error) {
+      console.error(error);
+    }
+  }
+  console.log("data", data)
+  const handleChange = (e) => {
+    const content = document.querySelector(".content");
+    const [file] = document.querySelector("input[type=file]").e;
+    const reader = new FileReader();
+
+    reader.addEventListener(
+      "load",
+      () => {
+        // this will then display a text file
+        content.innerText = reader.result;
+      },
+      false
+    );
+
+    if (file) {
+      reader.readAsText(file);
+    }
+  };
+  const [arr, setArr] =useState([])
+console.log("arr", "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19")
+// const aku = [
+// selectedRecord?.raw_data
+// ]
+
+var km = "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19"
+ const kk = $.ajax({
+    method: "GET",
+    cache: false,
+    url: km,
+    success: function(data) {
+      document.getElementById('output').innerHTML = data.downloads;
+    },
+    error: function(error) {
+      //What do you want to do with the error?
+    },
+  });
+  
+console.log("kk", kk)
   const columns = [
     {
       title: "Tanggal Transaksi",
@@ -251,7 +313,13 @@ const Transaction = () => {
             onClick={(e) => {
               showModal();
               setSelectedRecord(record);
-              console.log("console", record);
+              setArr(record.raw_data)
+              console.log("record?", record.raw_data)
+              //   fetch(`${record.raw_data}`).then((data) => {
+              //     // setAA(data)
+              //     console.log("setAA", data)
+              // })
+              // handleChange(record.raw_data)
             }}
             size="large"
           >
@@ -260,31 +328,99 @@ const Transaction = () => {
         );
       },
     },
-    // {
-    //   title: 'PDF Data',
-    //   dataIndex: 'aksi',
-    //   render : (text, record) => {
-    //     return(
-    //     <Button
-    //     // icon={<FormOutlined />}
-    //     id={record.id}
-    //     onClick={(e )=> {
-    //       showModal()
-    //       setSelectedRecord(record)
-    //       console.log("console",  record)
-
-    //     }
-
-    //     }
-    //     size="large"
-
-    //   >PDF Data
-    //      </Button>
-    //     )
-    //   }
-    // }
   ];
- 
+  // const json = require(`./${selectedRecord?.raw_data}`);
+
+  const openFile = (evt) => {
+    function previewFile() {
+      const content = document.querySelector(".content");
+      const [file] = document.querySelector("input[type=file]").files;
+      const reader = new FileReader();
+
+      reader.addEventListener(
+        "load",
+        () => {
+          // this will then display a text file
+          content.innerText = reader.result;
+        },
+        false
+      );
+
+      if (file) {
+        reader.readAsText(file);
+      }
+    }
+  };
+  // const [state, setState] = useState()
+  // var data = require(selectedRecord?.raw_data);
+  // const handleFiles = (files) => {
+  //   var reader = new FileReader();
+  //   reader.onload = e => {
+  //     // Use reader.result
+  //     setState({ data: selectedRecord?.raw_data});
+  //   };
+  //   reader.readAsText(files[0]);
+  // };
+
+  // const [data, setData] = useState();
+
+  // useEffect(() => {
+  //   async function getData() {
+  //     fetch(selectedRecord?.raw_data
+  //     )
+  //       .then(function (response) {
+  //         return response.text();
+  //       })
+  //       .then(function (txt) {
+  //         // let d = txt.replace(/Brand/g, `"Brand"`);
+  //         // d = d.replace(/Model/g, `"Model"`);
+  //         d = JSON.parse(d);
+  //         setData(d);
+  //       });
+  //   }
+  //   getData();
+  // }, []);
+  // const aa  =() =>{
+  //   var flickerAPI = selectedRecord?.raw_data;
+  //   $.getJSON( flickerAPI, {
+  //     tags: "mount rainier",
+  //     tagmode: "any",
+  //     format: "json"
+  //   })
+  //     .done(function( data ) {
+  //       $.each( data.items, function( i, item ) {
+  //         $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
+  //         if ( i === 3 ) {
+  //           return false;
+  //         }
+  //       });
+  //     });
+  // };
+  // console.log("aa", aa)
+
+  // const getData=()=>{
+  //   if(selectedRecord?.raw_data){
+  //     fetch(`${selectedRecord?.raw_data}`
+  //   ,{
+  //     headers : { 
+  //       'Content-Type': 'application/json',
+  //       'Accept': 'application/json'
+  //      }
+  //   }
+  //   )
+  //     .then(function(response){
+  //       console.log(response)
+  //       return response.json();
+  //     })
+  //     .then(function(myJson) {
+  //       console.log(myJson);
+  //       setData(myJson)
+  //     });
+  //   }
+  // }
+  // useEffect(()=>{
+  //   getData()
+  // },[])
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -293,7 +429,6 @@ const Transaction = () => {
             Filter Data{" "}
           </h1>{" "}
         </p>
-
         <Form
           layout="inline"
           className="gx-form-inline-label-up gx-form-inline-currency "
@@ -379,6 +514,8 @@ const Transaction = () => {
             </FormItem>
           </Row>
         </Form>
+        <div id="output">NO DATA</div>
+
         {click == true && (
           <div className="gx-table-responsive">
             <Row style={{ float: "right" }}>
@@ -418,10 +555,33 @@ const Transaction = () => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-     {/* <ReactJs rawData ={selectedRecord?.raw_data} /> */}
+          {/* <ReactJs rawData ={aku()} /> */}
+            {/* { kk.responseJSON()} */}
+            {/* <JSONPretty id="json-pretty" data={selectedRecord?.raw_data}></JSONPretty> */}
+            {/* <JsonTable json={selectedRecord?.raw_data } /> */}
+            {/* <input type="file" onChange={handleChange} /> */}
 
-               {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
+            <div dangerouslySetInnerHTML={{ __html: kk}} />
+
+            {/* <JSONPretty id="json-pretty" data={selectedRecord?.raw_data}></JSONPretty> */}
+            {/* {JSON.parse(selectedRecord?.raw_data)} */}
+          
+          
+            {/* {selectedRecord?.raw_data && (
+              <div>
             <iframe src={selectedRecord?.raw_data} frameborder="0" width="300px" height="400px"/>
+            <a href={selectedRecord?.raw_data}>Download JSON </a>
+              </div>
+            )} */}
+
+            {/* {data} */}
+
+            {/* <JSONPretty id="json-pretty" style={{fontSize: "1.1em"}} data={JSON.stringify(selectedRecord?.raw_data)} mainStyle="padding:1em" valueStyle="font-size:1.5em"></JSONPretty> */}
+            {/* <div  >{selectedRecord?.raw_data.renderHTML()}</div> */}
+            {/* <div dangerouslySetInnerHTML={{ __html: selectedRecord?.raw_data }} /> */}
+
+            {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
+            {/* <iframe src={JSON.stringify(selectedRecord?.raw_data)} frameborder="0" width="300px" height="400px"/> */}
 
             {/* <ReactJsonViewer data={selectedRecord?.raw_data} /> */}
             {/* {JSON.stringify(selectedRecord?.raw_data, null, 2) } */}
@@ -439,13 +599,16 @@ const Transaction = () => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-      {/* <Document file={selectedRecord?.raw_data} /> */}
-      <iframe src={selectedRecord?.raw_data}frameborder="0" width="100%" height="400px"/>
-      {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
-     </Modal>
+            {/* <Document file={selectedRecord?.raw_data} /> */}
+            <iframe
+              src={selectedRecord?.raw_data}
+              frameborder="0"
+              width="100%"
+              height="400px"
+            />
+            {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
+          </Modal>
         )}
-
-      
       </Widget>
     </>
   );

@@ -67,6 +67,9 @@ const JumlahTransaksiHarian = (props) => {
   useEffect(() => {
     getAmountToday();
   }, []);
+  console.log("sToday", sToday)
+  console.log("eToday", eToday)
+
   const getAmountToday = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
@@ -90,8 +93,11 @@ const JumlahTransaksiHarian = (props) => {
         }),
       }
     );
-    const ajson = await response.json();
-    setAmountToday(ajson.Records[0][0].longValue);
+    const res = await response.json();
+
+    console.log("res setAmountToday ", res)
+
+    setAmountToday(res.Records[0][0].longValue);
   };
 
   useEffect(() => {

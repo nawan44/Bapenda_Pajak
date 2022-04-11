@@ -3,8 +3,8 @@ import { Col, Row, Card } from "antd";
 // import PieChartWithCustomizedLabel from ".pieChartWithCustomizedLabel";
 import jwtDecode from "jwt-decode";
 import * as moment from "moment";
-import PiePendapatan from "./piePendapatan";
-import PieStatus from "./pieStatus";
+// import PiePendapatan from "./piePendapatan";
+// import PieStatus from "./pieStatus";
 
 function PieChart() {
   const [getEarnByCat, setGetEarnByCat] = useState()    
@@ -51,12 +51,12 @@ function PieChart() {
 
       <Col  span={12}>
         {/* <Card className="gx-card" title="Pendapatan Per Kategori"> */}
-        <PiePendapatan  getEarnByCat={getEarnByCat}/>
+        {/* <PiePendapatan  getEarnByCat={getEarnByCat}/> */}
         {/* </Card> */}
       </Col>
       <Col  span={12}>
         {/* <Card className="gx-card" title="Status Device"> */}
-        <PieStatus getEarnByCat={getEarnByCat}/>
+        {/* <PieStatus getEarnByCat={getEarnByCat}/> */}
         {/* </Card> */}
       </Col>
     </Row>

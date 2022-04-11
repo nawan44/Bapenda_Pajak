@@ -9,20 +9,9 @@ const JumlahTransaksiTahunan = (props) => {
   const [transactionThisYear, setTransactionThisYear] = useState();
   const [transactionLastYear, setTransactionLastYear] = useState();
 // Hotel
-const [amountThisYear1, setAmountThisYear1] = useState(0);
-//Parkir
-const [amountThisYear2, setAmountThisYear2] = useState(0);
-//Restoran
-const [amountThisYear3, setAmountThisYear3] = useState(0);
+const [amountThisYear, setAmountThisYear] = useState(0);
 
-// const [amountLastYear, setamountLastYear] = useState();
-
-// Hotel
-const [amountLastYear1, setAmountLastYear1] = useState(0);
-//Parkir
-const [amountLastYear2, setAmountLastYear2] = useState(0);
-//Restoran
-const [amountLastYear3, setAmountLastYear3] = useState(0);
+const [amountLastYear, setAmountLastYear] = useState(0);
 
 const sThisYear = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
 const eThisYear = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
@@ -89,7 +78,7 @@ useEffect(() => {
     //   "content-type": "application/json",
     // };
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/earnsbycat",
+      "https://api.raspi-geek.com/v1/orders",
 
       {
         method: "POST",
@@ -103,15 +92,12 @@ useEffect(() => {
         }),
       }
     );
-    const ajson = await response.json();
+    const res = await response.json();
 
-    setAmountThisYear1(ajson.Records[0][1].stringValue);
-    setAmountThisYear2(ajson.Records[1][1].stringValue);
-    setAmountThisYear3(ajson.Records[2][1].stringValue);
+    setAmountThisYear(res.Records[0][0].longValue);
+
   };
-  const amountLastYear =  Number(amountLastYear1) + Number(amountLastYear2) + Number(amountLastYear3)
-  const amountThisYear =  Number(amountThisYear1) + Number(amountThisYear2) + Number(amountThisYear3)
-  
+ 
   useEffect(() => {
     getAmountLastYear();
   }, []);
@@ -124,7 +110,7 @@ useEffect(() => {
     //   "content-type": "application/json",
     // };
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/earnsbycat",
+      "https://api.raspi-geek.com/v1/orders",
 
       {
         method: "POST",
@@ -138,10 +124,9 @@ useEffect(() => {
         }),
       }
     );
-    const ajson = await response.json();
-    setAmountLastYear1(ajson.Records[0][1].stringValue);
-    setAmountLastYear2(ajson.Records[1][1].stringValue);
-    setAmountLastYear3(ajson.Records[2][1].stringValue);
+    const res = await response.json();
+    setAmountLastYear(res.Records[0][0].longValue);
+    
   };
   useEffect(() => {
     setTransactionThisYear(amountThisYear);

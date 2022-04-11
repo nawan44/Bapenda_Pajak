@@ -8,34 +8,23 @@ const JumlahTransaksiBulanan = (props) => {
   const { latestTransaction, setLatestTransaction } = props;
   const [transactionThisMonth, setTransactionThisMonth] = useState();
   const [transactionLastMonth, setTransactionLastMonth] = useState();
-// Hotel
-const [amountThisMonth1, setAmountThisMonth1] = useState(0);
-//Parkir
-const [amountThisMonth2, setAmountThisMonth2] = useState(0);
-//Restoran
-const [amountThisMonth3, setAmountThisMonth3] = useState(0);
 
-// const [amountLastMonth, setamountLastMonth] = useState();
+  const [amountThisMonth, setAmountThisMonth] = useState(0);
 
-// Hotel
-const [amountLastMonth1, setAmountLastMonth1] = useState(0);
-//Parkir
-const [amountLastMonth2, setAmountLastMonth2] = useState(0);
-//Restoran
-const [amountLastMonth3, setAmountLastMonth3] = useState(0);
+  const [amountLastMonth, setAmountLastMonth] = useState(0);
 
-const sThisMonth = moment().startOf("month").format("YYYY-MM-DD HH:mm:ss");
-const eThisMonth = moment().endOf("month").format("YYYY-MM-DD HH:mm:ss");
-const sLastMonth = moment()
-  .subtract(1, "month")
-  .startOf("month")
-  .format("YYYY-MM-DD HH:mm:ss");
-const eLastMonth = moment()
-  .subtract(1, "month")
-  .endOf("month")
-  .format("YYYY-MM-DD HH:mm:ss");
+  const sThisMonth = moment().startOf("month").format("YYYY-MM-DD HH:mm:ss");
+  const eThisMonth = moment().endOf("month").format("YYYY-MM-DD HH:mm:ss");
+  const sLastMonth = moment()
+    .subtract(1, "month")
+    .startOf("month")
+    .format("YYYY-MM-DD HH:mm:ss");
+  const eLastMonth = moment()
+    .subtract(1, "month")
+    .endOf("month")
+    .format("YYYY-MM-DD HH:mm:ss");
 
-// OLD
+  // OLD
   // const bulanIni = moment().format("YYYY-MM");
   // const bulanLalu = moment().subtract(1, "months").format("YYYY-MM");
   // const bulan =
@@ -73,7 +62,7 @@ const eLastMonth = moment()
   //     transaksiBulanLalu === undefined ? 0 : transaksiBulanLalu
   //   );
   // }, [transaksiBulanLalu]);
-useEffect(() => {
+  useEffect(() => {
     getAmountThisMonth();
   }, []);
 
@@ -85,7 +74,7 @@ useEffect(() => {
     //   "content-type": "application/json",
     // };
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/earnsbycat",
+      "https://api.raspi-geek.com/v1/orders",
 
       {
         method: "POST",
@@ -99,15 +88,11 @@ useEffect(() => {
         }),
       }
     );
-    const ajson = await response.json();
-
-    setAmountThisMonth1(ajson.Records[0][1].stringValue);
-    setAmountThisMonth2(ajson.Records[1][1].stringValue);
-    setAmountThisMonth3(ajson.Records[2][1].stringValue);
+    const res = await response.json();
+    console.log("res", res);
+    setAmountThisMonth(res.Records[0][0].longValue);
   };
-  const amountLastMonth =  Number(amountLastMonth1) + Number(amountLastMonth2) + Number(amountLastMonth3)
-  const amountThisMonth =  Number(amountThisMonth1) + Number(amountThisMonth2) + Number(amountThisMonth3)
-  
+
   useEffect(() => {
     getAmountLastMonth();
   }, []);
@@ -120,7 +105,7 @@ useEffect(() => {
     //   "content-type": "application/json",
     // };
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/earnsbycat",
+      "https://api.raspi-geek.com/v1/orders",
 
       {
         method: "POST",
@@ -134,10 +119,8 @@ useEffect(() => {
         }),
       }
     );
-    const ajson = await response.json();
-    setAmountLastMonth1(ajson.Records[0][1].stringValue);
-    setAmountLastMonth2(ajson.Records[1][1].stringValue);
-    setAmountLastMonth3(ajson.Records[2][1].stringValue);
+    const res = await response.json();
+    setAmountLastMonth(res.Records[0][0].longValue);
   };
   useEffect(() => {
     setTransactionThisMonth(amountThisMonth);
@@ -146,6 +129,7 @@ useEffect(() => {
   useEffect(() => {
     setTransactionLastMonth(amountLastMonth);
   }, [amountLastMonth]);
+
   return (
     <Col className="flip-card" xs={24} xl={8}>
       <div className="flip-card-inner">

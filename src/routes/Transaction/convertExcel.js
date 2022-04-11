@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import XLSX from "xlsx";
-import * as XLSX from "xlsx";
+// import * as XLSX from "xlsx";
 import { Button, Modal } from "antd";
 import * as moment from "moment";
 import "moment/locale/id";
