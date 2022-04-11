@@ -1,5 +1,4 @@
 import React from "react";
-import { Row, Col } from "antd";
 import Widget from "components/Widget/index";
 import SelisihNominal from "../../routes/Dashboard/Math/selisihNominal";
 import SelisihPresentase from "../../routes/Dashboard/Math/selisihPersentase";
@@ -11,7 +10,6 @@ const EcommerceStatus = ({
   color,
   colorTitle,
   colorSubTitle,
-  objToday,
   moneyToday,
   moneyYesterday,
   moneyThisMonth,
@@ -22,7 +20,6 @@ const EcommerceStatus = ({
   objTahunIni,
   transactionToday,
   transactionYesterday,
-  objTransactionToday,
   transactionThisMonth,
   transactionLastMonth,
   objTransactionThisMonth,

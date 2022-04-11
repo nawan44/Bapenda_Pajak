@@ -3,16 +3,10 @@ import { Col } from "antd";
 import EcommerceStatus from "../../../components/Metrics/EcommerceStatus";
 import * as moment from "moment";
 import "../../../assets/styles/flip-card.css";
-import { latestTransaction1 } from "../../../components/DataDummy";
+// import { latestTransaction1 } from "../../../components/DataDummy";
 import jwtDecode from "jwt-decode";
 
 const PendapatanBulanan = (props) => {
-  // const {latestTransaction, setLatestTransactio} = props
-
-  const latestTransaction = latestTransaction1.data;
-
-  // const [earningThisMonth, setEarningThisMonth] = useState();
-
   // Hotel
   const [earningThisMonth1, setEarningThisMonth1] = useState(0);
   //Parkir
@@ -29,9 +23,6 @@ const PendapatanBulanan = (props) => {
   //Restoran
   const [earningLastMonth3, setEarningLastMonth3] = useState(0);
 
-  const bulanIni = moment().format("YYYY-MM");
-  const bulanLalu = moment().subtract(1, "months").format("YYYY-MM");
-
   const sThisMonth = moment().startOf("month").format("YYYY-MM-DD HH:mm:ss");
   const eThisMonth = moment().endOf("month").format("YYYY-MM-DD HH:mm:ss");
   const sLastMonth = moment()
@@ -43,68 +34,15 @@ const PendapatanBulanan = (props) => {
     .endOf("month")
     .format("YYYY-MM-DD HH:mm:ss");
 
-  // OLLLDDDDD
-
   const [moneyThisMonth, setMoneyThisMonth] = useState();
   const [moneyLastMonth, setMoneyLastMonth] = useState();
 
-  // const bulan =
-  //   latestTransaction &&
-  //   latestTransaction.map((row) => ({
-  //     total_value: row[3].stringValue,
-  //     created_at: moment(row[4].stringValue).format("YYYY-MM"),
-  //   }));
-  // const objBulanIni = bulan && bulan.filter((o) => o.created_at === bulanIni);
-  // const currentBulanIni =
-  //   objBulanIni &&
-  //   objBulanIni
-  //     .map((v) => Number(v.total_value))
-  //     .reduce((sum, current) => sum + current, 0);
 
-  // const objBulanLalu = bulan && bulan.filter((o) => o.created_at === bulanLalu);
-  // const currentBulanLalu =
-  //   objBulanLalu &&
-  //   objBulanLalu
-  //     .map((v) => Number(v.total_value))
-  //     .reduce((sum, current) => sum + current, 0);
-
-  // useEffect(() => {
-  //   setMoneyThisMonth(currentBulanIni === undefined ? 0 : currentBulanIni);
-  // }, [currentBulanIni]);
-
-  // useEffect(() => {
-  //   setMoneyLastMonth(currentBulanLalu === undefined ? 0 : currentBulanLalu);
-  // }, [currentBulanLalu]);
-
-  // NEWWWWWWWWWWWW
-
-
-  // useEffect(
-  //   () => {
-  //     setEarningThisMonth(
-  //       Number(earningThisMonth1) +
-  //         Number(earningThisMonth2) +
-  //         Number(earningThisMonth3)
-  //     );
-  //   },
-  //   [earningThisMonth1],
-  //   [earningThisMonth2],
-  //   [earningThisMonth3]
-  // );
-
-
-
-  useEffect(() => {
-    getEarningThisMonth();
-  }, []);
 
   const getEarningThisMonth = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
-    // const headers = {
-    //   "x-api-key": `${apiKey}`,
-    //   "content-type": "application/json",
-    // };
+
     const response = await fetch(
       "https://api.raspi-geek.com/v1/earnsbycat",
 
@@ -126,22 +64,19 @@ const PendapatanBulanan = (props) => {
     setEarningThisMonth2(ajson.Records[1][1].stringValue);
     setEarningThisMonth3(ajson.Records[2][1].stringValue);
   };
+  useEffect(() => {
+    getEarningThisMonth();
+  }, []);
+  
+  const earningLastMonth =
+    Number(earningLastMonth1) +
+    Number(earningLastMonth2) +
+    Number(earningLastMonth3);
 
-  // useEffect(
-  //   () => {
-  //     setEarningLastMonth(
-  //       Number(earningLastMonth1) +
-  //         Number(earningLastMonth2) +
-  //         Number(earningLastMonth3)
-  //     );
-  //   },
-  //   [earningLastMonth1],
-  //   [earningLastMonth2],
-  //   [earningLastMonth3]
-  // );
-  const earningLastMonth =  Number(earningLastMonth1) + Number(earningLastMonth2) + Number(earningLastMonth3)
-
-  const earningThisMonth =  Number(earningThisMonth1) + Number(earningThisMonth2) + Number(earningThisMonth3)
+  const earningThisMonth =
+    Number(earningThisMonth1) +
+    Number(earningThisMonth2) +
+    Number(earningThisMonth3);
 
   useEffect(() => {
     getEarningLastMonth();
@@ -150,10 +85,7 @@ const PendapatanBulanan = (props) => {
   const getEarningLastMonth = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
-    // const headers = {
-    //   "x-api-key": `${apiKey}`,
-    //   "content-type": "application/json",
-    // };
+
     const response = await fetch(
       "https://api.raspi-geek.com/v1/earnsbycat",
 
@@ -181,7 +113,6 @@ const PendapatanBulanan = (props) => {
   useEffect(() => {
     setMoneyLastMonth(earningLastMonth);
   }, [earningLastMonth]);
-  const total = Number(moneyLastMonth) - Number(moneyThisMonth);
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
@@ -194,12 +125,6 @@ const PendapatanBulanan = (props) => {
             color="teal"
             icon="revenue-new"
             title={
-              // <div className="title-card-dashboard">
-              //   {currentBulanIni === undefined
-              //     ? formatter.format(0)
-              //     : formatter.format(currentBulanIni)}
-              // </div>
-
               <div className="title-card-dashboard">
                 {earningThisMonth === undefined
                   ? formatter.format(0)
@@ -211,7 +136,6 @@ const PendapatanBulanan = (props) => {
             setMoneyThisMonth={setMoneyThisMonth}
             moneyLastMonth={moneyLastMonth}
             setMoneyLastMonth={setMoneyLastMonth}
-            // objBulanIni={objBulanIni}
             subTitle={
               <div className="subtitle-card-dashboard">
                 <span>Total Pendapatan</span>
@@ -222,17 +146,11 @@ const PendapatanBulanan = (props) => {
             colorSubTitle="geekblue"
           />
         </div>
-        <div class="flip-card-back">
+        <div className="flip-card-back">
           <EcommerceStatus
             icon="revenue-new"
             color="grey"
             title={
-              // <div  className="subtitle-card-dashboard-grey">
-              //   {currentBulanLalu === undefined
-              //     ? formatter.format(0)
-              //     : formatter.format(currentBulanLalu)}
-              // </div>
-
               <div className="subtitle-card-dashboard-grey">
                 {earningLastMonth === undefined
                   ? formatter.format(0)

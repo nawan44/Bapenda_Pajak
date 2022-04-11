@@ -5,12 +5,11 @@ import * as moment from "moment";
 import jwtDecode from "jwt-decode";
 
 const JumlahTransaksiBulanan = (props) => {
-  const { latestTransaction, setLatestTransaction } = props;
+  // const { latestTransaction, setLatestTransaction } = props;
   const [transactionThisMonth, setTransactionThisMonth] = useState();
   const [transactionLastMonth, setTransactionLastMonth] = useState();
 
   const [amountThisMonth, setAmountThisMonth] = useState(0);
-
   const [amountLastMonth, setAmountLastMonth] = useState(0);
 
   const sThisMonth = moment().startOf("month").format("YYYY-MM-DD HH:mm:ss");
@@ -156,7 +155,7 @@ const JumlahTransaksiBulanan = (props) => {
             colorSubTitle="indigo"
           />
         </div>
-        <div class="flip-card-back">
+        <div className="flip-card-back">
           <EcommerceStatus
             icon="orders"
             color="grey"

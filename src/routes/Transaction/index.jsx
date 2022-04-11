@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Widget from "components/Widget/index";
-import { Row, Col, Modal, Button, Form, Input, Select, Table } from "antd";
+import { Row, Modal, Button, Form, Input, Select, Table } from "antd";
 import { DatePicker, Space } from "antd";
 import jwtDecode from "jwt-decode";
 import * as moment from "moment";
-import ConvertPdf from "./convertPdf";
+// import ConvertPdf from "./convertPdf";
 import ConvertExcel from "./convertExcel";
 import "../../assets/styles/table.css";
-import ReactJs from "./reactjs";
+// import ReactJs from "./reactjs";
 // import JSONPretty from "react-json-pretty";
 // import { JsonTable } from "react-json-to-html";
 // import FileViewer from 'react-file-viewer';
 // import ReactFileReader from "react-file-reader";
 import $ from 'jquery';
 
-const Search = Input.Search;
+// const Search = Input.Search;
 
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
@@ -51,10 +51,10 @@ const Transaction = () => {
     //More code
   };
 
-  const onResetClick = () => {
-    setFromDate("2000-01-01");
-    setToDate("2000-01-02");
-  };
+  // const onResetClick = () => {
+  //   setFromDate("2000-01-01");
+  //   setToDate("2000-01-02");
+  // };
   const renderRawdata = () => {
     if (selectedRecord?.data_source === "PDC") {
       return "PDF";
@@ -105,7 +105,7 @@ const Transaction = () => {
     setFiles(selectedRecord?.raw_data);
   }, []);
 
-  const getListDevice = async (dataLatest) => {
+  const getListDevice = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
     const headers = {
@@ -424,11 +424,9 @@ console.log("kk", kk)
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
-        <p>
           <h1 className="gx-mb-2 gx-text-primary gx-font-weight-medium gx-fs-xxl">
             Filter Data{" "}
           </h1>{" "}
-        </p>
         <Form
           layout="inline"
           className="gx-form-inline-label-up gx-form-inline-currency "

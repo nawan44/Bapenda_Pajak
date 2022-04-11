@@ -13,13 +13,10 @@ const Search = Input.Search;
 const { Title } = Typography;
 
 const SectionDeviceHotel = (props) => {
-    const history = useHistory();
+
     let location = useLocation();
-    const { listData, setListData, aksiList } = props
-    const formatter = new Intl.NumberFormat('id-ID', {
-        style: 'currency',
-        currency: 'IDR',
-    });
+    const { listData, setListData } = props
+
     const [filter, setFilter] = useState("");
     const [buttonGreen, setButtonGreen] = useState("white")
     const [buttonBackgroundGreen, setButtonBackgroundGreen] = useState("green")
@@ -33,7 +30,7 @@ const SectionDeviceHotel = (props) => {
     useEffect(() => {
         getListDevice();
     }, []);
-    const getListDevice = async (dataLatest) => {
+    const getListDevice = async () => {
         const decoded = jwtDecode(localStorage.token)
         const apiKey = decoded["api-key"]
         const headers = {
@@ -65,13 +62,13 @@ const SectionDeviceHotel = (props) => {
         key: index,
     }));
 
-    const [filteredPolls, setfilteredPolls] = useState(data)
+    const [filteredPolls, setFilteredPolls] = useState(data)
     const greenStatus = data?.filter(item => item.status === "green")
     const orangeStatus = data?.filter(item => item.status === "orange")
     const redStatus = data?.filter(item => item.status === "red")
 
     function showGreen() {
-        setfilteredPolls(greenStatus)
+        setFilteredPolls(greenStatus)
         setButtonBackgroundGreen("white")
         setButtonGreen("green")
         // =================================
@@ -81,7 +78,7 @@ const SectionDeviceHotel = (props) => {
         setButtonRed("white")
     }
     function showOrange() {
-        setfilteredPolls(orangeStatus)
+        setFilteredPolls(orangeStatus)
         setButtonBackgroundOrange("white")
         setButtonOrange("orange")
         // =================================
@@ -91,7 +88,7 @@ const SectionDeviceHotel = (props) => {
         setButtonRed("white")
     }
     function showRed() {
-        setfilteredPolls(redStatus)
+        setFilteredPolls(redStatus)
         setButtonBackgroundRed("white")
         setButtonRed("red")
         // =================================
@@ -102,7 +99,7 @@ const SectionDeviceHotel = (props) => {
     }
 
     function showRemove() {
-        setfilteredPolls(data)
+        setFilteredPolls(data)
         // =================================
         setButtonBackgroundGreen("green")
         setButtonGreen("white")
@@ -114,7 +111,7 @@ const SectionDeviceHotel = (props) => {
     const handleChangeData = (event) => {
         setFilter(event.target.value);
     };
-    const lowercasedFilter = filter.toString().toLowerCase();
+    const lowercasedFilter = filter.toString();
 
     const filteredData = data?.filter((item) => {
         try {

@@ -15,7 +15,10 @@ const CurrentPlan = () => {
             className="gx-fs-md gx-bottom-0">/month</sub></h2>
           <p className="gx-mb-1"><span className="gx-size-8 gx-bg-dark gx-rounded-xs gx-d-inline-block gx-mr-1"/> Max
             listing items 2K</p>
-          <p><span className="gx-size-8 gx-bg-dark gx-rounded-xs gx-d-inline-block gx-mr-1"/> Max agents - 10</p>
+          <p>
+            
+            <span className="gx-size-8 gx-bg-dark gx-rounded-xs gx-d-inline-block gx-mr-1"/> 
+            Max agents - 10</p>
         </div>
         <div className="gx-currentplan-col gx-currentplan-right">
           <div className="gx-currentplan-right-content">

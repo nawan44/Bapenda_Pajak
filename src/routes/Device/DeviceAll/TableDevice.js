@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Table from "antd/lib/table";
 import "antd/lib/table/style/css";
-import { Modal, Button } from 'antd';
+import { Modal } from "antd";
 import "antd/lib/button/style/css";
-import "../../../assets/styles/table.css"
-
+import "../../../assets/styles/table.css";
 
 const TableDevice = (props) => {
-  const { listData, setListData, data, FormOutlined, state, setState } = props
+  const { setListData, data } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [dataRecord, setDataRecord] = useState()
+  const [dataRecord, setDataRecord] = useState();
   const showModal = (record) => {
     setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
   };
 
   const handleCancel = () => {
@@ -23,8 +18,8 @@ const TableDevice = (props) => {
   };
   const columns = [
     {
-      title: 'Device Id',
-      dataIndex: 'device_id',
+      title: "Device Id",
+      dataIndex: "device_id",
       // editable: true,
       // render: (text, record) => (
       //   <button onClick={(e) => {
@@ -43,25 +38,24 @@ const TableDevice = (props) => {
       // ),
     },
     {
-      title: 'Owner',
-      dataIndex: 'owner',
+      title: "Owner",
+      dataIndex: "owner",
       editable: true,
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
+      title: "Email",
+      dataIndex: "email",
       editable: true,
     },
     {
-      title: 'Nama Usaha',
-      dataIndex: 'nama_usaha',
+      title: "Nama Usaha",
+      dataIndex: "nama_usaha",
       editable: true,
     },
     {
-      title: 'Type Pajak',
-      dataIndex: 'type_pajak',
+      title: "Type Pajak",
+      dataIndex: "type_pajak",
       editable: true,
-
     },
     // {
     //   title: 'Aksi',
@@ -87,25 +81,29 @@ const TableDevice = (props) => {
 
   return (
     <>
-      <Table  className="gx-table-no-bordered" dataSource={data} columns={columns}
-        rowClassName={record => `gx-bg-${record.status}`}
+      <Table
+        className="gx-table-no-bordered"
+        dataSource={data}
+        columns={columns}
+        rowClassName={(record) => `gx-bg-${record.status}`}
         // onClick={showModal}
         onRow={(record, recordIndex) => ({
-          onClick: event => {
+          onClick: (event) => {
             // console.log("onRow onClick",
             //   event.target, event.target.className, record, recordIndex)
-            showModal(record)
-            setDataRecord(record)
-          }
+            showModal(record);
+            setDataRecord(record);
+          },
         })}
       />
       {/* <Modal title={`${record.device_id}`} visible={isModalVisible} */}
-      <Modal dataRecord={dataRecord}
+      <Modal
+        dataRecord={dataRecord}
         title={dataRecord?.nama_usaha}
         visible={isModalVisible}
         className="modal-container"
         footer={null}
-        // onOk={handleOk} 
+        // onOk={handleOk}
         onCancel={handleCancel}
       >
         <div className="container-button">
@@ -114,9 +112,12 @@ const TableDevice = (props) => {
             onClick={(e, record) => {
               setListData({
                 aksiList: "lihatData",
-                itemList: dataRecord
-              })
-            }} > Lihat Data
+                itemList: dataRecord,
+              });
+            }}
+          >
+            {" "}
+            Lihat Data
           </button>
         </div>
         <div className="container-button">
@@ -125,18 +126,20 @@ const TableDevice = (props) => {
             onClick={(e, record) => {
               setListData({
                 aksiList: "editData",
-                itemList: dataRecord
-              })
-            }} > Edit Data
+                itemList: dataRecord,
+              });
+            }}
+          >
+            {" "}
+            Edit Data
           </button>
         </div>
       </Modal>
-
     </>
-  )
+  );
 };
 
-export default TableDevice
+export default TableDevice;
 // props: {
 //   style: { background: record.status , color:"black"}
 // },

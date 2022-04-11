@@ -1,16 +1,16 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { httpClient } from "../../../util/Api";
-import {useHistory} from "react-router-dom";
-import jwtDecode from "jwt-decode";
-import {
-  USER_LOADED,
-  AUTH_ERROR,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT,
-  CLEAR_ERROR,
-} from "../../types";
-import ErrorPage from '../../../routes/NotFound';
+// import {useHistory} from "react-router-dom";
+// import jwtDecode from "jwt-decode";
+// import {
+//   USER_LOADED,
+//   AUTH_ERROR,
+//   LOGIN_SUCCESS,
+//   LOGIN_FAIL,
+//   LOGOUT,
+//   CLEAR_ERROR,
+// } from "../../types";
+// import ErrorPage from '../../../routes/NotFound';
 
 export const useProvideAuth = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -19,9 +19,6 @@ export const useProvideAuth = () => {
   const [isLoading, setLoading] = useState(false);
   // const [dataAuth, setDataAuth] = useState()
   // const nRef = useRef(dataAuth);
-  const history = useHistory();
-
-
   // useEffect(() => { 
   //   nRef.current = dataAuth 
   // }, 

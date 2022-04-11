@@ -3,14 +3,11 @@ import { Col } from "antd";
 import EcommerceStatus from "../../../components/Metrics/EcommerceStatus";
 import * as moment from "moment";
 import jwtDecode from "jwt-decode";
-import { latestTransaction1 } from "../../../components/DataDummy";
+// import { latestTransaction1 } from "../../../components/DataDummy";
 
 const JumlahTransaksiHarian = (props) => {
   // const { latestTransaction, setLatestTransaction } = props;
-  const latestTransaction = latestTransaction1.data;
-
-  const now = moment().format('YYYY-MM-DD')
-  const kemarin = moment().subtract(1, 'd').format('YYYY-MM-DD')
+  // const latestTransaction = latestTransaction1.data;
 
   const [amountToday, setAmountToday] = useState();
   const [amountYesterday, setAmountYesterday] = useState();
@@ -73,10 +70,7 @@ const JumlahTransaksiHarian = (props) => {
   const getAmountToday = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
-    const headers = {
-      "x-api-key": `${apiKey}`,
-      "content-type": "application/json",
-    };
+
 
     const response = await fetch(
       "https://api.raspi-geek.com/v1/orders",
@@ -126,8 +120,9 @@ const JumlahTransaksiHarian = (props) => {
         }),
       }
     );
-    const ajson = await response.json();
-    setAmountYesterday(ajson.Records[0][0].longValue);
+    const res = await response.json();
+    console.log("res", res)
+    setAmountYesterday(res.Records[0][0].longValue);
   };
 //NEWWW
   return (
@@ -159,7 +154,7 @@ const JumlahTransaksiHarian = (props) => {
             colorSubTitle="geekblue"
           />
         </div>
-        <div class="flip-card-back">
+        <div className="flip-card-back">
           <EcommerceStatus
             icon="orders"
             color="grey"

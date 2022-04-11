@@ -13,7 +13,7 @@ const { Option } = Select;
 
 function EditDeviceAgent(props) {
     const history = useHistory();
-    const { selectedRecord, setSelectedRecord, listData, setListData, aksiList, itemList } = props
+    const {  listData, itemList } = props
     const alamatTrim = itemList.alamat
     const pieces = alamatTrim.split(",")
     const provTrim = pieces[pieces.length - 1]

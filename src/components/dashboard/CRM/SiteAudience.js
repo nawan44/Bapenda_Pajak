@@ -1,12 +1,9 @@
 import React from "react";
-import * as moment from 'moment';
 import LineIndicator from "./LineIndicator";
-import {useHistory, useLocation} from "react-router-dom";
+import { useLocation} from "react-router-dom";
 
 const SiteAudience = ({ data }) => {
-  const history = useHistory();
   let location = useLocation();
-  const now = moment().format('YYYY-MM-DD')
   const allStatus = data?.map(row => row.status)
   // const greyStatus = allStatus && allStatus.filter(o => o < 0);
   const greenStatus = data?.filter(o => o.status === "green");

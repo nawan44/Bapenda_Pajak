@@ -6,40 +6,37 @@ import "../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
 
 const PendapatanTahunan = (props) => {
-  const { latestTransaction, setLatestTransaction, getLatestTransaction } =
-    props;
-  const tahunIni = moment().format("YYYY");
-  const tahunLalu = moment().subtract(1, "years").format("YYYY");
+  const { 
+    // latestTransaction, setLatestTransaction, getLatestTransaction 
+  } =    props;
 
   const [moneyThisYear, setMoneyThisYear] = useState();
   const [moneyLastYear, setMoneyLastYear] = useState();
 
-// Hotel
-const [earningThisYear1, setEarningThisYear1] = useState(0);
-//Parkir
-const [earningThisYear2, setEarningThisYear2] = useState(0);
-//Restoran
-const [earningThisYear3, setEarningThisYear3] = useState(0);
+  // Hotel
+  const [earningThisYear1, setEarningThisYear1] = useState(0);
+  //Parkir
+  const [earningThisYear2, setEarningThisYear2] = useState(0);
+  //Restoran
+  const [earningThisYear3, setEarningThisYear3] = useState(0);
 
-// const [earningLastYear, setEarningLastYear] = useState();
+  // Hotel
+  const [earningLastYear1, setEarningLastYear1] = useState(0);
+  //Parkir
+  const [earningLastYear2, setEarningLastYear2] = useState(0);
+  //Restoran
+  const [earningLastYear3, setEarningLastYear3] = useState(0);
 
-// Hotel
-const [earningLastYear1, setEarningLastYear1] = useState(0);
-//Parkir
-const [earningLastYear2, setEarningLastYear2] = useState(0);
-//Restoran
-const [earningLastYear3, setEarningLastYear3] = useState(0);
-
-const sThisYear = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
-const eThisYear = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
-const sLastYear = moment()
-  .subtract(1, "year")
-  .startOf("year")
-  .format("YYYY-MM-DD HH:mm:ss");
-const eLastYear = moment()
-  .subtract(1, "year")
-  .endOf("year")
-  .format("YYYY-MM-DD HH:mm:ss");
+  const sThisYear = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
+  const eThisYear = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
+  const sLastYear = moment()
+    .subtract(1, "year")
+    .startOf("year")
+    .format("YYYY-MM-DD HH:mm:ss");
+  const eLastYear = moment()
+    .subtract(1, "year")
+    .endOf("year")
+    .format("YYYY-MM-DD HH:mm:ss");
 
   useEffect(() => {
     getEarningThisYear();
@@ -48,10 +45,7 @@ const eLastYear = moment()
   const getEarningThisYear = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
-    // const headers = {
-    //   "x-api-key": `${apiKey}`,
-    //   "content-type": "application/json",
-    // };
+
     const response = await fetch(
       "https://api.raspi-geek.com/v1/earnsbycat",
 
@@ -81,10 +75,7 @@ const eLastYear = moment()
   const getEarningLastYear = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
-    // const headers = {
-    //   "x-api-key": `${apiKey}`,
-    //   "content-type": "application/json",
-    // };
+
     const response = await fetch(
       "https://api.raspi-geek.com/v1/earnsbycat",
 
@@ -106,38 +97,15 @@ const eLastYear = moment()
     setEarningLastYear3(ajson.Records[2][1].stringValue);
   };
 
-  const earningLastYear =  Number(earningLastYear1) + Number(earningLastYear2) + Number(earningLastYear3)
+  const earningLastYear =
+    Number(earningLastYear1) +
+    Number(earningLastYear2) +
+    Number(earningLastYear3);
 
-  const earningThisYear =  Number(earningThisYear1) + Number(earningThisYear2) + Number(earningThisYear3)
-  
-  // OLD
-  // const tahun =
-  //   latestTransaction &&
-  //   latestTransaction.map((row) => ({
-  //     total_value: row[3].stringValue,
-  //     created_at: moment(row[4].stringValue).format("YYYY"),
-  //   }));
-  // const objTahunIni = tahun && tahun.filter((o) => o.created_at === tahunIni);
-  // const currentTahunIni =
-  //   objTahunIni &&
-  //   objTahunIni
-  //     .map((v) => Number(v.total_value))
-  //     .reduce((sum, current) => sum + current, 0);
-
-  // const objTahunLalu = tahun && tahun.filter((o) => o.created_at === tahunLalu);
-  // const currentTahunLalu =
-  //   objTahunLalu &&
-  //   objTahunLalu
-  //     .map((v) => Number(v.total_value))
-  //     .reduce((sum, current) => sum + current, 0);
-
-  // useEffect(() => {
-  //   setMoneyThisYear(currentTahunIni === undefined ? 0 : currentTahunIni);
-  // }, [currentTahunIni]);
-
-  // useEffect(() => {
-  //   setMoneyLastYear(currentTahunLalu === undefined ? 0 : currentTahunLalu);
-  // }, [currentTahunLalu]);
+  const earningThisYear =
+    Number(earningThisYear1) +
+    Number(earningThisYear2) +
+    Number(earningThisYear3);
 
   useEffect(() => {
     setMoneyThisYear(earningThisYear);
@@ -159,25 +127,19 @@ const eLastYear = moment()
             color="white"
             icon="revenue-new"
             title={
-              // <div className="title-card-dashboard">
-              //   {currentTahunIni === undefined
-              //     ? formatter.format(0)
-              //     : formatter.format(currentTahunIni)}
-              // </div>
               <div className="title-card-dashboard">
-              {earningThisYear === undefined
-                ? formatter.format(0)
-                : formatter.format(earningThisYear)}
-            </div>
+                {earningThisYear === undefined
+                  ? formatter.format(0)
+                  : formatter.format(earningThisYear)}
+              </div>
             }
             colorTitle="primary"
             moneyThisYear={moneyThisYear}
             setMoneyThisYear={setMoneyThisYear}
             moneyLastYear={moneyLastYear}
             setMoneyLastYear={setMoneyLastYear}
-            // objTahunIni={objTahunIni}
             subTitle={
-              <div  className="subtitle-card-dashboard">
+              <div className="subtitle-card-dashboard">
                 <span>Total Pendapatan</span>
                 <br />
                 <span>(Tahun Ini)</span>
@@ -186,26 +148,20 @@ const eLastYear = moment()
             colorSubTitle="primary"
           />
         </div>
-        <div class="flip-card-back">
+        <div className="flip-card-back">
           <EcommerceStatus
             icon="revenue-new"
             color="grey"
             title={
-              // <div  className="subtitle-card-dashboard-grey">
-              //   {currentTahunLalu === undefined
-              //     ? formatter.format(0)
-              //     : formatter.format(currentTahunLalu)}
-              // </div>
-              <div  className="subtitle-card-dashboard-grey">
-              {earningLastYear === undefined
-                ? formatter.format(0)
-                : formatter.format(earningLastYear)}
-            </div>
+              <div className="subtitle-card-dashboard-grey">
+                {earningLastYear === undefined
+                  ? formatter.format(0)
+                  : formatter.format(earningLastYear)}
+              </div>
             }
             colorTitle="dark"
-            // moneyToday={moneyToday} setMoneyToday ={setMoneyToday} moneyYesterday={moneyYesterday} setMoneyYesterday={setMoneyYesterday}
             subTitle={
-              <div  className="subtitle-card-dashboard">
+              <div className="subtitle-card-dashboard">
                 <span>Total Pendapatan</span>
                 <br />
                 <span>(Tahun Lalu)</span>

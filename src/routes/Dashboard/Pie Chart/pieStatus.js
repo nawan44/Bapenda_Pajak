@@ -23,7 +23,7 @@
 //   useEffect(() => {
 //     getListDevice();
 //   }, []);
-//   const getListDevice = async (dataLatest) => {
+//   const getListDevice = async () => {
 //     const decoded = jwtDecode(localStorage.token);
 //     const apiKey = decoded["api-key"];
 //     const headers = {

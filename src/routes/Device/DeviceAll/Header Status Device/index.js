@@ -9,11 +9,6 @@ import SiteAudience from "../../../../components/dashboard/CRM/SiteAudience";
 
 const HeaderStatusDevice = ({ color, latestTransaction, setLatestTransaction,data }) => {
 
-  const formatter = new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-
-  });
   return (
     <Row>
         <Col span={12}  >

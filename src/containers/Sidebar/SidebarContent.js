@@ -1,11 +1,9 @@
 import React from "react";
 import { Menu, Divider } from "antd";
 import { Link } from "react-router-dom";
-
 import CustomScrollbars from "util/CustomScrollbars";
 import SidebarLogo from "./SidebarLogo";
 import UserProfile from "./UserProfile";
-// import AppsNavigation from "./AppsNavigation";
 import {
   NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
   NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
@@ -16,10 +14,8 @@ import { useSelector } from "react-redux";
 import {
   BarChartOutlined,
   AppstoreOutlined,
-  OrderedListOutlined,
   UserOutlined,
   FormOutlined,
-  DeploymentUnitOutlined,
   ApiOutlined,
 } from "@ant-design/icons";
 import "../../assets/styles/sidebar.css";

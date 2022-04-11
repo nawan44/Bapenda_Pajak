@@ -3,7 +3,7 @@ import { Input } from "antd";
 
 const Search = Input.Search;
 
-const TitleSearch = ({filter, onSearch, handleChangeData, ...props }) => (
+const SearchDevice = ({filter, onSearch, handleChangeData, ...props }) => (
   <div {...props}>
     <Search
       placeholder="Cari Data ..."
@@ -14,4 +14,4 @@ const TitleSearch = ({filter, onSearch, handleChangeData, ...props }) => (
   </div>
 );
 
-export default TitleSearch
+export default SearchDevice

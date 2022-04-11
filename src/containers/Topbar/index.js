@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout, Popover } from "antd";
 import { Link } from "react-router-dom";
 
@@ -20,10 +20,10 @@ import { useDispatch, useSelector } from "react-redux";
 const { Header } = Layout;
 
 const Topbar = () => {
-  const { locale, navStyle } = useSelector(({ settings }) => settings);
+  const {  navStyle } = useSelector(({ settings }) => settings);
   const navCollapsed = useSelector(({ common }) => common.navCollapsed);
   const width = useSelector(({ common }) => common.width);
-  const [searchText, setSearchText] = useState('');
+  // const [searchText, setSearchText] = useState('');
   const dispatch = useDispatch();
 
   // const languageMenu = () => (
@@ -40,9 +40,9 @@ const Topbar = () => {
   //     </ul>
   //   </CustomScrollbars>);
 
-  const updateSearchChatUser = (evt) => {
-    setSearchText(evt.target.value);
-  };
+  // const updateSearchChatUser = (evt) => {
+  //   setSearchText(evt.target.value);
+  // };
 
   return (
     <Header>

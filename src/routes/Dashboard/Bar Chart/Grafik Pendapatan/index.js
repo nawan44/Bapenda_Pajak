@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   ComposedChart,
   Line,
-  Area,
   Bar,
   XAxis,
   YAxis,
@@ -16,7 +15,7 @@ import Widget from "components/Widget/index";
 import "moment/locale/id";
 import "../../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
-import { Select, Typography, Col, Row } from "antd";
+import { Select, Typography} from "antd";
 import { DatePicker } from "antd";
 
 const { Option } = Select;
@@ -53,7 +52,7 @@ const GrafikPendapatan = (props) => {
     getMonthly();
   }, [bulanSelect]);
   
-  const getMonthly = async (dataLatest) => {
+  const getMonthly = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
     const headers = {
@@ -72,7 +71,7 @@ const GrafikPendapatan = (props) => {
     getYearly();
   }, []);
 
-  const getYearly = async (dataLatest) => {
+  const getYearly = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
     const headers = {
@@ -112,10 +111,6 @@ let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "A
   //   {}
   // );
 
-  const formatter = new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-  });
   const disabledDate = (current) => {
     let customDate = "2022";
     return current && current < moment(customDate, "YYYY");

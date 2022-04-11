@@ -29,7 +29,7 @@ const SamplePage = () => {
     //  return()=>clearInterval(interval)
   }, []);
 
-  const getLatestTransaction = async (dataLatest) => {
+  const getLatestTransaction = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
     const headers = {
@@ -43,8 +43,7 @@ const SamplePage = () => {
       { method: "GET", headers }
     );
     const ajson = await response.json();
-    // setLatestTransaction(ajson)
-    // setLatestTransaction(ajson.Records)
+ 
     setLatestTransaction(ajson.Records);
   };
 

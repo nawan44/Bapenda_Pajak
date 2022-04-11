@@ -5,24 +5,23 @@ import * as moment from "moment";
 import jwtDecode from "jwt-decode";
 
 const JumlahTransaksiTahunan = (props) => {
-  const { latestTransaction, setLatestTransaction } = props;
+  // const { latestTransaction, setLatestTransaction } = props;
   const [transactionThisYear, setTransactionThisYear] = useState();
   const [transactionLastYear, setTransactionLastYear] = useState();
-// Hotel
-const [amountThisYear, setAmountThisYear] = useState(0);
 
-const [amountLastYear, setAmountLastYear] = useState(0);
+  const [amountThisYear, setAmountThisYear] = useState(0);
+  const [amountLastYear, setAmountLastYear] = useState(0);
 
-const sThisYear = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
-const eThisYear = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
-const sLastYear = moment()
-  .subtract(1, "year")
-  .startOf("year")
-  .format("YYYY-MM-DD HH:mm:ss");
-const eLastYear = moment()
-  .subtract(1, "year")
-  .endOf("year")
-  .format("YYYY-MM-DD HH:mm:ss");
+  const sThisYear = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
+  const eThisYear = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
+  const sLastYear = moment()
+    .subtract(1, "year")
+    .startOf("year")
+    .format("YYYY-MM-DD HH:mm:ss");
+  const eLastYear = moment()
+    .subtract(1, "year")
+    .endOf("year")
+    .format("YYYY-MM-DD HH:mm:ss");
 
   // const tahunIni = moment().format("YYYY");
   // const tahunLalu = moment().subtract(1, "years").format("YYYY");
@@ -66,7 +65,7 @@ const eLastYear = moment()
   //     transaksiTahunLalu === undefined ? 0 : transaksiTahunLalu
   //   );
   // }, [transaksiTahunLalu]);
-useEffect(() => {
+  useEffect(() => {
     getAmountThisYear();
   }, []);
 
@@ -95,9 +94,8 @@ useEffect(() => {
     const res = await response.json();
 
     setAmountThisYear(res.Records[0][0].longValue);
-
   };
- 
+
   useEffect(() => {
     getAmountLastYear();
   }, []);
@@ -105,10 +103,6 @@ useEffect(() => {
   const getAmountLastYear = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
-    // const headers = {
-    //   "x-api-key": `${apiKey}`,
-    //   "content-type": "application/json",
-    // };
     const response = await fetch(
       "https://api.raspi-geek.com/v1/orders",
 
@@ -126,7 +120,6 @@ useEffect(() => {
     );
     const res = await response.json();
     setAmountLastYear(res.Records[0][0].longValue);
-    
   };
   useEffect(() => {
     setTransactionThisYear(amountThisYear);
@@ -142,9 +135,7 @@ useEffect(() => {
           <EcommerceStatus
             color="white"
             icon="orders"
-            title={
-              <div className="title-card-dashboard">{amountThisYear}</div>
-            }
+            title={<div className="title-card-dashboard">{amountThisYear}</div>}
             colorTitle="primary"
             transactionThisYear={transactionThisYear}
             setTransactionThisYear={setTransactionThisYear}
@@ -152,7 +143,7 @@ useEffect(() => {
             setTransactionLastYear={setTransactionLastYear}
             // objTransactionThisYear={objTransactionThisYear}
             subTitle={
-              <div  className="subtitle-card-dashboard">
+              <div className="subtitle-card-dashboard">
                 <span>Total Transaksi</span>
                 <br />
                 <span>(Tahun Ini)</span>
@@ -164,16 +155,18 @@ useEffect(() => {
           {/* <EcommerceStatus color="orange" icon="orders" title="4" colorTitle="geekblue"
                      subTitle="Total Transaksi (Hari Ini)" colorSubTitle="geekblue"/> */}
         </div>
-        <div class="flip-card-back">
+        <div className="flip-card-back">
           <EcommerceStatus
             icon="orders"
             color="grey"
             title={
-              <div  className="subtitle-card-dashboard-grey">{amountLastYear}</div>
+              <div className="subtitle-card-dashboard-grey">
+                {amountLastYear}
+              </div>
             }
             colorTitle="dark"
             subTitle={
-              <div  className="subtitle-card-dashboard">
+              <div className="subtitle-card-dashboard">
                 <span>Total Transaksi</span>
                 <br />
                 <span>(Tahun Lalu)</span>

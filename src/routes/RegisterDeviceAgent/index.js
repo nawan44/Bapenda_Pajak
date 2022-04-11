@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Steps, Button, message, Card } from 'antd';
+import React from "react";
+import {  Card } from 'antd';
 import IntlMessages from "util/IntlMessages";
 import { MyStepForm } from "./myStepForm";
 

@@ -2,63 +2,8 @@ import React, { useState } from "react";
 // import XLSX from "xlsx";
 // import * as XLSX from "xlsx";
 import { Button, Modal } from "antd";
-import * as moment from "moment";
-import "moment/locale/id";
 import "../../assets/styles/table.css";
 import jwtDecode from "jwt-decode";
-
-const dataDummy = [
-  {
-    key: "1",
-    tgl_transaksi: "1 Maret 2022",
-    merchant_id: "DEJARDIN0001",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-  {
-    key: "2",
-    tgl_transaksi: "1 Februari 2022",
-    merchant_id: "DEJARDIN0001",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-  {
-    key: "3",
-    tgl_transaksi: "15 Maret 2022",
-    merchant_id: "DEJARDIN0001",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-  {
-    key: "4",
-    tgl_transaksi: "20 Februari 2022",
-    merchant_id: "DEJARDIN0001",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-  {
-    key: "5",
-    tgl_transaksi: "30 Januari 2022",
-    merchant_id: "DEJARDIN0001",
-    nama_usaha: "Kyriad Metro Cipulir - Restoran Nusantara",
-    type_pajak: "Restoran",
-    nominal_transaksi: "175000.00",
-    nominal_pajak: "75000,00",
-    nominal_nett: "100000.00",
-  },
-];
 
 const ConvertExcel = (props) => {
   const { dataFilter, fromDate, toDate, typePajak, nik, changePage } = props;
@@ -69,9 +14,9 @@ const ConvertExcel = (props) => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
+  // const handleOk = () => {
+  //   setIsModalVisible(false);
+  // };
 
   const handleCancel = () => {
     setIsModalVisible(false);

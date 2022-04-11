@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import {
   ComposedChart,
   Line,
-  Area,
   Bar,
   XAxis,
   YAxis,
@@ -16,132 +15,11 @@ import Widget from "components/Widget/index";
 import "moment/locale/id";
 import "../../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
-import { Select, Typography, Col, Row } from "antd";
+import { Select, Typography, } from "antd";
 import { DatePicker } from 'antd';
 
 const { Option } = Select;
 
-const latestTransaction = [
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "534650.00",
-    },
-    {
-      stringValue: "2022-01-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "734650.00",
-    },
-    {
-      stringValue: "2022-02-11 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "834650.00",
-    },
-    {
-      stringValue: "2022-03-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "634650.00",
-    },
-    {
-      stringValue: "2022-04-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "764650.00",
-    },
-    {
-      stringValue: "2022-05-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "834650.00",
-    },
-    {
-      stringValue: "2022-06-19 16:14:00",
-    },
-  ],
-  [
-    {
-      stringValue: "5bda50ab-9940-11ec-8a2c-a97e6ec00a1c",
-    },
-    {
-      stringValue: "DEJARDIN0001",
-    },
-    {
-      stringValue: "Rumah Makan Sederhana",
-    },
-    {
-      stringValue: "934650.00",
-    },
-    {
-      stringValue: "2022-07-19 16:14:00",
-    },
-  ],
-];
 
 const GrafikTransaksi = (props) => {
   // const {latestTransaction, setLatestTransactio} = props
@@ -171,7 +49,7 @@ const GrafikTransaksi = (props) => {
     getMonthly();
   }, [bulanSelect]);
 
-  const getMonthly = async (dataLatest) => {
+  const getMonthly = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
     const headers = {
@@ -190,7 +68,7 @@ const GrafikTransaksi = (props) => {
     getYearly();
   }, []);
 
-  const getYearly = async (dataLatest) => {
+  const getYearly = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
     const headers = {

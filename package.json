@@ -22,7 +22,6 @@
     "chart.js": "^3.7.1",
     "chartjs-plugin-datalabels": "^2.0.0",
     "connected-react-router": "^6.8.0",
-    "cors": "^2.8.5",
     "d3-scale": "^3.2.3",
     "draftjs-to-html": "^0.9.1",
     "firebase": "^8.2.3",
@@ -79,7 +78,6 @@
     "rheostat": "^4.1.1",
     "rxjs": "^7.5.4",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.3.3",
     "url-search-params": "^1.1.0",
     "victory": "^35.4.6",
     "xlsx": "^0.18.4"

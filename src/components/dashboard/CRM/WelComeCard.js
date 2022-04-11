@@ -1,14 +1,11 @@
 import React from "react";
 import { Avatar } from 'antd';
-import * as moment from 'moment';
-import 'moment/locale/id'
-import {useHistory, useLocation} from "react-router-dom";
+import { useLocation} from "react-router-dom";
 
 
 
 const WelComeCard = ({data}) => {
-  const now = moment().format('YYYY-MM-DD');
-  const history = useHistory();
+
 let location = useLocation();
 // const allStatus =result_all_status_device.map(row => moment(now).diff(moment(row.created_at), 'days'))
 // const greyStatus = allStatus && allStatus.filter(o => o <  0);

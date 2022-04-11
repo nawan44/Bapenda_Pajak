@@ -12,7 +12,6 @@ function DataKecamatan(props) {
     listData,
     itemList,
     searchKabKotaId,
-    setSearchKabKotaId,
     kelId,
     setKelId,
     kecId,
@@ -23,7 +22,6 @@ function DataKecamatan(props) {
     kel,
     setKel,
     errorKec,
-    setErrorKec,
     errorKel,
     setErrorKel,
   } = props;

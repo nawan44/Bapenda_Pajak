@@ -18,9 +18,9 @@ const ErrorPage = () => {
             </div>
           </div>
         </form>
-        <p className="gx-text-center">
+        {/* <p className="gx-text-center">
           <Link href="/"><a className="gx-btn gx-btn-primary"><IntlMessages id="extraPages.goHome"/></a></Link>
-        </p>
+        </p> */}
       </div>
     </div>
   );

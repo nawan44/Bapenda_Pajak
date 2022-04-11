@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, Typography } from "antd";
-import { ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from 'recharts';
+import { ComposedChart, Line,  Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, } from 'recharts';
 import { CloseCircleFilled } from '@ant-design/icons';
-import { Row, Col, Input, Button } from "antd";
+import { Row, Col} from "antd";
 import jwtDecode from "jwt-decode";
 
 import Widget from "components/Widget/index";
@@ -10,20 +10,11 @@ import { useHistory } from "react-router-dom";
 import * as moment from 'moment';
 import 'moment/locale/id'
 
-// const data = [
-//   { name: 'Page A', price: 200 },
-//   { name: 'Page B', price: 800 },
-//   { name: 'Page C', price: 600 },
-//   { name: 'Page D', price: 2200 },
-//   { name: 'Page D', price: 1000 },
-//   { name: 'Page H', price: 2960 },
-//   { name: 'Page K', price: 1960 },
-// ];
+
 
 const Productivity = ({ selectedRecord, setSelectedRecord, listData, setListData, aksiList, itemList }) => {
   const history = useHistory();
   const [detailMerchant, setDetailMerchant] = useState()
-  const [dataMerchant, setDataMerchant] = useState()
 
   const nominalPendapatan1 = detailMerchant && detailMerchant.map(row => Number(row[8].stringValue));
   const nominalPendapatan2 = detailMerchant && detailMerchant.map(row => Number(row[10].stringValue));
@@ -113,8 +104,8 @@ const Productivity = ({ selectedRecord, setSelectedRecord, listData, setListData
   };
   useEffect(() => {
     getDetailMerchant();
-  }, []);
-  const getDetailMerchant = async (dataLatest) => {
+  }, [detailMerchant]);
+  const getDetailMerchant = async () => {
     const decoded = jwtDecode(localStorage.token)
     const apiKey = decoded["api-key"]
     const headers = {
@@ -126,8 +117,8 @@ const Productivity = ({ selectedRecord, setSelectedRecord, listData, setListData
 
       { method: "GET", headers }
     );
-    const ajson = await response.json();
-    setDetailMerchant(ajson.Records)
+    const res = await response.json();
+    setDetailMerchant(res.Records)
   }
 
 
