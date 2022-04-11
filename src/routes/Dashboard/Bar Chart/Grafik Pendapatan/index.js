@@ -15,27 +15,36 @@ import Widget from "components/Widget/index";
 import "moment/locale/id";
 import "../../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
-import { Select, Typography} from "antd";
+import { Select, Typography } from "antd";
 import { DatePicker } from "antd";
 
 const { Option } = Select;
 
 const GrafikPendapatan = (props) => {
   // const {latestTransaction, setLatestTransactio} = props
+  const bulanIni = moment().format("MM");
+
+  const next = moment().add(6, "months").format("MM");
+  const setBulan = bulanIni.replace(/^0+/, "");
+
   const [jenisChart, setJenisChart] = useState("Daily");
-  const [bulanSelect, setBulanSelect] = useState("1");
+  const [bulanSelect, setBulanSelect] = useState(setBulan);
 
   const [monthly, setMonthly] = useState();
   const [yearly, setYearly] = useState();
   const [tahunMonthly, setTahunMonthly] = useState(moment().format("YYYY"));
 
+  console.log("bulanIni", bulanIni);
+  console.log("next", next);
+  console.log("setBulan", setBulan);
+
   const handleChangeSelect = (value) => {
     setJenisChart(value);
-    setBulanSelect("1")
+    setBulanSelect("1");
   };
   const handleChangeBulan = (value) => {
     setBulanSelect(value);
-    getMonthly()
+    getMonthly();
   };
   const handleTahunMonthly = (date, dateString) => {
     setTahunMonthly(dateString);
@@ -51,7 +60,7 @@ const GrafikPendapatan = (props) => {
   useEffect(() => {
     getMonthly();
   }, [bulanSelect]);
-  
+
   const getMonthly = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
@@ -91,13 +100,26 @@ const GrafikPendapatan = (props) => {
     created_at: moment(row[0].stringValue).format("DD/MM"),
     total_value: Number(row[1].stringValue),
   }));
-  
-let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+
+  let months = [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
+  ];
 
   const tahun = yearly?.map((row) => ({
     // created_at: row[0].longValue,
     // created_at :choiceBulan(),
-    created_at : months[row[0].longValue],
+    created_at: months[row[0].longValue],
     total_value: Number(row[1].stringValue),
   }));
   // const shooters = bulan?.reduce(
@@ -117,15 +139,19 @@ let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "A
   };
   return (
     <Widget
-    styleName="gx-order-history"
-
+      styleName="gx-order-history"
       // styleName={`gx-order-history `}
       title={
         <div style={{ width: "500px" }}>
           <div style={{ width: "100%", float: "left" }}>
             {" "}
             <Typography
-              style={{textAlign:"left", margin: "0", fontSize: "14px", fontWeight: "bold" }}
+              style={{
+                textAlign: "left",
+                margin: "0",
+                fontSize: "14px",
+                fontWeight: "bold",
+              }}
             >
               Grafik Pendapatan
             </Typography>
@@ -144,39 +170,37 @@ let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "A
           </div>
           <div style={{ width: "30%", float: "left" }}>
             {jenisChart === "Daily" ? (
-               <Select
-               style={{ margin: "10px 0 0 0", width: "90%" }}
-               name="bulanSelect"
-               value={bulanSelect}
-               onChange={handleChangeBulan}
-             >
-               <Option value="1">Januari</Option>
-               <Option value="2">Februari</Option>
-               <Option value="3">Maret</Option>
-               <Option value="4">April</Option>
-               <Option value="5">Mei</Option>
-               <Option value="6">Juni</Option>
-               <Option value="7">Juli</Option>
-               <Option value="8">Agustus</Option>
-               <Option value="9">September</Option>
-               <Option value="10">Oktober</Option>
-               <Option value="11">November</Option>
-               <Option value="12">Desember</Option>
-
-             </Select>
+              <Select
+                style={{ margin: "10px 0 0 0", width: "90%" }}
+                name="bulanSelect"
+                value={bulanSelect}
+                onChange={handleChangeBulan}
+              >
+                <Option value="1">Januari</Option>
+                <Option value="2">Februari</Option>
+                <Option value="3">Maret</Option>
+                <Option value="4">April</Option>
+                <Option value="5">Mei</Option>
+                <Option value="6">Juni</Option>
+                <Option value="7">Juli</Option>
+                <Option value="8">Agustus</Option>
+                <Option value="9">September</Option>
+                <Option value="10">Oktober</Option>
+                <Option value="11">November</Option>
+                <Option value="12">Desember</Option>
+              </Select>
             ) : (
               <div></div>
             )}
           </div>
           <div style={{ width: "20%", float: "left", paddingTop: "7px" }}>
-              <DatePicker
-                disabledDate={disabledDate}
-                defaultValue={moment("2022", "YYYY")}
-                disabled
-                onChange={handleTahunMonthly}
-                picker="year"
-              />
-      
+            <DatePicker
+              disabledDate={disabledDate}
+              defaultValue={moment("2022", "YYYY")}
+              disabled
+              onChange={handleTahunMonthly}
+              picker="year"
+            />
           </div>
         </div>
       }

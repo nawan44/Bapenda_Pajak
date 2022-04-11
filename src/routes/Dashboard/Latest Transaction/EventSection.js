@@ -54,10 +54,7 @@ const EventsSection = (props) => {
           />
         </Col>
       </Row>
-      {/* <header  >
 
-
-            </header> */}
       <div className="gx-table-responsive">
         <EventsTable data={filteredData} />
       </div>

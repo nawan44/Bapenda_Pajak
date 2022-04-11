@@ -23,8 +23,13 @@ const { Option } = Select;
 
 const GrafikTransaksi = (props) => {
   // const {latestTransaction, setLatestTransactio} = props
+  const bulanIni = moment().format("MM");
+
+  const next = moment().add(6, "months").format("MM");
+  const setBulan = bulanIni.replace(/^0+/, "");
+ 
   const [jenisChart, setJenisChart] = useState("Daily");
-  const [bulanSelect, setBulanSelect] = useState("1");
+  const [bulanSelect, setBulanSelect] = useState(setBulan);
 
   const [monthly, setMonthly] = useState();
   const [yearly, setYearly] = useState();
