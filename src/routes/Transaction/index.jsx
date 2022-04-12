@@ -259,13 +259,15 @@ console.log("arr", "https://sourceforge.net/projects/kaais/files/stats/json?star
 // selectedRecord?.raw_data
 // ]
 
-var km = "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19"
- const kk = $.ajax({
+// var km = "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19"
+var km = selectedRecord?.raw_data 
+
+const kk = $.ajax({
     method: "GET",
     cache: false,
     url: km,
     success: function(data) {
-      document.getElementById('output').innerHTML = data.downloads;
+      document.getElementById('output').innerHTML = data;
     },
     error: function(error) {
       //What do you want to do with the error?
