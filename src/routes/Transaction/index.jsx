@@ -224,9 +224,9 @@ const Transaction = () => {
   };
 
   const [dataArr,setDataArr]=useState();
-  useEffect(()=>{
-      getDataArr()
-    },[])
+  // useEffect(()=>{
+  //     getDataArr()
+  //   },[])
   const  getDataArr = async ()=> {
     try { 
       // if (selectedRecord?.raw_data){
@@ -255,14 +255,14 @@ const Transaction = () => {
       { method: "GET", headers }
     );
     const res = await response.json();
-    console.log("resss", res)
+    // console.log("resss", res)
     setDataArr(res);
   } catch(error) {
       console.error(error);
     }
   
   }
-  console.log("dataArr", dataArr)
+  // console.log("dataArr", dataArr)
   const handleChange = (e) => {
     const content = document.querySelector(".content");
     const [file] = document.querySelector("input[type=file]").e;
@@ -343,8 +343,8 @@ const Transaction = () => {
             onClick={(e) => {
               showModal();
               setSelectedRecord(record);
-              setArr(record.raw_data)
-              console.log("record?", record?.raw_data.json())
+              // setArr(record.raw_data)
+              // console.log("record?", record?.raw_data.json())
               //   fetch(`${record.raw_data}`).then((data) => {
               //     // setAA(data)
               //     console.log("setAA", data)
@@ -542,7 +542,7 @@ const Transaction = () => {
             </FormItem>
           </Row>
         </Form>
-        <div id="output">NO DATA</div>
+        {/* <div id="output">NO DATA</div> */}
 
         {click == true && (
           <div className="gx-table-responsive">
@@ -589,7 +589,7 @@ const Transaction = () => {
             {/* <JsonTable json={selectedRecord?.raw_data } /> */}
             {/* <input type="file" onChange={handleChange} /> */}
 
-            <div dangerouslySetInnerHTML={{ __html: dataArr}} />
+            {/* <div dangerouslySetInnerHTML={{ __html: dataArr}} /> */}
 
             {/* <JSONPretty id="json-pretty" data={selectedRecord?.raw_data}></JSONPretty> */}
             {/* {JSON.parse(selectedRecord?.raw_data)} */}
@@ -597,7 +597,7 @@ const Transaction = () => {
           
             {/* {selectedRecord?.raw_data && (
               <div>
-            <iframe src={selectedRecord?.raw_data} frameborder="0" width="300px" height="400px"/>
+            <iframe src={selectedRecord?.raw_data} frameBorder="0" width="300px" height="400px"/>
             <a href={selectedRecord?.raw_data}>Download JSON </a>
               </div>
             )} */}
@@ -608,8 +608,8 @@ const Transaction = () => {
             {/* <div  >{selectedRecord?.raw_data.renderHTML()}</div> */}
             {/* <div dangerouslySetInnerHTML={{ __html: selectedRecord?.raw_data }} /> */}
 
-            {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
-            {/* <iframe src={JSON.stringify(selectedRecord?.raw_data)} frameborder="0" width="300px" height="400px"/> */}
+            {/* <embed src={selectedRecord?.raw_data} frameBorder="0" width="100%" height="400px"/> */}
+            {/* <iframe src={JSON.stringify(selectedRecord?.raw_data)} frameBorder="0" width="300px" height="400px"/> */}
 
             {/* <ReactJsonViewer data={selectedRecord?.raw_data} /> */}
             {/* {JSON.stringify(selectedRecord?.raw_data, null, 2) } */}
@@ -630,11 +630,11 @@ const Transaction = () => {
             {/* <Document file={selectedRecord?.raw_data} /> */}
             <iframe
               src={selectedRecord?.raw_data}
-              frameborder="0"
+              frameBorder="0"
               width="100%"
               height="400px"
             />
-            {/* <embed src={selectedRecord?.raw_data} frameborder="0" width="100%" height="400px"/> */}
+            {/* <embed src={selectedRecord?.raw_data} frameBorder="0" width="100%" height="400px"/> */}
           </Modal>
         )}
       </Widget>
