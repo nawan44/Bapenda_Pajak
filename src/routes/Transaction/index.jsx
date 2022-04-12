@@ -455,7 +455,7 @@ const Transaction = () => {
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
           <h1 className="gx-mb-2 gx-text-primary gx-font-weight-medium gx-fs-xxl">
-            Filter Data{" "} Build 1
+            Filter Data{" "} 
           </h1>{" "}
         <Form
           layout="inline"
