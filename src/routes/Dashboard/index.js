@@ -86,6 +86,7 @@ const SamplePage = () => {
           setLatestTransaction={setLatestTransaction}
         />
       </Row>
+      
       {/* <Row className="container-dashboard2" type="flex">
         <GrafikTransaksi
           latestTransaction={latestTransaction}

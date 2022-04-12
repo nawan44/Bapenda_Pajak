@@ -70,9 +70,9 @@ const EcommerceStatus = ({
         >
           {title}
         </h2>
-        <p className={`gx-mb-0 gx-mb-sm-3 gx-text-${colorSubTitle}`}>
+        <h3 className={`gx-mb-0 gx-mb-sm-3 gx-text-${colorSubTitle}`}>
           {subTitle}
-        </p>
+        </h3>
         <SelisihNominal
           moneyToday={moneyToday}
           moneyYesterday={moneyYesterday}
