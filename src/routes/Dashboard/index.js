@@ -23,10 +23,10 @@ const SamplePage = () => {
   }, []);
   useEffect(() => {
     getLatestTransaction();
-    // const interval=setInterval(()=>{
-    //   getLatestTransaction()
-    //  },10000)
-    //  return()=>clearInterval(interval)
+    const interval=setInterval(()=>{
+      getLatestTransaction()
+     },10000)
+     return()=>clearInterval(interval)
   }, []);
 
   const getLatestTransaction = async () => {

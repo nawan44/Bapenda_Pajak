@@ -6,7 +6,7 @@ import "antd/lib/button/style/css";
 // import { StatusTag } from "../StatusTag";
 
 const EventsTable = ({ data }) => {
-  console.log("data", data)
+
   const columns = [
     {
       title: "Invoice ID",

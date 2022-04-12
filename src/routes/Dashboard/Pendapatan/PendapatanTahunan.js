@@ -12,20 +12,22 @@ const PendapatanTahunan = (props) => {
 
   const [moneyThisYear, setMoneyThisYear] = useState();
   const [moneyLastYear, setMoneyLastYear] = useState();
-
+  const [earningThisYear, setEarningThisYear] = useState(0);
+  const [earningLastYear, setEarningLastYear] = useState(0);
   // Hotel
-  const [earningThisYear1, setEarningThisYear1] = useState(0);
-  //Parkir
-  const [earningThisYear2, setEarningThisYear2] = useState(0);
-  //Restoran
-  const [earningThisYear3, setEarningThisYear3] = useState(0);
+  // const [earningThisYear1, setEarningThisYear1] = useState(0);
+  // //Parkir
+  // const [earningThisYear2, setEarningThisYear2] = useState(0);
+  // //Restoran
+  // const [earningThisYear3, setEarningThisYear3] = useState(0);
 
-  // Hotel
-  const [earningLastYear1, setEarningLastYear1] = useState(0);
-  //Parkir
-  const [earningLastYear2, setEarningLastYear2] = useState(0);
-  //Restoran
-  const [earningLastYear3, setEarningLastYear3] = useState(0);
+  // // Hotel
+  // const [earningLastYear1, setEarningLastYear1] = useState(0);
+  // //Parkir
+  // const [earningLastYear2, setEarningLastYear2] = useState(0);
+  // //Restoran
+  // const [earningLastYear3, setEarningLastYear3] = useState(0);
+
 
   const sThisYear = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
   const eThisYear = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
@@ -47,7 +49,7 @@ const PendapatanTahunan = (props) => {
     const apiKey = decoded["api-key"];
 
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/earnsbycat",
+      "https://api.raspi-geek.com/v1/values",
 
       {
         method: "POST",
@@ -63,9 +65,9 @@ const PendapatanTahunan = (props) => {
     );
     const ajson = await response.json();
 
-    setEarningThisYear1(ajson.Records[0][1].stringValue);
-    setEarningThisYear2(ajson.Records[1][1].stringValue);
-    setEarningThisYear3(ajson.Records[2][1].stringValue);
+    setEarningThisYear(ajson.Records[0][0].stringValue);
+    // setEarningThisYear2(ajson.Records[1][1].stringValue);
+    // setEarningThisYear3(ajson.Records[2][1].stringValue);
   };
 
   useEffect(() => {
@@ -77,8 +79,7 @@ const PendapatanTahunan = (props) => {
     const apiKey = decoded["api-key"];
 
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/earnsbycat",
-
+      "https://api.raspi-geek.com/v1/values",
       {
         method: "POST",
         headers: {
@@ -93,20 +94,20 @@ const PendapatanTahunan = (props) => {
     );
     const res = await response.json();
     console.log("res AJOS", res)
-    setEarningLastYear1(res.Records[0][1].stringValue);
-    setEarningLastYear2(res.Records[1][1].stringValue);
-    setEarningLastYear3(res.Records[2][1].stringValue);
+    setEarningLastYear(res.Records[0][0].stringValue);
+    // setEarningLastYear2(res.Records[1][1].stringValue);
+    // setEarningLastYear3(res.Records[2][1].stringValue);
   };
 
-  const earningLastYear =
-    Number(earningLastYear1) +
-    Number(earningLastYear2) +
-    Number(earningLastYear3);
+  // const earningLastYear =
+  //   Number(earningLastYear1) +
+  //   Number(earningLastYear2) +
+  //   Number(earningLastYear3);
 
-  const earningThisYear =
-    Number(earningThisYear1) +
-    Number(earningThisYear2) +
-    Number(earningThisYear3);
+  // const earningThisYear =
+  //   Number(earningThisYear1) +
+  //   Number(earningThisYear2) +
+  //   Number(earningThisYear3);
 
   useEffect(() => {
     setMoneyThisYear(earningThisYear);
@@ -116,17 +117,6 @@ const PendapatanTahunan = (props) => {
     setMoneyLastYear(earningLastYear);
   }, [earningLastYear]);
 
-
-  console.log("sLastYear", sLastYear)
-  console.log("eLastYear", eLastYear)
-
-  // console.log("earningLastYear1", earningLastYear1)
-  // console.log("earningLastYear2", earningLastYear2)
-  // console.log("earningLastYear3", earningLastYear3)
-
-
-  // console.log("earningLastYear", earningLastYear)
-  // console.log("earningThisYear", earningThisYear)
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",

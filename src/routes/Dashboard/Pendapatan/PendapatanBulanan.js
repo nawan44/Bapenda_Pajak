@@ -7,22 +7,12 @@ import "../../../assets/styles/flip-card.css";
 import jwtDecode from "jwt-decode";
 
 const PendapatanBulanan = (props) => {
-  // Hotel
-  const [earningThisMonth1, setEarningThisMonth1] = useState(0);
-  //Parkir
-  const [earningThisMonth2, setEarningThisMonth2] = useState(0);
-  //Restoran
-  const [earningThisMonth3, setEarningThisMonth3] = useState(0);
-
-  // const [earningLastMonth, setEarningLastMonth] = useState();
-
-  // Hotel
-  const [earningLastMonth1, setEarningLastMonth1] = useState(0);
-  //Parkir
-  const [earningLastMonth2, setEarningLastMonth2] = useState(0);
-  //Restoran
-  const [earningLastMonth3, setEarningLastMonth3] = useState(0);
-
+  const [moneyThisMonth, setMoneyThisMonth] = useState();
+  const [moneyLastMonth, setMoneyLastMonth] = useState();
+  const [earningThisMonth, setEarningThisMonth] = useState(0);
+  const [earningLastMonth, setEarningLastMonth] = useState(0);
+console.log("moneyThisMonth",moneyThisMonth)
+  
   const sThisMonth = moment().startOf("month").format("YYYY-MM-DD HH:mm:ss");
   const eThisMonth = moment().endOf("month").format("YYYY-MM-DD HH:mm:ss");
   const sLastMonth = moment()
@@ -34,17 +24,18 @@ const PendapatanBulanan = (props) => {
     .endOf("month")
     .format("YYYY-MM-DD HH:mm:ss");
 
-  const [moneyThisMonth, setMoneyThisMonth] = useState();
-  const [moneyLastMonth, setMoneyLastMonth] = useState();
 
 
+  useEffect(() => {
+    getEarningThisMonth();
+  }, []);
 
   const getEarningThisMonth = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
 
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/earnsbycat",
+      "https://api.raspi-geek.com/v1/values",
 
       {
         method: "POST",
@@ -59,25 +50,13 @@ const PendapatanBulanan = (props) => {
       }
     );
     const ajson = await response.json();
-
-    setEarningThisMonth1(ajson.Records[0][1].stringValue);
-    setEarningThisMonth2(ajson.Records[1][1].stringValue);
-    setEarningThisMonth3(ajson.Records[2][1].stringValue);
+    setEarningThisMonth(ajson.Records[0][0].stringValue);
+    // setEarningThisMonth2(ajson.Records[1][1].stringValue);
+    // setEarningThisMonth3(ajson.Records[2][1].stringValue);
   };
-  useEffect(() => {
-    getEarningThisMonth();
-  }, []);
   
-  const earningLastMonth =
-    Number(earningLastMonth1) +
-    Number(earningLastMonth2) +
-    Number(earningLastMonth3);
-
-  const earningThisMonth =
-    Number(earningThisMonth1) +
-    Number(earningThisMonth2) +
-    Number(earningThisMonth3);
-
+  
+  
   useEffect(() => {
     getEarningLastMonth();
   }, []);
@@ -87,7 +66,7 @@ const PendapatanBulanan = (props) => {
     const apiKey = decoded["api-key"];
 
     const response = await fetch(
-      "https://api.raspi-geek.com/v1/earnsbycat",
+      "https://api.raspi-geek.com/v1/values",
 
       {
         method: "POST",
@@ -102,9 +81,9 @@ const PendapatanBulanan = (props) => {
       }
     );
     const ajson = await response.json();
-    setEarningLastMonth1(ajson.Records[0][1].stringValue);
-    setEarningLastMonth2(ajson.Records[1][1].stringValue);
-    setEarningLastMonth3(ajson.Records[2][1].stringValue);
+    setEarningLastMonth(ajson.Records[0][0].stringValue);
+    // setEarningLastMonth2(ajson.Records[1][1].stringValue);
+    // setEarningLastMonth3(ajson.Records[2][1].stringValue);
   };
   useEffect(() => {
     setMoneyThisMonth(earningThisMonth);

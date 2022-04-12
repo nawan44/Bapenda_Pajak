@@ -9,11 +9,6 @@ const SiteAudience = ({ data }) => {
   const greenStatus = data?.filter((o) => o.status === "green");
   const orangeStatus = data?.filter((o) => o.status === "orange");
   const redStatus = data?.filter((o) => o.status === "red");
-
-  console.log("allStatus", allStatus)
-  console.log("greenStatus",greenStatus )
-  console.log("orangeStatus", orangeStatus)
-  console.log("redStatus",redStatus)
   
   const titleStatus = () => {
     if (location.pathname === "/device-all") {
