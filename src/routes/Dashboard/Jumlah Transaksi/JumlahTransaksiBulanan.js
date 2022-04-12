@@ -88,7 +88,6 @@ const JumlahTransaksiBulanan = (props) => {
       }
     );
     const res = await response.json();
-    console.log("res", res);
     setAmountThisMonth(res.Records[0][0].longValue);
   };
 

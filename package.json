@@ -38,6 +38,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "nprogress": "^0.2.0",
+    "pm2": "^5.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-big-calendar": "^0.30.0",
@@ -84,12 +85,10 @@
   },
   "scripts": {
     "start": "react-app-rewired --openssl-legacy-provider start",
-    "build": "react-app-rewired build ",
+    "build": "react-app-rewired  build ",
     "test": "react-app-rewired --env=jsdom",
+    "proxy": "lcp --proxyUrl https://api.raspi-geek.com/v1",
     "less": "lessc --js src/styles/wieldy.less public/css/style.css && lessc --js src/styles/wieldy.less public/css/style.min.css --compress -x"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [

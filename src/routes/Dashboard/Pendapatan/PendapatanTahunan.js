@@ -91,10 +91,11 @@ const PendapatanTahunan = (props) => {
         }),
       }
     );
-    const ajson = await response.json();
-    setEarningLastYear1(ajson.Records[0][1].stringValue);
-    setEarningLastYear2(ajson.Records[1][1].stringValue);
-    setEarningLastYear3(ajson.Records[2][1].stringValue);
+    const res = await response.json();
+    console.log("res AJOS", res)
+    setEarningLastYear1(res.Records[0][1].stringValue);
+    setEarningLastYear2(res.Records[1][1].stringValue);
+    setEarningLastYear3(res.Records[2][1].stringValue);
   };
 
   const earningLastYear =
@@ -114,6 +115,18 @@ const PendapatanTahunan = (props) => {
   useEffect(() => {
     setMoneyLastYear(earningLastYear);
   }, [earningLastYear]);
+
+
+  console.log("sLastYear", sLastYear)
+  console.log("eLastYear", eLastYear)
+
+  // console.log("earningLastYear1", earningLastYear1)
+  // console.log("earningLastYear2", earningLastYear2)
+  // console.log("earningLastYear3", earningLastYear3)
+
+
+  // console.log("earningLastYear", earningLastYear)
+  // console.log("earningThisYear", earningThisYear)
 
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",

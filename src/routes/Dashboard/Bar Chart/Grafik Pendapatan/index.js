@@ -34,9 +34,7 @@ const GrafikPendapatan = (props) => {
   const [yearly, setYearly] = useState();
   const [tahunMonthly, setTahunMonthly] = useState(moment().format("YYYY"));
 
-  console.log("bulanIni", bulanIni);
-  console.log("next", next);
-  console.log("setBulan", setBulan);
+ 
 
   const handleChangeSelect = (value) => {
     setJenisChart(value);

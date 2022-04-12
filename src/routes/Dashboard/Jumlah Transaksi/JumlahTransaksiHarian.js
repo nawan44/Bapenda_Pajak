@@ -64,8 +64,7 @@ const JumlahTransaksiHarian = (props) => {
   useEffect(() => {
     getAmountToday();
   }, []);
-  console.log("sToday", sToday)
-  console.log("eToday", eToday)
+
 
   const getAmountToday = async () => {
     const decoded = jwtDecode(localStorage.token);
@@ -89,7 +88,6 @@ const JumlahTransaksiHarian = (props) => {
     );
     const res = await response.json();
 
-    console.log("res setAmountToday ", res)
 
     setAmountToday(res.Records[0][0].longValue);
   };
@@ -100,10 +98,7 @@ const JumlahTransaksiHarian = (props) => {
   const getAmountYesterday = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
-    const headers = {
-      "x-api-key": `${apiKey}`,
-      "content-type": "application/json",
-    };
+  
 
     const response = await fetch(
       "https://api.raspi-geek.com/v1/orders",
@@ -121,7 +116,6 @@ const JumlahTransaksiHarian = (props) => {
       }
     );
     const res = await response.json();
-    console.log("res", res)
     setAmountYesterday(res.Records[0][0].longValue);
   };
 //NEWWW
