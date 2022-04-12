@@ -13,14 +13,15 @@ const EventsSection = (props) => {
   const [filter, setFilter] = useState("");
   const data =
     latestTransaction &&
-    latestTransaction.map((row) => ({
+    latestTransaction.map((row, index) => ({
+      key : index,
       invoice_id: row[0].stringValue,
       merchant_id: row[1].stringValue,
       nama_usaha: row[2].stringValue,
       total_value: formatter.format(row[3].stringValue),
       created_at: row[4].stringValue,
     }));
-
+console.log("data", data)
   const lowercasedFilter = filter.toString()
   const filteredData = data?.filter((item) => {
     try {

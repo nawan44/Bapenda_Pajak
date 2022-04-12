@@ -11,7 +11,6 @@ const EventsTable = ({ data }) => {
     {
       title: "Invoice ID",
       dataIndex: "invoice_id",
-      key: "invoice_id",
 
       // key: "1",
       // render: (text) => {
@@ -22,25 +21,21 @@ const EventsTable = ({ data }) => {
       // key: "2",
       title: "Device Id / Agent ID",
       dataIndex: "merchant_id",
-      key: "merchant_id",
 
     },
     {
       title: "Nama Usaha",
       dataIndex: "nama_usaha",
-      key: "nama_usaha",
 
     },
     {
       title: "Transaction Value",
       dataIndex: "total_value",
-      key: "total_value",
 
     },
     {
       title: "Tanggal Transaksi",
       dataIndex: "created_at",
-      key: "created_at",
 
     },
   ];
@@ -48,11 +43,11 @@ const EventsTable = ({ data }) => {
   return (
     <Table
       className="gx-table-no-bordered"
-      rowKey={data?.invoice_id}
       dataSource={data}
       columns={columns}
     />
-  );
+  // <div>aaa</div>
+    );
 };
 
 export default EventsTable;

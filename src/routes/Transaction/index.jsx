@@ -126,6 +126,7 @@ const Transaction = () => {
   }));
 
   const dataFilter = responFilter?.map((row, index) => ({
+    key:index,
     tgl_transaksi: row[1].stringValue,
     nik: row[8].stringValue,
     nama_usaha: row[3].stringValue,
