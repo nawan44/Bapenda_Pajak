@@ -15,6 +15,13 @@ const PendapatanHarian = (props) => {
   const [moneyToday, setMoneyToday] = useState();
   const [moneyYesterday, setMoneyYesterday] = useState();
 
+  const [taxToday, setTaxToday] = useState(0);
+  const [taxYesterday, setTaxYesterday] = useState(0);
+
+  const [nettToday, setNettToday] = useState(0);
+  const [nettYesterday, setNettYesterday] = useState(0);
+
+  
   const sToday = moment().startOf("day").format("YYYY-MM-DD HH:mm:ss");
   const eToday = moment().endOf("day").format("YYYY-MM-DD HH:mm:ss");
   const sYesterday = moment()
@@ -60,6 +67,10 @@ const PendapatanHarian = (props) => {
     );
     const ajson = await response.json();
     setEarningToday(ajson.Records[0][0].stringValue);
+    setTaxToday(ajson.Records[0][1].stringValue);
+    setNettToday(ajson.Records[0][2].stringValue);
+
+
   };
 
   useEffect(() => {
@@ -86,6 +97,9 @@ const PendapatanHarian = (props) => {
     );
     const ajson = await response.json();
     setEarningYesterday(ajson.Records[0][0].stringValue);
+    setTaxYesterday(ajson.Records[0][1].stringValue);
+    setNettYesterday(ajson.Records[0][2].stringValue);
+
   };
 
   const formatter = new Intl.NumberFormat("id-ID", {
@@ -119,9 +133,22 @@ const PendapatanHarian = (props) => {
             setMoneyYesterday={setMoneyYesterday}
             subTitle={
               <div className="subtitle-card-dashboard">
-                <span>Total Pendapatan</span>
-                <br />
-                <span>(Hari Ini)</span>
+               <p>
+                  <span>Total Pendapatan</span>
+                  <br />
+                  <span>(Hari Ini)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(taxToday)}</span>
+                  <br/>
+
+                  <span>(Tax)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(nettToday)}</span>
+                  <br/>
+                  <span>(Nett)</span>
+                </p>
               </div>
             }
             colorSubTitle="indigo"
@@ -141,9 +168,22 @@ const PendapatanHarian = (props) => {
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
-                <span>Total Pendapatan</span>
-                <br />
-                <span>(Kemarin)</span>
+                <p>
+                  <span>Total Pendapatan</span>
+                  <br />
+                  <span>(Kemarin)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(taxYesterday)}</span>
+                  <br/>
+
+                  <span>(Tax)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(nettYesterday)}</span>
+                  <br/>
+                  <span>(Nett)</span>
+                </p>
               </div>
             }
             colorSubTitle="dark"

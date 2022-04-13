@@ -14,6 +14,14 @@ const PendapatanTahunan = (props) => {
   const [moneyLastYear, setMoneyLastYear] = useState();
   const [earningThisYear, setEarningThisYear] = useState(0);
   const [earningLastYear, setEarningLastYear] = useState(0);
+  
+  const [taxThisYear, setTaxThisYear] = useState(0);
+  const [taxLastYear, setTaxLastYear] = useState(0);
+
+  const [nettThisYear, setNettThisYear] = useState(0);
+  const [nettLastYear, setNettLastYear] = useState(0);
+
+ 
   // Hotel
   // const [earningThisYear1, setEarningThisYear1] = useState(0);
   // //Parkir
@@ -63,11 +71,14 @@ const PendapatanTahunan = (props) => {
         }),
       }
     );
-    const ajson = await response.json();
+    const res = await response.json();
 
-    setEarningThisYear(ajson.Records[0][0].stringValue);
-    // setEarningThisYear2(ajson.Records[1][1].stringValue);
-    // setEarningThisYear3(ajson.Records[2][1].stringValue);
+    setEarningThisYear(res.Records[0][0].stringValue);
+    setTaxThisYear(res.Records[0][1].stringValue);
+    setNettThisYear(res.Records[0][2].stringValue);
+
+    // setEarningThisYear2(res.Records[1][1].stringValue);
+    // setEarningThisYear3(res.Records[2][1].stringValue);
   };
 
   useEffect(() => {
@@ -95,6 +106,9 @@ const PendapatanTahunan = (props) => {
     const res = await response.json();
     console.log("res AJOS", res)
     setEarningLastYear(res.Records[0][0].stringValue);
+    setTaxLastYear(res.Records[0][1].stringValue);
+    setNettLastYear(res.Records[0][2].stringValue);
+
     // setEarningLastYear2(res.Records[1][1].stringValue);
     // setEarningLastYear3(res.Records[2][1].stringValue);
   };
@@ -143,9 +157,22 @@ const PendapatanTahunan = (props) => {
             setMoneyLastYear={setMoneyLastYear}
             subTitle={
               <div className="subtitle-card-dashboard">
-                <span>Total Pendapatan</span>
-                <br />
-                <span>(Tahun Ini)</span>
+               <p>
+                  <span>Total Pendapatan</span>
+                  <br />
+                  <span>(Tahun Ini)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(taxThisYear)}</span>
+                  <br/>
+
+                  <span>(Tax)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(nettThisYear)}</span>
+                  <br/>
+                  <span>(Nett)</span>
+                </p>
               </div>
             }
             colorSubTitle="primary"
@@ -165,9 +192,22 @@ const PendapatanTahunan = (props) => {
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
-                <span>Total Pendapatan</span>
-                <br />
-                <span>(Tahun Lalu)</span>
+                  <p>
+                  <span>Total Pendapatan</span>
+                  <br />
+                  <span>(Tahun Lalu)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(taxLastYear)}</span>
+                  <br/>
+
+                  <span>(Tax)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(nettLastYear)}</span>
+                  <br/>
+                  <span>(Nett)</span>
+                </p>
               </div>
             }
             colorSubTitle="dark"

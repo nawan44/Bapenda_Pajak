@@ -11,8 +11,13 @@ const PendapatanBulanan = (props) => {
   const [moneyLastMonth, setMoneyLastMonth] = useState();
   const [earningThisMonth, setEarningThisMonth] = useState(0);
   const [earningLastMonth, setEarningLastMonth] = useState(0);
-console.log("moneyThisMonth",moneyThisMonth)
-  
+
+  const [taxThisMonth, setTaxThisMonth] = useState(0);
+  const [taxLastMonth, setTaxLastMonth] = useState(0);
+
+  const [nettThisMonth, setNettThisMonth] = useState(0);
+  const [nettLastMonth, setNettLastMonth] = useState(0);
+
   const sThisMonth = moment().startOf("month").format("YYYY-MM-DD HH:mm:ss");
   const eThisMonth = moment().endOf("month").format("YYYY-MM-DD HH:mm:ss");
   const sLastMonth = moment()
@@ -23,8 +28,6 @@ console.log("moneyThisMonth",moneyThisMonth)
     .subtract(1, "month")
     .endOf("month")
     .format("YYYY-MM-DD HH:mm:ss");
-
-
 
   useEffect(() => {
     getEarningThisMonth();
@@ -50,13 +53,15 @@ console.log("moneyThisMonth",moneyThisMonth)
       }
     );
     const ajson = await response.json();
+    console.log("bulanan", ajson);
     setEarningThisMonth(ajson.Records[0][0].stringValue);
+    setTaxThisMonth(ajson.Records[0][1].stringValue);
+    setNettThisMonth(ajson.Records[0][2].stringValue);
+
     // setEarningThisMonth2(ajson.Records[1][1].stringValue);
     // setEarningThisMonth3(ajson.Records[2][1].stringValue);
   };
-  
-  
-  
+
   useEffect(() => {
     getEarningLastMonth();
   }, []);
@@ -82,6 +87,9 @@ console.log("moneyThisMonth",moneyThisMonth)
     );
     const ajson = await response.json();
     setEarningLastMonth(ajson.Records[0][0].stringValue);
+    setTaxLastMonth(ajson.Records[0][1].stringValue);
+    setNettLastMonth(ajson.Records[0][2].stringValue);
+
     // setEarningLastMonth2(ajson.Records[1][1].stringValue);
     // setEarningLastMonth3(ajson.Records[2][1].stringValue);
   };
@@ -115,11 +123,26 @@ console.log("moneyThisMonth",moneyThisMonth)
             setMoneyThisMonth={setMoneyThisMonth}
             moneyLastMonth={moneyLastMonth}
             setMoneyLastMonth={setMoneyLastMonth}
+            taxThisMonth={taxThisMonth}
+            nettThisMonth={nettThisMonth}
             subTitle={
               <div className="subtitle-card-dashboard">
-                <span>Total Pendapatan</span>
-                <br />
-                <span>(Bulan Ini)</span>
+                <p>
+                  <span>Total Pendapatan</span>
+                  <br />
+                  <span>(Bulan Ini)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(taxThisMonth)}</span>
+                  <br/>
+
+                  <span>(Tax)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(nettThisMonth)}</span>
+                  <br/>
+                  <span>(Nett)</span>
+                </p>
               </div>
             }
             colorSubTitle="geekblue"
@@ -139,9 +162,22 @@ console.log("moneyThisMonth",moneyThisMonth)
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
-                <span>Total Pendapatan</span>
-                <br />
-                <span>(Bulan Lalu)</span>
+               <p>
+                  <span>Total Pendapatan</span>
+                  <br />
+                  <span>(Bulan Lalu)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(taxLastMonth)}</span>
+                  <br/>
+
+                  <span>(Tax)</span>
+                </p>
+                <p>
+                  <span> {formatter.format(nettLastMonth)}</span>
+                  <br/>
+                  <span>(Nett)</span>
+                </p>
               </div>
             }
             colorSubTitle="dark"

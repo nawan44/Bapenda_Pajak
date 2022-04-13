@@ -120,9 +120,9 @@ const JumlahTransaksiHarian = (props) => {
   };
 //NEWWW
   return (
-    <Col className="flip-card" xs={24} xl={8}>
-      <div className="flip-card-inner">
-        <div className="flip-card-front">
+    <Col className="transaksi-flip-card" xs={24} xl={8}>
+      <div className="transaksi-flip-card-inner">
+        <div className="transaksi-flip-card-front">
           <EcommerceStatus
             color="orange"
             icon="orders"
@@ -148,7 +148,7 @@ const JumlahTransaksiHarian = (props) => {
             colorSubTitle="geekblue"
           />
         </div>
-        <div className="flip-card-back">
+        <div className="transaksi-flip-card-back">
           <EcommerceStatus
             icon="orders"
             color="grey"

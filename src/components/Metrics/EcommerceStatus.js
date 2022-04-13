@@ -26,8 +26,13 @@ const EcommerceStatus = ({
   transactionThisYear,
   transactionLastYear,
   objTransactionThisYear,
+  taxThisMonth,
+            nettThisMonth
 }) => {
-  
+  const formatter = new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+  });
   return (
     <Widget styleName={`gx-card-full gx-py-4 gx-px-2 gx-bg-${color}`}>
       {color === "grey" ? (
@@ -73,6 +78,7 @@ const EcommerceStatus = ({
         <h3 className={`gx-mb-0 gx-mb-sm-3 gx-text-${colorSubTitle}`}>
           {subTitle}
         </h3>
+
         <SelisihNominal
           moneyToday={moneyToday}
           moneyYesterday={moneyYesterday}
