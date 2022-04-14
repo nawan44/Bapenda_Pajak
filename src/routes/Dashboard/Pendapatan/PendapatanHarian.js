@@ -115,10 +115,10 @@ const PendapatanHarian = (props) => {
             color="green"
             icon="revenue-new"
             title={
-              <div className="title-card-dashboard">
-                {earningToday === undefined
+              <div className="title-card-dashboard" style={{fontWeight:"bold"}}>
+                {taxToday === undefined
                   ? formatter.format(0)
-                  : formatter.format(earningToday)}
+                  : formatter.format(taxToday)}
               </div>
               //   <div className="title-card-dashboard">
               //   {currentToday === undefined
@@ -134,18 +134,16 @@ const PendapatanHarian = (props) => {
             subTitle={
               <div className="subtitle-card-dashboard">
                <p>
-                  <span>Total Pendapatan</span>
-                  <br />
-                  <span>(Hari Ini)</span>
-                </p>
+                  <span>(Total Tax)</span>
+                 </p>
                 <p>
-                  <span> {formatter.format(taxToday)}</span>
+                  <span style={{fontWeight:"bold"}}> {formatter.format(earningToday)}</span>
                   <br/>
 
-                  <span>(Tax)</span>
+                  <span>(Total Pendapatan)</span>
                 </p>
                 <p>
-                  <span> {formatter.format(nettToday)}</span>
+                  <span style={{fontWeight:"bold"}}> {formatter.format(nettToday)}</span>
                   <br/>
                   <span>(Nett)</span>
                 </p>
@@ -160,24 +158,24 @@ const PendapatanHarian = (props) => {
             color="grey"
             title={
               <div className="subtitle-card-dashboard-grey">
-                {earningYesterday === undefined
+                {taxYesterday === undefined
                   ? formatter.format(0)
-                  : formatter.format(earningYesterday)}
+                  : formatter.format(taxYesterday)}
               </div>
             }
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
                 <p>
-                  <span>Total Pendapatan</span>
-                  <br />
-                  <span>(Kemarin)</span>
+                  <span>(Total Tax)</span>
+                  {/* <br />
+                  <span>(Kemarin)</span> */}
                 </p>
                 <p>
-                  <span> {formatter.format(taxYesterday)}</span>
+                  <span> {formatter.format(earningYesterday)}</span>
                   <br/>
 
-                  <span>(Tax)</span>
+                  <span>(Tax Pendapatan)</span>
                 </p>
                 <p>
                   <span> {formatter.format(nettYesterday)}</span>

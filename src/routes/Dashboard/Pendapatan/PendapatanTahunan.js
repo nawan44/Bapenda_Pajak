@@ -144,10 +144,10 @@ const PendapatanTahunan = (props) => {
             color="white"
             icon="revenue-new"
             title={
-              <div className="title-card-dashboard">
-                {earningThisYear === undefined
+              <div className="title-card-dashboard" style={{fontWeight:"bold"}}>
+                {taxThisYear === undefined
                   ? formatter.format(0)
-                  : formatter.format(earningThisYear)}
+                  : formatter.format(taxThisYear)}
               </div>
             }
             colorTitle="primary"
@@ -157,21 +157,18 @@ const PendapatanTahunan = (props) => {
             setMoneyLastYear={setMoneyLastYear}
             subTitle={
               <div className="subtitle-card-dashboard">
-               <p>
-                  <span>Total Pendapatan</span>
-                  <br />
-                  <span>(Tahun Ini)</span>
+               <p>                  
+                  <span>(Total Tax)</span>
                 </p>
                 <p>
-                  <span> {formatter.format(taxThisYear)}</span>
+                  <span style={{fontWeight:"bold"}}> {formatter.format(earningThisYear)}</span>
                   <br/>
-
-                  <span>(Tax)</span>
+                  <span>(Total Pendapatan)</span>
                 </p>
                 <p>
-                  <span> {formatter.format(nettThisYear)}</span>
+                  <span style={{fontWeight:"bold"}}>  {formatter.format(nettThisYear)}</span>
                   <br/>
-                  <span>(Nett)</span>
+                  <span>(Total Nett)</span>
                 </p>
               </div>
             }
@@ -184,29 +181,29 @@ const PendapatanTahunan = (props) => {
             color="grey"
             title={
               <div className="subtitle-card-dashboard-grey">
-                {earningLastYear === undefined
+                {taxLastYear === undefined
                   ? formatter.format(0)
-                  : formatter.format(earningLastYear)}
+                  : formatter.format(taxLastYear)}
               </div>
             }
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
                   <p>
-                  <span>Total Pendapatan</span>
-                  <br />
-                  <span>(Tahun Lalu)</span>
+                  <span>(Total Tax)</span>
+                  {/* <br />
+                  <span>(Tahun Lalu)</span> */}
                 </p>
                 <p>
-                  <span> {formatter.format(taxLastYear)}</span>
+                  <span> {formatter.format(earningLastYear)}</span>
                   <br/>
 
-                  <span>(Tax)</span>
+                  <span>(Tax Pendapatan)</span>
                 </p>
                 <p>
                   <span> {formatter.format(nettLastYear)}</span>
                   <br/>
-                  <span>(Nett)</span>
+                  <span>(Total Nett)</span>
                 </p>
               </div>
             }

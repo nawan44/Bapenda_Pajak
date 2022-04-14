@@ -146,9 +146,12 @@ const JumlahTransaksiBulanan = (props) => {
             // objTransactionThisMonth={objTransactionThisMonth}
             subTitle={
               <div className="subtitle-card-dashboard">
+                <p>
                 <span>Total Transaksi</span>
-                <br />
-                <span>(Bulan Ini)</span>
+                
+                </p>
+                {/* <br />
+                <span>(Bulan Ini)</span> */}
               </div>
             }
             colorSubTitle="indigo"
@@ -166,9 +169,12 @@ const JumlahTransaksiBulanan = (props) => {
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
+                <p>
                 <span>Total Transaksi</span>
-                <br />
-                <span>(Bulan Lalu)</span>
+                
+                </p>
+                {/* <br />
+                <span>(Bulan Lalu)</span> */}
               </div>
             }
             colorSubTitle="dark"

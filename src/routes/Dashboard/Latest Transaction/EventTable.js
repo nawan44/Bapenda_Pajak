@@ -46,7 +46,6 @@ const EventsTable = ({ data }) => {
       dataSource={data}
       columns={columns}
     />
-  // <div>aaa</div>
     );
 };
 

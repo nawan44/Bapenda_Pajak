@@ -140,9 +140,12 @@ const JumlahTransaksiHarian = (props) => {
             setTransactionYesterday ={setTransactionYesterday}
             subTitle={
               <div  className="subtitle-card-dashboard">
+                <p>
                 <span>Total Transaksi</span>
-                <br />
-                <span>(Hari Ini)</span>
+                
+                </p>
+                {/* <br />
+                <span>(Hari Ini)</span> */}
               </div>
             }
             colorSubTitle="geekblue"
@@ -158,9 +161,12 @@ const JumlahTransaksiHarian = (props) => {
             colorTitle="dark"
             subTitle={
               <div  className="subtitle-card-dashboard">
-                <span>Total Transaksi</span>
-                <br />
-                <span>(Kemarin)</span>
+               <p>
+               <span>Total Transaksi</span>
+                
+               </p>
+                {/* <br />
+                <span>(Kemarin)</span> */}
               </div>
             }
             colorSubTitle="dark"

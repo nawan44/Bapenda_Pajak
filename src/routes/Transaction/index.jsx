@@ -7,14 +7,20 @@ import * as moment from "moment";
 // import ConvertPdf from "./convertPdf";
 import ConvertExcel from "./convertExcel";
 import "../../assets/styles/table.css";
-// import ReactJs from "./reactjs";
+// import ReactJs from "react-file-viewer";
 // import JSONPretty from "react-json-pretty";
 // import { JsonTable } from "react-json-to-html";
 // import FileViewer from 'react-file-viewer';
 // import ReactFileReader from "react-file-reader";
-import $ from 'jquery';
+// import $ from 'jquery';
+// import {Controlled as CodeMirror} from 'react-codemirror'
 
+// import "codemirror/lib/codemirror.css";
+// import "codemirror/theme/material.css";
+// import "codemirror/mode/javascript/javascript.js";
 // const Search = Input.Search;
+// var CodeMirror = require('react-codemirror');
+// var jsonlint = require("jsonlint");
 
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
@@ -227,61 +233,62 @@ const Transaction = () => {
   // useEffect(()=>{
   //     getDataArr()
   //   },[])
-  const  getDataArr = async ()=> {
-    try { 
-      // if (selectedRecord?.raw_data){
-      // let response = selectedRecord?.raw_data
-      // let responseJson = response.json();
-      // // return responseJson.movies;
-      // console.log("response >>>>",response)
-      // console.log("responseJson ,,,,,,",responseJson)
+  // const  getDataArr = async ()=> {
+  //   try { 
+  //     // if (selectedRecord?.raw_data){
+  //     // let response = selectedRecord?.raw_data
+  //     // let responseJson = response.json();
+  //     // // return responseJson.movies;
+  //     // console.log("response >>>>",response)
+  //     // console.log("responseJson ,,,,,,",responseJson)
       
-      // setDataArr(responseJson)
-    //  } catch(error) {
-    //   console.error(error);
-    // }
+  //     // setDataArr(responseJson)
+  //   //  } catch(error) {
+  //   //   console.error(error);
+  //   // }
 
-    // if (selectedRecord?.raw_data){
+  //   // if (selectedRecord?.raw_data){
 
-    const decoded = jwtDecode(localStorage.token);
-    const apiKey = decoded["api-key"];
-    const headers = {
-      "x-api-key": `${apiKey}`,
-      "content-type": "application/json",
-    };
-    const response = await fetch(
-      selectedRecord?.raw_data,
+  //   const decoded = jwtDecode(localStorage.token);
+  //   const apiKey = decoded["api-key"];
+  //   const headers = {
+  //     "x-api-key": `${apiKey}`,
+  //     "content-type": "application/json",
+  //   };
+  //   const response = await fetch(
+  //    `${ selectedRecord?.raw_data}`,
 
-      { method: "GET", headers }
-    );
-    const res = await response.json();
-    // console.log("resss", res)
-    setDataArr(res);
-  } catch(error) {
-      console.error(error);
-    }
+  //     {  headers }
+  //   );
+  //   const res = response;
+  //   console.log("resss", res.json())
+  //   setDataArr(res.json());
+  // } catch(error) {
+  //     console.error(error);
+  //   }
   
-  }
+  // }
   // console.log("dataArr", dataArr)
-  const handleChange = (e) => {
-    const content = document.querySelector(".content");
-    const [file] = document.querySelector("input[type=file]").e;
-    const reader = new FileReader();
+  // const handleChange = (e) => {
+  //   const content = document.querySelector(".content");
+  //   const [file] = document.querySelector("input[type=file]").e;
+  //   const reader = new FileReader();
 
-    reader.addEventListener(
-      "load",
-      () => {
-        // this will then display a text file
-        content.innerText = reader.result;
-      },
-      false
-    );
+  //   reader.addEventListener(
+  //     "load",
+  //     () => {
+  //       // this will then display a text file
+  //       content.innerText = reader.result;
+  //     },
+  //     false
+  //   );
 
-    if (file) {
-      reader.readAsText(file);
-    }
-  };
-  const [arr, setArr] =useState([])
+  //   if (file) {
+  //     reader.readAsText(file);
+  //   }
+  // };
+  const [arr, setArr] =useState()
+  console.log(arr)
 // console.log("arr", "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19")
 // const aku = [
 // selectedRecord?.raw_data
@@ -303,6 +310,48 @@ const Transaction = () => {
 //   });
   
 // console.log("kk", kk)
+
+
+
+// useEffect(() => {
+//   getJs();
+// }, []);
+
+// const getJs =  () => {
+//   const decoded = jwtDecode(localStorage.token);
+//   const apiKey = decoded["api-key"];
+//   console.log("selectedRecord?.raw_data",selectedRecord?.raw_data)
+// // if(selectedRecord?.raw_dat){
+//    const response =  
+//   fetch(
+//     `${selectedRecord?.raw_data}`,
+
+// {      method: "GET",
+//       headers: {
+//         "x-api-key": `${apiKey}`,
+//         "Access-Control-Allow-Origin": "*",
+//         "Access-Control-Allow-Credentials":true,
+//         "content-type": "application/json",
+//       }
+//     }
+//     )
+// // .then(res => setDataArr(res))
+// // .then((out) => {
+// //   console.log('Checkout this JSON! ', out);
+// // })
+// // .catch(err => { throw err });
+// return response
+
+
+  
+// //   const ajson = await response.json();
+// // console.log("response",JSON.stringify (response))
+// // setDataArr(response)
+// // console.log("json", response)
+
+  
+// }
+//   console.log("Fetching data...", getJs());
   const columns = [
     {
       title: "Tanggal Transaksi",
@@ -343,7 +392,9 @@ const Transaction = () => {
             onClick={(e) => {
               showModal();
               setSelectedRecord(record);
-              // setArr(record.raw_data)
+              // getJs()
+              setArr( record.raw_data)
+              // module.exports = record.raw_data
               // console.log("record?", record?.raw_data.json())
               //   fetch(`${record.raw_data}`).then((data) => {
               //     // setAA(data)
@@ -451,6 +502,19 @@ const Transaction = () => {
   // useEffect(()=>{
   //   getData()
   // },[])
+  const jsonlint = require("jsonlint-mod");
+  window.jsonlint = jsonlint;
+  const cmOption = {
+    mode: 'application/json',
+    gutters: ["CodeMirror-lint-markers"],
+    styleActiveLine: true,
+    lineNumbers: true,
+    line: true,
+    lint: true,
+  };
+  let options = {
+    lineNumbers: true
+  };
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -583,7 +647,7 @@ const Transaction = () => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-          {/* <ReactJs rawData ={aku()} /> */}
+          {/* <ReactJs rawData ={getJs()} /> */}
             {/* { kk.responseJSON()} */}
             {/* <JSONPretty id="json-pretty" data={selectedRecord?.raw_data}></JSONPretty> */}
             {/* <JsonTable json={selectedRecord?.raw_data } /> */}
@@ -601,6 +665,16 @@ const Transaction = () => {
             <a href={selectedRecord?.raw_data}>Download JSON </a>
               </div>
             )} */}
+        
+        {/* <div>
+          {jsonlint.parse(arr)}
+        </div> */}
+  
+            <CodeMirror
+          value={arr}
+          // onChange={this.updateCode.bind(this)}
+          options={cmOption}
+        />
 
             {/* {data} */}
 

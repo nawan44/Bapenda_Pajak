@@ -112,10 +112,10 @@ const PendapatanBulanan = (props) => {
             color="teal"
             icon="revenue-new"
             title={
-              <div className="title-card-dashboard">
-                {earningThisMonth === undefined
+              <div className="title-card-dashboard"  style={{fontWeight:"bold"}}>
+                {taxThisMonth === undefined
                   ? formatter.format(0)
-                  : formatter.format(earningThisMonth)}
+                  : formatter.format(taxThisMonth)}
               </div>
             }
             colorTitle="geekblue"
@@ -128,20 +128,20 @@ const PendapatanBulanan = (props) => {
             subTitle={
               <div className="subtitle-card-dashboard">
                 <p>
-                  <span>Total Pendapatan</span>
-                  <br />
-                  <span>(Bulan Ini)</span>
+                  <span >(Total Tax)</span>
+                  {/* <br /> */}
+                  {/* <span>(Bulan Ini)</span> */}
                 </p>
                 <p>
-                  <span> {formatter.format(taxThisMonth)}</span>
+                  <span  style={{fontWeight:"bold"}}> {formatter.format(earningThisMonth)}</span>
                   <br/>
 
-                  <span>(Tax)</span>
+                  <span>(Total Pendapatan)</span>
                 </p>
                 <p>
-                  <span> {formatter.format(nettThisMonth)}</span>
+                  <span  style={{fontWeight:"bold"}}> {formatter.format(nettThisMonth)}</span>
                   <br/>
-                  <span>(Nett)</span>
+                  <span>(Total Nett)</span>
                 </p>
               </div>
             }
@@ -153,30 +153,30 @@ const PendapatanBulanan = (props) => {
             icon="revenue-new"
             color="grey"
             title={
-              <div className="subtitle-card-dashboard-grey">
-                {earningLastMonth === undefined
+              <div className="subtitle-card-dashboard-grey" style={{fontWeight:"bold"}}>
+                {taxLastMonth === undefined
                   ? formatter.format(0)
-                  : formatter.format(earningLastMonth)}
+                  : formatter.format(taxLastMonth)}
               </div>
             }
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
                <p>
-                  <span>Total Pendapatan</span>
-                  <br />
-                  <span>(Bulan Lalu)</span>
+                  <span >(Total Tax) </span>
+                  {/* <br />
+                  <span>(Bulan Lalu)</span> */}
                 </p>
                 <p>
-                  <span> {formatter.format(taxLastMonth)}</span>
+                  <span style={{fontWeight:"bold"}}> {formatter.format(earningLastMonth)}</span>
                   <br/>
 
-                  <span>(Tax)</span>
+                  <span>(Total Pendapatan)</span>
                 </p>
                 <p>
-                  <span> {formatter.format(nettLastMonth)}</span>
+                  <span style={{fontWeight:"bold"}}> {formatter.format(nettLastMonth)}</span>
                   <br/>
-                  <span>(Nett)</span>
+                  <span>(Total Nett)</span>
                 </p>
               </div>
             }
