@@ -9,8 +9,8 @@ const JumlahTransaksiBulanan = (props) => {
   const [transactionThisMonth, setTransactionThisMonth] = useState();
   const [transactionLastMonth, setTransactionLastMonth] = useState();
 
-  const [amountThisMonth, setAmountThisMonth] = useState(0);
-  const [amountLastMonth, setAmountLastMonth] = useState(0);
+  const [amountThisMonth, setAmountThisMonth] = useState();
+  const [amountLastMonth, setAmountLastMonth] = useState();
 
   const sThisMonth = moment().startOf("month").format("YYYY-MM-DD HH:mm:ss");
   const eThisMonth = moment().endOf("month").format("YYYY-MM-DD HH:mm:ss");
@@ -121,11 +121,11 @@ const JumlahTransaksiBulanan = (props) => {
     setAmountLastMonth(res.Records[0][0].longValue);
   };
   useEffect(() => {
-    setTransactionThisMonth(amountThisMonth);
+    setTransactionThisMonth(amountThisMonth === undefined ? 0 :Number(amountThisMonth));
   }, [amountThisMonth]);
 
   useEffect(() => {
-    setTransactionLastMonth(amountLastMonth);
+    setTransactionLastMonth(amountLastMonth === undefined ? 0 :Number(amountLastMonth));
   }, [amountLastMonth]);
 
   return (
@@ -136,7 +136,8 @@ const JumlahTransaksiBulanan = (props) => {
             color="yellow"
             icon="orders"
             title={
-              <div className="title-card-dashboard">{amountThisMonth}</div>
+              <div className="title-card-dashboard">
+              Bulan Ini</div>
             }
             colorTitle="indigo"
             transactionThisMonth={transactionThisMonth}
@@ -147,7 +148,11 @@ const JumlahTransaksiBulanan = (props) => {
             subTitle={
               <div className="subtitle-card-dashboard">
                 <p>
-                <span>Total Transaksi</span>
+                <span style={{ fontWeight: "bold" , fontSize:"18px"}}>
+                  {amountThisMonth}
+                  </span>
+                  <br/>
+                <span>(Total Transaksi)</span>
                 
                 </p>
                 {/* <br />
@@ -163,14 +168,18 @@ const JumlahTransaksiBulanan = (props) => {
             color="grey"
             title={
               <div className="subtitle-card-dashboard-grey">
-                {amountLastMonth}
-              </div>
+Bulan Lalu              </div>
             }
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
                 <p>
-                <span>Total Transaksi</span>
+                <span style={{ fontWeight: "bold" , fontSize:"18px"}}>
+                  {amountLastMonth} 
+                  </span>
+                  <br/>
+
+                <span>(Total Transaksi)</span>
                 
                 </p>
                 {/* <br />

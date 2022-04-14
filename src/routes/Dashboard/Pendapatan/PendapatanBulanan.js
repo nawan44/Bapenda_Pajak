@@ -5,6 +5,7 @@ import * as moment from "moment";
 import "../../../assets/styles/flip-card.css";
 // import { latestTransaction1 } from "../../../components/DataDummy";
 import jwtDecode from "jwt-decode";
+import { Day } from "react-big-calendar";
 
 const PendapatanBulanan = (props) => {
   const [moneyThisMonth, setMoneyThisMonth] = useState();
@@ -53,7 +54,6 @@ const PendapatanBulanan = (props) => {
       }
     );
     const ajson = await response.json();
-    console.log("bulanan", ajson);
     setEarningThisMonth(ajson.Records[0][0].stringValue);
     setTaxThisMonth(ajson.Records[0][1].stringValue);
     setNettThisMonth(ajson.Records[0][2].stringValue);
@@ -112,10 +112,23 @@ const PendapatanBulanan = (props) => {
             color="teal"
             icon="revenue-new"
             title={
-              <div className="title-card-dashboard"  style={{fontWeight:"bold"}}>
-                {taxThisMonth === undefined
+              <div
+                className="title-card-dashboard"
+              >
+                Bulan Ini
+ {/* {moneyThisMonth  ? (
+            <div className="quarter-circle-bottom-right1">
+            <h5 style={{ paddingTop: "25px" }}>{day()}</h5>
+          </div>) : (
+            
+            <div className="quarter-circle-bottom-right2">
+            <h5 style={{ paddingTop: "25px" }}>{day()}</h5>
+          </div>
+          )
+         }               */}
+           {/* {taxThisMonth === undefined
                   ? formatter.format(0)
-                  : formatter.format(taxThisMonth)}
+                  : formatter.format(taxThisMonth)} */}
               </div>
             }
             colorTitle="geekblue"
@@ -128,19 +141,31 @@ const PendapatanBulanan = (props) => {
             subTitle={
               <div className="subtitle-card-dashboard">
                 <p>
-                  <span >(Total Tax)</span>
-                  {/* <br /> */}
-                  {/* <span>(Bulan Ini)</span> */}
+                  <span
+                    style={{ fontWeight: "bold" }}
+                  >
+                    {taxThisMonth === undefined
+                      ? formatter.format(0)
+                      : formatter.format(taxThisMonth)}
+                  </span>
+                  <br />
+                  <span>(Total Tax)</span>
                 </p>
                 <p>
-                  <span  style={{fontWeight:"bold"}}> {formatter.format(earningThisMonth)}</span>
-                  <br/>
+                  <span style={{ fontWeight: "bold" }}>
+                    {" "}
+                    {formatter.format(earningThisMonth)}
+                  </span>
+                  <br />
 
                   <span>(Total Pendapatan)</span>
                 </p>
                 <p>
-                  <span  style={{fontWeight:"bold"}}> {formatter.format(nettThisMonth)}</span>
-                  <br/>
+                  <span style={{ fontWeight: "bold" }}>
+                    {" "}
+                    {formatter.format(nettThisMonth)}
+                  </span>
+                  <br />
                   <span>(Total Nett)</span>
                 </p>
               </div>
@@ -153,29 +178,41 @@ const PendapatanBulanan = (props) => {
             icon="revenue-new"
             color="grey"
             title={
-              <div className="subtitle-card-dashboard-grey" style={{fontWeight:"bold"}}>
-                {taxLastMonth === undefined
-                  ? formatter.format(0)
-                  : formatter.format(taxLastMonth)}
+              <div
+                className="subtitle-card-dashboard-grey"
+              >
+              Bulan Lalu
               </div>
             }
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
-               <p>
-                  <span >(Total Tax) </span>
+                <p>
+                  <span>
+                {taxLastMonth === undefined
+                  ? formatter.format(0)
+                  : formatter.format(taxLastMonth)}
+                  </span>
+                  <br/>
+                  <span>(Total Tax) </span>
                   {/* <br />
                   <span>(Bulan Lalu)</span> */}
                 </p>
                 <p>
-                  <span style={{fontWeight:"bold"}}> {formatter.format(earningLastMonth)}</span>
-                  <br/>
+                  <span style={{ fontWeight: "bold" }}>
+                    {" "}
+                    {formatter.format(earningLastMonth)}
+                  </span>
+                  <br />
 
                   <span>(Total Pendapatan)</span>
                 </p>
                 <p>
-                  <span style={{fontWeight:"bold"}}> {formatter.format(nettLastMonth)}</span>
-                  <br/>
+                  <span style={{ fontWeight: "bold" }}>
+                    {" "}
+                    {formatter.format(nettLastMonth)}
+                  </span>
+                  <br />
                   <span>(Total Nett)</span>
                 </p>
               </div>

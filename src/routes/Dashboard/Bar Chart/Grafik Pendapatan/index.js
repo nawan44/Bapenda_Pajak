@@ -136,9 +136,7 @@ const GrafikPendapatan = (props) => {
     return current && current < moment(customDate, "YYYY");
   };
   // console.log("bulan",bulan )
-  console.log("yearly", yearly)
 
-  console.log("tahun", tahun)
   return (
     <Widget
       styleName="gx-order-history"

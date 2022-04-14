@@ -104,7 +104,6 @@ const PendapatanTahunan = (props) => {
       }
     );
     const res = await response.json();
-    console.log("res AJOS", res)
     setEarningLastYear(res.Records[0][0].stringValue);
     setTaxLastYear(res.Records[0][1].stringValue);
     setNettLastYear(res.Records[0][2].stringValue);
@@ -144,10 +143,9 @@ const PendapatanTahunan = (props) => {
             color="white"
             icon="revenue-new"
             title={
-              <div className="title-card-dashboard" style={{fontWeight:"bold"}}>
-                {taxThisYear === undefined
-                  ? formatter.format(0)
-                  : formatter.format(taxThisYear)}
+              <div className="title-card-dashboard" 
+              >
+             Tahun Ini
               </div>
             }
             colorTitle="primary"
@@ -157,8 +155,13 @@ const PendapatanTahunan = (props) => {
             setMoneyLastYear={setMoneyLastYear}
             subTitle={
               <div className="subtitle-card-dashboard">
-               <p>                  
-                  <span>(Total Tax)</span>
+               <p>        
+               <span style={{ fontWeight: "bold" }}>
+                 {taxThisYear === undefined
+                  ? formatter.format(0)
+                  : formatter.format(taxThisYear)}</span>          
+                  <br/>
+                    <span>(Total Tax)</span>
                 </p>
                 <p>
                   <span style={{fontWeight:"bold"}}> {formatter.format(earningThisYear)}</span>
@@ -181,15 +184,19 @@ const PendapatanTahunan = (props) => {
             color="grey"
             title={
               <div className="subtitle-card-dashboard-grey">
-                {taxLastYear === undefined
-                  ? formatter.format(0)
-                  : formatter.format(taxLastYear)}
+               Tahun Lalu
               </div>
             }
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
                   <p>
+                  <span style={{ fontWeight: "bold" }}>
+                    {taxLastYear === undefined
+                  ? formatter.format(0)
+                  : formatter.format(taxLastYear)}
+                    </span>
+                    <br/>
                   <span>(Total Tax)</span>
                   {/* <br />
                   <span>(Tahun Lalu)</span> */}

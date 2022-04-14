@@ -135,7 +135,7 @@ const JumlahTransaksiTahunan = (props) => {
           <EcommerceStatus
             color="white"
             icon="orders"
-            title={<div className="title-card-dashboard">{amountThisYear}</div>}
+            title={<div className="title-card-dashboard">Tahun Ini</div>}
             colorTitle="primary"
             transactionThisYear={transactionThisYear}
             setTransactionThisYear={setTransactionThisYear}
@@ -144,10 +144,13 @@ const JumlahTransaksiTahunan = (props) => {
             // objTransactionThisYear={objTransactionThisYear}
             subTitle={
               <div className="subtitle-card-dashboard">
-               <p>
-               <span>Total Transaksi</span>
-               
-               </p>
+                <p>
+                  <span style={{ fontWeight: "bold", fontSize: "18px" }}>
+                    {amountThisYear}
+                  </span>
+                  <br />
+                  <span>(Total Transaksi)</span>
+                </p>
                 {/* <br />
                 <span>(Tahun Ini)</span> */}
               </div>
@@ -163,17 +166,18 @@ const JumlahTransaksiTahunan = (props) => {
             icon="orders"
             color="grey"
             title={
-              <div className="subtitle-card-dashboard-grey">
-                {amountLastYear}
-              </div>
+              <div className="subtitle-card-dashboard-grey">Tahun Lalu</div>
             }
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
-               <p>
-               <span>Total Transaksi</span>
-                
-               </p>
+                <p>
+                  <span style={{ fontWeight: "bold", fontSize: "18px" }}>
+                    {amountLastYear}
+                  </span>
+                  <br />
+                  <span>(Total Transaksi)</span>
+                </p>
                 {/* <br />
                 <span>(Tahun Lalu)</span> */}
               </div>

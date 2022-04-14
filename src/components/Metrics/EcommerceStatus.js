@@ -103,7 +103,7 @@ const EcommerceStatus = ({
           background: "yellow",
         }}
       >sdjdhvbdijdsbvdsvbui</div> */}
-      {color === "grey" ? (
+      {/* {color === "grey" ? (
         <div></div>
       ) : (
        <div>
@@ -118,14 +118,14 @@ const EcommerceStatus = ({
           )
          }
        </div>
-      )}
+      )} */}
 
       <div
         style={{
           height: "100%",
           textAlign: "center",
           margin: "0 auto",
-          paddingLeft: color === "grey" ? "0px" : "70px",
+          // paddingLeft: color === "grey" ? "0px" : "70px",
         }}
       >
         <div>

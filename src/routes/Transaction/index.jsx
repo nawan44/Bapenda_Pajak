@@ -344,7 +344,6 @@ const Transaction = () => {
   // // console.log("response",JSON.stringify (response))
   // // setDataArr(response)
   // // console.log("json", response)
-
   // }
   //   console.log("Fetching data...", getJs());
   const columns = [

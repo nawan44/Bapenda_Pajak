@@ -129,7 +129,8 @@ const JumlahTransaksiHarian = (props) => {
             title={
               <div  
               className="title-card-dashboard">
-                {amountToday}</div>
+               Hari Ini
+               </div>
               // <div  className="title-card-dashboard">{transaksiHariIni}</div>
            
             }
@@ -141,7 +142,11 @@ const JumlahTransaksiHarian = (props) => {
             subTitle={
               <div  className="subtitle-card-dashboard">
                 <p>
-                <span>Total Transaksi</span>
+                <span style={{ fontWeight: "bold" , fontSize:"18px"}}>
+                  {amountToday}
+                  </span>
+                  <br/>
+                <span>(Total Transaksi)</span>
                 
                 </p>
                 {/* <br />
@@ -156,13 +161,19 @@ const JumlahTransaksiHarian = (props) => {
             icon="orders"
             color="grey"
             title={
-              <div  className="subtitle-card-dashboard-grey">{transactionYesterday}</div>
+              <div  className="subtitle-card-dashboard-grey">
+                Kemarin
+                </div>
             }
             colorTitle="dark"
             subTitle={
               <div  className="subtitle-card-dashboard">
                <p>
-               <span>Total Transaksi</span>
+               <span style={{ fontWeight: "bold" , fontSize:"18px"}}>
+                  {amountYesterday} 
+                  </span>
+                  <br/>
+               <span>(Total Transaksi)</span>
                 
                </p>
                 {/* <br />

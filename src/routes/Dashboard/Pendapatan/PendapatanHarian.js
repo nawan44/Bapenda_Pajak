@@ -115,10 +115,8 @@ const PendapatanHarian = (props) => {
             color="green"
             icon="revenue-new"
             title={
-              <div className="title-card-dashboard" style={{fontWeight:"bold"}}>
-                {taxToday === undefined
-                  ? formatter.format(0)
-                  : formatter.format(taxToday)}
+              <div className="title-card-dashboard" >
+             Hari Ini
               </div>
               //   <div className="title-card-dashboard">
               //   {currentToday === undefined
@@ -134,6 +132,12 @@ const PendapatanHarian = (props) => {
             subTitle={
               <div className="subtitle-card-dashboard">
                <p>
+               <span style={{ fontWeight: "bold" }}>
+                  {taxToday === undefined
+                  ? formatter.format(0)
+                  : formatter.format(taxToday)}
+                  </span>
+                  <br/>
                   <span>(Total Tax)</span>
                  </p>
                 <p>
@@ -158,21 +162,26 @@ const PendapatanHarian = (props) => {
             color="grey"
             title={
               <div className="subtitle-card-dashboard-grey">
-                {taxYesterday === undefined
-                  ? formatter.format(0)
-                  : formatter.format(taxYesterday)}
+               Kemarin
               </div>
             }
             colorTitle="dark"
             subTitle={
               <div className="subtitle-card-dashboard">
                 <p>
+                  <span style={{ fontWeight: "bold" }}>
+                  {taxYesterday === undefined
+                  ? formatter.format(0)
+                  : formatter.format(taxYesterday)}
+                  </span>
+                  <br/>
                   <span>(Total Tax)</span>
                   {/* <br />
                   <span>(Kemarin)</span> */}
                 </p>
                 <p>
-                  <span> {formatter.format(earningYesterday)}</span>
+                  <span> 
+                    {formatter.format(earningYesterday)}</span>
                   <br/>
 
                   <span>(Tax Pendapatan)</span>

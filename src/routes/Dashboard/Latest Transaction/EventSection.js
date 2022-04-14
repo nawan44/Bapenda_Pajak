@@ -21,7 +21,6 @@ const EventsSection = (props) => {
       total_value: formatter.format(row[3].stringValue),
       created_at: row[4].stringValue,
     }));
-console.log("data...", data)
     const lowercasedFilter = filter.toString()
   const filteredData = data?.filter((item) => {
     try {
