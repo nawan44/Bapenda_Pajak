@@ -132,7 +132,7 @@ const Transaction = () => {
   }));
 
   const dataFilter = responFilter?.map((row, index) => ({
-    key:index,
+    key: index,
     tgl_transaksi: row[1].stringValue,
     nik: row[8].stringValue,
     nama_usaha: row[3].stringValue,
@@ -229,19 +229,19 @@ const Transaction = () => {
     setVisible(true);
   };
 
-  const [dataArr,setDataArr]=useState();
+  const [dataArr, setDataArr] = useState();
   // useEffect(()=>{
   //     getDataArr()
   //   },[])
   // const  getDataArr = async ()=> {
-  //   try { 
+  //   try {
   //     // if (selectedRecord?.raw_data){
   //     // let response = selectedRecord?.raw_data
   //     // let responseJson = response.json();
   //     // // return responseJson.movies;
   //     // console.log("response >>>>",response)
   //     // console.log("responseJson ,,,,,,",responseJson)
-      
+
   //     // setDataArr(responseJson)
   //   //  } catch(error) {
   //   //   console.error(error);
@@ -266,7 +266,7 @@ const Transaction = () => {
   // } catch(error) {
   //     console.error(error);
   //   }
-  
+
   // }
   // console.log("dataArr", dataArr)
   // const handleChange = (e) => {
@@ -287,71 +287,66 @@ const Transaction = () => {
   //     reader.readAsText(file);
   //   }
   // };
-  const [arr, setArr] =useState()
-  console.log(arr)
-// console.log("arr", "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19")
-// const aku = [
-// selectedRecord?.raw_data
-// ]
+  const [arr, setArr] = useState();
+  console.log(arr);
+  // console.log("arr", "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19")
+  // const aku = [
+  // selectedRecord?.raw_data
+  // ]
 
-// var km = "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19"
-// var km = selectedRecord?.raw_data 
+  // var km = "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19"
+  // var km = selectedRecord?.raw_data
 
-// const kk = $.ajax({
-//     method: "GET",
-//     cache: false,
-//     url: km,
-//     success: function(data) {
-//       document.getElementById('output').innerHTML = data;
-//     },
-//     error: function(error) {
-//       //What do you want to do with the error?
-//     },
-//   });
-  
-// console.log("kk", kk)
+  // const kk = $.ajax({
+  //     method: "GET",
+  //     cache: false,
+  //     url: km,
+  //     success: function(data) {
+  //       document.getElementById('output').innerHTML = data;
+  //     },
+  //     error: function(error) {
+  //       //What do you want to do with the error?
+  //     },
+  //   });
 
+  // console.log("kk", kk)
 
+  // useEffect(() => {
+  //   getJs();
+  // }, []);
 
-// useEffect(() => {
-//   getJs();
-// }, []);
+  // const getJs =  () => {
+  //   const decoded = jwtDecode(localStorage.token);
+  //   const apiKey = decoded["api-key"];
+  //   console.log("selectedRecord?.raw_data",selectedRecord?.raw_data)
+  // // if(selectedRecord?.raw_dat){
+  //    const response =
+  //   fetch(
+  //     `${selectedRecord?.raw_data}`,
 
-// const getJs =  () => {
-//   const decoded = jwtDecode(localStorage.token);
-//   const apiKey = decoded["api-key"];
-//   console.log("selectedRecord?.raw_data",selectedRecord?.raw_data)
-// // if(selectedRecord?.raw_dat){
-//    const response =  
-//   fetch(
-//     `${selectedRecord?.raw_data}`,
+  // {      method: "GET",
+  //       headers: {
+  //         "x-api-key": `${apiKey}`,
+  //         "Access-Control-Allow-Origin": "*",
+  //         "Access-Control-Allow-Credentials":true,
+  //         "content-type": "application/json",
+  //       }
+  //     }
+  //     )
+  // // .then(res => setDataArr(res))
+  // // .then((out) => {
+  // //   console.log('Checkout this JSON! ', out);
+  // // })
+  // // .catch(err => { throw err });
+  // return response
 
-// {      method: "GET",
-//       headers: {
-//         "x-api-key": `${apiKey}`,
-//         "Access-Control-Allow-Origin": "*",
-//         "Access-Control-Allow-Credentials":true,
-//         "content-type": "application/json",
-//       }
-//     }
-//     )
-// // .then(res => setDataArr(res))
-// // .then((out) => {
-// //   console.log('Checkout this JSON! ', out);
-// // })
-// // .catch(err => { throw err });
-// return response
+  // //   const ajson = await response.json();
+  // // console.log("response",JSON.stringify (response))
+  // // setDataArr(response)
+  // // console.log("json", response)
 
-
-  
-// //   const ajson = await response.json();
-// // console.log("response",JSON.stringify (response))
-// // setDataArr(response)
-// // console.log("json", response)
-
-  
-// }
-//   console.log("Fetching data...", getJs());
+  // }
+  //   console.log("Fetching data...", getJs());
   const columns = [
     {
       title: "Tanggal Transaksi",
@@ -393,7 +388,7 @@ const Transaction = () => {
               showModal();
               setSelectedRecord(record);
               // getJs()
-              setArr( record.raw_data)
+              setArr(record.raw_data);
               // module.exports = record.raw_data
               // console.log("record?", record?.raw_data.json())
               //   fetch(`${record.raw_data}`).then((data) => {
@@ -483,7 +478,7 @@ const Transaction = () => {
   //   if(selectedRecord?.raw_data){
   //     fetch(`${selectedRecord?.raw_data}`
   //   ,{
-  //     headers : { 
+  //     headers : {
   //       'Content-Type': 'application/json',
   //       'Accept': 'application/json'
   //      }
@@ -505,7 +500,7 @@ const Transaction = () => {
   const jsonlint = require("jsonlint-mod");
   window.jsonlint = jsonlint;
   const cmOption = {
-    mode: 'application/json',
+    mode: "application/json",
     gutters: ["CodeMirror-lint-markers"],
     styleActiveLine: true,
     lineNumbers: true,
@@ -513,14 +508,14 @@ const Transaction = () => {
     lint: true,
   };
   let options = {
-    lineNumbers: true
+    lineNumbers: true,
   };
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
-          <h1 className="gx-mb-2 gx-text-primary gx-font-weight-medium gx-fs-xxl">
-            Filter Data{" "} 
-          </h1>{" "}
+        <h1 className="gx-mb-2 gx-text-primary gx-font-weight-medium gx-fs-xxl">
+          Filter Data{" "}
+        </h1>{" "}
         <Form
           layout="inline"
           className="gx-form-inline-label-up gx-form-inline-currency "
@@ -607,7 +602,6 @@ const Transaction = () => {
           </Row>
         </Form>
         {/* <div id="output">NO DATA</div> */}
-
         {click == true && (
           <div className="gx-table-responsive">
             <Row style={{ float: "right" }}>
@@ -643,11 +637,12 @@ const Transaction = () => {
           <Modal
             title="Raw Data"
             visible={visible}
-            onOk={handleOk}
+            footer={null}
+            // onOk={handleOk}
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-          {/* <ReactJs rawData ={getJs()} /> */}
+            {/* <ReactJs rawData ={getJs()} /> */}
             {/* { kk.responseJSON()} */}
             {/* <JSONPretty id="json-pretty" data={selectedRecord?.raw_data}></JSONPretty> */}
             {/* <JsonTable json={selectedRecord?.raw_data } /> */}
@@ -657,24 +652,23 @@ const Transaction = () => {
 
             {/* <JSONPretty id="json-pretty" data={selectedRecord?.raw_data}></JSONPretty> */}
             {/* {JSON.parse(selectedRecord?.raw_data)} */}
-          
-          
+
             {/* {selectedRecord?.raw_data && (
               <div>
             <iframe src={selectedRecord?.raw_data} frameBorder="0" width="300px" height="400px"/>
             <a href={selectedRecord?.raw_data}>Download JSON </a>
               </div>
             )} */}
-        
-        {/* <div>
+
+            {/* <div>
           {jsonlint.parse(arr)}
         </div> */}
-  
+
             <CodeMirror
-          value={arr}
-          // onChange={this.updateCode.bind(this)}
-          options={cmOption}
-        />
+              value={arr}
+              // onChange={this.updateCode.bind(this)}
+              options={cmOption}
+            />
 
             {/* {data} */}
 
@@ -692,12 +686,12 @@ const Transaction = () => {
       /> */}
           </Modal>
         )}
-
         {renderRawdata() === "PDF" && (
           <Modal
             title="Raw Data"
             visible={visible}
-            onOk={handleOk}
+            footer={null}
+            // onOk={handleOk}
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >

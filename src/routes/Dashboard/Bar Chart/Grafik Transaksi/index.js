@@ -97,7 +97,7 @@ const GrafikTransaksi = (props) => {
 
   const tahun = yearly?.map((row) => ({
     // created_at: row[0].longValue,
-    created_at : months[row[0].longValue],
+    created_at: months[(row[0].longValue) - 1],
     total_value: Number(row[1].stringValue),
   }));
   // const shooters = bulan?.reduce(
