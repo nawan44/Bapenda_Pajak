@@ -25,11 +25,8 @@ function SelisihPresentase({
   transactionLastYear,
   objTransactionThisYear /*  */,
 }) {
-  console.log("transactionThisMonth", transactionThisMonth);
-  console.log("transactionLastMonth", transactionLastMonth);
-  console.log("");
 
-  console.log("sdfsd ---",  (Math.abs(5 / 18)*100).toFixed(0));
+
   const persentasePendapatanHariIni = () => {
     if (moneyYesterday === undefined || moneyToday === undefined) {
       return "0";

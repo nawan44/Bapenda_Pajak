@@ -50,7 +50,7 @@ const Transaction = () => {
   const [typePajak, setTypePajak] = useState();
 
   const [files, setFiles] = useState("");
-
+const [onget, setOnGet] = useState(false)
   const onChangeDateRange = (date, datesString) => {
     setFromDate(datesString[0]);
     setToDate(datesString[1]);
@@ -311,40 +311,46 @@ const Transaction = () => {
 
   // console.log("kk", kk)
 
-  // useEffect(() => {
-  //   getJs();
-  // }, []);
+  useEffect(() => {
+    getJs();
+  }, [onget]);
 
-  // const getJs =  () => {
-  //   const decoded = jwtDecode(localStorage.token);
-  //   const apiKey = decoded["api-key"];
-  //   console.log("selectedRecord?.raw_data",selectedRecord?.raw_data)
-  // // if(selectedRecord?.raw_dat){
-  //    const response =
-  //   fetch(
-  //     `${selectedRecord?.raw_data}`,
+  const getJs =  () => {
+    const decoded = jwtDecode(localStorage.token);
+    const apiKey = decoded["api-key"];
+    console.log("selectedRecord?.raw_data",selectedRecord?.raw_data)
+  // if(onget == true){
+     const response =
+    fetch(
+      `${arr}`,
 
-  // {      method: "GET",
-  //       headers: {
-  //         "x-api-key": `${apiKey}`,
-  //         "Access-Control-Allow-Origin": "*",
-  //         "Access-Control-Allow-Credentials":true,
-  //         "content-type": "application/json",
-  //       }
-  //     }
-  //     )
-  // // .then(res => setDataArr(res))
-  // // .then((out) => {
-  // //   console.log('Checkout this JSON! ', out);
-  // // })
-  // // .catch(err => { throw err });
+  {      method: "GET",
+        headers: {
+          "x-api-key": `${apiKey}`,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials":true,
+          "content-type": "application/json",
+        }
+      }
+      )
+  .then(res => res.json())
+  .then((out) => {
+    console.log('Checkout this JSON! ', out);
+
+    console.log("res cccccc", response)
+
+
+  
+  })
+  // .catch(err => { throw err });
   // return response
 
-  // //   const ajson = await response.json();
-  // // console.log("response",JSON.stringify (response))
-  // // setDataArr(response)
-  // // console.log("json", response)
+  //   const ajson = await response.json();
+  // console.log("response",JSON.stringify (response))
+  // setDataArr(response)
+  // console.log("json", response)
   // }
+}
   //   console.log("Fetching data...", getJs());
   const columns = [
     {
@@ -387,6 +393,7 @@ const Transaction = () => {
               showModal();
               setSelectedRecord(record);
               // getJs()
+              setOnGet(true);
               setArr(record.raw_data);
               // module.exports = record.raw_data
               // console.log("record?", record?.raw_data.json())
@@ -662,12 +669,16 @@ const Transaction = () => {
             {/* <div>
           {jsonlint.parse(arr)}
         </div> */}
-
+{/* 
             <CodeMirror
               value={arr}
               // onChange={this.updateCode.bind(this)}
               options={cmOption}
-            />
+            /> */}
+
+<div>
+  {arr}
+</div>
 
             {/* {data} */}
 
