@@ -3,7 +3,7 @@ import {Avatar} from "antd";
 import Auxiliary from "util/Auxiliary";
 
 const ActivityItem = ({task}) => {
-
+ 
   return (
     <Auxiliary>
       <p className="gx-mb-0">{task.title}</p>
