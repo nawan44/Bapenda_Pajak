@@ -4,23 +4,21 @@ import { Row, Modal, Button, Form, Input, Select, Table } from "antd";
 import { DatePicker, Space } from "antd";
 import jwtDecode from "jwt-decode";
 import * as moment from "moment";
-// import ConvertPdf from "./convertPdf";
 import ConvertExcel from "./convertExcel";
 import "../../assets/styles/table.css";
+
+import ReactJson from "react-json-view";
+// import ConvertPdf from "./convertPdf";
+
 // import ReactJs from "react-file-viewer";
 // import JSONPretty from "react-json-pretty";
+// import { data } from "jquery";
 // import { JsonTable } from "react-json-to-html";
 // import FileViewer from 'react-file-viewer';
 // import ReactFileReader from "react-file-reader";
-// import $ from 'jquery';
 // import {Controlled as CodeMirror} from 'react-codemirror'
-
-// import "codemirror/lib/codemirror.css";
-// import "codemirror/theme/material.css";
-// import "codemirror/mode/javascript/javascript.js";
-// const Search = Input.Search;
 // var CodeMirror = require('react-codemirror');
-// var jsonlint = require("jsonlint");
+  // const jsonlint = require("jsonlint-mod");
 
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
@@ -40,7 +38,7 @@ const Transaction = () => {
   const [selectedRecord, setSelectedRecord] = useState();
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
+
   const [fromDate, setFromDate] = useState(
     moment().subtract(1, "months").format("YYYY-MM-DD")
   );
@@ -48,19 +46,15 @@ const Transaction = () => {
   const [toDate, setToDate] = useState(moment().format("YYYY-MM-DD"));
   const [nik, setNik] = useState();
   const [typePajak, setTypePajak] = useState();
-
-  const [files, setFiles] = useState("");
-const [onget, setOnGet] = useState(false)
+  const [arr, setArr] = useState();
+  const [data, setData] = useState(null);
+  const [onget, setOnGet] = useState(false);
   const onChangeDateRange = (date, datesString) => {
     setFromDate(datesString[0]);
     setToDate(datesString[1]);
     //More code
   };
 
-  // const onResetClick = () => {
-  //   setFromDate("2000-01-01");
-  //   setToDate("2000-01-02");
-  // };
   const renderRawdata = () => {
     if (selectedRecord?.data_source === "PDC") {
       return "PDF";
@@ -106,10 +100,6 @@ const [onget, setOnGet] = useState(false)
   useEffect(() => {
     handleFinish();
   }, [changePage]);
-
-  useEffect(() => {
-    setFiles(selectedRecord?.raw_data);
-  }, []);
 
   const getListDevice = async () => {
     const decoded = jwtDecode(localStorage.token);
@@ -212,14 +202,6 @@ const [onget, setOnGet] = useState(false)
     setNik(null);
     setTypePajak(null);
   };
-  const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
 
   const handleCancel = () => {
     // console.log("Clicked cancel button");
@@ -229,129 +211,17 @@ const [onget, setOnGet] = useState(false)
     setVisible(true);
   };
 
-  const [dataArr, setDataArr] = useState();
-  // useEffect(()=>{
-  //     getDataArr()
-  //   },[])
-  // const  getDataArr = async ()=> {
-  //   try {
-  //     // if (selectedRecord?.raw_data){
-  //     // let response = selectedRecord?.raw_data
-  //     // let responseJson = response.json();
-  //     // // return responseJson.movies;
-  //     // console.log("response >>>>",response)
-  //     // console.log("responseJson ,,,,,,",responseJson)
-
-  //     // setDataArr(responseJson)
-  //   //  } catch(error) {
-  //   //   console.error(error);
-  //   // }
-
-  //   // if (selectedRecord?.raw_data){
-
-  //   const decoded = jwtDecode(localStorage.token);
-  //   const apiKey = decoded["api-key"];
-  //   const headers = {
-  //     "x-api-key": `${apiKey}`,
-  //     "content-type": "application/json",
-  //   };
-  //   const response = await fetch(
-  //    `${ selectedRecord?.raw_data}`,
-
-  //     {  headers }
-  //   );
-  //   const res = response;
-  //   console.log("resss", res.json())
-  //   setDataArr(res.json());
-  // } catch(error) {
-  //     console.error(error);
-  //   }
-
-  // }
-  // console.log("dataArr", dataArr)
-  // const handleChange = (e) => {
-  //   const content = document.querySelector(".content");
-  //   const [file] = document.querySelector("input[type=file]").e;
-  //   const reader = new FileReader();
-
-  //   reader.addEventListener(
-  //     "load",
-  //     () => {
-  //       // this will then display a text file
-  //       content.innerText = reader.result;
-  //     },
-  //     false
-  //   );
-
-  //   if (file) {
-  //     reader.readAsText(file);
-  //   }
-  // };
-  const [arr, setArr] = useState();
-  console.log(arr);
-  // console.log("arr", "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19")
-  // const aku = [
-  // selectedRecord?.raw_data
-  // ]
-
-  // var km = "https://sourceforge.net/projects/kaais/files/stats/json?start_date=2013-08-18&end_date=2018-04-19"
-  // var km = selectedRecord?.raw_data
-
-  // const kk = $.ajax({
-  //     method: "GET",
-  //     cache: false,
-  //     url: km,
-  //     success: function(data) {
-  //       document.getElementById('output').innerHTML = data;
-  //     },
-  //     error: function(error) {
-  //       //What do you want to do with the error?
-  //     },
-  //   });
-
-  // console.log("kk", kk)
-
   useEffect(() => {
-    getJs();
+    const load = async (id_) => {
+      let url = `${arr}`;
+      let ax = await (await fetch(url)).json();
+      // const manipulatedData = ...
+      // do manipulation
+      setData(ax);
+    };
+    load();
   }, [onget]);
 
-  const getJs =  () => {
-    const decoded = jwtDecode(localStorage.token);
-    const apiKey = decoded["api-key"];
-    console.log("selectedRecord?.raw_data",selectedRecord?.raw_data)
-  // if(onget == true){
-     const response =
-    fetch(
-      `${arr}`,
-
-  {      method: "GET",
-        headers: {
-          "x-api-key": `${apiKey}`,
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials":true,
-          "content-type": "application/json",
-        }
-      }
-      )
-  .then(res => res.json())
-  .then((out) => {
-    console.log('Checkout this JSON! ', out);
-
-    console.log("res cccccc", response)
-
-
-  
-  })
-  // .catch(err => { throw err });
-  // return response
-
-  //   const ajson = await response.json();
-  // console.log("response",JSON.stringify (response))
-  // setDataArr(response)
-  // console.log("json", response)
-  // }
-}
-  //   console.log("Fetching data...", getJs());
   const columns = [
     {
       title: "Tanggal Transaksi",
@@ -387,12 +257,10 @@ const [onget, setOnGet] = useState(false)
       render: (text, record) => {
         return (
           <Button
-            // icon={<FormOutlined />}
             id={record.id}
             onClick={(e) => {
               showModal();
               setSelectedRecord(record);
-              // getJs()
               setOnGet(true);
               setArr(record.raw_data);
               // module.exports = record.raw_data
@@ -411,111 +279,7 @@ const [onget, setOnGet] = useState(false)
       },
     },
   ];
-  // const json = require(`./${selectedRecord?.raw_data}`);
-
-  // const openFile = (evt) => {
-  //   function previewFile() {
-  //     const content = document.querySelector(".content");
-  //     const [file] = document.querySelector("input[type=file]").files;
-  //     const reader = new FileReader();
-
-  //     reader.addEventListener(
-  //       "load",
-  //       () => {
-  //         // this will then display a text file
-  //         content.innerText = reader.result;
-  //       },
-  //       false
-  //     );
-
-  //     if (file) {
-  //       reader.readAsText(file);
-  //     }
-  //   }
-  // };
-  // const [state, setState] = useState()
-  // var data = require(selectedRecord?.raw_data);
-  // const handleFiles = (files) => {
-  //   var reader = new FileReader();
-  //   reader.onload = e => {
-  //     // Use reader.result
-  //     setState({ data: selectedRecord?.raw_data});
-  //   };
-  //   reader.readAsText(files[0]);
-  // };
-
-  // const [data, setData] = useState();
-
-  // useEffect(() => {
-  //   async function getData() {
-  //     fetch(selectedRecord?.raw_data
-  //     )
-  //       .then(function (response) {
-  //         return response.text();
-  //       })
-  //       .then(function (txt) {
-  //         // let d = txt.replace(/Brand/g, `"Brand"`);
-  //         // d = d.replace(/Model/g, `"Model"`);
-  //         d = JSON.parse(d);
-  //         setData(d);
-  //       });
-  //   }
-  //   getData();
-  // }, []);
-  // const aa  =() =>{
-  //   var flickerAPI = selectedRecord?.raw_data;
-  //   $.getJSON( flickerAPI, {
-  //     tags: "mount rainier",
-  //     tagmode: "any",
-  //     format: "json"
-  //   })
-  //     .done(function( data ) {
-  //       $.each( data.items, function( i, item ) {
-  //         $( "<img>" ).attr( "src", item.media.m ).appendTo( "#images" );
-  //         if ( i === 3 ) {
-  //           return false;
-  //         }
-  //       });
-  //     });
-  // };
-  // console.log("aa", aa)
-
-  // const getData=()=>{
-  //   if(selectedRecord?.raw_data){
-  //     fetch(`${selectedRecord?.raw_data}`
-  //   ,{
-  //     headers : {
-  //       'Content-Type': 'application/json',
-  //       'Accept': 'application/json'
-  //      }
-  //   }
-  //   )
-  //     .then(function(response){
-  //       console.log(response)
-  //       return response.json();
-  //     })
-  //     .then(function(myJson) {
-  //       console.log(myJson);
-  //       setData(myJson)
-  //     });
-  //   }
-  // }
-  // useEffect(()=>{
-  //   getData()
-  // },[])
-  const jsonlint = require("jsonlint-mod");
-  window.jsonlint = jsonlint;
-  const cmOption = {
-    mode: "application/json",
-    gutters: ["CodeMirror-lint-markers"],
-    styleActiveLine: true,
-    lineNumbers: true,
-    line: true,
-    lint: true,
-  };
-  let options = {
-    lineNumbers: true,
-  };
+  
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -607,7 +371,6 @@ const [onget, setOnGet] = useState(false)
             </FormItem>
           </Row>
         </Form>
-        {/* <div id="output">NO DATA</div> */}
         {click == true && (
           <div className="gx-table-responsive">
             <Row style={{ float: "right" }}>
@@ -648,52 +411,11 @@ const [onget, setOnGet] = useState(false)
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-            {/* <ReactJs rawData ={getJs()} /> */}
-            {/* { kk.responseJSON()} */}
-            {/* <JSONPretty id="json-pretty" data={selectedRecord?.raw_data}></JSONPretty> */}
-            {/* <JsonTable json={selectedRecord?.raw_data } /> */}
-            {/* <input type="file" onChange={handleChange} /> */}
-
-            {/* <div dangerouslySetInnerHTML={{ __html: dataArr}} /> */}
-
-            {/* <JSONPretty id="json-pretty" data={selectedRecord?.raw_data}></JSONPretty> */}
-            {/* {JSON.parse(selectedRecord?.raw_data)} */}
-
-            {/* {selectedRecord?.raw_data && (
-              <div>
-            <iframe src={selectedRecord?.raw_data} frameBorder="0" width="300px" height="400px"/>
-            <a href={selectedRecord?.raw_data}>Download JSON </a>
-              </div>
-            )} */}
-
-            {/* <div>
-          {jsonlint.parse(arr)}
-        </div> */}
-{/* 
-            <CodeMirror
-              value={arr}
-              // onChange={this.updateCode.bind(this)}
-              options={cmOption}
-            /> */}
-
-<div>
-  {arr}
-</div>
-
-            {/* {data} */}
-
-            {/* <JSONPretty id="json-pretty" style={{fontSize: "1.1em"}} data={JSON.stringify(selectedRecord?.raw_data)} mainStyle="padding:1em" valueStyle="font-size:1.5em"></JSONPretty> */}
-            {/* <div  >{selectedRecord?.raw_data.renderHTML()}</div> */}
-            {/* <div dangerouslySetInnerHTML={{ __html: selectedRecord?.raw_data }} /> */}
-
-            {/* <embed src={selectedRecord?.raw_data} frameBorder="0" width="100%" height="400px"/> */}
-            {/* <iframe src={JSON.stringify(selectedRecord?.raw_data)} frameBorder="0" width="300px" height="400px"/> */}
-
-            {/* <ReactJsonViewer data={selectedRecord?.raw_data} /> */}
-            {/* {JSON.stringify(selectedRecord?.raw_data, null, 2) } */}
-            {/* <JSONViewer
-        json={selectedRecord?.raw_data}
-      /> */}
+            {
+              onget == true ? 
+              <ReactJson src={data} />
+: <div>Data Tidak Ada</div>
+            }
           </Modal>
         )}
         {renderRawdata() === "PDF" && (
