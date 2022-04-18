@@ -32,14 +32,14 @@ const SidebarLogo = ({sidebarCollapsed, setSidebarCollapsed}) => {
         {navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR && width >= TAB_SIZE ?
           <img alt="logo" 
           style={{width:"70px"}} 
-          src={("/assets/images/emtres.png")}/> :
+          src={("/assets/images/bapenda.png")}/> :
           themeType === THEME_TYPE_LITE ?
             <img alt="logo1" 
              style={{width:"60px"}} 
-             src={("/assets/images/emtres.png")}/> :
+             src={("/assets/images/bapenda.png")}/> :
             <img alt="logo2"  
             style={{width:"60px"}} 
-            src={("/assets/images/emtres.png")}/>}
+            src={("/assets/images/bapenda.png")}/>}
       </Link>
     </div>
   );

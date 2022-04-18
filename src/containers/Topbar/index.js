@@ -55,7 +55,7 @@ const Topbar = () => {
           />
         </div> : null}
       <Link to="/dashboard" className="gx-d-block gx-d-lg-none gx-pointer">
-        <img alt="logo" style={{ width: "50px" }} src={("/assets/images/emtres.png")} /></Link>
+        <img alt="logo" style={{ width: "50px" }} src={("/assets/images/bapenda.png")} /></Link>
 
       {/* <SearchBox styleName="gx-d-none gx-d-lg-block gx-lt-icon-search-bar-lg"
                  placeholder="Search in app..."
