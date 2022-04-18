@@ -3,8 +3,24 @@ import jwtDecode from "jwt-decode";
 
 function TopTenPajak() {
   const [topTenPajak, setTopTenPajak] = useState();
-  console.log("topTenPajak", topTenPajak);
+  const [visibleBlogs, setVisibleBlogs] = useState(1)
+  const [up, setUp] = useState (true)
+  const [down, setDown] = useState (false)
 
+
+  console.log("topTenPajak", topTenPajak);
+  const handleClickUp = () => {
+    setVisibleBlogs(prevVisibleBlogs => prevVisibleBlogs + 2)
+    setUp(false)
+    setDown(true)
+    
+}
+const handleClickDown = () => {
+  setVisibleBlogs(prevVisibleBlogs => prevVisibleBlogs - 2)
+  setUp(true)
+  setDown(false)
+  
+}
   useEffect(() => {
     getTopTenPajak();
   }, []);
@@ -34,13 +50,14 @@ function TopTenPajak() {
     nominal_pajak: formatter.format(row[2].stringValue),
   }));
 
+  
   console.log("dataTopTenPajak", dataTopTenPajak);
   return (
     <div>
       {/* {topTenPajak} */}
       <h2>Top Ten Pajak</h2>
       <ol>
-        {dataTopTenPajak?.map((row, i) => (
+        {dataTopTenPajak?.slice(0, visibleBlogs).map((row, i) => (
           <h3>
             {" "}
             <div style={{ width: "60%", float: "left" }}>
@@ -53,6 +70,23 @@ function TopTenPajak() {
           </h3>
         ))}
       </ol>
+      <div>
+{
+  up == true ?<button type="button" onClick={handleClickUp} >
+  up more
+</button> : <div> </div>
+}
+
+</div>
+<div>
+{
+  down == true ?<button type="button" onClick={handleClickDown} >
+  DOWN
+</button> : <div> </div>
+}
+
+</div>
+      
     </div>
   );
 }
