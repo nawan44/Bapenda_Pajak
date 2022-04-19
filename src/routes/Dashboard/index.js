@@ -16,6 +16,7 @@ import Widget from "../../components/Widget";
 import PiePendapatan from "./Pie Chart/piePendapatan";
 import PieStatus from "./Pie Chart/pieStatus";
 import * as moment from "moment";
+import TargetGauge from "./Target Gauge";
 
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState();
@@ -109,6 +110,10 @@ const SamplePage = () => {
           <Widget>
             <TopTen />
           </Widget>
+
+          <Widget >
+<TargetGauge/>
+</Widget>
         </Col>
         <Col xl={16} lg={24} md={24} sm={24} xs={24} className="gx-order-sm-1">
           <Row>
