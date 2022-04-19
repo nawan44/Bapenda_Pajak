@@ -1,10 +1,23 @@
 import React, { useState, useEffect } from "react";
 import jwtDecode from "jwt-decode";
+import { Button } from "antd";
 
 function TopTenTransaction() {
   const [topTenTransaction, setTopTenTransaction] = useState();
-  console.log("topTenTransaction", topTenTransaction);
+  const [visible, setVisible] = useState(1);
+  const [up, setUp] = useState(true);
+  const [down, setDown] = useState(false);
 
+  const handleClickUp = () => {
+    setVisible((prevVisible) => prevVisible + 2);
+    setUp(false);
+    setDown(true);
+  };
+  const handleClickDown = () => {
+    setVisible((prevVisible) => prevVisible - 2);
+    setUp(true);
+    setDown(false);
+  };
   useEffect(() => {
     getTopTenTransaction();
   }, []);
@@ -40,7 +53,7 @@ function TopTenTransaction() {
       {/* {topTenTransaction} */}
       <h2>Top Ten Transaction</h2>
       <ol>
-        {dataTopTenTransaction?.map((row, i) => (
+        {dataTopTenTransaction?.slice(0, visible).map((row, i) => (
           <h3>
             {" "}
             <div style={{ width: "60%", float: "left" }}>
@@ -53,6 +66,24 @@ function TopTenTransaction() {
           </h3>
         ))}
       </ol>
+      {up == true ? (
+          <Button
+            style={{  marginTop: "10px",color: "blue" , border:"none"}}
+            onClick={handleClickUp} >
+            Lihat lebih Banyak
+          </Button>
+        ) : (
+          <div> </div>
+        )}
+        {down == true ? (
+                 <Button
+                 style={{  marginTop: "10px",color: "blue" , border:"none"}}
+                 onClick={handleClickDown} >
+                 Lihat lebih Sedikit
+               </Button>
+        ) : (
+          <div> </div>
+        )}
     </div>
   );
 }
