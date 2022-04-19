@@ -108,12 +108,12 @@ const SamplePage = () => {
       <Row className="container-dashboard4">
         <Col xl={8} lg={24} md={24} sm={24} xs={24} className="gx-order-sm-2">
           <Widget>
-            <TopTen />
+          <TargetGauge />
           </Widget>
 
-          <Widget >
-<TargetGauge/>
-</Widget>
+          <Widget>
+            <TopTen />
+          </Widget>
         </Col>
         <Col xl={16} lg={24} md={24} sm={24} xs={24} className="gx-order-sm-1">
           <Row>

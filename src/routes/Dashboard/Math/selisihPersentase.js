@@ -36,7 +36,7 @@ function SelisihPresentase({
           <div>
             <span className="persen-up">
               {(100 *
-                Math.abs((moneyYesterday - moneyToday) / moneyToday)).toFixed(0) +
+                Math.abs((moneyYesterday - moneyToday) / moneyYesterday)).toFixed(0) +
                 "%"}
             </span>
             <CaretUpOutlined className="icon-up" />
@@ -47,7 +47,7 @@ function SelisihPresentase({
           <div>
             <span className="persen-down">
               {(100 *
-                Math.abs((moneyYesterday - moneyToday) / moneyToday)).toFixed(
+                Math.abs((moneyYesterday - moneyToday) / moneyYesterday)).toFixed(
                   0
                 ) +
                 "%"}
@@ -60,7 +60,7 @@ function SelisihPresentase({
           <div>
             <span className="persen-up">
               {(100 *
-                Math.abs((moneyYesterday - moneyToday) / moneyToday)).toFixed(
+                Math.abs((moneyYesterday - moneyToday) / moneyYesterday)).toFixed(
                   0
                 ) +
                 "%"}
@@ -84,7 +84,7 @@ function SelisihPresentase({
             <span className="persen-up">
               {(100 *
                 Math.abs(
-                  (moneyLastMonth - moneyThisMonth) / moneyThisMonth
+                  (moneyLastMonth - moneyThisMonth) / moneyLastMonth
                 )).toFixed(0) +
                 "%"}
             </span>
@@ -97,7 +97,7 @@ function SelisihPresentase({
             <span className="persen-down">
               {(100 *
                 Math.abs(
-                  (moneyLastMonth - moneyThisMonth) / moneyThisMonth
+                  (moneyLastMonth - moneyThisMonth) / moneyLastMonth
                 )).toFixed(0) +
                 "%"}
             </span>{" "}
@@ -110,7 +110,7 @@ function SelisihPresentase({
             <span className="persen-up">
               {(100 *
                 Math.abs(
-                  (moneyLastMonth - moneyThisMonth) / moneyThisMonth
+                  (moneyLastMonth - moneyThisMonth) / moneyLastMonth
                 ).toFixed(0)) +
                 "%"}
             </span>
@@ -132,7 +132,7 @@ function SelisihPresentase({
             <span className="persen-up">
               {(100 *
                 Math.abs(
-                  (moneyLastYear - moneyThisYear) / moneyThisYear
+                  (moneyLastYear - moneyThisYear) / moneyLastYear
                 )).toFixed(0) +
                 "%"}
             </span>
@@ -145,7 +145,7 @@ function SelisihPresentase({
             <span className="persen-down">
               {(100 *
                 Math.abs(
-                  (moneyLastYear - moneyThisYear) / moneyThisYear
+                  (moneyLastYear - moneyThisYear) / moneyLastYear
                 )).toFixed(0) +
                 "%"}
             </span>{" "}
@@ -158,7 +158,7 @@ function SelisihPresentase({
             <span className="persen-up">
               {(100 *
                 Math.abs(
-                  (moneyLastYear - moneyThisYear) / moneyThisYear
+                  (moneyLastYear - moneyThisYear) / moneyLastYear
                 )).toFixed(0) +
                 "%"}
             </span>

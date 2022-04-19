@@ -47,7 +47,6 @@ function TopTenTransaction() {
     nominal_Transaction: row[2].longValue,
   }));
 
-  console.log("dataTopTenTransaction", dataTopTenTransaction);
   return (
     <div>
       {/* {topTenTransaction} */}

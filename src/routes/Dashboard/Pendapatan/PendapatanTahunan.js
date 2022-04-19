@@ -123,11 +123,11 @@ const PendapatanTahunan = (props) => {
   //   Number(earningThisYear3);
 
   useEffect(() => {
-    setMoneyThisYear(earningThisYear);
+    setMoneyThisYear(earningThisYear === undefined ? 0 : Number(earningThisYear));
   }, [earningThisYear]);
 
   useEffect(() => {
-    setMoneyLastYear(earningLastYear);
+    setMoneyLastYear(earningLastYear  === undefined ? 0 : Number(earningLastYear));
   }, [earningLastYear]);
 
 

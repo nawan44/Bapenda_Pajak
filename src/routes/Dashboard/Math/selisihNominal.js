@@ -126,6 +126,12 @@ function SelisihNominal({
     style: "currency",
     currency: "IDR",
   });
+
+  console.log("moneyThisMonth", moneyThisMonth)
+  console.log("moneyLastMonth", moneyLastMonth)
+
+  // console.log("moneyThisMonth - moneyLastMonth", moneyThisMonth - moneyLastMonth)
+  // console.log("selisihPendapatanBulanIni", selisihPendapatanBulanIni())
   return (
     <>
       {moneyThisMonth && (
@@ -174,7 +180,9 @@ function SelisihNominal({
         <div style={{ height: "30px" }}>
           <span style={{ margin: "10px 0 0 0" }}>
             {selisihPendapatanTahunIni()}
+         
           </span>
+          
           {moneyThisYear < moneyLastYear ? (
             <span className="selisih-down">
               {" "}
@@ -238,6 +246,7 @@ function SelisihNominal({
           <span style={{ margin: "10px 0 0 0" }}>
             {selisihTransaksiTahunIni()}
           </span>
+          
           {transactionThisYear < transactionLastYear ? (
             <span className="selisih-down">
               {" "}

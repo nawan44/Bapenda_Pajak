@@ -29,6 +29,14 @@ const PendapatanBulanan = (props) => {
     .subtract(1, "month")
     .endOf("month")
     .format("YYYY-MM-DD HH:mm:ss");
+    
+    useEffect(() => {
+      setMoneyThisMonth(earningThisMonth  === undefined ? 0 : Number(earningThisMonth));
+    }, [earningThisMonth]);
+  
+    useEffect(() => {
+      setMoneyLastMonth(earningLastMonth  === undefined ? 0 : Number(earningLastMonth));
+    }, [earningLastMonth]);
 
   useEffect(() => {
     getEarningThisMonth();
@@ -93,17 +101,12 @@ const PendapatanBulanan = (props) => {
     // setEarningLastMonth2(ajson.Records[1][1].stringValue);
     // setEarningLastMonth3(ajson.Records[2][1].stringValue);
   };
-  useEffect(() => {
-    setMoneyThisMonth(earningThisMonth);
-  }, [earningThisMonth]);
 
-  useEffect(() => {
-    setMoneyLastMonth(earningLastMonth);
-  }, [earningLastMonth]);
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",
   });
+  // console.log("moneyThisMonth", moneyThisMonth)
   return (
     <Col className="flip-card" xs={24} xl={8}>
       <div className="flip-card-inner">
