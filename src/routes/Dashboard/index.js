@@ -13,10 +13,9 @@ import BarTransaksiPendapatan from "./Bar Chart";
 import "../../assets/styles/dashboard.css";
 import TopTen from "./TopTen";
 import Widget from "../../components/Widget";
-import PiePendapatan from "./Pie Chart/piePendapatan";
-import PieStatus from "./Pie Chart/pieStatus";
 import * as moment from "moment";
 import TargetGauge from "./Target Gauge";
+import YearToYear from "./Year To Year";
 
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState();
@@ -99,7 +98,9 @@ const SamplePage = () => {
           setLatestTransaction={setLatestTransaction}
         />
       </Row>
-
+      <Row style={{ marginTop: "30px" }}>
+        <YearToYear />
+      </Row>
       {/* <TopTen/> */}
 
       {/* </div> */}
@@ -108,7 +109,7 @@ const SamplePage = () => {
       <Row className="container-dashboard4">
         <Col xl={8} lg={24} md={24} sm={24} xs={24} className="gx-order-sm-2">
           <Widget>
-          <TargetGauge />
+            <TargetGauge />
           </Widget>
 
           <Widget>
@@ -140,13 +141,6 @@ const SamplePage = () => {
           setLatestTransaction={setLatestTransaction}
         />
       </Row>
-
-      {/* <Row className="container-dashboard2" type="flex">
-        <GrafikTransaksi
-          latestTransaction={latestTransaction}
-          setLatestTransaction={setLatestTransaction}
-        />
-      </Row> */}
       <Row className="container-dashboard5">
         <LatestTransaction
           style={{ margin: "0px", textAlign: "center" }}

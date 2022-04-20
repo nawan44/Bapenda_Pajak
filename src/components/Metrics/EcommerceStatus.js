@@ -150,7 +150,7 @@ const EcommerceStatus = ({
             transactionLastYear={transactionLastYear}
             objTransactionThisYear={objTransactionThisYear}
           />
-           (Pendapatan)
+           {/* (Pendapatan) */}
         </div>
       </div>
     </Widget>

@@ -127,11 +127,6 @@ function SelisihNominal({
     currency: "IDR",
   });
 
-  console.log("moneyThisMonth", moneyThisMonth)
-  console.log("moneyLastMonth", moneyLastMonth)
-
-  // console.log("moneyThisMonth - moneyLastMonth", moneyThisMonth - moneyLastMonth)
-  // console.log("selisihPendapatanBulanIni", selisihPendapatanBulanIni())
   return (
     <>
       {moneyThisMonth && (
