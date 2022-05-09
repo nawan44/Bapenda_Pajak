@@ -1,25 +1,42 @@
-import React, {useState, useEffect} from "react";
-import { Bar,Line, Legend,ComposedChart,AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import React, { useState, useEffect } from "react";
+import {
+  Bar,
+  Line,
+  Legend,
+  ComposedChart,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
-function ChartYearToYear({data}) {
+function ChartYearToYear({ data, result }) {
+
+  console.log("chart result", result)
+  console.log("chart data chart", data)
+
   const gradientOffset = () => {
-    const dataMax = Math.max(...data.map((i) => i.selisih));
-    const dataMin = Math.min(...data.map((i) => i.selisih));
-  
+    const dataMax = Math.max(...data.map((i) => i?.selisih));
+    const dataMin = Math.min(...data.map((i) => i?.selisih));
+
     if (dataMax <= 0) {
       return 0;
     }
     if (dataMin >= 0) {
       return 1;
     }
-  
     return dataMax / (dataMax - dataMin);
   };
-  
+
   const off = gradientOffset();
-    return ( <div>
- 
- <ResponsiveContainer width="95%" height={350}>
+  return (
+    <div style={{
+      // background:"green",
+     width:"90%"}}>
+      <ResponsiveContainer width="100%" height={350}>
         <AreaChart
           width={500}
           height={400}
@@ -41,10 +58,16 @@ function ChartYearToYear({data}) {
               <stop offset={off} stopColor="red" stopOpacity={1} />
             </linearGradient>
           </defs>
-          <Area type="monotone" dataKey="selisih" stroke="#000" fill="url(#splitColor)" />
+          <Area
+            type="monotone"
+            dataKey="selisih"
+            stroke="#000"
+            fill="url(#splitColor)"
+          />
         </AreaChart>
       </ResponsiveContainer>
-        </div> );
+    </div>
+  );
 }
 
 export default ChartYearToYear;

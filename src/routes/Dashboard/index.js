@@ -98,15 +98,18 @@ const SamplePage = () => {
           setLatestTransaction={setLatestTransaction}
         />
       </Row>
-      <Row style={{ marginTop: "30px" }}>
+      <Row className="row-year-to-year">
         <YearToYear />
       </Row>
+
+
+
       {/* <TopTen/> */}
 
       {/* </div> */}
       {/* <Row className="container-dashboard2" type="flex"> */}
       {/* <GrafikPendapatan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} /> */}
-      <Row className="container-dashboard4">
+      <Row className="row-target-pajak">
         <Col xl={8} lg={24} md={24} sm={24} xs={24} className="gx-order-sm-2">
           <Widget>
             <TargetGauge />

@@ -120,14 +120,18 @@ const YearToYear = (props) => {
 
   const [jenisChart, setJenisChart] = useState("Daily");
   const [bulanSelect, setBulanSelect] = useState(setBulan);
+// const [dataBulan, setDataBulan] = useState()
+// const [dataTahun, setDataTahun] = useState({})
 
   const [monthly, setMonthly] = useState();
-  const [yearly, setYearly] = useState();
+  const [thisYearly, setThisYearly] = useState();
+  const [lastYearly, setLastYearly] = useState();
 
   const [thisMonthly, setThisMonthly] = useState(moment().format("YYYY"));
   const [lastMonthly, setLastMonthly] = useState(
     moment().subtract(1, "year").format("YYYY")
   );
+ 
 
   const onChangeDateRange = (date, datesString) => {
     setLastMonthly(datesString[0]);
@@ -149,7 +153,6 @@ const YearToYear = (props) => {
   };
 
   const off = gradientOffset();
-
   const handleChangeSelect = (value) => {
     setJenisChart(value);
     setBulanSelect("1");
@@ -193,10 +196,10 @@ const YearToYear = (props) => {
     setMonthly(res.Records);
   };
   useEffect(() => {
-    getYearly();
+    getThisYearly();
   }, []);
 
-  const getYearly = async () => {
+  const getThisYearly = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
     const headers = {
@@ -209,9 +212,11 @@ const YearToYear = (props) => {
       { method: "GET", headers }
     );
     const res = await response.json();
-    setYearly(res.Records);
+    setThisYearly(res.Records);
   };
-
+  useEffect(() => {
+    getLastYearly();
+  }, []);
   const getLastYearly = async () => {
     const decoded = jwtDecode(localStorage.token);
     const apiKey = decoded["api-key"];
@@ -225,7 +230,7 @@ const YearToYear = (props) => {
       { method: "GET", headers }
     );
     const res = await response.json();
-    setYearly(res.Records);
+    setLastYearly(res.Records);
   };
 
   const bulan = monthly?.map((row) => ({
@@ -248,20 +253,58 @@ const YearToYear = (props) => {
     "Desember",
   ];
 
-  const tahun = yearly?.map((row) => ({
+  const tahunIni = thisYearly?.map((row) => ({
     created_at: months[row[0].longValue - 1],
-    total_value: Number(row[1].stringValue),
+    total_thisYear: Number(row[1].stringValue),
   }));
+
+
+  const tahunLalu = lastYearly?.map((row) => ({
+    created_at: months[row[0].longValue - 1],
+    total_lastYear: Number(row[1].stringValue),
+  }));
+
+  // console.log("kkkkkk",Number(tahunIni.total_thisYear).filter(n => !Number(tahunLalu.total_lastYear).includes(n)))
 
   const disabledDate = (current) => {
     let customDate = "2022";
     return current && current < moment(customDate, "YYYY");
   };
 
+
+ 
+
+  let mergedArray = tahunIni?.map((item, i) => Object.assign({}, item, tahunLalu[i]));
+
+
+
+const arraySelisih = mergedArray && mergedArray.reduce((acc,curr, curVal, ) => {
+     acc[curr.created_at]  = curr.total_thisYear - curr.total_lastYear   
+     return acc
+}, {});
+
+const arrayGrowth = mergedArray && mergedArray.reduce((acc,curr, curVal, ) => {
+  acc[curr.created_at]  = 100*Math.abs(( Number(curr.total_lastYear) -  Number(curr.total_thisYear)) / Number(curr.total_lastYear)) 
+  return acc
+}, {});
+
+const result = mergedArray?.map((item) => {
+  return {
+    ...item,
+    selisih: arraySelisih[item.created_at],
+    growth : arrayGrowth[item.created_at]
+  };
+});
+console.log("arrayGrowth", arrayGrowth);
+// console.log("grow", 100*Math.abs(( 50 - 100) / 50));
+
+
   return (
     <Widget styleName="gx-order-history">
       <Row>
-        <Col span={16}>
+        <Col span={14} style={{
+          // background:"red", 
+        width:"90%"}}>
           <div style={{ width: "500px", height: "100px" }}>
             <div style={{ width: "100%", float: "left" }}>
               {" "}
@@ -313,7 +356,7 @@ const YearToYear = (props) => {
                 <div></div>
               )}
             </div> */}
-            <div style={{ width: "20%", float: "left", paddingTop: "7px" }}>
+            <div style={{ width: "20%", float: "left", paddingTop: "7px", background:"yellow" }}>
               <DatePicker
                 disabledDate={disabledDate}
                 defaultValue={moment("2021", "YYYY")}
@@ -332,10 +375,10 @@ const YearToYear = (props) => {
               />
             </div>
           </div>
-          <ChartYearToYear data={data} />
+          <ChartYearToYear data={data} result={result}   />
         </Col>
-        <Col span={8}>
-          <TableYearToYear data={data} />
+        <Col span={10}>
+          <TableYearToYear data={data}  result={result}/>
         </Col>
       </Row>
     </Widget>
