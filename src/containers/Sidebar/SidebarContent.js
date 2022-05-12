@@ -88,13 +88,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 />
               }
               title="Device Agent"
-    //            title={
-    //     <span>
-    //        Device Agent  <UserOutlined
-    //               style={{ fontSize: "125%", marginRight: "0px" }}
-    //             />
-    //     </span>
-    // }
+
             >
               <Menu.Item
                 key="deviceall"
@@ -160,7 +154,6 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                   <span>Device Restoran</span>
                 </Link>
               </Menu.Item>
-              {/* <Divider /> */}
               <Menu.Item
                 key="registerdevice"
                 style={{

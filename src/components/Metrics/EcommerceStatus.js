@@ -50,12 +50,16 @@ const EcommerceStatus = ({
       return "Tahun Ini";
     } 
   };
+  console.log("moneyLastYear", moneyLastYear)
   return (
     <Widget styleName={`gx-card-full gx-py-4 gx-px-2 gx-bg-${color}`}>
       {color === "grey" ? (
         <div></div>
       ) : (
         <div style={{ float: "left", width: "70px" }}>
+          {moneyToday === 0 || moneyThisMonth === 0 || moneyThisYear === 0 ? "0%" : 
+<div>
+{moneyLastYear === 0 || moneyLastMonth === 0 || moneyYesterday === 0 ? "100%" : 
           <SelisihPresentase
             moneyToday={moneyToday}
             moneyYesterday={moneyYesterday}
@@ -73,7 +77,11 @@ const EcommerceStatus = ({
             transactionThisYear={transactionThisYear}
             transactionLastYear={transactionLastYear}
             objTransactionThisYear={objTransactionThisYear}
-          />
+          /> }
+
+</div>          
+        }
+         
         </div>
       )}
       {/* <div

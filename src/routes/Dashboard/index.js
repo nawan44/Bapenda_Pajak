@@ -85,7 +85,7 @@ const SamplePage = () => {
   return (
     <div>
      
-      {/* <Row className="container-dashboard1">
+      <Row className="container-dashboard1">
         <PendapatanHarian
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
@@ -98,7 +98,7 @@ const SamplePage = () => {
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
         />
-      </Row> */}
+      </Row>
      
       {/* <Row className="row-year-to-year">
          <YearToYear /> 
