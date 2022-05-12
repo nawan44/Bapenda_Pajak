@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import jwtDecode from "jwt-decode";
 import { Button } from "antd";
 
-function TopTenRevenue() {
-  const [topTenRevenue, setTopTenRevenue] = useState();
+function TopTenRevenue({topTenRevenue, setTopTenRevenue}) {
   const [visible, setVisible] = useState(1);
   const [up, setUp] = useState(true);
   const [down, setDown] = useState(false);
@@ -18,24 +16,7 @@ function TopTenRevenue() {
     setUp(true);
     setDown(false);
   };
-  useEffect(() => {
-    getTopTenRevenue();
-  }, []);
-  const getTopTenRevenue = async () => {
-    const decoded = jwtDecode(localStorage.token);
-    const apiKey = decoded["api-key"];
-    const headers = {
-      "x-api-key": `${apiKey}`,
-      "content-type": "application/json",
-    };
-    const response = await fetch(
-      "https://api.raspi-geek.com/v1/topten?type=revenue",
 
-      { method: "GET", headers }
-    );
-    const res = await response.json();
-    setTopTenRevenue(res.Records);
-  };
   const formatter = new Intl.NumberFormat("id-ID", {
     style: "currency",
     currency: "IDR",

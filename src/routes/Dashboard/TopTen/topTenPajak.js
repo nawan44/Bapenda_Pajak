@@ -49,40 +49,41 @@ function TopTenPajak() {
 
   return (
     <div>
-      <h2>Top Ten Pajak</h2>
-        {" "}
-        <ol>
-          {dataTopTenPajak?.slice(0, visible).map((row, i) => (
-            <h3>
-              {" "}
-              <div style={{ width: "60%", float: "left" }}>
-                <li key={row.key}>{row.nama_wp}</li>
-                <h5>{row.nik}</h5>
-              </div>
-              <div style={{ width: "40%", float: "left" }}>
-                <h3>{row.nominal_pajak}</h3>
-              </div>
-            </h3>
-          ))}
-        </ol>
-        {up == true ? (
-          <Button
-            style={{  marginTop: "10px",color: "blue" , border:"none"}}
-            onClick={handleClickUp} >
-            Lihat lebih Banyak
-          </Button>
-        ) : (
-          <div> </div>
-        )}
-        {down == true ? (
-                 <Button
-                 style={{  marginTop: "10px",color: "blue" , border:"none"}}
-                 onClick={handleClickDown} >
-                 Lihat lebih Sedikit
-               </Button>
-        ) : (
-          <div> </div>
-        )}
+      <h2>Top Ten Pajak</h2>{" "}
+      <ol>
+        {dataTopTenPajak?.slice(0, visible).map((row, i) => (
+          <h3>
+            {" "}
+            <div style={{ width: "60%", float: "left" }}>
+              <li key={row.key}>{row.nama_wp}</li>
+              <h5>{row.nik}</h5>
+            </div>
+            <div style={{ width: "40%", float: "left" }}>
+              <h3>{row.nominal_pajak}</h3>
+            </div>
+          </h3>
+        ))}
+      </ol>
+      {up == true ? (
+        <Button
+          style={{ marginTop: "10px", color: "blue", border: "none" }}
+          onClick={handleClickUp}
+        >
+          Lihat lebih Banyak
+        </Button>
+      ) : (
+        <div> </div>
+      )}
+      {down == true ? (
+        <Button
+          style={{ marginTop: "10px", color: "blue", border: "none" }}
+          onClick={handleClickDown}
+        >
+          Lihat lebih Sedikit
+        </Button>
+      ) : (
+        <div> </div>
+      )}
     </div>
   );
 }

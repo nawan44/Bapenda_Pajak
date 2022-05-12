@@ -6,39 +6,52 @@ import ActivityItem from "../../../components/dashboard/CRM/ActivityItem";
 import TopTenPajak from "./topTenPajak";
 import TopTenRevenue from "./topTenRevenue";
 import TopTenTransaction from "./topTenTransaction";
-
-
+import jwtDecode from "jwt-decode";
 
 function TopTen() {
-//   const [limit, setLimit] = useState(3);
-//   const [shape, setShape] = useState(props.shape);
+  const [topTenRevenue, setTopTenRevenue] = useState();
 
-//   useEffect(() => {
-//     setShape(props.shape);
-//     if (window.innerWidth < 575) {
-//       setLimit(1);
-//     }
-//   }, [props.shape]);
+  useEffect(() => {
+    getTopTenRevenue();
+  }, []);
+  const getTopTenRevenue = async () => {
+    const decoded = jwtDecode(localStorage.token);
+    const apiKey = decoded["api-key"];
+    const headers = {
+      "x-api-key": `${apiKey}`,
+      "content-type": "application/json",
+    };
+    const response = await fetch(
+      "https://api.raspi-geek.com/v1/topten?type=revenue",
 
-//   const onLoadMore = () => {
-//     setLimit(limit + 1);
-//   };
+      { method: "GET", headers }
+    );
+    const res = await response.json();
+    setTopTenRevenue(res.Records);
+  };
 
   return (
     <div className="gx-entry-sec">
-      <WidgetHeader 
-    //   title="Top Ten" 
-      />
+      <WidgetHeader />
 
-        <div className="gx-timeline-info" >
-          {/* <h4 className="gx-timeline-info-day">AAA</h4> */}
-          <TopTenPajak/>
-          <Divider/>
-         <TopTenRevenue/>
-          <Divider/>
-          <TopTenTransaction/>
-        </div>
+      <div className="gx-timeline-info">
+        {/* <h4 className="gx-timeline-info-day">AAA</h4> */}
 
+        {topTenRevenue?.length > 1 ? (
+          <div>
+            <TopTenPajak />
+            <Divider />
+            <TopTenRevenue
+              topTenRevenue={topTenRevenue}
+              setTopTenRevenue={setTopTenRevenue}
+            />
+            <Divider />
+            <TopTenTransaction />
+          </div>
+        ) : (
+          "Data Top 10 Tidak Ada"
+        )}
+      </div>
     </div>
   );
 }
