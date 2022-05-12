@@ -149,13 +149,13 @@ const SamplePage = () => {
         />
       </Row>
 
-      {/* <Row className="container-dashboard5">
+      <Row className="container-dashboard5">
         <LatestTransaction
           style={{ margin: "0px", textAlign: "center" }}
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
         />
-      </Row> */}
+      </Row>
     </div>
   );
 };
