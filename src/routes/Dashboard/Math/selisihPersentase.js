@@ -25,7 +25,26 @@ function SelisihPresentase({
   transactionLastYear,
   objTransactionThisYear /*  */,
 }) {
+  console.log("moneyLastYear", moneyLastYear);
+  console.log("moneyThisYear", moneyThisYear);
+  console.log(
+    "Pendapatan",
+    (100 * Math.abs((moneyLastYear - moneyThisYear) / moneyLastYear)).toFixed(0)
+  );
+  console.log("=====================");
 
+  console.log("transactionThisYear", transactionThisYear);
+  console.log("transactionLastYear", transactionLastYear);
+
+  console.log(
+    "Transaksi",
+    (
+      100 *
+      Math.abs(
+        (transactionLastYear - transactionThisYear) / transactionLastYear
+      )
+    ).toFixed(0)
+  );
 
   const persentasePendapatanHariIni = () => {
     if (moneyYesterday === undefined || moneyToday === undefined) {
@@ -35,9 +54,9 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
-                Math.abs((moneyYesterday - moneyToday) / moneyYesterday)).toFixed(0) +
-                "%"}
+              {(
+                100 * Math.abs((moneyYesterday - moneyToday) / moneyYesterday)
+              ).toFixed(0) + "%"}
             </span>
             <CaretUpOutlined className="icon-up" />
           </div>
@@ -46,11 +65,9 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-down">
-              {(100 *
-                Math.abs((moneyYesterday - moneyToday) / moneyYesterday)).toFixed(
-                  0
-                ) +
-                "%"}
+              {(
+                100 * Math.abs((moneyYesterday - moneyToday) / moneyYesterday)
+              ).toFixed(0) + "%"}
             </span>{" "}
             <CaretDownOutlined className="icon-down" />
           </div>
@@ -59,11 +76,9 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
-                Math.abs((moneyYesterday - moneyToday) / moneyYesterday)).toFixed(
-                  0
-                ) +
-                "%"}
+              {(
+                100 * Math.abs((moneyYesterday - moneyToday) / moneyYesterday)
+              ).toFixed(0) + "%"}
             </span>
             <PauseOutlined rotate={90} className="icon-up" />
           </div>
@@ -82,11 +97,10 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
-                Math.abs(
-                  (moneyLastMonth - moneyThisMonth) / moneyLastMonth
-                )).toFixed(0) +
-                "%"}
+              {(
+                100 *
+                Math.abs((moneyLastMonth - moneyThisMonth) / moneyLastMonth)
+              ).toFixed(0) + "%"}
             </span>
             <CaretUpOutlined className="icon-up" />
           </div>
@@ -95,11 +109,10 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-down">
-              {(100 *
-                Math.abs(
-                  (moneyLastMonth - moneyThisMonth) / moneyLastMonth
-                )).toFixed(0) +
-                "%"}
+              {(
+                100 *
+                Math.abs((moneyLastMonth - moneyThisMonth) / moneyLastMonth)
+              ).toFixed(0) + "%"}
             </span>{" "}
             <CaretDownOutlined className="icon-down" />
           </div>
@@ -108,10 +121,10 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
+              {100 *
                 Math.abs(
                   (moneyLastMonth - moneyThisMonth) / moneyLastMonth
-                ).toFixed(0)) +
+                ).toFixed(0) +
                 "%"}
             </span>
             <PauseOutlined rotate={90} className="icon-up" />
@@ -130,11 +143,9 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
-                Math.abs(
-                  (moneyLastYear - moneyThisYear) / moneyLastYear
-                )).toFixed(0) +
-                "%"}
+              {(
+                100 * Math.abs((moneyLastYear - moneyThisYear) / moneyLastYear)
+              ).toFixed(0) + "%"}
             </span>
             <CaretUpOutlined className="icon-up" />
           </div>
@@ -143,11 +154,9 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-down">
-              {(100 *
-                Math.abs(
-                  (moneyLastYear - moneyThisYear) / moneyLastYear
-                )).toFixed(0) +
-                "%"}
+              {(
+                100 * Math.abs((moneyLastYear - moneyThisYear) / moneyLastYear)
+              ).toFixed(0) + "%"}
             </span>{" "}
             <CaretDownOutlined className="icon-down" />
           </div>
@@ -156,11 +165,9 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
-                Math.abs(
-                  (moneyLastYear - moneyThisYear) / moneyLastYear
-                )).toFixed(0) +
-                "%"}
+              {(
+                100 * Math.abs((moneyLastYear - moneyThisYear) / moneyLastYear)
+              ).toFixed(0) + "%"}
             </span>
             <PauseOutlined rotate={90} className="icon-up" />
           </div>
@@ -179,11 +186,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
-                  (transactionYesterday - transactionToday) / transactionToday
-                )).toFixed(0) +
-                "%"}
+                  (transactionYesterday - transactionToday) /
+                    transactionYesterday
+                )
+              ).toFixed(0) + "%"}
             </span>
             <CaretUpOutlined className="icon-up" />
           </div>
@@ -192,11 +201,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-down">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
-                  (transactionYesterday - transactionToday) / transactionToday
-                )).toFixed(0) +
-                "%"}
+                  (transactionYesterday - transactionToday) /
+                    transactionYesterday
+                )
+              ).toFixed(0) + "%"}
             </span>{" "}
             <CaretDownOutlined className="icon-down" />
           </div>
@@ -205,11 +216,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
-                  (transactionYesterday - transactionToday) / transactionToday
-                )).toFixed(0) +
-                "%"}
+                  (transactionYesterday - transactionToday) /
+                    transactionYesterday
+                )
+              ).toFixed(0) + "%"}
             </span>
             <PauseOutlined rotate={90} className="icon-up" />
           </div>
@@ -231,13 +244,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
-                  (transactionLastMonth -
-                    transactionThisMonth) /
-                    transactionThisMonth
-                )).toFixed(0) +
-                "%"}
+                  (transactionLastMonth - transactionThisMonth) /
+                    transactionLastMonth
+                )
+              ).toFixed(0) + "%"}
             </span>
             <CaretUpOutlined className="icon-up" />
           </div>
@@ -246,12 +259,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-down">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
                   (transactionLastMonth - transactionThisMonth) /
-                    transactionThisMonth
-                )).toFixed(0) +
-                "%"}
+                    transactionLastMonth
+                )
+              ).toFixed(0) + "%"}
             </span>{" "}
             <CaretDownOutlined className="icon-down" />
           </div>
@@ -260,12 +274,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
                   (transactionLastMonth - transactionThisMonth) /
-                    transactionThisMonth
-                )).toFixed(0) +
-                "%"}
+                    transactionLastMonth
+                )
+              ).toFixed(0) + "%"}
             </span>
             <PauseOutlined rotate={90} className="icon-up" />
           </div>
@@ -286,12 +301,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
                   (transactionLastYear - transactionThisYear) /
-                    transactionThisYear
-                )).toFixed(0) +
-                "%"}
+                    transactionLastYear
+                )
+              ).toFixed(0) + "%"}
             </span>
             <CaretUpOutlined className="icon-up" />
           </div>
@@ -300,12 +316,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-down">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
                   (transactionLastYear - transactionThisYear) /
-                    transactionThisYear
-                )).toFixed(0) +
-                "%"}
+                    transactionLastYear
+                )
+              ).toFixed(0) + "%"}
             </span>{" "}
             <CaretDownOutlined className="icon-down" />
           </div>
@@ -314,12 +331,13 @@ function SelisihPresentase({
         return (
           <div>
             <span className="persen-up">
-              {(100 *
+              {(
+                100 *
                 Math.abs(
                   (transactionLastYear - transactionThisYear) /
-                    transactionThisYear
-                )).toFixed(0) +
-                "%"}
+                    transactionLastYear
+                )
+              ).toFixed(0) + "%"}
             </span>
             <PauseOutlined rotate={90} className="icon-up" />
           </div>
@@ -332,18 +350,55 @@ function SelisihPresentase({
 
   return (
     <>
-      {moneyToday && <span>{persentasePendapatanHariIni()}</span>}
-      {/* {objBulanIni && <span>{persentasePendapatanBulanIni()}</span>}
-      {objTahunIni && <span>{persentasePendapatanTahunIni()}</span>} */}
-      {moneyThisMonth && <span>{persentasePendapatanBulanIni()}</span>}
-      {moneyThisYear && <span>{persentasePendapatanTahunIni()}</span>}
+      {moneyYesterday === 0 ? (
+        <div>
+          <span className="persen-up">100%</span>
+          <CaretUpOutlined className="icon-up" />
+        </div>
+      ) : (
+        moneyToday && <span>{persentasePendapatanHariIni()}</span>
+      )}
+      {moneyLastMonth === 0 ? (
+        <div>
+          <span className="persen-up">100%</span>
+          <CaretUpOutlined className="icon-up" />
+        </div>
+      ) : (
+        moneyThisMonth && <span>{persentasePendapatanBulanIni()}</span>
+      )}
+      {moneyLastYear === 0 ? (
+        <div>
+          <span className="persen-up">100%</span>
+          <CaretUpOutlined className="icon-up" />
+        </div>
+      ) : (
+        moneyThisYear && <span>{persentasePendapatanTahunIni()}</span>
+      )}
 
-      {transactionToday && <span>{persentaseTransaksiHariIni()}</span>}
-      {transactionThisMonth && <span>{persentaseTransaksiBulanIni()}</span>}
-      {transactionThisYear && <span>{persentaseTransaksiTahunIni()}</span>}
-
-      {/* {objTransactionThisMonth && <span>{persentaseTransaksiBulanIni()}</span>}
-      {objTransactionThisYear && <span>{persentaseTransaksiTahunIni()}</span>} */}
+      {transactionYesterday === 0 ? (
+        <div>
+          <span className="persen-up">100%</span>
+          <CaretUpOutlined className="icon-up" />
+        </div>
+      ) : (
+        transactionToday && <span>{persentaseTransaksiHariIni()}</span>
+      )}
+      {transactionLastMonth === 0 ? (
+        <div>
+          <span className="persen-up">100%</span>
+          <CaretUpOutlined className="icon-up" />
+        </div>
+      ) : (
+        transactionThisMonth && <span>{persentaseTransaksiBulanIni()}</span>
+      )}
+      {transactionLastYear === 0 ? (
+        <div>
+          <span className="persen-up">100%</span>
+          <CaretUpOutlined className="icon-up" />
+        </div>
+      ) : (
+        transactionThisYear && <span>{persentaseTransaksiTahunIni()}</span>
+      )}
     </>
   );
 }

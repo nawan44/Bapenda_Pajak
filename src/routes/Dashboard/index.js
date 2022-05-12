@@ -134,7 +134,7 @@ const SamplePage = () => {
 
       {/* </Row> */}
 
-      {/* <Row className="container-dashboard3">
+      <Row className="container-dashboard3">
         <JumlahTransaksiHarian
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
@@ -147,7 +147,7 @@ const SamplePage = () => {
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
         />
-      </Row> */}
+      </Row>
 
       {/* <Row className="container-dashboard5">
         <LatestTransaction

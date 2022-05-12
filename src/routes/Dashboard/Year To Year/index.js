@@ -247,11 +247,6 @@ const YearToYear = (props) => {
 
   }));
 
-  // console.log("kkkkkk",Number(tahunIni.total_thisYear).filter(n => !Number(tahunLalu.total_lastYear).includes(n)))
-  console.log("tahunIni",tahunIni )
-  console.log("tahunLalu",tahunLalu )
-
-
   const disabledDate = (current) => {
     let customDate = "2022";
     return current && current < moment(customDate, "YYYY");
