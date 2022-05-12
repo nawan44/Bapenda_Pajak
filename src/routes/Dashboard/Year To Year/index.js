@@ -120,8 +120,8 @@ const YearToYear = (props) => {
 
   const [jenisChart, setJenisChart] = useState("Daily");
   const [bulanSelect, setBulanSelect] = useState(setBulan);
-// const [dataBulan, setDataBulan] = useState()
-// const [dataTahun, setDataTahun] = useState({})
+  // const [dataBulan, setDataBulan] = useState()
+  // const [dataTahun, setDataTahun] = useState({})
 
   const [monthly, setMonthly] = useState();
   const [thisYearly, setThisYearly] = useState();
@@ -131,28 +131,7 @@ const YearToYear = (props) => {
   const [lastMonthly, setLastMonthly] = useState(
     moment().subtract(1, "year").format("YYYY")
   );
- 
 
-  const onChangeDateRange = (date, datesString) => {
-    setLastMonthly(datesString[0]);
-    setThisMonthly(datesString[1]);
-    //More code
-  };
-  const gradientOffset = () => {
-    const dataMax = Math.max(...data.map((i) => i.selisih));
-    const dataMin = Math.min(...data.map((i) => i.selisih));
-
-    if (dataMax <= 0) {
-      return 0;
-    }
-    if (dataMin >= 0) {
-      return 1;
-    }
-
-    return dataMax / (dataMax - dataMin);
-  };
-
-  const off = gradientOffset();
   const handleChangeSelect = (value) => {
     setJenisChart(value);
     setBulanSelect("1");
@@ -233,10 +212,11 @@ const YearToYear = (props) => {
     setLastYearly(res.Records);
   };
 
-  const bulan = monthly?.map((row) => ({
-    created_at: moment(row[0].stringValue).format("DD/MM"),
-    total_value: Number(row[1].stringValue),
-  }));
+  // const bulan = monthly?.map((row, index) => ({
+  //   created_at: moment(row[0].stringValue).format("DD/MM"),
+  //   total_value: Number(row[1].stringValue),
+  //   key :index
+  // }));
 
   let months = [
     "Januari",
@@ -254,57 +234,90 @@ const YearToYear = (props) => {
   ];
 
   const tahunIni = thisYearly?.map((row) => ({
-    created_at: months[row[0].longValue - 1],
-    total_thisYear: Number(row[1].stringValue),
+    bulan: months[row[0].longValue - 1],
+    thisYear: Number(row[1].stringValue),
+    key :index
+
   }));
 
-
   const tahunLalu = lastYearly?.map((row) => ({
-    created_at: months[row[0].longValue - 1],
-    total_lastYear: Number(row[1].stringValue),
+    bulan: months[row[0].longValue - 1],
+    lastYear: Number(row[1].stringValue),
+    key :index
+
   }));
 
   // console.log("kkkkkk",Number(tahunIni.total_thisYear).filter(n => !Number(tahunLalu.total_lastYear).includes(n)))
+  console.log("tahunIni",tahunIni )
+  console.log("tahunLalu",tahunLalu )
+
 
   const disabledDate = (current) => {
     let customDate = "2022";
     return current && current < moment(customDate, "YYYY");
   };
 
+  let mergedArray = tahunIni?.map((item, i) =>
+    Object.assign({}, item, tahunLalu[i])
+  );
+  const arraySelisih =
+    mergedArray &&
+    mergedArray.reduce((acc, curr, curVal) => {
+      acc[curr.created_at] = curr.total_thisYear - curr.total_lastYear;
+      return acc;
+    }, {});
 
- 
+  const arrayGrowth =
+    mergedArray &&
+    mergedArray.reduce((acc, curr, curVal) => {
+      acc[curr.created_at] =
+        100 *
+        Math.abs(
+          (Number(curr.total_lastYear) - Number(curr.total_thisYear)) /
+            Number(curr.total_lastYear)
+        );
 
-  let mergedArray = tahunIni?.map((item, i) => Object.assign({}, item, tahunLalu[i]));
+      return acc;
+    }, {});
 
+  const resultTable =
+    mergedArray &&
+    mergedArray.map((item, index) => {
+      return {
+        ...item,
 
+        key: index + 1,
+        selisih: item.thisYear - item.lastYear,
+        growth:
+          item.thisYear - item.lastYear !== 0
+            ? "100%"
+            : arrayGrowth[item.created_at],
+      };
+    });
 
-const arraySelisih = mergedArray && mergedArray.reduce((acc,curr, curVal, ) => {
-     acc[curr.created_at]  = curr.total_thisYear - curr.total_lastYear   
-     return acc
-}, {});
+  // const resultChart =
+  //   mergedArray &&
+  //   mergedArray.map((item, index) => {
+  //     return {
+  //       ...item,
 
-const arrayGrowth = mergedArray && mergedArray.reduce((acc,curr, curVal, ) => {
-  acc[curr.created_at]  = 100*Math.abs(( Number(curr.total_lastYear) -  Number(curr.total_thisYear)) / Number(curr.total_lastYear)) 
-  return acc
-}, {});
+  //       // key: index + 1,
+  //       selisih: item.thisYear - item.lastYear,
+  //     };
+  //   });
 
-const result = mergedArray?.map((item) => {
-  return {
-    ...item,
-    selisih: arraySelisih[item.created_at],
-    growth : arrayGrowth[item.created_at]
-  };
-});
-console.log("arrayGrowth", arrayGrowth);
-// console.log("grow", 100*Math.abs(( 50 - 100) / 50));
-
+console.log("resultChart",resultTable)
 
   return (
     <Widget styleName="gx-order-history">
       <Row>
-        <Col span={14} style={{
-          // background:"red", 
-        width:"90%"}}>
+        <Col
+          span={14}
+          style={{
+            // background:"red",
+            width: "90%",
+          }}
+        >
           <div style={{ width: "500px", height: "100px" }}>
             <div style={{ width: "100%", float: "left" }}>
               {" "}
@@ -356,7 +369,14 @@ console.log("arrayGrowth", arrayGrowth);
                 <div></div>
               )}
             </div> */}
-            <div style={{ width: "20%", float: "left", paddingTop: "7px", background:"yellow" }}>
+            <div
+              style={{
+                width: "20%",
+                float: "left",
+                paddingTop: "7px",
+                background: "yellow",
+              }}
+            >
               <DatePicker
                 disabledDate={disabledDate}
                 defaultValue={moment("2021", "YYYY")}
@@ -375,10 +395,18 @@ console.log("arrayGrowth", arrayGrowth);
               />
             </div>
           </div>
-          <ChartYearToYear data={data} result={result}   />
+          <ChartYearToYear
+            data={data}
+            // result={result}
+            // data={resultChart}
+          />
         </Col>
         <Col span={10}>
-          <TableYearToYear data={data}  result={result}/>
+          <TableYearToYear
+            // data={data}
+            // result={resultTable}
+            data={resultTable}
+          />
         </Col>
       </Row>
     </Widget>

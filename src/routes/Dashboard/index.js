@@ -15,7 +15,7 @@ import TopTen from "./TopTen";
 import Widget from "../../components/Widget";
 import * as moment from "moment";
 import TargetGauge from "./Target Gauge";
-import YearToYear from "./Year To Year";
+// import YearToYear from "./Year To Year";
 
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState();
@@ -24,12 +24,12 @@ const SamplePage = () => {
   const sThisMonth = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
   const eThisMonth = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
 
-  const earnByCat =
-    getEarnByCat &&
-    getEarnByCat.map((row) => ({
-      category: row[0].stringValue,
-      total_value: row[1].stringValue,
-    }));
+  // const earnByCat =
+  //   getEarnByCat &&
+  //   getEarnByCat.map((row) => ({
+  //     category: row[0].stringValue,
+  //     total_value: row[1].stringValue,
+  //   }));
   useEffect(() => {
     getEarning();
   }, []);
@@ -84,7 +84,8 @@ const SamplePage = () => {
 
   return (
     <div>
-      <Row className="container-dashboard1">
+     
+      {/* <Row className="container-dashboard1">
         <PendapatanHarian
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
@@ -97,10 +98,11 @@ const SamplePage = () => {
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
         />
-      </Row>
-      <Row className="row-year-to-year">
-        <YearToYear />
-      </Row>
+      </Row> */}
+     
+      {/* <Row className="row-year-to-year">
+         <YearToYear /> 
+      </Row> */}
 
 
 
@@ -109,7 +111,8 @@ const SamplePage = () => {
       {/* </div> */}
       {/* <Row className="container-dashboard2" type="flex"> */}
       {/* <GrafikPendapatan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} /> */}
-      <Row className="row-target-pajak">
+     
+      {/* <Row className="row-target-pajak">
         <Col xl={8} lg={24} md={24} sm={24} xs={24} className="gx-order-sm-2">
           <Widget>
             <TargetGauge />
@@ -127,10 +130,11 @@ const SamplePage = () => {
             <PieChart />
           </Row>
         </Col>
-      </Row>
+      </Row> */}
 
       {/* </Row> */}
-      <Row className="container-dashboard3">
+
+      {/* <Row className="container-dashboard3">
         <JumlahTransaksiHarian
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
@@ -143,14 +147,15 @@ const SamplePage = () => {
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
         />
-      </Row>
-      <Row className="container-dashboard5">
+      </Row> */}
+
+      {/* <Row className="container-dashboard5">
         <LatestTransaction
           style={{ margin: "0px", textAlign: "center" }}
           latestTransaction={latestTransaction}
           setLatestTransaction={setLatestTransaction}
         />
-      </Row>
+      </Row> */}
     </div>
   );
 };

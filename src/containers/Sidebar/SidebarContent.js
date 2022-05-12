@@ -79,8 +79,8 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 </span>
               </Link>
             </Menu.Item>
-            <SubMenu
-              key="device-all"
+          <SubMenu
+              key="device"
               style={{ fontSize: "150%", marginTop: "5px" }}
               icon={
                 <UserOutlined
@@ -88,9 +88,16 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 />
               }
               title="Device Agent"
+    //            title={
+    //     <span>
+    //        Device Agent  <UserOutlined
+    //               style={{ fontSize: "125%", marginRight: "0px" }}
+    //             />
+    //     </span>
+    // }
             >
               <Menu.Item
-                key="device-all"
+                key="deviceall"
                 style={{
                   fontSize: "14px",
                   width: "350px",
@@ -106,7 +113,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 </Link>
               </Menu.Item>
               <Menu.Item
-                key="device-hotel"
+                key="devicehotel"
                 style={{
                   fontSize: "14px",
                   width: "350px",
@@ -122,7 +129,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 </Link>
               </Menu.Item>
               <Menu.Item
-                key="device-parkir"
+                key="deviceparkir"
                 style={{
                   fontSize: "14px",
                   width: "350px",
@@ -138,7 +145,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 </Link>
               </Menu.Item>
               <Menu.Item
-                key="device-restoran"
+                key="devicerestoran"
                 style={{
                   fontSize: "14px",
                   width: "350px",
@@ -153,9 +160,9 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                   <span>Device Restoran</span>
                 </Link>
               </Menu.Item>
-              <Divider />
+              {/* <Divider /> */}
               <Menu.Item
-                key="register-device-agent"
+                key="registerdevice"
                 style={{
                   fontSize: "14px",
                   width: "350px",
@@ -170,7 +177,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                   <span>Register Device</span>
                 </Link>
               </Menu.Item>
-            </SubMenu>
+            </SubMenu> 
 
             <Menu.Item key="transaction">
               <Link to="/transaction">
@@ -180,35 +187,7 @@ const SidebarContent = ({ sidebarCollapsed, setSidebarCollapsed }) => {
                 <span style={{ fontSize: "14px" }}>Transaction</span>
               </Link>
             </Menu.Item>
-            {/* <SubMenu key="status-device" style={{ fontSize: '150%', marginTop: "5px" }}
-              icon={<DeploymentUnitOutlined style={{ fontSize: '125%', marginRight: "0px" }} />}
-              title="Status Device">
-              <Menu.Item key="status-device-all" 
-              style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}>
-                <Link to="/status-device-all">
-                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
-                  <span><IntlMessages id="sidebar.statusDeviceAll" /></span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="status-device-hotel" style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}>
-                <Link to="/status-device-hotel"  >
-                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
-                  <span >Device Hotel</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="status-device-restoran" style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}>
-                <Link to="/status-device-restoran">
-                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
-                  <span >Device Restoran</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="status-device-parkir" style={{ fontSize: "14px", width: "350px", marginLeft: "-20px", marginTop: "5px" }}>
-                <Link to="/status-device-parkir">
-                  <ApiOutlined style={{ fontSize: '125%', marginRight: "0px" }} />
-                  <span >Device Parkir</span>
-                </Link>
-              </Menu.Item>
-            </SubMenu> */}
+         
           </Menu>
         </CustomScrollbars>
       </div>

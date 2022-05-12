@@ -13,10 +13,9 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function ChartYearToYear({ data, result }) {
+function ChartYearToYear({ data }) {
 
-  console.log("chart result", result)
-  console.log("chart data chart", data)
+  // console.log("chart data chart", data)
 
   const gradientOffset = () => {
     const dataMax = Math.max(...data.map((i) => i?.selisih));
