@@ -301,7 +301,6 @@ const YearToYear = (props) => {
   //     };
   //   });
 
-console.log("resultChart",resultTable)
 
   return (
     <Widget styleName="gx-order-history">

@@ -56,7 +56,9 @@ const EcommerceStatus = ({
         <div></div>
       ) : (
         <div style={{ float: "left", width: "70px" }}>
-          {moneyToday === 0 || moneyThisMonth === 0 || moneyThisYear === 0 ? (
+          {moneyToday === 0 || moneyThisMonth === 0 || moneyThisYear === 0 ||
+          transactionToday === 0 || transactionThisMonth === 0 || transactionThisYear === 0
+          ? (
             "0%"
           ) : (
             // <div>

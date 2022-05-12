@@ -25,26 +25,8 @@ function SelisihPresentase({
   transactionLastYear,
   objTransactionThisYear /*  */,
 }) {
-  console.log("moneyLastYear", moneyLastYear);
-  console.log("moneyThisYear", moneyThisYear);
-  console.log(
-    "Pendapatan",
-    (100 * Math.abs((moneyLastYear - moneyThisYear) / moneyLastYear)).toFixed(0)
-  );
-  console.log("=====================");
 
-  console.log("transactionThisYear", transactionThisYear);
-  console.log("transactionLastYear", transactionLastYear);
-
-  console.log(
-    "Transaksi",
-    (
-      100 *
-      Math.abs(
-        (transactionLastYear - transactionThisYear) / transactionLastYear
-      )
-    ).toFixed(0)
-  );
+  
 
   const persentasePendapatanHariIni = () => {
     if (moneyYesterday === undefined || moneyToday === undefined) {
