@@ -15,21 +15,13 @@ import TopTen from "./TopTen";
 import Widget from "../../components/Widget";
 import * as moment from "moment";
 import TargetGauge from "./Target Gauge";
-// import YearToYear from "./Year To Year";
+import YearToYear from "./Year To Year";
 
 const SamplePage = () => {
   const [latestTransaction, setLatestTransaction] = useState();
   const [getEarnByCat, setGetEarnByCat] = useState();
-  // const [earnByCat, setEarnByCat] = useState(0);
   const sThisMonth = moment().startOf("year").format("YYYY-MM-DD HH:mm:ss");
   const eThisMonth = moment().endOf("year").format("YYYY-MM-DD HH:mm:ss");
-
-  // const earnByCat =
-  //   getEarnByCat &&
-  //   getEarnByCat.map((row) => ({
-  //     category: row[0].stringValue,
-  //     total_value: row[1].stringValue,
-  //   }));
   useEffect(() => {
     getEarning();
   }, []);
@@ -84,7 +76,6 @@ const SamplePage = () => {
 
   return (
     <div>
-     
       <Row className="container-dashboard1">
         <PendapatanHarian
           latestTransaction={latestTransaction}
@@ -99,25 +90,14 @@ const SamplePage = () => {
           setLatestTransaction={setLatestTransaction}
         />
       </Row>
-     
-      {/* <Row className="row-year-to-year">
+      <Row className="row-year-to-year">
          <YearToYear /> 
-      </Row> */}
-
-
-
-      {/* <TopTen/> */}
-
-      {/* </div> */}
-      {/* <Row className="container-dashboard2" type="flex"> */}
-      {/* <GrafikPendapatan latestTransaction={latestTransaction} setLatestTransaction={setLatestTransaction} /> */}
-     
+      </Row>
       <Row className="row-target-pajak">
         <Col xl={8} lg={24} md={24} sm={24} xs={24} className="gx-order-sm-2">
           <Widget>
             <TargetGauge />
           </Widget>
-
           <Widget>
             <TopTen />
           </Widget>
@@ -131,9 +111,6 @@ const SamplePage = () => {
           </Row>
         </Col>
       </Row>
-
-      {/* </Row> */}
-
       <Row className="container-dashboard3">
         <JumlahTransaksiHarian
           latestTransaction={latestTransaction}
@@ -148,7 +125,6 @@ const SamplePage = () => {
           setLatestTransaction={setLatestTransaction}
         />
       </Row>
-
       <Row className="container-dashboard5">
         <LatestTransaction
           style={{ margin: "0px", textAlign: "center" }}
