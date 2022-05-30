@@ -147,10 +147,6 @@ const YearToYear = (props) => {
   const handleLastMonthly = (date, dateString) => {
     setLastMonthly(dateString);
   };
-  // useEffect(() => {
-  //   if(jenisChart === "Monthly"){
-  //   setBulanSelect("1");}
-  // }, []);
 
   useEffect(() => {
     getMonthly();
@@ -233,18 +229,16 @@ const YearToYear = (props) => {
     "Desember",
   ];
 
-  const tahunIni = thisYearly?.map((row) => ({
+  const tahunIni = thisYearly?.map((row, index) => ({
     bulan: months[row[0].longValue - 1],
     thisYear: Number(row[1].stringValue),
-    key :index
-
+    key: index,
   }));
 
-  const tahunLalu = lastYearly?.map((row) => ({
+  const tahunLalu = lastYearly?.map((row, index) => ({
     bulan: months[row[0].longValue - 1],
     lastYear: Number(row[1].stringValue),
-    key :index
-
+    key: index,
   }));
 
   const disabledDate = (current) => {
@@ -253,7 +247,7 @@ const YearToYear = (props) => {
   };
 
   let mergedArray = tahunIni?.map((item, i) =>
-    Object.assign({}, item, tahunLalu[i])
+    Object.assign({}, item, tahunLalu && tahunLalu[i])
   );
   const arraySelisih =
     mergedArray &&
@@ -265,6 +259,7 @@ const YearToYear = (props) => {
   const arrayGrowth =
     mergedArray &&
     mergedArray.reduce((acc, curr, curVal) => {
+      Number.isNaN( curr.thisYear / curr.lastYear)   ? "0" :
       acc[curr.created_at] =
         100 *
         Math.abs(
@@ -278,15 +273,16 @@ const YearToYear = (props) => {
   const resultTable =
     mergedArray &&
     mergedArray.map((item, index) => {
+      // console.log("MMMMM", arrayGrowth[item.created_at])
       return {
         ...item,
 
         key: index + 1,
         selisih: item.thisYear - item.lastYear,
-        growth:
+        growth:  Number.isNaN( item.thisYear / item.lastYear)   ? "0" :
           item.thisYear - item.lastYear !== 0
-            ? "100%"
-            : arrayGrowth[item.created_at],
+            ? "100%": 
+            arrayGrowth[item.created_at],
       };
     });
 
@@ -301,14 +297,12 @@ const YearToYear = (props) => {
   //     };
   //   });
 
-
   return (
     <Widget styleName="gx-order-history">
       <Row>
         <Col
           span={14}
           style={{
-            // background:"red",
             width: "90%",
           }}
         >
