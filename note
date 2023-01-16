@@ -1,0 +1,7 @@
+  "scripts": {
+    "start": "react-app-rewired --openssl-legacy-provider start",
+    "build": "react-app-rewired  build ",
+    "test": "react-app-rewired --env=jsdom",
+    // "proxy": "lcp --proxyUrl https://api.raspi-geek.com/v1",
+    "less": "lessc --js src/styles/wieldy.less public/css/style.css && lessc --js src/styles/wieldy.less public/css/style.min.css --compress -x"
+  },

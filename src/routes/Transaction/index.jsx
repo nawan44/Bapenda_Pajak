@@ -18,7 +18,7 @@ import ReactJson from "react-json-view";
 // import ReactFileReader from "react-file-reader";
 // import {Controlled as CodeMirror} from 'react-codemirror'
 // var CodeMirror = require('react-codemirror');
-  // const jsonlint = require("jsonlint-mod");
+// const jsonlint = require("jsonlint-mod");
 
 const { RangePicker } = DatePicker;
 const Option = Select.Option;
@@ -279,7 +279,7 @@ const Transaction = () => {
       },
     },
   ];
-  
+
   return (
     <>
       <Widget styleName="gx-order-history  gx-p-4 ">
@@ -411,11 +411,11 @@ const Transaction = () => {
             confirmLoading={confirmLoading}
             onCancel={handleCancel}
           >
-            {
-              onget == true ? 
+            {onget == true ? (
               <ReactJson src={data} />
-: <div>Data Tidak Ada</div>
-            }
+            ) : (
+              <div>Data Tidak Ada</div>
+            )}
           </Modal>
         )}
         {renderRawdata() === "PDF" && (
