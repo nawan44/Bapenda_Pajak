@@ -34,8 +34,6 @@ const GrafikPendapatan = (props) => {
   const [yearly, setYearly] = useState();
   const [tahunMonthly, setTahunMonthly] = useState(moment().format("YYYY"));
 
- 
-
   const handleChangeSelect = (value) => {
     setJenisChart(value);
     setBulanSelect("1");
@@ -117,7 +115,7 @@ const GrafikPendapatan = (props) => {
   const tahun = yearly?.map((row) => ({
     // created_at: row[0].longValue,
     // created_at :choiceBulan(),
-    created_at: months[(row[0].longValue) - 1],
+    created_at: months[row[0].longValue - 1],
     total_value: Number(row[1].stringValue),
   }));
   // const shooters = bulan?.reduce(
@@ -136,10 +134,6 @@ const GrafikPendapatan = (props) => {
     return current && current < moment(customDate, "YYYY");
   };
   // console.log("bulan",bulan )
- 
-  
-
-
 
   return (
     <Widget

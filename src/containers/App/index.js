@@ -24,6 +24,9 @@ import {
 import CircularProgress from "../../components/CircularProgress";
 import {useAuth} from "../../authentication";
 
+import { ReactKeycloakProvider } from "@react-keycloak/web";
+import keycloak from "../../components/Keycloak";
+
 const RestrictedRoute = ({component: Component, location, authUser, ...rest}) =>
 
 
