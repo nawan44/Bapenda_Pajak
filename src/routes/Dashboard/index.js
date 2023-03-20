@@ -91,7 +91,7 @@ const SamplePage = () => {
         />
       </Row>
       <Row className="row-year-to-year">
-        <YearToYear />
+         <YearToYear /> 
       </Row>
       <Row className="row-target-pajak">
         <Col xl={8} lg={24} md={24} sm={24} xs={24} className="gx-order-sm-2">
